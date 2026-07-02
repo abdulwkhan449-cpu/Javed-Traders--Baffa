@@ -1,0 +1,3807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Javed Traders Baffa – Digital Showroom</title>
+
+  <!-- Font Awesome for icons (replaces lucide-react) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Google Font for display (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Global Reset & Base ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #182C30;
+      --secondary: #009fb2;
+      --accent: #FD7F4B;
+      --cream: #FCFAF7;
+      --light-bg: #FAFCFD;
+      --border-color: #D5ECEF;
+      --text-dark: #182C30;
+      --text-muted: #5E5349;
+      --text-light: #EADFCF;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    /* Utilities */
+    .font-display {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .font-mono {
+      font-family: 'Courier New', monospace;
+    }
+
+    .font-urdu {
+      font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', serif;
+      direction: rtl;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    /* ---------- Toast ---------- */
+    #toast-container {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border: 1px solid var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: auto;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast i {
+      color: var(--accent);
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(250,252,253,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    @media (min-width: 640px) {
+      .header-inner { height: 80px; padding: 0 24px; }
+    }
+
+    .logo {
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .logo h1 {
+      font-size: 1.125rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .logo h1 span { color: var(--secondary); }
+    .logo .sub {
+      display: none;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      font-family: monospace;
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+
+    @media (min-width: 1024px) {
+      .logo h1 { font-size: 1.5rem; }
+      .logo .sub { display: flex; align-items: center; gap: 2px; }
+    }
+
+    .logo .sub i { color: var(--secondary); font-size: 0.6rem; }
+
+    /* Desktop nav */
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .nav-desktop { display: flex; }
+    }
+
+    .nav-desktop a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .nav-desktop a i {
+      color: var(--secondary);
+      font-size: 0.75rem;
+      transition: color 0.3s;
+    }
+
+    .nav-desktop a.active {
+      color: var(--secondary);
+    }
+
+    .nav-desktop a.active i {
+      color: var(--accent);
+    }
+
+    .nav-desktop a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--secondary);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-desktop a.active::after,
+    .nav-desktop a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-desktop a:hover { color: var(--primary); }
+
+    /* Right actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle {
+      display: flex;
+      background: #f0f7f9;
+      border-radius: 999px;
+      padding: 2px;
+      border: 1px solid var(--border-color);
+    }
+
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      padding: 4px 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: var(--text-muted);
+    }
+
+    .lang-toggle button.active {
+      background: var(--secondary);
+      color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .lang-toggle .urdu-btn {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      font-size: 0.7rem;
+    }
+
+    .cart-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .cart-btn:hover {
+      background: var(--secondary);
+    }
+
+    .cart-btn i {
+      color: var(--accent);
+    }
+
+    .cart-badge {
+      background: var(--accent);
+      color: white;
+      border-radius: 999px;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      font-family: monospace;
+    }
+
+    .menu-toggle {
+      display: block;
+      background: #f0f7f9;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 6px 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--primary);
+      transition: background 0.3s;
+    }
+
+    .menu-toggle:hover { background: var(--border-color); }
+
+    @media (min-width: 768px) {
+      .menu-toggle { display: none; }
+    }
+
+    /* ---------- Mobile Menu Modal ---------- */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 80px 16px 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .mobile-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu {
+      background: var(--light-bg);
+      max-width: 320px;
+      width: 100%;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      transform: scale(0.95) translateY(-15px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+
+    .mobile-overlay.open .mobile-menu {
+      transform: scale(1) translateY(0);
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .mobile-menu-header .logo-text {
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+    .mobile-menu-header .logo-text span { color: var(--secondary); }
+    .mobile-menu-header .close-btn {
+      background: #f0f7f9;
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 4px 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .mobile-menu-header .close-btn:hover { background: var(--secondary); color: white; }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 16px 0;
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .mobile-nav a.active {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .mobile-nav a i {
+      color: var(--secondary);
+      width: 20px;
+    }
+
+    .mobile-nav a.active i { color: var(--accent); }
+
+    .mobile-nav a .arrow {
+      opacity: 0.3;
+      transition: 0.3s;
+    }
+
+    .mobile-nav a:hover .arrow { opacity: 1; transform: translateX(4px); }
+
+    .mobile-lang {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #f0f7f9;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin: 12px 0;
+    }
+
+    .mobile-lang span {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .mobile-lang .lang-toggle {
+      background: white;
+    }
+
+    .mobile-call {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: 0.3s;
+      margin-top: 8px;
+    }
+
+    .mobile-call i { color: var(--accent); }
+    .mobile-call:hover { background: var(--secondary); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: linear-gradient(135deg, var(--light-bg), #e8f4f5, var(--border-color));
+      padding: 48px 16px;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(0,159,178,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 768px) {
+      .hero { padding: 64px 32px; }
+      .hero-inner {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 48px;
+      }
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--secondary);
+      border: 1px solid var(--border-color);
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .hero-badge i { font-size: 0.7rem; }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .hero-title span { color: var(--secondary); }
+
+    @media (min-width: 640px) {
+      .hero-title { font-size: 3.5rem; }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title { font-size: 4.5rem; }
+    }
+
+    .hero-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .hero-desc.urdu { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .btn-primary i { color: var(--accent); }
+    .btn-primary:hover {
+      background: var(--secondary);
+      transform: scale(1.02);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text-dark);
+      border: 1px solid var(--border-color);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background: #f0f7f9;
+      transform: scale(1.02);
+    }
+
+    /* Hero portraits */
+    .hero-portraits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .portrait-card {
+      background: white;
+      padding: 12px;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .portrait-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+
+    .portrait-card .img-wrapper {
+      aspect-ratio: 3/4;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #f0f7f9;
+      position: relative;
+    }
+
+    .portrait-card .img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: filter 0.5s;
+      filter: grayscale(0.15);
+    }
+
+    .portrait-card:hover .img-wrapper img {
+      filter: grayscale(0);
+    }
+
+    .portrait-card .img-wrapper .caption {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      color: white;
+    }
+
+    .portrait-card .img-wrapper .caption .role {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-family: monospace;
+    }
+
+    .portrait-card .img-wrapper .caption .name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .portrait-card .label {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+    }
+
+    /* ---------- Main ---------- */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 16px 60px;
+    }
+
+    section {
+      margin-bottom: 64px;
+    }
+
+    /* How it works */
+    .how-it-works {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .how-it-works {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 32px;
+      }
+      .how-it-works .step-header {
+        grid-column: 1 / -1;
+        border-bottom: 1px solid #f0f7f9;
+        padding-bottom: 12px;
+      }
+    }
+
+    .how-it-works .step-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--secondary);
+    }
+
+    .how-it-works .step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding-top: 12px;
+    }
+
+    .how-it-works .step .num {
+      background: #f0f7f9;
+      color: var(--secondary);
+      padding: 6px 10px;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .how-it-works .step .content h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .how-it-works .step .content p {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* About */
+    .about {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .about { padding: 40px; }
+    }
+
+    .about-header {
+      border-bottom: 1px solid #f0f7f9;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .about-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .about-header .sub {
+      font-size: 0.65rem;
+      color: var(--secondary);
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+    }
+
+    .about-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .about-highlights {
+      background: #f0f7f9;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .about-highlights h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+
+    .about-highlights ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .about-highlights ul li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .about-highlights ul li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--secondary);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Catalogue */
+    .catalogue-header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .catalogue-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .catalogue-header .sub {
+      font-size: 0.65rem;
+      color: var(--secondary);
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Filters */
+    .filter-rail {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      background: #f0f7f9;
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+
+    .filter-rail button {
+      border: none;
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .filter-rail button.active {
+      background: var(--secondary);
+      color: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .filter-rail button:hover:not(.active) {
+      background: white;
+      color: var(--primary);
+    }
+
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .filter-group i {
+      color: var(--secondary);
+    }
+
+    .filter-group select,
+    .filter-group input[type="checkbox"] {
+      background: var(--light-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .filter-group select:focus,
+    .filter-group input:focus {
+      border-color: var(--secondary);
+    }
+
+    .filter-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    /* Product grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 640px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      border-color: var(--secondary);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .product-card.selected {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 2px rgba(0,159,178,0.2);
+    }
+
+    .product-card .img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      background: var(--light-bg);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .product-card .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .product-card:hover .img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .product-card .img-wrap .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .product-card:hover .img-wrap .overlay {
+      opacity: 1;
+    }
+
+    .product-card .img-wrap .overlay span {
+      background: var(--primary);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .product-card .img-wrap .badges {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .product-card .img-wrap .badges span {
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid;
+      background: white;
+    }
+
+    .product-card .img-wrap .badges .cat-grocery {
+      color: #065f46;
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+    .product-card .img-wrap .badges .cat-household {
+      color: #92400e;
+      background: #fffbeb;
+      border-color: #fcd34d;
+    }
+
+    .product-card .img-wrap .badges .brand {
+      background: rgba(24,44,48,0.8);
+      color: white;
+      border-color: transparent;
+      font-family: monospace;
+    }
+
+    .product-card .img-wrap .selected-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,159,178,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .product-card .img-wrap .selected-overlay i {
+      background: var(--primary);
+      color: white;
+      padding: 8px;
+      border-radius: 999px;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .product-card .img-wrap .stock-badge {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-card .img-wrap .stock-badge span {
+      background: #fef2f2;
+      color: #b91c1c;
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      border: 1px solid #fecaca;
+      text-transform: uppercase;
+    }
+
+    .product-card .info {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-card .info .title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.3;
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+
+    .product-card .info .unit {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      font-family: monospace;
+      background: #f0f7f9;
+      padding: 2px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      margin-top: 4px;
+    }
+
+    .product-card .info .desc {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-top: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 36px;
+    }
+
+    .product-card .info .bottom {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #f0f7f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-card .info .bottom .price {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card .info .bottom .price .label {
+      font-size: 0.55rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--secondary);
+      font-family: monospace;
+    }
+
+    .product-card .info .bottom .price .amount {
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: monospace;
+    }
+
+    .product-card .info .bottom .price .amount small {
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .product-card .info .bottom .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .product-card .info .bottom .actions .add-btn {
+      background: #f0f7f9;
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-card .info .bottom .actions .add-btn:hover {
+      background: var(--secondary);
+      color: white;
+      border-color: var(--secondary);
+    }
+
+    .product-card .info .bottom .actions .add-btn:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .product-card .info .bottom .actions .qty-control {
+      display: flex;
+      align-items: center;
+      background: var(--primary);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .product-card .info .bottom .actions .qty-control button {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 700;
+    }
+
+    .product-card .info .bottom .actions .qty-control button:hover {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .product-card .info .bottom .actions .qty-control .qty {
+      color: white;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+    }
+
+    .empty-state i {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      background: #f0f7f9;
+      padding: 20px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .empty-state h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .empty-state p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      max-width: 300px;
+      margin: 0 auto 16px;
+    }
+
+    .empty-state .reset-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .empty-state .reset-btn:hover {
+      background: var(--primary);
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--primary);
+      color: var(--cream);
+      border-radius: 24px;
+      padding: 32px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .contact { padding: 48px; }
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: rgba(0,159,178,0.1);
+      border-radius: 999px;
+      filter: blur(60px);
+    }
+
+    .contact .header {
+      border-bottom: 1px solid rgba(0,159,178,0.3);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact .header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .contact .header .sub {
+      font-size: 0.65rem;
+      color: var(--accent);
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .contact-item .label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-family: monospace;
+    }
+
+    .contact-item .value {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 4px 0 8px;
+    }
+
+    .contact-item .desc {
+      font-size: 0.75rem;
+      color: rgba(234,223,207,0.7);
+      line-height: 1.5;
+    }
+
+    .contact-item .phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #34d399;
+      font-weight: 700;
+      font-family: monospace;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .contact-item .phone-link:hover { color: #6ee7b7; }
+
+    .contact-map {
+      margin-top: 24px;
+      padding: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .contact-map .info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-map .info i {
+      color: var(--accent);
+      font-size: 1.2rem;
+      background: rgba(0,159,178,0.2);
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    .contact-map .info .text {
+      font-size: 0.75rem;
+    }
+    .contact-map .info .text .strong {
+      font-weight: 700;
+      color: white;
+    }
+    .contact-map .info .text .sub {
+      color: rgba(234,223,207,0.6);
+    }
+
+    .contact-map .directions {
+      background: var(--secondary);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .contact-map .directions:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--primary);
+      color: var(--cream);
+      padding: 40px 16px 20px;
+      border-top: 1px solid rgba(0,159,178,0.3);
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .footer-col .brand {
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      display: block;
+    }
+
+    .footer-col .brand span { color: var(--secondary); }
+
+    .footer-col .about-text {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    .footer-col .trust-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .footer-col .trust-badges span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.55rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,159,178,0.15);
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,159,178,0.3);
+      font-family: monospace;
+    }
+
+    .footer-col .trust-badges span i { font-size: 0.6rem; }
+
+    .footer-col h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .footer-col .info-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.7rem;
+      color: var(--text-light);
+      line-height: 1.4;
+    }
+
+    .footer-col .info-item i {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .footer-col .info-item .strong { color: white; font-weight: 600; }
+    .footer-col .info-item .highlight { color: var(--secondary); font-weight: 600; }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      font-size: 0.65rem;
+      color: rgba(0,159,178,0.5);
+      font-family: monospace;
+    }
+
+    @media (min-width: 640px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .footer-bottom .version {
+      color: rgba(253,127,75,0.6);
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- Drawer (Shopping List) ---------- */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(24,44,48,0.5);
+      backdrop-filter: blur(4px);
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .drawer-overlay.open {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .drawer {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 61;
+      width: 100%;
+      max-width: 400px;
+      background: var(--light-bg);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer-overlay.open .drawer {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .drawer-header .left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .drawer-header .left .icon-wrap {
+      background: #f0f7f9;
+      padding: 8px;
+      border-radius: 10px;
+      color: var(--secondary);
+    }
+
+    .drawer-header .left .title-group h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .drawer-header .left .title-group p {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+
+    .drawer-header .close-drawer {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 999px;
+      transition: 0.3s;
+    }
+
+    .drawer-header .close-drawer:hover {
+      background: #f0f7f9;
+      color: var(--primary);
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .drawer-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+    }
+
+    .drawer-empty i {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      background: #f0f7f9;
+      padding: 20px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .drawer-empty h3 {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .drawer-empty p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      max-width: 200px;
+    }
+
+    .drawer-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .drawer-item .left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .drawer-item .left img {
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #f0f7f9;
+      background: var(--light-bg);
+    }
+
+    .drawer-item .left .details .name {
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .drawer-item .left .details .meta {
+      font-size: 0.6rem;
+      color: var(--secondary);
+      font-family: monospace;
+    }
+
+    .drawer-item .right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .drawer-item .right .line-total {
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: monospace;
+    }
+
+    .drawer-item .right .qty-control {
+      display: flex;
+      align-items: center;
+      background: #f0f7f9;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    .drawer-item .right .qty-control button {
+      background: transparent;
+      border: none;
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: 0.3s;
+    }
+
+    .drawer-item .right .qty-control button:hover {
+      background: var(--border-color);
+    }
+
+    .drawer-item .right .qty-control .qty {
+      padding: 2px 10px;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    .drawer-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-color);
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .drawer-footer .clear-btn {
+      background: transparent;
+      border: none;
+      color: var(--secondary);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: monospace;
+      margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .drawer-footer .clear-btn:hover { color: #b91c1c; }
+
+    .drawer-footer .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .drawer-footer .total .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .drawer-footer .total .amount {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: monospace;
+    }
+
+    .drawer-footer .total .amount small {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .drawer-footer .proceed-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .drawer-footer .proceed-btn:hover {
+      background: var(--secondary);
+    }
+
+    .drawer-footer .note {
+      text-align: center;
+      font-size: 0.6rem;
+      color: var(--secondary);
+      font-weight: 700;
+      margin-top: 8px;
+      font-family: monospace;
+      text-transform: uppercase;
+    }
+
+    /* -------- Form inside drawer (step 2) -------- */
+    .drawer-body .form-step {
+      display: none;
+    }
+
+    .drawer-body .form-step.active {
+      display: block;
+    }
+
+    .form-step .summary-box {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+
+    .form-step .summary-box .label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--secondary);
+      font-family: monospace;
+    }
+
+    .form-step .summary-box .row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .form-group label i { color: var(--secondary); }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      background: white;
+      outline: none;
+      transition: 0.3s;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 2px rgba(0,159,178,0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .form-hint {
+      background: rgba(0,159,178,0.05);
+      border: 1px solid rgba(0,159,178,0.2);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.6rem;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .drawer-footer .back-btn {
+      background: transparent;
+      border: none;
+      color: var(--secondary);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 0;
+      margin-bottom: 8px;
+    }
+
+    .drawer-footer .back-btn:hover { color: var(--primary); }
+
+    .drawer-footer .whatsapp-btn {
+      width: 100%;
+      padding: 12px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .drawer-footer .whatsapp-btn:hover {
+      background: #20ba59;
+    }
+
+    .drawer-footer .whatsapp-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .drawer-footer .whatsapp-btn i { font-size: 1rem; }
+
+    /* ---------- Product Detail Modal ---------- */
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .detail-overlay.open {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .detail-modal {
+      background: var(--light-bg);
+      max-width: 640px;
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .detail-overlay.open .detail-modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .detail-modal .close-detail {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .detail-modal .close-detail:hover {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .detail-modal .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .detail-modal .detail-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .detail-modal .detail-image {
+      aspect-ratio: 1;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .detail-modal .detail-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-modal .detail-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .detail-modal .detail-info .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f0f7f9;
+      padding: 2px 12px;
+      border-radius: 6px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      font-family: monospace;
+      color: var(--secondary);
+      border: 1px solid var(--border-color);
+      width: fit-content;
+    }
+
+    .detail-modal .detail-info .name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .detail-modal .detail-info .unit-badge {
+      display: inline-block;
+      background: rgba(0,159,178,0.1);
+      padding: 2px 12px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--secondary);
+      border: 1px solid rgba(0,159,178,0.2);
+      font-family: monospace;
+    }
+
+    .detail-modal .detail-info .desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .detail-modal .detail-info .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    .detail-modal .detail-info .price-row .price {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .detail-modal .detail-info .price-row .price .label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--secondary);
+      font-family: monospace;
+    }
+
+    .detail-modal .detail-info .price-row .price .amount {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: monospace;
+    }
+
+    .detail-modal .detail-info .price-row .stock {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+    }
+
+    .detail-modal .detail-info .price-row .stock.in {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .detail-modal .detail-info .price-row .stock.out {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .detail-modal .detail-info .action {
+      margin-top: 8px;
+    }
+
+    .detail-modal .detail-info .action .add-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .detail-modal .detail-info .action .add-btn:hover {
+      background: var(--secondary);
+    }
+
+    .detail-modal .detail-info .action .add-btn:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .detail-modal .detail-info .action .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f0f7f9;
+      border-radius: 12px;
+      padding: 8px 16px;
+      border: 1px solid var(--border-color);
+    }
+
+    .detail-modal .detail-info .action .qty-row .label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .detail-modal .detail-info .action .qty-row .controls {
+      display: flex;
+      align-items: center;
+      background: var(--primary);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .detail-modal .detail-info .action .qty-row .controls button {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      padding: 4px 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .detail-modal .detail-info .action .qty-row .controls button:hover {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .detail-modal .detail-info .action .qty-row .controls .qty {
+      color: white;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    /* ---------- Floating Cart ---------- */
+    .floating-cart {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 30;
+      display: none;
+    }
+
+    .floating-cart.visible {
+      display: block;
+    }
+
+    .floating-cart button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid rgba(253,127,75,0.3);
+    }
+
+    .floating-cart button:hover {
+      background: var(--secondary);
+      transform: scale(1.05);
+    }
+
+    .floating-cart button .icon-wrap {
+      position: relative;
+    }
+
+    .floating-cart button .icon-wrap i {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .floating-cart button .icon-wrap .badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--accent);
+      color: white;
+      border-radius: 999px;
+      width: 16px;
+      height: 16px;
+      font-size: 0.55rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: monospace;
+    }
+
+    .floating-cart button .text {
+      text-align: left;
+    }
+
+    .floating-cart button .text .label {
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .floating-cart button .text .total {
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* ---------- Responsive tweaks ---------- */
+    .scroll-mt-24 { scroll-margin-top: 100px; }
+
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2rem; }
+      .product-grid { grid-template-columns: 1fr; }
+    }
+
+    /* RTL support for Urdu */
+    .dir-rtl {
+      direction: rtl;
+    }
+
+    .text-right-urdu {
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header id="main-header">
+    <div class="header-inner">
+      <!-- Logo -->
+      <div class="logo" id="home-link">
+        <h1><span>Javed</span> Traders</h1>
+        <div class="sub"><i class="fas fa-map-pin"></i> MAIN CHOWK, BAFFA BAZAR</div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop" id="desktop-nav">
+        <a data-section="home" class="active"><i class="fas fa-home"></i> Home</a>
+        <a data-section="about-section"><i class="fas fa-book-open"></i> About</a>
+        <a data-section="catalogue-section"><i class="fas fa-layer-group"></i> Catalogue</a>
+        <a data-section="contact-section"><i class="fas fa-phone"></i> Contact</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="header-actions">
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+          <button class="active" data-lang="en">EN</button>
+          <button class="urdu-btn" data-lang="ur">اردو</button>
+        </div>
+
+        <!-- Cart Button -->
+        <button class="cart-btn" id="cart-btn">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-label">My List</span>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MOBILE MENU OVERLAY ==================== -->
+  <div class="mobile-overlay" id="mobile-overlay">
+    <div class="mobile-menu">
+      <div class="mobile-menu-header">
+        <div class="logo-text"><span>Javed</span> Traders</div>
+        <button class="close-btn" id="close-mobile"><i class="fas fa-times"></i></button>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav">
+        <a data-section="home" class="active"><i class="fas fa-home"></i> Home <span class="arrow">➔</span></a>
+        <a data-section="about-section"><i class="fas fa-book-open"></i> About Us <span class="arrow">➔</span></a>
+        <a data-section="catalogue-section"><i class="fas fa-layer-group"></i> Catalogue <span class="arrow">➔</span></a>
+        <a data-section="contact-section"><i class="fas fa-phone"></i> Contact <span class="arrow">➔</span></a>
+      </nav>
+      <div class="mobile-lang">
+        <span>Language:</span>
+        <div class="lang-toggle">
+          <button class="active" data-lang="en">EN</button>
+          <button class="urdu-btn" data-lang="ur">اردو</button>
+        </div>
+      </div>
+      <a href="tel:+923145160991" class="mobile-call">
+        <i class="fas fa-phone-alt"></i> Call: +92 314 5160991
+      </a>
+    </div>
+  </div>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge"><i class="fas fa-user-check"></i> FAMILY-OWNED & TRUSTED</div>
+        <h1 class="hero-title"><span>Javed</span> Traders <br>Baffa</h1>
+        <p class="hero-desc" id="hero-desc">
+          Welcome to Baffa's premier household & grocery showroom. Explore our live catalog, select items, and order directly on WhatsApp for instant collection!
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" id="hero-catalogue-btn"><i class="fas fa-chevron-right"></i> Browse Catalogue</button>
+          <button class="btn-secondary" id="hero-about-btn">Our Story</button>
+        </div>
+      </div>
+
+      <div class="hero-portraits">
+        <div class="portrait-card">
+          <div class="img-wrapper">
+            <img src="/src/assets/images/father_proprietor_portrait_1783021135348.jpg" alt="Javed Iqbal - Founder" />
+            <div class="caption">
+              <div class="role">FOUNDER</div>
+              <div class="name">Javed Iqbal</div>
+            </div>
+          </div>
+          <div class="label">Senior Proprietor</div>
+        </div>
+        <div class="portrait-card">
+          <div class="img-wrapper">
+            <img src="/src/assets/images/son_proprietor_portrait_1783021156621.jpg" alt="Usman Javed - Partner" />
+            <div class="caption">
+              <div class="role">PARTNER & MANAGER</div>
+              <div class="name">Usman Javed</div>
+            </div>
+          </div>
+          <div class="label">Retail Manager</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN ==================== -->
+  <main>
+    <!-- How it works -->
+    <section class="how-it-works">
+      <div class="step-header">
+        <i class="fas fa-info-circle"></i> <span id="how-title">How It Works</span>
+      </div>
+      <div class="step">
+        <div class="num">01</div>
+        <div class="content">
+          <h4 id="step1-title">Select Products</h4>
+          <p id="step1-desc">Browse our catalogue and add desired items to your list with quantity.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div class="content">
+          <h4 id="step2-title">Review & Share</h4>
+          <p id="step2-desc">Review your list, enter your name and phone, generate a WhatsApp order.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div class="content">
+          <h4 id="step3-title">Collect in Store</h4>
+          <p id="step3-desc">Pick up your order from Main Chowk Baffa Bazar in just 15 minutes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about-section" class="about scroll-mt-24">
+      <div class="about-header">
+        <h2 id="about-title">About Us</h2>
+        <div class="sub">MAIN CHOWK BAFFA BAZAR • FAMILY LEGACY</div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p id="about-p1">
+            At Javed Traders, we pride ourselves on being the absolute cornerstone of Kiryana and household retail in Baffa. Established under the core philosophy of unbeatable prices and genuine product quality, we serve hundreds of loyal local families with absolute dedication.
+          </p>
+          <p id="about-p2">
+            Our digital showroom brings convenience to your fingertips while maintaining the traditional values of trust and personal service.
+          </p>
+        </div>
+        <div class="about-highlights">
+          <h3 id="why-title">Why Shop With Us?</h3>
+          <ul>
+            <li id="why1">Only Premium Grade Households & Kiryana Goods</li>
+            <li id="why2">Direct Click & Collect WhatsApp Booking</li>
+            <li id="why3">Located right at Main Chowk Baffa Bazar</li>
+            <li id="why4">Generations of Trust and Authentic Pricing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalogue -->
+    <section id="catalogue-section" class="scroll-mt-24">
+      <div class="catalogue-header">
+        <div>
+          <h2 id="catalogue-title">Explore Our Products</h2>
+          <div class="sub" id="catalogue-sub">Fresh Stock & House cleaning essentials</div>
+        </div>
+      </div>
+
+      <!-- Category Filter Rail -->
+      <div class="filter-rail" id="category-rail">
+        <button class="active" data-cat="all">All Products</button>
+        <button data-cat="grocery">Grocery</button>
+        <button data-cat="household">Household</button>
+      </div>
+
+      <!-- Advanced Filters -->
+      <div class="filter-options">
+        <div class="filter-group">
+          <i class="fas fa-filter"></i>
+          <span id="brand-label">Brand:</span>
+          <select id="brand-select">
+            <option value="all" id="brand-all">All Brands</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>
+            <input type="checkbox" id="in-stock-only" />
+            <span id="stock-label">In Stock Only</span>
+          </label>
+        </div>
+        <div class="filter-group" style="margin-left:auto;">
+          <i class="fas fa-arrow-up-wide-short"></i>
+          <span id="sort-label">Sort:</span>
+          <select id="sort-select">
+            <option value="default" id="sort-default">Default</option>
+            <option value="low-high" id="sort-low">Price: Low to High</option>
+            <option value="high-low" id="sort-high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="product-grid">
+        <!-- Cards will be rendered here by JS -->
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact-section" class="contact scroll-mt-24">
+      <div class="header">
+        <h2 id="contact-title">Contact Us</h2>
+        <div class="sub">MAIN CHOWK BAFFA BAZAR • IN-STORE PICKUP COORDINATES</div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="label" id="owner-label">Proprietors</div>
+          <div class="value">Javed Iqbal & Usman Javed</div>
+          <div class="desc" id="owner-desc">
+            Family grocery business serving the Pakhal region with dedication.
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="label" id="loc-label">Location</div>
+          <div class="value"><i class="fas fa-map-pin" style="color:var(--accent);"></i> MAIN CHOWK BAFFA BAZAR</div>
+          <div class="desc" id="loc-desc">Near Habib Bank, Main Chowk, Baffa, Tehsil Baffa-Pakhal, Mansehra, KP</div>
+        </div>
+        <div class="contact-item">
+          <div class="label" id="timings-label">Timings</div>
+          <div class="desc" id="timings-desc">9:00 AM – 10:00 PM (Mon–Sat) • 10:00 AM – 9:00 PM (Sun)</div>
+          <div style="margin-top:8px;">
+            <div class="label">Instant Order Line</div>
+            <a href="https://wa.me/923145160991" target="_blank" class="phone-link">
+              <i class="fab fa-whatsapp"></i> +92 314 5160991
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-map">
+        <div class="info">
+          <i class="fas fa-map-pin"></i>
+          <div class="text">
+            <div class="strong">Store Directions</div>
+            <div class="sub">Stop by Main Chowk Baffa Bazar (Habib Bank side) for immediate collection.</div>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Main+Chowk+Baffa+Bazar+Pakistan" target="_blank" class="directions">
+          Get Directions
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <span class="brand"><span>Javed</span> Traders</span>
+          <p class="about-text" id="footer-about">
+            Your trusted household & grocery destination in Baffa. Family-owned, serving with integrity for generations.
+          </p>
+          <div class="trust-badges">
+            <span><i class="fas fa-award"></i> 100% Genuine</span>
+            <span><i class="fas fa-hand-holding-heart"></i> Baffa's Trusted</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 id="footer-timings-title">Timings & Pickup</h4>
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <span class="strong">9:00 AM – 10:00 PM</span> (Mon–Sat)<br />
+              <span class="strong">10:00 AM – 9:00 PM</span> (Sun)<br />
+              <span class="highlight">Pack-time: 15 Mins</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-shopping-bag"></i>
+            <div>
+              <span class="strong">Click & Collect Only</span><br />
+              <span class="highlight">No delivery charges or service fees. Pure savings.</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 id="footer-location-title">Location</h4>
+          <div class="info-item">
+            <i class="fas fa-map-pin"></i>
+            <div>
+              <span class="strong">Main Chowk Baffa Bazar</span><br />
+              <span>Near Habib Bank, Tehsil Baffa-Pakhal, Mansehra, KP</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <span class="strong">Javed Iqbal & Usman Javed</span><br />
+              <a href="tel:+923145160991" style="color:#34d399; text-decoration:none; font-weight:700;">+92 314 5160991</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Javed Traders Baffa. All rights reserved.</span>
+        <span class="version">Premium Digital Showroom v1.2</span>
+        <span>Made with Click & Collect Convenience</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SHOPPING LIST DRAWER ==================== -->
+  <div class="drawer-overlay" id="drawer-overlay">
+    <div class="drawer" id="drawer">
+      <div class="drawer-header">
+        <div class="left">
+          <div class="icon-wrap"><i class="fas fa-shopping-bag"></i></div>
+          <div class="title-group">
+            <h3 id="drawer-title">Shopping List</h3>
+            <p id="drawer-sub"><span id="item-count">0</span> items selected</p>
+          </div>
+        </div>
+        <button class="close-drawer" id="close-drawer"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="drawer-body" id="drawer-body">
+        <!-- Step 1: List Items -->
+        <div class="step-list" id="step-list">
+          <!-- Items rendered by JS -->
+          <div id="drawer-items-container"></div>
+        </div>
+
+        <!-- Step 2: Customer Form -->
+        <div class="form-step" id="step-form">
+          <div class="summary-box">
+            <div class="label">Order Summary</div>
+            <div class="row">
+              <span id="form-item-count">0 items</span>
+              <span id="form-total">PKR 0</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-user"></i> <span id="form-name-label">Your Full Name *</span></label>
+            <input type="text" id="customer-name" placeholder="e.g. Usman Javed" />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-phone"></i> <span id="form-phone-label">Mobile Number *</span></label>
+            <input type="tel" id="customer-phone" placeholder="e.g. 0314 5160991" />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-clock"></i> <span id="form-pickup-label">When will you pick it up?</span></label>
+            <select id="pickup-time">
+              <option value="Immediate (15-30 mins)">Immediate (15-30 mins)</option>
+              <option value="In 1 Hour">In 1 Hour</option>
+              <option value="In 2 Hours">In 2 Hours</option>
+              <option value="Later Today">Later Today / Evening</option>
+              <option value="Tomorrow">Tomorrow</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-pen"></i> <span id="form-notes-label">Special Instructions (Optional)</span></label>
+            <textarea id="customer-notes" rows="2" placeholder="e.g. Please select the freshest packets only..."></textarea>
+          </div>
+          <div class="form-hint" id="form-hint">
+            Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-footer" id="drawer-footer">
+        <!-- Step 1 Footer -->
+        <div id="footer-step1">
+          <button class="clear-btn" id="clear-list"><i class="fas fa-trash"></i> Clear Entire List</button>
+          <div class="total">
+            <span class="label" id="estimated-total-label">Estimated Total:</span>
+            <span class="amount"><small>PKR</small> <span id="drawer-total">0</span></span>
+          </div>
+          <button class="proceed-btn" id="proceed-btn"><i class="fas fa-chevron-right"></i> Enter Order Information</button>
+          <div class="note"><i class="fas fa-clock"></i> Ready in approx. 15 minutes</div>
+        </div>
+        <!-- Step 2 Footer -->
+        <div id="footer-step2" style="display:none;">
+          <button class="back-btn" id="back-to-list"><i class="fas fa-chevron-left"></i> Back to List</button>
+          <a class="whatsapp-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i> Confirm & Send to WhatsApp
+          </a>
+          <div class="note" style="margin-top:4px;">NO ONLINE PAYMENT REQUIRED</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PRODUCT DETAIL MODAL ==================== -->
+  <div class="detail-overlay" id="detail-overlay">
+    <div class="detail-modal" id="detail-modal">
+      <button class="close-detail" id="close-detail"><i class="fas fa-times"></i></button>
+      <div class="detail-grid">
+        <div class="detail-image">
+          <img id="detail-img" src="" alt="Product" />
+        </div>
+        <div class="detail-info">
+          <div class="brand-tag"><i class="fas fa-tag"></i> <span id="detail-brand"></span></div>
+          <div class="name" id="detail-name"></div>
+          <div class="unit-badge" id="detail-unit"></div>
+          <div class="desc" id="detail-desc"></div>
+          <div class="price-row">
+            <div class="price">
+              <span class="label">Price</span>
+              <span class="amount"><small>PKR</small> <span id="detail-price"></span></span>
+            </div>
+            <span class="stock in" id="detail-stock">In Stock</span>
+          </div>
+          <div class="action" id="detail-action">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FLOATING CART ==================== -->
+  <div class="floating-cart" id="floating-cart">
+    <button id="floating-cart-btn">
+      <div class="icon-wrap">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge" id="float-badge">0</span>
+      </div>
+      <div class="text">
+        <div class="label">My List</div>
+        <div class="total">PKR <span id="float-total">0</span></div>
+      </div>
+      <i class="fas fa-chevron-right" style="color:var(--accent);"></i>
+    </button>
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // ------------------------------------
+    // DATA
+    // ------------------------------------
+    const productsData = [
+      // Grocery items
+      { id: 'p1', name: 'Premium Basmati Rice (5kg)', urduName: 'بیسمنٹی چاول', category: 'grocery', brand: 'Kissan', price: 1200, unit: '5kg', description: 'Premium quality long-grain basmati rice, aged for perfect aroma.', urduDescription: 'اعلیٰ قسم کے بیسمنٹی چاول، خوشبودار اور لمبے دانے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Rice' },
+      { id: 'p2', name: 'Wheat Flour (10kg)', urduName: 'گندم کا آٹا', category: 'grocery', brand: 'Chakki', price: 850, unit: '10kg', description: 'Stone-ground whole wheat flour, fresh and nutritious.', urduDescription: 'پتھر کی چکی کا تازہ گندم کا آٹا، صحت مند اور لذیذ۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Flour' },
+      { id: 'p3', name: 'Cooking Oil (5L)', urduName: 'کھانے کا تیل', category: 'grocery', brand: 'Dalda', price: 1800, unit: '5L', description: 'Pure vegetable cooking oil, ideal for all cooking needs.', urduDescription: 'خالص سبزیوں کا تیل، ہر قسم کے کھانے کے لیے بہترین۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Oil' },
+      { id: 'p4', name: 'Sugar (5kg)', urduName: 'شکر', category: 'grocery', brand: 'Safina', price: 750, unit: '5kg', description: 'Fine granulated white sugar, perfect for sweetening.', urduDescription: 'اعلیٰ معیار کی سفید شکر، میٹھے ذائقے کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Sugar' },
+      { id: 'p5', name: 'Red Lentils (Masoor) 1kg', urduName: 'مصری دال', category: 'grocery', brand: 'National', price: 250, unit: '1kg', description: 'Premium red lentils, rich in protein and fibre.', urduDescription: 'اعلیٰ معیار کی مصری دال، پروٹین اور فائبر سے بھرپور۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Lentils' },
+      { id: 'p6', name: 'Chickpeas (Kabuli) 2kg', urduName: 'کابلی چنا', category: 'grocery', brand: 'Kisan', price: 400, unit: '2kg', description: 'Large kabuli chickpeas, premium quality for curries.', urduDescription: 'بڑے کابلی چنے، سالن اور چاٹ کے لیے بہترین۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Chickpeas' },
+      // Household
+      { id: 'p7', name: 'Dish Washing Liquid (1L)', urduName: 'برتن دھونے کا صابن', category: 'household', brand: 'Vim', price: 220, unit: '1L', description: 'Effective grease-cutting dishwashing liquid, lemon fresh.', urduDescription: 'چکنائی ختم کرنے والا برتن دھونے کا مائع، لیموں کی خوشبو۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Dish+Wash' },
+      { id: 'p8', name: 'Floor Cleaner (2L)', urduName: 'فرش کلینر', category: 'household', brand: 'Harpic', price: 350, unit: '2L', description: 'Powerful floor cleaner that removes stains and leaves shine.', urduDescription: 'طاقتور فرش کلینر جو داغ ہٹاتا ہے اور چمک لاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Floor+Cleaner' },
+      { id: 'p9', name: 'Laundry Detergent (3kg)', urduName: 'کپڑے دھونے کا پاؤڈر', category: 'household', brand: 'Surf Excel', price: 480, unit: '3kg', description: 'High-performance detergent that removes tough stains.', urduDescription: 'اعلیٰ کارکردگی کا ڈٹرجنٹ جو مشکل داغ ہٹاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Detergent' },
+      { id: 'p10', name: 'Toilet Cleaner (500ml)', urduName: 'ٹوائلٹ کلینر', category: 'household', brand: 'Harpic', price: 180, unit: '500ml', description: 'Thick liquid toilet cleaner, kills germs and removes limescale.', urduDescription: 'گاڑھا ٹوائلٹ کلینر، جراثیم کو ختم کرتا اور پتھری ہٹاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Toilet+Cleaner' },
+      { id: 'p11', name: 'Insect Repellent Spray (500ml)', urduName: 'کیڑے مکوڑے مارنے والا سپرے', category: 'household', brand: 'Mortein', price: 300, unit: '500ml', description: 'Effective insect repellent for mosquitoes and flies.', urduDescription: 'مچھروں اور مکھیوں کے لیے مؤثر کیڑے مار سپرے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Repellent' },
+      { id: 'p12', name: 'Dusting Cloth (Pack of 2)', urduName: 'جھاڑن کا کپڑا', category: 'household', brand: 'Brite', price: 120, unit: '2 pcs', description: 'Soft, lint-free microfibre cloth for dusting.', urduDescription: 'نرم، بغیر ریشے کے مائیکرو فائبر کپڑا جھاڑن کے لیے۔', inStock: false, image: 'https://placehold.co/400x400/009fb2/white?text=Cloth' },
+    ];
+
+    const translations = {
+      en: {
+        allProducts: 'All Products',
+        categoryGrocery: 'Grocery',
+        categoryHousehold: 'Household',
+        brandFilter: 'Brand',
+        allBrands: 'All Brands',
+        inStockOnly: 'In Stock Only',
+        priceSort: 'Sort',
+        priceLowToHigh: 'Price: Low to High',
+        priceHighToLow: 'Price: High to Low',
+        addToShoppingList: 'Add to List',
+        itemsSelected: 'items selected',
+        estimatedTotal: 'Estimated Total',
+        shoppingListTitle: 'Shopping List',
+        shoppingListEmpty: 'Your list is empty. Start adding products from the catalogue!',
+        emptyProducts: 'No products match your filters. Try resetting.',
+        howItWorksTitle: 'How It Works',
+        howItWorksStep1: 'Step 1: Browse and add products to your list.',
+        howItWorksStep2: 'Step 2: Fill in your details and generate WhatsApp order.',
+        howItWorksStep3: 'Step 3: Pick up from the store in 15 minutes.',
+        aboutTitle: 'About Us',
+        aboutText: 'Javed Traders Baffa is a family-owned grocery and household store serving the community with integrity and affordability for generations.',
+        contactTitle: 'Contact Us',
+        locationTitle: 'Location',
+        timingsTitle: 'Timings',
+        ownerLabel: 'Proprietors',
+        // additional strings can be added as needed
+      },
+      ur: {
+        allProducts: 'تمام اشیاء',
+        categoryGrocery: 'کریانہ',
+        categoryHousehold: 'گھریلو سامان',
+        brandFilter: 'برانڈ',
+        allBrands: 'تمام برانڈز',
+        inStockOnly: 'صرف دستیاب',
+        priceSort: 'ترتیب',
+        priceLowToHigh: 'قیمت: کم سے زیادہ',
+        priceHighToLow: 'قیمت: زیادہ سے کم',
+        addToShoppingList: 'لسٹ میں شامل کریں',
+        itemsSelected: 'اشیاء منتخب',
+        estimatedTotal: 'متوقع کل',
+        shoppingListTitle: 'خریداری کی لسٹ',
+        shoppingListEmpty: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
+        emptyProducts: 'کوئی پروڈکٹ نہیں ملی۔ فلٹرز دوبارہ سیٹ کریں۔',
+        howItWorksTitle: 'طریقہ کار',
+        howItWorksStep1: 'مرحلہ 1: کیٹلاگ سے اشیاء منتخب کریں۔',
+        howItWorksStep2: 'مرحلہ 2: اپنی تفصیلات درج کریں اور واٹس ایپ آرڈر بنائیں۔',
+        howItWorksStep3: 'مرحلہ 3: دکان سے 15 منٹ میں سامان حاصل کریں۔',
+        aboutTitle: 'ہمارے بارے میں',
+        aboutText: 'جاوید ٹریڈرز بفہ ایک خاندانی کاروبار ہے جو نسلوں سے ایمانداری اور سستی کے ساتھ کریانہ اور گھریلو سامان فراہم کر رہا ہے۔',
+        contactTitle: 'رابطہ کریں',
+        locationTitle: 'پتہ',
+        timingsTitle: 'اوقات',
+        ownerLabel: 'مالکان',
+      }
+    };
+
+    // ------------------------------------
+    // STATE
+    // ------------------------------------
+    let state = {
+      lang: 'en',
+      searchQuery: '',
+      selectedCategory: 'all',
+      selectedBrand: 'all',
+      priceSort: 'default',
+      inStockOnly: false,
+      shoppingList: {}, // { productId: quantity }
+      listOpen: false,
+      detailProductId: null,
+      detailOpen: false,
+      formStep: false, // false = list view, true = form view
+      customerName: '',
+      customerPhone: '',
+      pickupTime: 'Immediate (15-30 mins)',
+      customerNotes: '',
+    };
+
+    // DOM refs
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+    const productGrid = $('#product-grid');
+    const categoryRail = $('#category-rail');
+    const brandSelect = $('#brand-select');
+    const inStockCheck = $('#in-stock-only');
+    const sortSelect = $('#sort-select');
+    const cartBadge = $('#cart-badge');
+    const drawerOverlay = $('#drawer-overlay');
+    const drawerBody = $('#drawer-body');
+    const drawerItemsContainer = $('#drawer-items-container');
+    const drawerTotal = $('#drawer-total');
+    const drawerItemCount = $('#item-count');
+    const floatBadge = $('#float-badge');
+    const floatTotal = $('#float-total');
+    const floatingCart = $('#floating-cart');
+    const detailOverlay = $('#detail-overlay');
+    const detailModal = $('#detail-modal');
+
+    // ------------------------------------
+    // HELPERS
+    // ------------------------------------
+    function getT() {
+      return translations[state.lang] || translations.en;
+    }
+
+    function getProduct(id) {
+      return productsData.find(p => p.id === id);
+    }
+
+    function getListItems() {
+      return Object.entries(state.shoppingList)
+        .map(([id, qty]) => {
+          const product = getProduct(id);
+          return product ? { product, quantity: qty } : null;
+        })
+        .filter(Boolean);
+    }
+
+    function getTotalItems() {
+      return Object.values(state.shoppingList).reduce((a, b) => a + b, 0);
+    }
+
+    function getTotalPrice() {
+      return getListItems().reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+    }
+
+    function showToast(msg) {
+      const container = $('#toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+      container.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.add('show');
+      });
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      }, 2500);
+    }
+
+    // Persist shopping list to localStorage
+    function saveList() {
+      try {
+        localStorage.setItem('javed_traders_shopping_list', JSON.stringify(state.shoppingList));
+      } catch (e) {}
+    }
+
+    function loadList() {
+      try {
+        const saved = localStorage.getItem('javed_traders_shopping_list');
+        if (saved) {
+          state.shoppingList = JSON.parse(saved);
+        }
+      } catch (e) {}
+    }
+
+    // ------------------------------------
+    // RENDER FUNCTIONS
+    // ------------------------------------
+    function renderProducts() {
+      let filtered = [...productsData];
+
+      // Category
+      if (state.selectedCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === state.selectedCategory);
+      }
+
+      // Brand
+      if (state.selectedBrand !== 'all') {
+        filtered = filtered.filter(p => p.brand === state.selectedBrand);
+      }
+
+      // In stock
+      if (state.inStockOnly) {
+        filtered = filtered.filter(p => p.inStock);
+      }
+
+      // Search (simple text search on name, urdu, brand, desc)
+      if (state.searchQuery.trim()) {
+        const q = state.searchQuery.toLowerCase().trim();
+        filtered = filtered.filter(p =>
+          p.name.toLowerCase().includes(q) ||
+          p.urduName.includes(q) ||
+          p.brand.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q) ||
+          p.urduDescription.includes(q)
+        );
+      }
+
+      // Sort
+      if (state.priceSort === 'low-high') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (state.priceSort === 'high-low') {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      if (filtered.length === 0) {
+        productGrid.innerHTML = `
+          <div class="empty-state" style="grid-column:1/-1;">
+            <i class="fas fa-box-open"></i>
+            <h3>No Products Found</h3>
+            <p>${getT().emptyProducts}</p>
+            <button class="reset-btn" id="reset-filters-btn">Reset All Filters</button>
+          </div>
+        `;
+        const resetBtn = $('#reset-filters-btn');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            state.selectedCategory = 'all';
+            state.selectedBrand = 'all';
+            state.inStockOnly = false;
+            state.priceSort = 'default';
+            state.searchQuery = '';
+            // Update UI inputs
+            brandSelect.value = 'all';
+            inStockCheck.checked = false;
+            sortSelect.value = 'default';
+            // Update category buttons
+            $$('#category-rail button').forEach(btn => {
+              btn.classList.toggle('active', btn.dataset.cat === 'all');
+            });
+            // Update header search (if any) - we don't have search input in header yet, but we'll add later
+            renderAll();
+          });
+        }
+        return;
+      }
+
+      let html = '';
+      filtered.forEach(product => {
+        const qty = state.shoppingList[product.id] || 0;
+        const selected = qty > 0;
+        const catClass = product.category === 'grocery' ? 'cat-grocery' : 'cat-household';
+        const catLabel = product.category === 'grocery' ? (state.lang === 'en' ? 'Grocery' : 'کریانہ') : (state.lang === 'en' ? 'Household' : 'گھریلو');
+        const brandLabel = product.brand || '';
+        const inStock = product.inStock;
+        const price = product.price;
+        const name = product.name; // always English name (as per original)
+
+        html += `
+          <div class="product-card ${selected ? 'selected' : ''}" data-id="${product.id}">
+            <div class="img-wrap" data-id="${product.id}">
+              <img src="${product.image}" alt="${name}" loading="lazy" />
+              <div class="overlay"><span><i class="fas fa-eye"></i> Quick View</span></div>
+              <div class="badges">
+                <span class="${catClass}">${catLabel}</span>
+                ${brandLabel ? `<span class="brand">${brandLabel}</span>` : ''}
+              </div>
+              ${selected ? `<div class="selected-overlay"><i class="fas fa-check"></i></div>` : ''}
+              ${!inStock ? `<div class="stock-badge"><span>Out of Stock</span></div>` : ''}
+            </div>
+            <div class="info">
+              <div class="title" data-id="${product.id}">${name}</div>
+              <div class="unit">${product.unit}</div>
+              <div class="desc">${product.description}</div>
+              <div class="bottom">
+                <div class="price">
+                  <span class="label">Price</span>
+                  <span class="amount"><small>PKR</small> ${price}</span>
+                </div>
+                <div class="actions">
+                  ${!selected ? `
+                    <button class="add-btn" data-id="${product.id}" ${!inStock ? 'disabled' : ''}>
+                      <i class="fas fa-plus"></i> ${getT().addToShoppingList.split(' ')[0]}
+                    </button>
+                  ` : `
+                    <div class="qty-control">
+                      <button class="qty-dec" data-id="${product.id}">−</button>
+                      <span class="qty">${qty}</span>
+                      <button class="qty-inc" data-id="${product.id}">+</button>
+                    </div>
+                  `}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      productGrid.innerHTML = html;
+    }
+
+    function renderDrawerItems() {
+      const items = getListItems();
+      const container = drawerItemsContainer;
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="drawer-empty">
+            <i class="fas fa-shopping-bag"></i>
+            <h3>${state.lang === 'en' ? 'Your list is empty' : 'آپ کی لسٹ خالی ہے'}</h3>
+            <p>${getT().shoppingListEmpty}</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      items.forEach(item => {
+        const p = item.product;
+        const qty = item.quantity;
+        const lineTotal = p.price * qty;
+        const name = state.lang === 'en' ? p.name : p.urduName;
+        html += `
+          <div class="drawer-item" data-id="${p.id}">
+            <div class="left">
+              <img src="${p.image}" alt="${p.name}" />
+              <div class="details">
+                <div class="name">${name}</div>
+                <div class="meta">${p.unit} • PKR ${p.price}</div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="line-total">PKR ${lineTotal}</div>
+              <div class="qty-control">
+                <button class="drawer-qty-dec" data-id="${p.id}">−</button>
+                <span class="qty">${qty}</span>
+                <button class="drawer-qty-inc" data-id="${p.id}">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+
+      // Update totals
+      const total = getTotalPrice();
+      drawerTotal.textContent = total;
+      drawerItemCount.textContent = getTotalItems();
+    }
+
+    function renderDrawer() {
+      renderDrawerItems();
+      // Update total in footer
+      const total = getTotalPrice();
+      drawerTotal.textContent = total;
+      drawerItemCount.textContent = getTotalItems();
+      // Update badge
+      const count = getTotalItems();
+      cartBadge.textContent = count;
+      floatBadge.textContent = count;
+      floatTotal.textContent = total;
+
+      // Show/hide floating cart
+      floatingCart.classList.toggle('visible', count > 0);
+
+      // Update form step if open
+      if (state.formStep) {
+        showFormStep(true);
+      } else {
+        showFormStep(false);
+      }
+    }
+
+    function showFormStep(show) {
+      const stepList = $('#step-list');
+      const stepForm = $('#step-form');
+      const footer1 = $('#footer-step1');
+      const footer2 = $('#footer-step2');
+      if (show) {
+        stepList.style.display = 'none';
+        stepForm.classList.add('active');
+        footer1.style.display = 'none';
+        footer2.style.display = 'block';
+        // Update form summary
+        const items = getListItems();
+        document.getElementById('form-item-count').textContent = `${items.length} items`;
+        document.getElementById('form-total').textContent = `PKR ${getTotalPrice()}`;
+        // Fill in saved customer data
+        document.getElementById('customer-name').value = state.customerName;
+        document.getElementById('customer-phone').value = state.customerPhone;
+        document.getElementById('pickup-time').value = state.pickupTime;
+        document.getElementById('customer-notes').value = state.customerNotes;
+      } else {
+        stepList.style.display = 'block';
+        stepForm.classList.remove('active');
+        footer1.style.display = 'block';
+        footer2.style.display = 'none';
+      }
+    }
+
+    function renderAll() {
+      renderProducts();
+      renderDrawer();
+      updateNavActive();
+      updateLanguageUI();
+      // Update brand options
+      populateBrands();
+    }
+
+    // Update brand select options
+    function populateBrands() {
+      const brands = [...new Set(productsData.map(p => p.brand).filter(Boolean))];
+      const current = brandSelect.value;
+      brandSelect.innerHTML = `<option value="all">${getT().allBrands}</option>`;
+      brands.forEach(b => {
+        const opt = document.createElement('option');
+        opt.value = b;
+        opt.textContent = b;
+        brandSelect.appendChild(opt);
+      });
+      brandSelect.value = current;
+    }
+
+    // Update language-dependent text
+    function updateLanguageUI() {
+      const t = getT();
+      // Update static texts
+      document.querySelectorAll('[data-lang-text]').forEach(el => {
+        const key = el.dataset.langText;
+        if (t[key]) el.textContent = t[key];
+      });
+
+      // Update category buttons
+      $$('#category-rail button').forEach(btn => {
+        const cat = btn.dataset.cat;
+        if (cat === 'all') btn.textContent = t.allProducts;
+        else if (cat === 'grocery') btn.textContent = t.categoryGrocery;
+        else if (cat === 'household') btn.textContent = t.categoryHousehold;
+      });
+
+      // Update brand label
+      document.querySelector('#brand-label').textContent = t.brandFilter + ':';
+      document.querySelector('#stock-label').textContent = t.inStockOnly;
+      document.querySelector('#sort-label').textContent = t.priceSort + ':';
+      document.querySelector('#sort-default').textContent = 'Default';
+      document.querySelector('#sort-low').textContent = t.priceLowToHigh;
+      document.querySelector('#sort-high').textContent = t.priceHighToLow;
+
+      // Hero
+      document.getElementById('hero-desc').textContent = state.lang === 'en' ?
+        "Welcome to Baffa's premier household & grocery showroom. Explore our live catalog, select items, and order directly on WhatsApp for instant collection!" :
+        "بفہ کے پہلے جدید کریانہ اور گھریلو اشیاء کے ڈیجیٹل شو روم میں خوش آمدید۔ یہاں سے اپنے مطلوبہ سامان کا انتخاب کریں، ڈیجیٹل بل لسٹ بنائیں، اور ہمارے واٹس ایپ نمبر پر بھیج کر دکان پر پہنچنے سے پہلے اپنا آرڈر تیار کروائیں۔";
+
+      document.getElementById('how-title').textContent = t.howItWorksTitle;
+      document.getElementById('step1-title').textContent = state.lang === 'en' ? 'Select Products' : 'اشیاء منتخب کریں';
+      document.getElementById('step2-title').textContent = state.lang === 'en' ? 'Review & Share' : 'تفصیلات درج کریں';
+      document.getElementById('step3-title').textContent = state.lang === 'en' ? 'Collect in Store' : 'دکان سے حاصل کریں';
+      document.getElementById('step1-desc').textContent = t.howItWorksStep1;
+      document.getElementById('step2-desc').textContent = t.howItWorksStep2;
+      document.getElementById('step3-desc').textContent = t.howItWorksStep3;
+
+      document.getElementById('about-title').textContent = t.aboutTitle;
+      document.getElementById('about-p1').textContent = state.lang === 'en' ?
+        "At Javed Traders, we pride ourselves on being the absolute cornerstone of Kiryana and household retail in Baffa. Established under the core philosophy of unbeatable prices and genuine product quality, we serve hundreds of loyal local families with absolute dedication." :
+        "جاوید ٹریڈرز بفہ بازار میں مخلص اور دیانتدار خاندانی روایات کے تحت کریانہ اور گھریلو سامان کی فراہمی کا سب سے معتبر ادارہ ہے۔ ہمارا مقصد اپنے تمام صارفین کو مارکیٹ سے سستی اور خالص ترین اشیاء فراہم کرنا ہے۔";
+      document.getElementById('about-p2').textContent = t.aboutText;
+      document.getElementById('why-title').textContent = state.lang === 'en' ? 'Why Shop With Us?' : 'ہماری دکان کی خصوصیات';
+      document.getElementById('why1').textContent = state.lang === 'en' ? 'Only Premium Grade Households & Kiryana Goods' : 'صرف اعلیٰ برانڈز اور خالص ترین اشیاء';
+      document.getElementById('why2').textContent = state.lang === 'en' ? 'Direct Click & Collect WhatsApp Booking' : 'براہ راست واٹس ایپ آرڈر اور فوری پیکنگ سروس';
+      document.getElementById('why3').textContent = state.lang === 'en' ? 'Located right at Main Chowk Baffa Bazar' : 'بفہ بازار کے مرکز مین چوک پر بہترین لوکیشن';
+      document.getElementById('why4').textContent = state.lang === 'en' ? 'Generations of Trust and Authentic Pricing' : 'نسلوں کا اعتماد اور انتہائی سستی قیمتیں';
+
+      document.getElementById('catalogue-title').textContent = state.lang === 'en' ? 'Explore Our Products' : 'اشیاء کی مکمل لسٹ';
+      document.getElementById('catalogue-sub').textContent = state.lang === 'en' ? 'Fresh Stock & House cleaning essentials' : 'تازہ راشن اور صفائی کا سامان';
+
+      document.getElementById('contact-title').textContent = t.contactTitle;
+      document.getElementById('owner-label').textContent = t.ownerLabel;
+      document.getElementById('owner-desc').textContent = state.lang === 'en' ?
+        'Family grocery business serving the Pakhal region with dedication.' :
+        'تحصیل بفہ-پکھل میں بھروسہ اور دیانتداری کی علامت۔';
+      document.getElementById('loc-label').textContent = t.locationTitle;
+      document.getElementById('loc-desc').textContent = state.lang === 'en' ?
+        'Near Habib Bank, Main Chowk, Baffa, Tehsil Baffa-Pakhal, Mansehra, KP' :
+        'حبیب بینک کے قریب، مین چوک بفہ بازار، تحصیل بفہ-پکھل، مانسہرہ، کے پی';
+      document.getElementById('timings-label').textContent = t.timingsTitle;
+      document.getElementById('timings-desc').textContent = state.lang === 'en' ?
+        '9:00 AM – 10:00 PM (Mon–Sat) • 10:00 AM – 9:00 PM (Sun)' :
+        'صبح 9 تا رات 10 (پیر تا ہفتہ) • صبح 10 تا رات 9 (اتوار)';
+
+      document.getElementById('drawer-title').textContent = t.shoppingListTitle;
+      document.getElementById('drawer-sub').innerHTML = `<span id="item-count">${getTotalItems()}</span> ${t.itemsSelected}`;
+      document.getElementById('estimated-total-label').textContent = t.estimatedTotal + ':';
+
+      document.getElementById('footer-about').textContent = state.lang === 'en' ?
+        'Your trusted household & grocery destination in Baffa. Family-owned, serving with integrity for generations.' :
+        'بفہ میں آپ کا بھروسہ مند کریانہ اور گھریلو سامان کا ذریعہ۔ خاندانی کاروبار، نسلوں سے دیانتداری کے ساتھ۔';
+      document.getElementById('footer-timings-title').textContent = t.timingsTitle;
+      document.getElementById('footer-location-title').textContent = t.locationTitle;
+
+      // Form labels
+      document.getElementById('form-name-label').textContent = state.lang === 'en' ? 'Your Full Name *' : 'آپ کا نام *';
+      document.getElementById('form-phone-label').textContent = state.lang === 'en' ? 'Mobile Number *' : 'موبائل نمبر *';
+      document.getElementById('form-pickup-label').textContent = state.lang === 'en' ? 'When will you pick it up?' : 'وصولی کا وقت؟';
+      document.getElementById('form-notes-label').textContent = state.lang === 'en' ? 'Special Instructions (Optional)' : 'اضافی نوٹ (اختیاری)';
+      document.getElementById('form-hint').textContent = state.lang === 'en' ?
+        'Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.' :
+        'آپ کی فراہم کردہ معلومات اور لسٹ کو واٹس ایپ پیغام کی شکل میں تبدیل کیا جائے گا تاکہ جاوید ٹریڈرز بفہ آپ کا آرڈر باآسانی تیار رکھ سکیں۔';
+
+      // Brand select options text (all brands already populated)
+    }
+
+    // Update active nav link based on scroll
+    function updateNavActive() {
+      const sections = ['home', 'about-section', 'catalogue-section', 'contact-section'];
+      const scrollPos = window.scrollY + 120;
+      let active = 'home';
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            active = id;
+            break;
+          }
+        }
+      }
+      // Check if near bottom
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        active = 'contact-section';
+      }
+      // Update desktop nav
+      $$('#desktop-nav a').forEach(a => {
+        a.classList.toggle('active', a.dataset.section === active);
+      });
+      // Update mobile nav
+      $$('#mobile-nav a').forEach(a => {
+        a.classList.toggle('active', a.dataset.section === active);
+      });
+    }
+
+    // ------------------------------------
+    // EVENT LISTENERS
+    // ------------------------------------
+    function init() {
+      loadList();
+
+      // Category filter
+      categoryRail.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const cat = btn.dataset.cat;
+        state.selectedCategory = cat;
+        $$('#category-rail button').forEach(b => b.classList.toggle('active', b === btn));
+        renderProducts();
+        // Re-attach product card events
+        attachProductEvents();
+      });
+
+      // Brand filter
+      brandSelect.addEventListener('change', (e) => {
+        state.selectedBrand = e.target.value;
+        renderProducts();
+        attachProductEvents();
+      });
+
+      // In stock checkbox
+      inStockCheck.addEventListener('change', (e) => {
+        state.inStockOnly = e.target.checked;
+        renderProducts();
+        attachProductEvents();
+      });
+
+      // Sort
+      sortSelect.addEventListener('change', (e) => {
+        state.priceSort = e.target.value;
+        renderProducts();
+        attachProductEvents();
+      });
+
+      // Product grid click delegation (for add, qty, quick view)
+      productGrid.addEventListener('click', (e) => {
+        const target = e.target.closest('button, .title, .img-wrap');
+        if (!target) return;
+
+        // Add button
+        if (target.classList.contains('add-btn')) {
+          const id = target.dataset.id;
+          if (id) {
+            const product = getProduct(id);
+            if (product && product.inStock) {
+              state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
+              saveList();
+              renderAll();
+              attachProductEvents();
+              showToast(state.lang === 'en' ? 'Item added to list!' : 'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+            }
+          }
+          return;
+        }
+
+        // Quantity inc/dec in grid
+        if (target.classList.contains('qty-inc') || target.classList.contains('qty-dec')) {
+          const id = target.dataset.id;
+          if (!id) return;
+          const delta = target.classList.contains('qty-inc') ? 1 : -1;
+          const current = state.shoppingList[id] || 0;
+          const newQty = current + delta;
+          if (newQty <= 0) {
+            delete state.shoppingList[id];
+            showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+          } else {
+            state.shoppingList[id] = newQty;
+          }
+          saveList();
+          renderAll();
+          attachProductEvents();
+          return;
+        }
+
+        // Quick view / detail open
+        if (target.classList.contains('img-wrap') || target.classList.contains('title')) {
+          const card = target.closest('.product-card');
+          if (card) {
+            const id = card.dataset.id;
+            if (id) {
+              openDetail(id);
+            }
+          }
+          return;
+        }
+      });
+
+      // Drawer events
+      drawerOverlay.addEventListener('click', (e) => {
+        if (e.target === drawerOverlay) {
+          closeDrawer();
+        }
+      });
+
+      document.getElementById('close-drawer').addEventListener('click', closeDrawer);
+      document.getElementById('cart-btn').addEventListener('click', openDrawer);
+      document.getElementById('floating-cart-btn').addEventListener('click', openDrawer);
+
+      function openDrawer() {
+        state.listOpen = true;
+        drawerOverlay.classList.add('open');
+        renderDrawer();
+        // Show step list by default
+        state.formStep = false;
+        showFormStep(false);
+        attachDrawerEvents();
+      }
+
+      function closeDrawer() {
+        state.listOpen = false;
+        drawerOverlay.classList.remove('open');
+        // Reset form step
+        state.formStep = false;
+        showFormStep(false);
+      }
+
+      // Drawer body events (delegated for qty buttons)
+      drawerBody.addEventListener('click', (e) => {
+        const target = e.target.closest('button');
+        if (!target) return;
+        if (target.classList.contains('drawer-qty-inc') || target.classList.contains('drawer-qty-dec')) {
+          const id = target.dataset.id;
+          if (!id) return;
+          const delta = target.classList.contains('drawer-qty-inc') ? 1 : -1;
+          const current = state.shoppingList[id] || 0;
+          const newQty = current + delta;
+          if (newQty <= 0) {
+            delete state.shoppingList[id];
+            showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+          } else {
+            state.shoppingList[id] = newQty;
+          }
+          saveList();
+          renderAll();
+          attachDrawerEvents();
+          // Re-render drawer items
+          renderDrawerItems();
+          renderDrawer();
+          attachDrawerEvents();
+        }
+      });
+
+      // Clear list
+      document.getElementById('clear-list').addEventListener('click', () => {
+        if (confirm(state.lang === 'en' ? 'Clear all items?' : 'پوری لسٹ صاف کریں؟')) {
+          state.shoppingList = {};
+          saveList();
+          renderAll();
+          closeDrawer();
+          showToast(state.lang === 'en' ? 'List cleared completely' : 'خریداری کی لسٹ صاف کر دی گئی ہے');
+        }
+      });
+
+      // Proceed to form
+      document.getElementById('proceed-btn').addEventListener('click', () => {
+        if (getListItems().length === 0) return;
+        state.formStep = true;
+        showFormStep(true);
+        // Fill saved data
+        document.getElementById('customer-name').value = state.customerName;
+        document.getElementById('customer-phone').value = state.customerPhone;
+        document.getElementById('pickup-time').value = state.pickupTime;
+        document.getElementById('customer-notes').value = state.customerNotes;
+        attachDrawerEvents();
+      });
+
+      // Back to list
+      document.getElementById('back-to-list').addEventListener('click', () => {
+        state.formStep = false;
+        showFormStep(false);
+        attachDrawerEvents();
+      });
+
+      // Save form data on input
+      document.getElementById('customer-name').addEventListener('input', (e) => {
+        state.customerName = e.target.value;
+      });
+      document.getElementById('customer-phone').addEventListener('input', (e) => {
+        state.customerPhone = e.target.value;
+      });
+      document.getElementById('pickup-time').addEventListener('change', (e) => {
+        state.pickupTime = e.target.value;
+      });
+      document.getElementById('customer-notes').addEventListener('input', (e) => {
+        state.customerNotes = e.target.value;
+      });
+
+      // WhatsApp button
+      document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
+        const name = document.getElementById('customer-name').value.trim();
+        const phone = document.getElementById('customer-phone').value.trim();
+        if (!name || !phone) {
+          e.preventDefault();
+          alert(state.lang === 'en' ? 'Please fill in both Name and Phone number first!' : 'براہ کرم اپنا نام اور فون نمبر درج کریں!');
+          return;
+        }
+        // Build message
+        const items = getListItems();
+        const total = getTotalPrice();
+        const t = getT();
+        const isUr = state.lang === 'ur';
+
+        let msg = isUr ?
+          `السلام علیکم جاوید ٹریڈرز بفہ! میں نے پریمیم ڈیجیٹل شو روم سے کلک اینڈ کلیکٹ آرڈر تیار کیا ہے۔` :
+          `Assalam-o-Alaikum Javed Traders Baffa! I have generated a Click & Collect order from your digital showroom.`;
+        msg += '\n\n';
+        msg += isUr ? `👤 *کسٹمر کی معلومات (Customer Details):*` : `👤 *CUSTOMER DETAILS:*`;
+        msg += `\n• ${isUr ? 'نام:' : 'Name:'} ${name}`;
+        msg += `\n• ${isUr ? 'فون نمبر:' : 'Phone:'} ${phone}`;
+        msg += `\n• ${isUr ? 'وصولی کا وقت:' : 'Preferred Pickup:'} ${state.pickupTime}`;
+        if (state.customerNotes) {
+          msg += `\n• ${isUr ? 'اضافی تفصیلات:' : 'Special Notes:'} ${state.customerNotes}`;
+        }
+        msg += '\n\n';
+        msg += isUr ? `📦 *آرڈر کی تفصیلات (Order Items):*` : `📦 *ORDER ITEMS:*`;
+        items.forEach((item, idx) => {
+          const line = item.product.price * item.quantity;
+          const prodName = isUr ? item.product.urduName : item.product.name;
+          msg += `\n${idx+1}. *${prodName}* (${item.product.unit}) \n   _Qty:_ ${item.quantity}  |  _Price:_ Rs ${line}`;
+        });
+        msg += `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
+        msg += `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
+
+        const url = `https://wa.me/923145160991?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
+      });
+
+      // Detail modal events
+      document.getElementById('close-detail').addEventListener('click', closeDetail);
+      detailOverlay.addEventListener('click', (e) => {
+        if (e.target === detailOverlay) closeDetail();
+      });
+
+      // Detail action (add/qty) delegated
+      detailModal.addEventListener('click', (e) => {
+        const target = e.target.closest('button');
+        if (!target) return;
+        const id = target.dataset.id;
+        if (!id) return;
+        if (target.classList.contains('detail-add-btn')) {
+          const product = getProduct(id);
+          if (product && product.inStock) {
+            state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
+            saveList();
+            renderAll();
+            // Re-open detail with updated data
+            openDetail(id);
+            showToast(state.lang === 'en' ? 'Item added to list!' : 'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+          }
+          return;
+        }
+        if (target.classList.contains('detail-qty-inc') || target.classList.contains('detail-qty-dec')) {
+          const delta = target.classList.contains('detail-qty-inc') ? 1 : -1;
+          const current = state.shoppingList[id] || 0;
+          const newQty = current + delta;
+          if (newQty <= 0) {
+            delete state.shoppingList[id];
+            showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+          } else {
+            state.shoppingList[id] = newQty;
+          }
+          saveList();
+          renderAll();
+          openDetail(id);
+        }
+      });
+
+      // Language toggle (both header and mobile)
+      document.querySelectorAll('.lang-toggle button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          if (lang && lang !== state.lang) {
+            state.lang = lang;
+            // Update active class in all toggles
+            document.querySelectorAll('.lang-toggle button').forEach(b => {
+              b.classList.toggle('active', b.dataset.lang === lang);
+            });
+            renderAll();
+            // Re-attach product events
+            attachProductEvents();
+            // Re-open detail if open
+            if (state.detailOpen && state.detailProductId) {
+              openDetail(state.detailProductId);
+            }
+            // Update drawer if open
+            if (state.listOpen) {
+              renderDrawer();
+              attachDrawerEvents();
+            }
+          }
+        });
+      });
+
+      // Mobile menu
+      document.getElementById('menu-toggle').addEventListener('click', () => {
+        document.getElementById('mobile-overlay').classList.add('open');
+      });
+      document.getElementById('close-mobile').addEventListener('click', () => {
+        document.getElementById('mobile-overlay').classList.remove('open');
+      });
+      document.getElementById('mobile-overlay').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('mobile-overlay')) {
+          document.getElementById('mobile-overlay').classList.remove('open');
+        }
+      });
+      // Mobile nav links
+      document.querySelectorAll('#mobile-nav a').forEach(a => {
+        a.addEventListener('click', () => {
+          const section = a.dataset.section;
+          if (section) scrollToSection(section);
+          document.getElementById('mobile-overlay').classList.remove('open');
+        });
+      });
+
+      // Desktop nav links
+      document.querySelectorAll('#desktop-nav a').forEach(a => {
+        a.addEventListener('click', () => {
+          const section = a.dataset.section;
+          if (section) scrollToSection(section);
+        });
+      });
+
+      // Home logo
+      document.getElementById('home-link').addEventListener('click', () => {
+        scrollToSection('home');
+      });
+
+      // Hero buttons
+      document.getElementById('hero-catalogue-btn').addEventListener('click', () => {
+        scrollToSection('catalogue-section');
+      });
+      document.getElementById('hero-about-btn').addEventListener('click', () => {
+        scrollToSection('about-section');
+      });
+
+      // Scroll listener for nav
+      window.addEventListener('scroll', () => {
+        updateNavActive();
+      });
+
+      // Search (we don't have search input in header, but we can add one later; for now keep simple)
+      // If you want to add search, you can integrate later.
+
+      // Initial render
+      renderAll();
+      attachProductEvents();
+
+      // Also attach drawer events after render
+      attachDrawerEvents();
+
+      // Set initial language toggle active
+      document.querySelectorAll('.lang-toggle button').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === state.lang);
+      });
+
+      console.log('Javed Traders Digital Showroom loaded.');
+    }
+
+    // Helper to scroll to section
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const offset = 80;
+        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      } else if (id === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Open product detail
+    function openDetail(id) {
+      const product = getProduct(id);
+      if (!product) return;
+      state.detailProductId = id;
+      state.detailOpen = true;
+      detailOverlay.classList.add('open');
+      // Populate
+      document.getElementById('detail-img').src = product.image;
+      document.getElementById('detail-brand').textContent = product.brand || '';
+      document.getElementById('detail-name').textContent = product.name;
+      document.getElementById('detail-unit').textContent = product.unit;
+      document.getElementById('detail-desc').textContent = product.description;
+      document.getElementById('detail-price').textContent = product.price;
+      const stockEl = document.getElementById('detail-stock');
+      if (product.inStock) {
+        stockEl.textContent = 'In Stock';
+        stockEl.className = 'stock in';
+      } else {
+        stockEl.textContent = 'Out of Stock';
+        stockEl.className = 'stock out';
+      }
+
+      // Render action
+      const action = document.getElementById('detail-action');
+      const qty = state.shoppingList[id] || 0;
+      if (qty === 0) {
+        action.innerHTML = `
+          <button class="add-btn detail-add-btn" data-id="${id}" ${!product.inStock ? 'disabled' : ''}>
+            <i class="fas fa-shopping-bag"></i> ${state.lang === 'en' ? 'Add to Shopping List' : 'لسٹ میں شامل کریں'}
+          </button>
+        `;
+      } else {
+        action.innerHTML = `
+          <div class="qty-row">
+            <span class="label">${state.lang === 'en' ? 'Quantity in your list:' : 'لسٹ میں شامل مقدار:'}</span>
+            <div class="controls">
+              <button class="detail-qty-dec" data-id="${id}">−</button>
+              <span class="qty">${qty}</span>
+              <button class="detail-qty-inc" data-id="${id}">+</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function closeDetail() {
+      state.detailOpen = false;
+      state.detailProductId = null;
+      detailOverlay.classList.remove('open');
+    }
+
+    // Re-attach events after re-render
+    function attachProductEvents() {
+      // We use event delegation on productGrid, so nothing extra needed.
+    }
+
+    function attachDrawerEvents() {
+      // Delegation already set on drawerBody
+    }
+
+    // ------------------------------------
+    // INIT
+    // ------------------------------------
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
