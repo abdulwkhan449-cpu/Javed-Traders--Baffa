@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
+        /* (same as before, no changes) */
         * {
             margin: 0;
             padding: 0;
@@ -1473,6 +1474,9 @@
             text-decoration: none;
             transition: 0.3s;
             font-family: 'Poppins', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         .contact-map .directions:hover {
             background: var(--primary);
@@ -2431,7 +2435,8 @@
                     order directly on WhatsApp for instant collection!
                 </p>
                 <div class="hero-actions">
-                    <button class="btn-primary" id="hero-catalogue-btn"><i class="fas fa-chevron-right"></i> Browse Catalogue</button>
+                    <!-- Changed icon to fa-shopping-bag -->
+                    <button class="btn-primary" id="hero-catalogue-btn"><i class="fas fa-shopping-bag"></i> Browse Catalogue</button>
                     <button class="btn-secondary" id="hero-about-btn">Our Story</button>
                 </div>
             </div>
@@ -2587,9 +2592,15 @@
                     </div>
                     <div style="margin-top:12px;">
                         <div class="label">Instant Order Line</div>
-                        <a href="https://wa.me/923145160991" target="_blank" class="phone-link">
-                            <i class="fab fa-whatsapp"></i> +92 314 5160991
-                        </a>
+                        <!-- Keep old number for display, add new number -->
+                        <div style="display:flex; flex-direction:column; gap:4px; margin-top:4px;">
+                            <a href="https://wa.me/923145160991" target="_blank" class="phone-link">
+                                <i class="fab fa-whatsapp"></i> +92 314 5160991
+                            </a>
+                            <a href="https://wa.me/923369595531" target="_blank" class="phone-link">
+                                <i class="fab fa-whatsapp"></i> +92 336 9595531
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2602,8 +2613,9 @@
                         <div class="sub">Stop by Main Chowk Baffa Bazar for immediate collection.</div>
                     </div>
                 </div>
+                <!-- Added icon to Get Directions button -->
                 <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXSoASAFQAw%3D%3D" target="_blank" class="directions">
-                    Get Directions
+                    <i class="fas fa-location-dot"></i> Get Directions
                 </a>
             </div>
         </section>
@@ -2645,6 +2657,8 @@
                         <div>
                             <span class="strong">Muhummad Javed &amp; Usman Javed</span><br />
                             <a href="tel:+923145160991" style="color:#34d399; text-decoration:none; font-weight:700;">+92 314 5160991</a>
+                            <span style="color:rgba(255,255,255,0.7); margin:0 4px;">|</span>
+                            <a href="tel:+923369595531" style="color:#34d399; text-decoration:none; font-weight:700;">+92 336 9595531</a>
                         </div>
                     </div>
                 </div>
@@ -2723,8 +2737,9 @@
                 </div>
                 <div id="footer-step2" style="display:none;">
                     <button class="back-btn" id="back-to-list"><i class="fas fa-chevron-left"></i> Back to List</button>
+                    <!-- Changed WhatsApp button icon to fa-paper-plane for distinction -->
                     <a class="whatsapp-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-whatsapp"></i> Confirm &amp; Send to WhatsApp
+                        <i class="fas fa-paper-plane"></i> Confirm &amp; Send to WhatsApp
                     </a>
                     <div class="note" style="margin-top:4px;">NO ONLINE PAYMENT REQUIRED</div>
                 </div>
@@ -3278,10 +3293,6 @@
             detailOverlay.classList.remove('open');
         }
 
-        function attachProductEvents() {}
-
-        function attachDrawerEvents() {}
-
         function init() {
             loadList();
 
@@ -3442,6 +3453,7 @@
                 state.customerNotes = e.target.value;
             });
 
+            // Updated WhatsApp link to use new number +92 336 9595531
             document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
                 const name = document.getElementById('customer-name').value.trim();
                 const phone = document.getElementById('customer-phone').value.trim();
@@ -3473,7 +3485,8 @@
                 });
                 msg += `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
                 msg += `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
-                const url = `https://wa.me/923145160991?text=${encodeURIComponent(msg)}`;
+                // NEW NUMBER HERE
+                const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
                 window.open(url, '_blank');
             });
 
