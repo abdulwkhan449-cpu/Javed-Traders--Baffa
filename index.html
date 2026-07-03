@@ -274,9 +274,10 @@
       font-size: 0.8875rem;
     }
 
-    .cart-btn {
+    /* Header Cart Button - hidden on mobile, visible on desktop */
+    .cart-btn-header {
       position: relative;
-      display: flex;
+      display: none;
       align-items: center;
       gap: 6px;
       background: var(--primary);
@@ -292,15 +293,21 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    .cart-btn:hover {
+    @media (min-width: 768px) {
+      .cart-btn-header {
+        display: flex;
+      }
+    }
+
+    .cart-btn-header:hover {
       background: var(--accent);
     }
 
-    .cart-btn i {
+    .cart-btn-header i {
       color: var(--accent);
     }
 
-    .cart-badge {
+    .cart-btn-header .cart-badge {
       background: var(--discount);
       color: white;
       border-radius: 999px;
@@ -333,7 +340,7 @@
       .menu-toggle { display: none; }
     }
 
-    /* ---------- Mobile Menu ---------- */
+    /* ---------- Mobile Menu Popup ---------- */
     .mobile-overlay {
       position: fixed;
       inset: 0;
@@ -356,7 +363,7 @@
 
     .mobile-menu {
       background: var(--card-bg);
-      max-width: 320px;
+      max-width: 340px;
       width: 100%;
       border-radius: 16px;
       padding: 20px;
@@ -403,7 +410,7 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin: 16px 0;
+      margin: 12px 0;
     }
 
     .mobile-nav a {
@@ -432,6 +439,76 @@
     }
 
     .mobile-nav a:hover .arrow { opacity: 1; transform: translateX(4px); }
+
+    /* Mobile Cart Button inside popup */
+    .mobile-cart-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--primary);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      border: none;
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 4px;
+    }
+
+    .mobile-cart-btn:hover {
+      background: var(--accent);
+    }
+
+    .mobile-cart-btn .cart-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+    }
+
+    .mobile-cart-btn .cart-left i {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .mobile-cart-btn .cart-left .label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .mobile-cart-btn .cart-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mobile-cart-btn .cart-right .badge {
+      background: var(--discount);
+      color: white;
+      border-radius: 999px;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: 'Inter', monospace;
+    }
+
+    .mobile-cart-btn .cart-right .total {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: 'Inter', monospace;
+    }
+
+    .mobile-cart-btn .cart-right .arrow {
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
 
     .mobile-lang {
       display: flex;
@@ -2552,7 +2629,8 @@
           <button class="urdu-btn" data-lang="ur">اردو</button>
         </div>
 
-        <button class="cart-btn" id="cart-btn">
+        <!-- Cart Button - Desktop Only -->
+        <button class="cart-btn-header" id="cart-btn">
           <i class="fas fa-shopping-bag"></i>
           <span class="cart-label">My List</span>
           <span class="cart-badge" id="cart-badge">0</span>
@@ -2565,19 +2643,36 @@
     </div>
   </header>
 
-  <!-- ==================== MOBILE MENU OVERLAY ==================== -->
+  <!-- ==================== MOBILE MENU POPUP ==================== -->
   <div class="mobile-overlay" id="mobile-overlay">
     <div class="mobile-menu">
       <div class="mobile-menu-header">
         <div class="logo-text"><span>Javed</span> Traders</div>
         <button class="close-btn" id="close-mobile"><i class="fas fa-times"></i></button>
       </div>
+
+      <!-- Mobile Navigation Links -->
       <nav class="mobile-nav" id="mobile-nav">
         <a data-section="home" class="active">Home <span class="arrow">➔</span></a>
         <a data-section="about-section">About Us <span class="arrow">➔</span></a>
         <a data-section="catalogue-section">Catalogue <span class="arrow">➔</span></a>
         <a data-section="contact-section">Contact <span class="arrow">➔</span></a>
       </nav>
+
+      <!-- Mobile Cart Button (merged into popup) -->
+      <button class="mobile-cart-btn" id="mobile-cart-btn">
+        <div class="cart-left">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="label">My List</span>
+        </div>
+        <div class="cart-right">
+          <span class="badge" id="mobile-cart-badge">0</span>
+          <span class="total">PKR <span id="mobile-cart-total">0</span></span>
+          <span class="arrow">➔</span>
+        </div>
+      </button>
+
+      <!-- Mobile Language Toggle -->
       <div class="mobile-lang">
         <span>Language:</span>
         <div class="lang-toggle">
@@ -2585,6 +2680,8 @@
           <button class="urdu-btn" data-lang="ur">اردو</button>
         </div>
       </div>
+
+      <!-- Mobile Call Button -->
       <a href="tel:+923145160991" class="mobile-call">
         <i class="fas fa-phone-alt"></i> Call: +92 314 5160991
       </a>
@@ -2621,7 +2718,7 @@
           <div class="img-wrapper">
             <img src="./usman.png" alt="Usman Javed - Partner" />
             <div class="caption">
-              <div class="role">PARTNER & SON</div>
+              <div class="role">PARTNER & Manager</div>
               <div class="name">Usman Javed</div>
             </div>
           </div>
@@ -2754,7 +2851,6 @@
         </div>
         <div class="contact-item">
           <div class="label" id="timings-label">Timings</div>
-          <!-- Updated Friday timing: Open, closed for Jummah prayer only -->
           <div class="desc" style="display:flex; flex-direction:column; gap:2px; margin-top:4px;">
             <span style="font-weight:700; color:white; font-size:0.95rem; font-family:'Poppins',sans-serif;">7:00 AM – 9:00 PM</span>
             <span style="font-size:0.8rem; color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif;">(Mon-Thu, Sat)</span>
@@ -2801,14 +2897,12 @@
         </div>
         <div class="footer-col">
           <h4 id="footer-timings-title">Timings &amp; Pickup</h4>
-          <!-- Updated Friday timing: Open, closed for Jummah prayer only -->
           <div class="footer-timing-wrapper">
             <span class="time-main">7:00 AM – 9:00 PM</span>
             <span class="time-sub">(Mon-Thu, Sat)</span>
             <span class="time-friday"><strong>Friday:</strong> Open (Closed for Jummah prayer only)</span>
             <span class="time-pack">Pack-time: 24 Hours</span>
           </div>
-          <!-- Removed Click & Collect Only section with icon -->
         </div>
         <div class="footer-col">
           <h4 id="footer-location-title">Location</h4>
@@ -3066,6 +3160,8 @@
     const inStockCheck = $('#in-stock-only');
     const sortSelect = $('#sort-select');
     const cartBadge = $('#cart-badge');
+    const mobileCartBadge = $('#mobile-cart-badge');
+    const mobileCartTotal = $('#mobile-cart-total');
     const drawerOverlay = $('#drawer-overlay');
     const drawerBody = $('#drawer-body');
     const drawerItemsContainer = $('#drawer-items-container');
@@ -3133,6 +3229,30 @@
           state.shoppingList = JSON.parse(saved);
         }
       } catch (e) {}
+    }
+
+    // Update all cart badges and totals
+    function updateCartUI() {
+      const totalItems = getTotalItems();
+      const totalPrice = getTotalPrice();
+
+      // Desktop header cart
+      cartBadge.textContent = totalItems;
+
+      // Mobile popup cart
+      mobileCartBadge.textContent = totalItems;
+      mobileCartTotal.textContent = totalPrice;
+
+      // Floating cart
+      floatBadge.textContent = totalItems;
+      floatTotal.textContent = totalPrice;
+
+      // Drawer
+      drawerTotal.textContent = totalPrice;
+      drawerItemCount.textContent = totalItems;
+
+      // Show/hide floating cart
+      floatingCart.classList.toggle('visible', totalItems > 0);
     }
 
     // ------------------------------------
@@ -3295,21 +3415,12 @@
       });
       container.innerHTML = html;
 
-      const total = getTotalPrice();
-      drawerTotal.textContent = total;
-      drawerItemCount.textContent = getTotalItems();
+      updateCartUI();
     }
 
     function renderDrawer() {
       renderDrawerItems();
-      const total = getTotalPrice();
-      drawerTotal.textContent = total;
-      drawerItemCount.textContent = getTotalItems();
-      const count = getTotalItems();
-      cartBadge.textContent = count;
-      floatBadge.textContent = count;
-      floatTotal.textContent = total;
-      floatingCart.classList.toggle('visible', count > 0);
+      updateCartUI();
       if (state.formStep) {
         showFormStep(true);
       } else {
@@ -3421,7 +3532,7 @@
         'حبیب بینک کے قریب، مین چوک بفہ بازار، تحصیل بفہ-پکھل، مانسہرہ، کے پی';
       document.getElementById('timings-label').textContent = t.timingsTitle;
 
-      // Update the contact timing description with updated Friday text
+      // Update the contact timing description
       const contactTimingDesc = document.querySelector('.contact-item .desc');
       if (contactTimingDesc && contactTimingDesc.parentElement && contactTimingDesc.parentElement.querySelector('.contact-item .label') === document.getElementById('timings-label')) {
         if (state.lang === 'ur') {
@@ -3455,7 +3566,7 @@
       document.getElementById('footer-timings-title').textContent = t.timingsTitle;
       document.getElementById('footer-location-title').textContent = t.locationTitle;
 
-      // Update footer timing wrapper with updated Friday text
+      // Update footer timing wrapper
       const timingWrapper = document.querySelector('.footer-timing-wrapper');
       if (timingWrapper) {
         if (state.lang === 'ur') {
@@ -3601,6 +3712,13 @@
 
       document.getElementById('close-drawer').addEventListener('click', closeDrawer);
       document.getElementById('cart-btn').addEventListener('click', openDrawer);
+      document.getElementById('mobile-cart-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        // Close mobile menu
+        document.getElementById('mobile-overlay').classList.remove('open');
+        // Open drawer
+        openDrawer();
+      });
       document.getElementById('floating-cart-btn').addEventListener('click', openDrawer);
 
       function openDrawer() {
