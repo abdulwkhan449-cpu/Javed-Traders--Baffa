@@ -1351,6 +1351,7 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
+        /* Updated Friday timing — changed as requested */
         .footer-timing-wrapper .time-friday {
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.8);
@@ -1387,6 +1388,16 @@
             font-weight: 600;
         }
 
+        .footer-col .info-item a {
+            color: #34d399;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer-col .info-item a:hover {
+            text-decoration: underline;
+        }
+
         .footer-bottom {
             padding-top: 20px;
             display: flex;
@@ -1409,6 +1420,21 @@
         .footer-bottom .version {
             color: rgba(255, 255, 255, 0.7);
             letter-spacing: 0.05em;
+        }
+
+        .map-link {
+            color: #34d399;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: 0.3s;
+        }
+
+        .map-link:hover {
+            color: white;
+            text-decoration: underline;
         }
 
         /* ---------- DRAWER (Shopping List) ---------- */
@@ -2245,7 +2271,7 @@
                     <button class="urdu-btn" data-lang="ur">اردو</button>
                 </div>
 
-                <!-- Cart Button - Desktop (same as homepage) -->
+                <!-- Cart Button - Desktop -->
                 <button class="cart-btn-header" id="cart-btn">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-label">My List</span>
@@ -2273,7 +2299,7 @@
                 <a href="index.html#contact-section">Contact <span class="arrow">➔</span></a>
             </nav>
 
-            <!-- Mobile Cart Button (same as homepage) -->
+            <!-- Mobile Cart Button -->
             <button class="mobile-cart-btn" id="mobile-cart-btn">
                 <div class="cart-left">
                     <i class="fas fa-shopping-bag"></i>
@@ -2484,8 +2510,9 @@
                     <h4 id="footer-timings-title">Timings &amp; Pickup</h4>
                     <div class="footer-timing-wrapper">
                         <span class="time-main">7:00 AM – 9:00 PM</span>
-                        <span class="time-sub">(Mon-Thu, Sat)</span>
-                        <span class="time-friday"><strong>Friday:</strong> Open (Closed for Jummah prayer only)</span>
+                        <span class="time-sub">(Mon–Thu, Sat)</span>
+                        <!-- Updated Friday timing -->
+                        <span class="time-friday"><strong>Friday:</strong> 7:00 AM – 9:00 PM (Closed for Jummah prayer only)</span>
                         <span class="time-pack">Pack-time: 24 Hours</span>
                     </div>
                 </div>
@@ -2494,15 +2521,21 @@
                     <div class="info-item">
                         <i class="fas fa-map-pin"></i>
                         <div>
-                            <span class="strong">Main Chowk Baffa Bazar</span><br />
-                            <span>Near Habib Bank, Tehsil Baffa-Pakhal, Mansehra, KP</span>
+                            <span class="strong">Main Chowk, Baffa</span><br />
+                            <span>Tehsil Baffa-Pakhal, Mansehra, KP</span><br />
+                            <!-- Google Maps link -->
+                            <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-link">
+                                <i class="fas fa-directions"></i> View on Google Maps
+                            </a>
                         </div>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
                         <div>
                             <span class="strong">Javed Iqbal &amp; Usman Javed</span><br />
-                            <a href="tel:+923145160991" style="color:#34d399; text-decoration:none; font-weight:700;">+92 314 5160991</a>
+                            <a href="tel:+923145160991">+92 314 5160991</a>
+                            <span style="color:rgba(255,255,255,0.5);margin:0 4px;">|</span>
+                            <a href="tel:+923369595531" style="color:#34d399;text-decoration:none;font-weight:700;">+92 336 9595531</a>
                         </div>
                     </div>
                 </div>
@@ -2583,6 +2616,7 @@
                 </div>
                 <div id="footer-step2" style="display:none;">
                     <button class="back-btn" id="back-to-list"><i class="fas fa-chevron-left"></i> Back to List</button>
+                    <!-- WhatsApp button uses the NEW number: +92 336 9595531 -->
                     <a class="whatsapp-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-whatsapp"></i> Confirm &amp; Send to WhatsApp
                     </a>
@@ -3363,7 +3397,7 @@
                 state.customerNotes = e.target.value;
             });
 
-            // WhatsApp order
+            // WhatsApp order — uses NEW number +92 336 9595531
             document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
                 const name = document.getElementById('customer-name').value.trim();
                 const phone = document.getElementById('customer-phone').value.trim();
@@ -3398,7 +3432,8 @@
                 msg += `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
                 msg += `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
 
-                const url = `https://wa.me/923145160991?text=${encodeURIComponent(msg)}`;
+                // NEW WhatsApp number: +92 336 9595531
+                const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
                 window.open(url, '_blank');
             });
 
