@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact | Javed Traders Baffa</title>
-
+    <title>Javed Traders Baffa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* ---------- RESET & BASE ---------- */
+        /* (same as before, no changes) */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --primary: #0284C7;
             --accent: #06B6D4;
@@ -28,9 +22,7 @@
             --text-primary: #1F2937;
             --text-muted: #6B7280;
             --border-color: #E5E7EB;
-            --whatsapp: #25D366;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
@@ -38,7 +30,6 @@
             line-height: 1.5;
             font-size: 18px;
         }
-
         h1,
         h2,
         h3,
@@ -48,6 +39,9 @@
         .font-display,
         .logo h1,
         .hero-title,
+        .about-header h2,
+        .catalogue-header h2,
+        .contact .header h2,
         .footer-col .brand,
         .drawer-header .left .title-group h3,
         .detail-modal .detail-info .name,
@@ -55,6 +49,13 @@
         .product-card .info .title,
         .cart-btn .cart-label,
         .floating-cart button .text .label,
+        .step-header,
+        .how-it-works .step .content h4,
+        .about-highlights h3,
+        .contact-item .value,
+        .portrait-card .img-wrapper .caption .name,
+        .portrait-card .label,
+        .hero-badge,
         .btn-primary,
         .btn-secondary,
         .filter-rail button,
@@ -72,27 +73,20 @@
         .detail-modal .detail-info .price-row .stock,
         .detail-modal .detail-info .action .add-btn,
         .detail-modal .detail-info .action .qty-row .label,
+        .contact-map .directions,
         .footer-col h4,
         .footer-col .trust-badges span,
         .footer-bottom .version,
-        .toast,
-        .info-card h3,
-        .info-card .label,
-        .form-section h2,
-        .form-section label {
+        .toast {
             font-family: 'Poppins', sans-serif;
         }
-
         .font-urdu {
             font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', serif;
             direction: rtl;
         }
-
         .font-mono {
             font-family: 'Courier New', monospace;
         }
-
-        /* ---------- Toast ---------- */
         #toast-container {
             position: fixed;
             top: 20px;
@@ -101,7 +95,6 @@
             z-index: 9999;
             pointer-events: none;
         }
-
         .toast {
             background: var(--primary);
             color: white;
@@ -120,17 +113,13 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
             pointer-events: auto;
         }
-
         .toast.show {
             opacity: 1;
             transform: translateY(0);
         }
-
         .toast i {
             color: var(--accent);
         }
-
-        /* ---------- HEADER ---------- */
         header {
             position: sticky;
             top: 0;
@@ -140,7 +129,6 @@
             border-bottom: 1px solid var(--border-color);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
-
         .header-inner {
             max-width: 1280px;
             margin: 0 auto;
@@ -151,32 +139,16 @@
             justify-content: space-between;
             gap: 8px;
         }
-
         @media (min-width: 640px) {
             .header-inner {
                 height: 80px;
                 padding: 0 24px;
             }
         }
-
-        @media (min-width: 768px) {
-            .header-inner {
-                padding: 0 32px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .header-inner {
-                padding: 0 48px;
-            }
-        }
-
         .logo {
             cursor: pointer;
             flex-shrink: 0;
-            text-decoration: none;
         }
-
         .logo h1 {
             font-size: 1.3125rem;
             font-weight: 800;
@@ -185,11 +157,9 @@
             line-height: 1.2;
             color: var(--text-primary);
         }
-
         .logo h1 span {
             color: var(--primary);
         }
-
         .logo .sub {
             display: none;
             font-size: 0.7875rem;
@@ -198,7 +168,6 @@
             letter-spacing: 0.05em;
             margin-top: 2px;
         }
-
         @media (min-width: 1024px) {
             .logo h1 {
                 font-size: 1.6875rem;
@@ -209,24 +178,20 @@
                 gap: 2px;
             }
         }
-
         .logo .sub i {
             color: var(--primary);
             font-size: 0.7875rem;
         }
-
         .nav-desktop {
             display: none;
             align-items: center;
             gap: 24px;
         }
-
         @media (min-width: 768px) {
             .nav-desktop {
                 display: flex;
             }
         }
-
         .nav-desktop a {
             display: flex;
             align-items: center;
@@ -241,12 +206,11 @@
             position: relative;
             transition: color 0.3s;
             cursor: pointer;
+            font-family: 'Poppins', sans-serif;
         }
-
         .nav-desktop a.active {
             color: var(--accent);
         }
-
         .nav-desktop a::after {
             content: '';
             position: absolute;
@@ -259,23 +223,19 @@
             transform: scaleX(0);
             transition: transform 0.3s;
         }
-
         .nav-desktop a.active::after,
         .nav-desktop a:hover::after {
             transform: scaleX(1);
         }
-
         .nav-desktop a:hover {
             color: var(--accent);
         }
-
         .header-actions {
             display: flex;
             align-items: center;
             gap: 8px;
             flex-shrink: 0;
         }
-
         .lang-toggle {
             display: flex;
             background: var(--bg);
@@ -283,7 +243,6 @@
             padding: 2px;
             border: 1px solid var(--border-color);
         }
-
         .lang-toggle button {
             border: none;
             background: transparent;
@@ -296,18 +255,15 @@
             color: var(--text-muted);
             font-family: 'Poppins', sans-serif;
         }
-
         .lang-toggle button.active {
             background: var(--accent);
             color: white;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-
         .lang-toggle .urdu-btn {
             font-family: 'Noto Nastaliq Urdu', serif;
             font-size: 0.8875rem;
         }
-
         .cart-btn-header {
             position: relative;
             display: none;
@@ -325,21 +281,17 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             font-family: 'Poppins', sans-serif;
         }
-
         @media (min-width: 768px) {
             .cart-btn-header {
                 display: flex;
             }
         }
-
         .cart-btn-header:hover {
             background: var(--accent);
         }
-
         .cart-btn-header i {
             color: var(--accent);
         }
-
         .cart-btn-header .cart-badge {
             background: var(--discount);
             color: white;
@@ -353,7 +305,6 @@
             font-weight: 700;
             font-family: 'Inter', monospace;
         }
-
         .menu-toggle {
             display: block;
             background: var(--bg);
@@ -366,18 +317,14 @@
             transition: background 0.3s;
             font-family: 'Inter', sans-serif;
         }
-
         .menu-toggle:hover {
             background: var(--border-color);
         }
-
         @media (min-width: 768px) {
             .menu-toggle {
                 display: none;
             }
         }
-
-        /* ---------- MOBILE MENU ---------- */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -392,12 +339,10 @@
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
         }
-
         .mobile-overlay.open {
             opacity: 1;
             visibility: visible;
         }
-
         .mobile-menu {
             background: var(--card-bg);
             max-width: 340px;
@@ -411,11 +356,9 @@
             max-height: calc(100vh - 100px);
             overflow-y: auto;
         }
-
         .mobile-overlay.open .mobile-menu {
             transform: scale(1) translateY(0);
         }
-
         .mobile-menu-header {
             display: flex;
             justify-content: space-between;
@@ -423,18 +366,16 @@
             padding-bottom: 12px;
             border-bottom: 1px solid var(--border-color);
         }
-
         .mobile-menu-header .logo-text {
             font-weight: 800;
             font-size: 1.1875rem;
             text-transform: uppercase;
             color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
         }
-
         .mobile-menu-header .logo-text span {
             color: var(--primary);
         }
-
         .mobile-menu-header .close-btn {
             background: var(--bg);
             border: 1px solid var(--border-color);
@@ -444,19 +385,16 @@
             transition: 0.3s;
             font-family: 'Inter', sans-serif;
         }
-
         .mobile-menu-header .close-btn:hover {
             background: var(--accent);
             color: white;
         }
-
         .mobile-nav {
             display: flex;
             flex-direction: column;
             gap: 6px;
             margin: 12px 0;
         }
-
         .mobile-nav a {
             display: flex;
             align-items: center;
@@ -469,23 +407,20 @@
             text-decoration: none;
             transition: 0.3s;
             cursor: pointer;
+            font-family: 'Poppins', sans-serif;
         }
-
         .mobile-nav a.active {
             background: var(--accent);
             color: white;
         }
-
         .mobile-nav a .arrow {
             opacity: 0.3;
             transition: 0.3s;
         }
-
         .mobile-nav a:hover .arrow {
             opacity: 1;
             transform: translateX(4px);
         }
-
         .mobile-cart-btn {
             display: flex;
             align-items: center;
@@ -500,35 +435,29 @@
             font-family: 'Poppins', sans-serif;
             margin-top: 4px;
         }
-
         .mobile-cart-btn:hover {
             background: var(--accent);
         }
-
         .mobile-cart-btn .cart-left {
             display: flex;
             align-items: center;
             gap: 10px;
             color: white;
         }
-
         .mobile-cart-btn .cart-left i {
             color: var(--accent);
             font-size: 1.1rem;
         }
-
         .mobile-cart-btn .cart-left .label {
             font-size: 0.85rem;
             font-weight: 600;
             color: white;
         }
-
         .mobile-cart-btn .cart-right {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
         .mobile-cart-btn .cart-right .badge {
             background: var(--discount);
             color: white;
@@ -542,19 +471,16 @@
             font-weight: 700;
             font-family: 'Inter', monospace;
         }
-
         .mobile-cart-btn .cart-right .total {
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.8rem;
             font-weight: 600;
             font-family: 'Inter', monospace;
         }
-
         .mobile-cart-btn .cart-right .arrow {
             color: var(--accent);
             font-size: 0.8rem;
         }
-
         .mobile-lang {
             display: flex;
             justify-content: space-between;
@@ -565,7 +491,6 @@
             border: 1px solid var(--border-color);
             margin: 12px 0;
         }
-
         .mobile-lang span {
             font-size: 0.8375rem;
             font-weight: 700;
@@ -573,11 +498,9 @@
             color: var(--text-muted);
             font-family: 'Poppins', sans-serif;
         }
-
         .mobile-lang .lang-toggle {
             background: white;
         }
-
         .mobile-call {
             display: flex;
             align-items: center;
@@ -593,62 +516,70 @@
             text-transform: uppercase;
             transition: 0.3s;
             margin-top: 8px;
+            font-family: 'Poppins', sans-serif;
         }
-
         .mobile-call i {
             color: var(--accent);
         }
-
         .mobile-call:hover {
             background: var(--accent);
         }
-
-        /* ---------- CONTACT HERO (CENTERED, NO CARD) ---------- */
-        .contact-hero {
+        .hero {
             background: var(--primary);
-            padding: 40px 16px 40px;
+            padding: 40px 16px;
             border-bottom: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            min-height: 40vh;
             color: white;
-            text-align: center;
         }
-
-        @media (min-width: 640px) {
-            .contact-hero {
-                padding: 50px 24px 50px;
-            }
-        }
-
         @media (min-width: 768px) {
-            .contact-hero {
-                padding: 70px 32px 60px;
+            .hero {
+                padding: 60px 32px;
+                min-height: 50vh;
             }
         }
-
         @media (min-width: 1024px) {
-            .contact-hero {
-                padding: 90px 48px 80px;
+            .hero {
+                padding: 80px 48px;
+                min-height: 60vh;
             }
         }
-
-        .contact-hero-inner {
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner {
             max-width: 1280px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
             position: relative;
             z-index: 1;
+            height: 100%;
+            align-content: center;
+        }
+        @media (min-width: 768px) {
+            .hero-inner {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 48px;
+            }
+        }
+        .hero-text {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            gap: 16px;
         }
-
-        .contact-hero .hero-badge {
+        .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
             padding: 6px 16px;
             border-radius: 999px;
@@ -656,451 +587,911 @@
             font-weight: 600;
             letter-spacing: 0.1em;
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             text-transform: uppercase;
             width: fit-content;
-            margin: 0 auto 16px;
+            font-family: 'Poppins', sans-serif;
         }
-
-        .contact-hero .hero-badge i {
+        .hero-badge i {
             font-size: 0.8875rem;
             color: var(--accent);
         }
-
-        .contact-hero .hero-title {
+        .hero-title {
             font-size: 2.5rem;
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -0.02em;
             text-transform: uppercase;
             color: white;
-            text-align: center;
+            font-family: 'Poppins', sans-serif;
         }
-
-        .contact-hero .hero-title span {
+        .hero-title span {
             color: var(--accent);
         }
-
         @media (min-width: 640px) {
-            .contact-hero .hero-title {
+            .hero-title {
                 font-size: 3.5rem;
             }
         }
-
         @media (min-width: 1024px) {
-            .contact-hero .hero-title {
-                font-size: 4rem;
+            .hero-title {
+                font-size: 4.5rem;
             }
         }
-
-        .contact-hero .hero-desc {
+        .hero-desc {
             font-size: 1.0875rem;
             color: rgba(255, 255, 255, 0.85);
-            max-width: 560px;
+            max-width: 480px;
             line-height: 1.6;
-            margin: 0 auto;
-            text-align: center;
+            font-family: 'Inter', sans-serif;
         }
-
-        /* ---------- CONTACT INFO SECTION ---------- */
-        .contact-info-section {
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.8875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-primary i {
+            color: var(--accent);
+        }
+        .btn-primary:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.02);
+        }
+        .btn-primary:hover i {
+            color: white;
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.8875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+        .hero-portraits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 580px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .portrait-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            padding: 6px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .portrait-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        .portrait-card .img-wrapper {
+            aspect-ratio: 2/3;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg);
+            position: relative;
+        }
+        .portrait-card .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.5s;
+            filter: grayscale(0.15);
+        }
+        .portrait-card:hover .img-wrapper img {
+            filter: grayscale(0);
+        }
+        .portrait-card .img-wrapper .caption {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            color: white;
+        }
+        .portrait-card .img-wrapper .caption .role {
+            font-size: 0.7375rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
+        }
+        .portrait-card .img-wrapper .caption .name {
+            font-size: 1.0875rem;
+            font-weight: 700;
+            margin-top: 2px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .portrait-card .label {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.7875rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: 'Poppins', sans-serif;
+        }
+        main {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 40px 16px;
+            padding: 40px 16px 60px;
         }
-
-        @media (min-width: 640px) {
-            .contact-info-section {
-                padding: 40px 24px;
-            }
+        section {
+            margin-bottom: 64px;
         }
-
+        .how-it-works {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
         @media (min-width: 768px) {
-            .contact-info-section {
-                padding: 60px 32px;
+            .how-it-works {
+                grid-template-columns: repeat(3, 1fr);
+                padding: 20px 24px;
+            }
+            .how-it-works .step-header {
+                grid-column: 1 / -1;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 8px;
             }
         }
-
-        @media (min-width: 1024px) {
-            .contact-info-section {
-                padding: 60px 48px;
+        .how-it-works .step-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+        }
+        .how-it-works .step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding-top: 8px;
+        }
+        .how-it-works .step .num {
+            background: var(--bg);
+            color: var(--accent);
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-family: 'Inter', monospace;
+            font-size: 0.8375rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .how-it-works .step .content h4 {
+            font-size: 0.8875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+        }
+        .how-it-works .step .content p {
+            font-size: 0.8875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            font-family: 'Inter', sans-serif;
+        }
+        .about {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 24px;
+        }
+        @media (min-width: 768px) {
+            .about {
+                padding: 40px;
             }
         }
-
-        .contact-info-grid {
+        .about-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .about-header h2 {
+            font-size: 1.6875rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+        }
+        .about-header .sub {
+            font-size: 0.8375rem;
+            color: var(--accent);
+            font-family: 'Inter', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 24px;
         }
-
         @media (min-width: 768px) {
-            .contact-info-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
             }
         }
-
-        .info-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 32px 24px;
-            transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-        }
-
-        .info-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            transform: translateY(-4px);
-        }
-
-        .info-card i {
-            font-size: 2.5rem;
-            color: var(--accent);
-            background: rgba(6, 182, 212, 0.1);
-            padding: 16px;
-            border-radius: 999px;
-            margin-bottom: 16px;
-        }
-
-        .info-card h3 {
-            font-size: 1.1875rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-        }
-
-        .info-card p {
-            font-size: 0.9875rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 4px;
-        }
-
-        .info-card p strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .info-card .directions-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--bg);
-            padding: 8px 18px;
-            border-radius: 999px;
-            border: 1px solid var(--border-color);
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.3s;
-            margin-top: 12px;
-            font-size: 0.8875rem;
-            align-self: flex-start;
-        }
-
-        .info-card .directions-link:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .info-card .directions-link i {
-            font-size: 0.9375rem;
-            background: transparent;
-            padding: 0;
-            color: var(--accent);
-            margin: 0;
-        }
-
-        .info-card .directions-link:hover i {
-            color: white;
-        }
-
-        .info-card .phone-numbers {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            margin: 6px 0;
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        .info-card .phone-numbers a {
+        .about-text p {
             font-size: 1.0375rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+        .about-highlights {
+            background: var(--bg);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .about-highlights h3 {
+            font-size: 0.8875rem;
             font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s;
-            display: inline-flex;
-            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .about-highlights ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
             gap: 8px;
         }
-
-        .info-card .phone-numbers a:hover {
-            color: var(--primary);
-        }
-
-        .info-card .phone-numbers a i {
-            font-size: 1rem;
-            background: transparent;
-            padding: 0;
-            color: var(--accent);
-            margin: 0;
-        }
-
-        .info-card .whatsapp-btn-large {
+        .about-highlights ul li {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: var(--whatsapp);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 16px;
-            font-size: 1.0875rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            width: 100%;
-            max-width: 320px;
-            margin: 12px 0 0 0;
-            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
-            font-family: 'Poppins', sans-serif;
-            align-self: flex-start;
+            gap: 10px;
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
         }
-
-        .info-card .whatsapp-btn-large:hover {
-            background: #20ba59;
-            transform: scale(1.02);
-            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+        .about-highlights ul li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
         }
-
-        .info-card .whatsapp-btn-large i {
-            font-size: 1.5rem;
-            background: transparent;
-            padding: 0;
-            color: white;
-            margin: 0;
+        .catalogue-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
         }
-
-        /* ---------- MAP SECTION ---------- */
-        .map-section {
-            max-width: 1280px;
-            margin: 0 auto 60px;
-            padding: 0 16px;
-        }
-
-        @media (min-width: 640px) {
-            .map-section {
-                padding: 0 24px;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .map-section {
-                padding: 0 32px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .map-section {
-                padding: 0 48px;
-            }
-        }
-
-        .map-section .map-wrapper {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            height: 300px;
-        }
-
-        @media (min-width: 768px) {
-            .map-section .map-wrapper {
-                height: 400px;
-            }
-        }
-
-        .map-section .map-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            display: block;
-        }
-
-        /* ---------- CONTACT FORM ---------- */
-        .form-section {
-            max-width: 1280px;
-            margin: 0 auto 60px;
-            padding: 0 16px;
-        }
-
-        @media (min-width: 640px) {
-            .form-section {
-                padding: 0 24px;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .form-section {
-                padding: 0 32px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .form-section {
-                padding: 0 48px;
-            }
-        }
-
-        .form-section .form-wrapper {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 32px 24px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        @media (min-width: 768px) {
-            .form-section .form-wrapper {
-                padding: 48px;
-            }
-        }
-
-        .form-section h2 {
+        .catalogue-header h2 {
             font-size: 1.6875rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 8px;
+            font-family: 'Poppins', sans-serif;
         }
-
-        .form-section .form-sub {
-            font-size: 0.9875rem;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .form-section .form-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        @media (min-width: 640px) {
-            .form-section .form-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .form-section .form-grid .full-width {
-                grid-column: 1 / -1;
-            }
-        }
-
-        .form-section .form-group {
-            margin-bottom: 0;
-        }
-
-        .form-section .form-group label {
-            display: block;
+        .catalogue-header .sub {
             font-size: 0.8375rem;
-            font-weight: 600;
+            color: var(--accent);
+            font-family: 'Inter', monospace;
             text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 4px;
             letter-spacing: 0.05em;
         }
-
-        .form-section .form-group label .required {
-            color: var(--discount);
-        }
-
-        .form-section .form-group input,
-        .form-section .form-group textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 0.9875rem;
-            font-weight: 500;
-            color: var(--text-primary);
+        .filter-rail {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
             background: var(--bg);
-            outline: none;
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+        .filter-rail button {
+            border: none;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.8875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: transparent;
+            cursor: pointer;
             transition: all 0.3s;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+        }
+        .filter-rail button.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .filter-rail button:hover:not(.active) {
+            background: white;
+            color: var(--text-primary);
+        }
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8375rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            flex-wrap: wrap;
             font-family: 'Inter', sans-serif;
         }
-
-        .form-section .form-group input:focus,
-        .form-section .form-group textarea:focus {
+        .filter-group i {
+            color: var(--accent);
+        }
+        .filter-group select,
+        .filter-group input[type="checkbox"] {
+            background: var(--bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 0.8875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .filter-group select:focus,
+        .filter-group input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
-            background: white;
         }
-
-        .form-section .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
+        .filter-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
         }
-
-        .form-section .btn-submit {
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        @media (min-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 1280px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        .product-card.selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+        }
+        .product-card .img-wrap {
+            position: relative;
+            aspect-ratio: 1;
+            background: var(--bg);
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .product-card .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .product-card:hover .img-wrap img {
+            transform: scale(1.05);
+        }
+        .product-card .img-wrap .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .product-card:hover .img-wrap .overlay {
+            opacity: 1;
+        }
+        .product-card .img-wrap .overlay span {
             background: var(--primary);
             color: white;
-            border: none;
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-size: 0.9375rem;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8375rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-family: 'Poppins', sans-serif;
+        }
+        .product-card .img-wrap .badges {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .product-card .img-wrap .badges span {
+            font-size: 0.7375rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            padding: 2px 10px;
+            border-radius: 999px;
+            border: 1px solid;
+            background: white;
             font-family: 'Poppins', sans-serif;
-            width: 100%;
+        }
+        .product-card .img-wrap .badges .cat-grocery {
+            color: #0284C7;
+            background: #E0F2FE;
+            border-color: #7DD3FC;
+        }
+        .product-card .img-wrap .badges .cat-household {
+            color: #FB923C;
+            background: #FFF7ED;
+            border-color: #FDBA74;
+        }
+        .product-card .img-wrap .badges .brand {
+            background: rgba(2, 132, 199, 0.8);
+            color: white;
+            border-color: transparent;
+            font-family: 'Inter', monospace;
+        }
+        .product-card .img-wrap .selected-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 182, 212, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .product-card .img-wrap .selected-overlay i {
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            border-radius: 999px;
+            font-size: 1.3875rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .product-card .img-wrap .stock-badge {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
             justify-content: center;
         }
-
-        @media (min-width: 640px) {
-            .form-section .btn-submit {
-                width: auto;
-            }
+        .product-card .img-wrap .stock-badge span {
+            background: #FEE2E2;
+            color: var(--discount);
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.8875rem;
+            font-weight: 700;
+            border: 1px solid #FECACA;
+            text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
         }
-
-        .form-section .btn-submit:hover {
-            background: var(--accent);
-            transform: scale(1.02);
+        .product-card .info {
+            padding: 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-
-        .form-section .btn-submit i {
+        .product-card .info .title {
+            font-size: 1.0375rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin-bottom: 4px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+        .product-card .info .unit {
+            display: inline-block;
+            font-size: 0.8375rem;
+            font-weight: 600;
+            font-family: 'Inter', monospace;
+            background: var(--bg);
+            padding: 2px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            margin-top: 4px;
+            color: var(--text-muted);
+        }
+        .product-card .info .desc {
+            font-size: 0.8875rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-top: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 36px;
+            font-family: 'Inter', sans-serif;
+        }
+        .product-card .info .bottom {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .product-card .info .bottom .price {
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card .info .bottom .price .label {
+            font-size: 0.7375rem;
+            font-weight: 600;
+            text-transform: uppercase;
             color: var(--accent);
-            transition: color 0.3s;
+            font-family: 'Poppins', sans-serif;
         }
-
-        .form-section .btn-submit:hover i {
+        .product-card .info .bottom .price .amount {
+            font-size: 1.2875rem;
+            font-weight: 700;
+            font-family: 'Inter', monospace;
+            color: var(--text-primary);
+        }
+        .product-card .info .bottom .price .amount small {
+            font-size: 0.8875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        .product-card .info .bottom .actions {
+            display: flex;
+            align-items: center;
+        }
+        .product-card .info .bottom .actions .add-btn {
+            background: var(--bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.8375rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .product-card .info .bottom .actions .add-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        .product-card .info .bottom .actions .add-btn:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .product-card .info .bottom .actions .qty-control {
+            display: flex;
+            align-items: center;
+            background: var(--primary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-card .info .bottom .actions .qty-control button {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            padding: 6px 12px;
+            font-size: 0.9875rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+        }
+        .product-card .info .bottom .actions .qty-control button:hover {
+            background: var(--accent);
             color: white;
         }
-
-        /* ---------- FOOTER (UPDATED TO MATCH HOMEPAGE) ---------- */
+        .product-card .info .bottom .actions .qty-control .qty {
+            color: white;
+            font-family: 'Inter', monospace;
+            font-weight: 700;
+            font-size: 1.0375rem;
+            min-width: 24px;
+            text-align: center;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+        }
+        .empty-state i {
+            font-size: 2.6875rem;
+            color: var(--accent);
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+        .empty-state h3 {
+            font-size: 1.1875rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .empty-state p {
+            font-size: 0.9875rem;
+            color: var(--text-muted);
+            max-width: 300px;
+            margin: 0 auto 16px;
+            font-family: 'Inter', sans-serif;
+        }
+        .empty-state .reset-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.8875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        .empty-state .reset-btn:hover {
+            background: var(--primary);
+        }
+        .contact {
+            background: var(--primary);
+            color: white;
+            border-radius: 24px;
+            padding: 32px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .contact {
+                padding: 48px;
+            }
+        }
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(6, 182, 212, 0.1);
+            border-radius: 999px;
+            filter: blur(60px);
+        }
+        .contact .header {
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .contact .header h2 {
+            font-size: 1.6875rem;
+            font-weight: 700;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .contact .header .sub {
+            font-size: 0.8375rem;
+            color: var(--accent);
+            font-family: 'Inter', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 768px) {
+            .contact-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .contact-item .label {
+            font-size: 0.7875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+        }
+        .contact-item .value {
+            font-weight: 700;
+            font-size: 1.2875rem;
+            margin: 4px 0 8px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .contact-item .desc {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            font-family: 'Inter', sans-serif;
+        }
+        .contact-item .phone-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #34d399;
+            font-weight: 700;
+            font-family: 'Inter', monospace;
+            font-size: 1.0875rem;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .contact-item .phone-link:hover {
+            color: #6ee7b7;
+        }
+        .contact-map {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .contact-map .info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact-map .info i {
+            color: var(--accent);
+            font-size: 1.3875rem;
+            background: rgba(6, 182, 212, 0.2);
+            padding: 10px;
+            border-radius: 12px;
+        }
+        .contact-map .info .text {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Inter', sans-serif;
+        }
+        .contact-map .info .text .strong {
+            font-weight: 700;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .contact-map .info .text .sub {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .contact-map .directions {
+            background: var(--accent);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-size: 0.8875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact-map .directions:hover {
+            background: var(--primary);
+            color: white;
+        }
         footer {
             background: var(--primary);
             color: white;
             padding: 40px 16px 20px;
             border-top: 1px solid rgba(6, 182, 212, 0.3);
         }
-
         .footer-inner {
             max-width: 1280px;
             margin: 0 auto;
         }
-
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1108,13 +1499,11 @@
             padding-bottom: 32px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         @media (min-width: 768px) {
             .footer-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-
         .footer-col .brand {
             font-size: 1.4375rem;
             font-weight: 800;
@@ -1122,26 +1511,24 @@
             letter-spacing: -0.02em;
             display: block;
             color: white;
+            font-family: 'Poppins', sans-serif;
         }
-
         .footer-col .brand span {
             color: var(--accent);
         }
-
         .footer-col .about-text {
             font-size: 0.8875rem;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
             margin-top: 8px;
+            font-family: 'Inter', sans-serif;
         }
-
         .footer-col .trust-badges {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
             margin-top: 12px;
         }
-
         .footer-col .trust-badges span {
             display: flex;
             align-items: center;
@@ -1154,12 +1541,11 @@
             padding: 4px 10px;
             border-radius: 8px;
             border: 1px solid rgba(6, 182, 212, 0.3);
+            font-family: 'Poppins', sans-serif;
         }
-
         .footer-col .trust-badges span i {
             font-size: 0.7875rem;
         }
-
         .footer-col h4 {
             font-size: 0.8875rem;
             font-weight: 700;
@@ -1167,41 +1553,40 @@
             letter-spacing: 0.1em;
             color: var(--accent);
             margin-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
         }
-
         .footer-timing-wrapper {
             display: flex;
             flex-direction: column;
             gap: 2px;
         }
-
         .footer-timing-wrapper .time-main {
             font-weight: 700;
             color: white;
             font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
         }
-
         .footer-timing-wrapper .time-sub {
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.8);
+            font-family: 'Inter', sans-serif;
         }
-
         .footer-timing-wrapper .time-friday {
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.8);
+            font-family: 'Inter', sans-serif;
         }
-
         .footer-timing-wrapper .time-friday strong {
             color: white;
+            font-family: 'Poppins', sans-serif;
         }
-
         .footer-timing-wrapper .time-pack {
             font-size: 0.8rem;
             color: white;
             font-weight: 600;
+            font-family: 'Poppins', sans-serif;
             margin-top: 2px;
         }
-
         .footer-col .info-item {
             display: flex;
             gap: 10px;
@@ -1209,49 +1594,23 @@
             font-size: 0.8875rem;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.4;
+            font-family: 'Inter', sans-serif;
         }
-
         .footer-col .info-item i {
             color: var(--accent);
             flex-shrink: 0;
             margin-top: 2px;
         }
-
         .footer-col .info-item .strong {
             color: white;
             font-weight: 600;
+            font-family: 'Poppins', sans-serif;
         }
-
         .footer-col .info-item .highlight {
             color: white;
             font-weight: 600;
+            font-family: 'Poppins', sans-serif;
         }
-
-        .footer-col .info-item a {
-            color: #34d399;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .footer-col .info-item a:hover {
-            color: white;
-        }
-
-        .footer-col .info-item .map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-top: 2px;
-            text-decoration: none;
-        }
-
-        .footer-col .info-item .map-link:hover {
-            color: white;
-        }
-
         .footer-bottom {
             padding-top: 20px;
             display: flex;
@@ -1263,20 +1622,17 @@
             color: white;
             font-family: 'Inter', monospace;
         }
-
         @media (min-width: 640px) {
             .footer-bottom {
                 flex-direction: row;
                 justify-content: space-between;
             }
         }
-
         .footer-bottom .version {
             color: rgba(255, 255, 255, 0.7);
             letter-spacing: 0.05em;
+            font-family: 'Poppins', sans-serif;
         }
-
-        /* ---------- DRAWER ---------- */
         .drawer-overlay {
             position: fixed;
             inset: 0;
@@ -1287,12 +1643,10 @@
             opacity: 0;
             transition: opacity 0.3s, visibility 0.3s;
         }
-
         .drawer-overlay.open {
             visibility: visible;
             opacity: 1;
         }
-
         .drawer {
             position: fixed;
             right: 0;
@@ -1308,11 +1662,9 @@
             display: flex;
             flex-direction: column;
         }
-
         .drawer-overlay.open .drawer {
             transform: translateX(0);
         }
-
         .drawer-header {
             padding: 16px 20px;
             border-bottom: 1px solid var(--border-color);
@@ -1322,32 +1674,28 @@
             justify-content: space-between;
             flex-shrink: 0;
         }
-
         .drawer-header .left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
         .drawer-header .left .icon-wrap {
             background: var(--bg);
             padding: 8px;
             border-radius: 10px;
             color: var(--accent);
         }
-
         .drawer-header .left .title-group h3 {
             font-size: 1.0875rem;
             font-weight: 700;
             color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
         }
-
         .drawer-header .left .title-group p {
             font-size: 0.8375rem;
             color: var(--text-muted);
             font-family: 'Inter', monospace;
         }
-
         .drawer-header .close-drawer {
             background: transparent;
             border: none;
@@ -1359,18 +1707,15 @@
             transition: 0.3s;
             font-family: 'Inter', sans-serif;
         }
-
         .drawer-header .close-drawer:hover {
             background: var(--bg);
             color: var(--text-primary);
         }
-
         .drawer-body {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
         }
-
         .drawer-empty {
             display: flex;
             flex-direction: column;
@@ -1379,7 +1724,6 @@
             height: 100%;
             text-align: center;
         }
-
         .drawer-empty i {
             font-size: 2.6875rem;
             color: var(--accent);
@@ -1388,19 +1732,18 @@
             border-radius: 999px;
             margin-bottom: 16px;
         }
-
         .drawer-empty h3 {
             font-size: 1.1875rem;
             font-weight: 700;
             color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
         }
-
         .drawer-empty p {
             font-size: 0.9375rem;
             color: var(--text-muted);
             max-width: 200px;
+            font-family: 'Inter', sans-serif;
         }
-
         .drawer-item {
             display: flex;
             align-items: center;
@@ -1412,13 +1755,11 @@
             margin-bottom: 12px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
         }
-
         .drawer-item .left {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
         .drawer-item .left img {
             width: 44px;
             height: 44px;
@@ -1427,33 +1768,29 @@
             border: 1px solid var(--border-color);
             background: var(--bg);
         }
-
         .drawer-item .left .details .name {
             font-size: 0.9375rem;
             font-weight: 600;
             color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
         }
-
         .drawer-item .left .details .meta {
             font-size: 0.7875rem;
             color: var(--accent);
             font-family: 'Inter', monospace;
         }
-
         .drawer-item .right {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             gap: 6px;
         }
-
         .drawer-item .right .line-total {
             font-size: 0.8875rem;
             font-weight: 700;
             font-family: 'Inter', monospace;
             color: var(--text-primary);
         }
-
         .drawer-item .right .qty-control {
             display: flex;
             align-items: center;
@@ -1462,7 +1799,6 @@
             border: 1px solid var(--border-color);
             overflow: hidden;
         }
-
         .drawer-item .right .qty-control button {
             background: transparent;
             border: none;
@@ -1474,11 +1810,9 @@
             transition: 0.3s;
             font-family: 'Inter', sans-serif;
         }
-
         .drawer-item .right .qty-control button:hover {
             background: var(--border-color);
         }
-
         .drawer-item .right .qty-control .qty {
             padding: 2px 10px;
             font-family: 'Inter', monospace;
@@ -1486,14 +1820,12 @@
             font-size: 0.9375rem;
             color: var(--text-primary);
         }
-
         .drawer-footer {
             padding: 16px 20px;
             border-top: 1px solid var(--border-color);
             background: var(--card-bg);
             flex-shrink: 0;
         }
-
         .drawer-footer .clear-btn {
             background: transparent;
             border: none;
@@ -1504,43 +1836,39 @@
             letter-spacing: 0.05em;
             cursor: pointer;
             transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
             margin-bottom: 8px;
             display: inline-flex;
             align-items: center;
             gap: 4px;
         }
-
         .drawer-footer .clear-btn:hover {
             color: var(--discount);
         }
-
         .drawer-footer .total {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             margin-bottom: 12px;
         }
-
         .drawer-footer .total .label {
             font-size: 0.8875rem;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--text-muted);
+            font-family: 'Poppins', sans-serif;
         }
-
         .drawer-footer .total .amount {
             font-size: 1.6875rem;
             font-weight: 700;
             font-family: 'Inter', monospace;
             color: var(--text-primary);
         }
-
         .drawer-footer .total .amount small {
             font-size: 0.8875rem;
             font-weight: 600;
             color: var(--accent);
         }
-
         .drawer-footer .proceed-btn {
             width: 100%;
             padding: 12px;
@@ -1558,12 +1886,11 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-family: 'Poppins', sans-serif;
         }
-
         .drawer-footer .proceed-btn:hover {
             background: var(--accent);
         }
-
         .drawer-footer .note {
             text-align: center;
             font-size: 0.7875rem;
@@ -1573,15 +1900,12 @@
             font-family: 'Inter', monospace;
             text-transform: uppercase;
         }
-
         .drawer-body .form-step {
             display: none;
         }
-
         .drawer-body .form-step.active {
             display: block;
         }
-
         .form-step .summary-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -1589,26 +1913,24 @@
             padding: 12px 16px;
             margin-bottom: 20px;
         }
-
         .form-step .summary-box .label {
             font-size: 0.7875rem;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--accent);
+            font-family: 'Poppins', sans-serif;
         }
-
         .form-step .summary-box .row {
             display: flex;
             justify-content: space-between;
             font-size: 0.9875rem;
             font-weight: 600;
             color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
         }
-
         .form-group {
             margin-bottom: 16px;
         }
-
         .form-group label {
             display: flex;
             align-items: center;
@@ -1618,12 +1940,11 @@
             text-transform: uppercase;
             color: var(--text-muted);
             margin-bottom: 4px;
+            font-family: 'Poppins', sans-serif;
         }
-
         .form-group label i {
             color: var(--accent);
         }
-
         .form-group input,
         .form-group select,
         .form-group textarea {
@@ -1637,20 +1958,18 @@
             background: white;
             outline: none;
             transition: 0.3s;
+            font-family: 'Inter', sans-serif;
         }
-
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             border-color: var(--accent);
             box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.1);
         }
-
         .form-group textarea {
             resize: vertical;
             min-height: 60px;
         }
-
         .form-hint {
             background: rgba(6, 182, 212, 0.05);
             border: 1px solid rgba(6, 182, 212, 0.2);
@@ -1660,8 +1979,8 @@
             color: var(--accent);
             font-weight: 600;
             margin-top: 12px;
+            font-family: 'Inter', sans-serif;
         }
-
         .drawer-footer .back-btn {
             background: transparent;
             border: none;
@@ -1676,12 +1995,11 @@
             gap: 6px;
             padding: 4px 0;
             margin-bottom: 8px;
+            font-family: 'Poppins', sans-serif;
         }
-
         .drawer-footer .back-btn:hover {
             color: var(--primary);
         }
-
         .drawer-footer .whatsapp-btn {
             width: 100%;
             padding: 12px;
@@ -1700,23 +2018,19 @@
             justify-content: center;
             gap: 8px;
             text-decoration: none;
+            font-family: 'Poppins', sans-serif;
         }
-
         .drawer-footer .whatsapp-btn:hover {
             background: #20ba59;
         }
-
         .drawer-footer .whatsapp-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
             pointer-events: none;
         }
-
         .drawer-footer .whatsapp-btn i {
             font-size: 1.1875rem;
         }
-
-        /* ---------- DETAIL MODAL ---------- */
         .detail-overlay {
             position: fixed;
             inset: 0;
@@ -1731,12 +2045,10 @@
             opacity: 0;
             transition: opacity 0.3s, visibility 0.3s;
         }
-
         .detail-overlay.open {
             visibility: visible;
             opacity: 1;
         }
-
         .detail-modal {
             background: var(--card-bg);
             max-width: 640px;
@@ -1747,13 +2059,10 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
             transform: scale(0.95) translateY(20px);
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
         }
-
         .detail-overlay.open .detail-modal {
             transform: scale(1) translateY(0);
         }
-
         .detail-modal .close-detail {
             position: absolute;
             top: 12px;
@@ -1767,23 +2076,19 @@
             transition: 0.3s;
             font-family: 'Inter', sans-serif;
         }
-
         .detail-modal .close-detail:hover {
             background: var(--accent);
             color: white;
         }
-
         .detail-modal .detail-grid {
             display: grid;
             grid-template-columns: 1fr;
         }
-
         @media (min-width: 640px) {
             .detail-modal .detail-grid {
                 grid-template-columns: 1fr 1fr;
             }
         }
-
         .detail-modal .detail-image {
             aspect-ratio: 1;
             background: white;
@@ -1793,20 +2098,17 @@
             overflow: hidden;
             border-bottom: 1px solid var(--border-color);
         }
-
         .detail-modal .detail-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .detail-modal .detail-info {
             padding: 24px;
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
-
         .detail-modal .detail-info .brand-tag {
             display: inline-flex;
             align-items: center;
@@ -1819,15 +2121,15 @@
             color: var(--accent);
             border: 1px solid var(--border-color);
             width: fit-content;
+            font-family: 'Poppins', sans-serif;
         }
-
         .detail-modal .detail-info .name {
             font-size: 1.4375rem;
             font-weight: 700;
             line-height: 1.2;
             color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
         }
-
         .detail-modal .detail-info .unit-badge {
             display: inline-block;
             background: rgba(6, 182, 212, 0.1);
@@ -1837,16 +2139,16 @@
             font-weight: 700;
             color: var(--accent);
             border: 1px solid rgba(6, 182, 212, 0.2);
+            font-family: 'Poppins', sans-serif;
         }
-
         .detail-modal .detail-info .desc {
             font-size: 0.9875rem;
             color: var(--text-muted);
             line-height: 1.6;
             max-height: 120px;
             overflow-y: auto;
+            font-family: 'Inter', sans-serif;
         }
-
         .detail-modal .detail-info .price-row {
             display: flex;
             justify-content: space-between;
@@ -1854,50 +2156,44 @@
             border-top: 1px solid var(--border-color);
             padding-top: 16px;
         }
-
         .detail-modal .detail-info .price-row .price {
             display: flex;
             flex-direction: column;
         }
-
         .detail-modal .detail-info .price-row .price .label {
             font-size: 0.7875rem;
             font-weight: 600;
             text-transform: uppercase;
             color: var(--accent);
+            font-family: 'Poppins', sans-serif;
         }
-
         .detail-modal .detail-info .price-row .price .amount {
             font-size: 1.6875rem;
             font-weight: 700;
             font-family: 'Inter', monospace;
             color: var(--text-primary);
         }
-
         .detail-modal .detail-info .price-row .stock {
             font-size: 0.8375rem;
             font-weight: 700;
             text-transform: uppercase;
             padding: 4px 14px;
             border-radius: 999px;
+            font-family: 'Poppins', sans-serif;
         }
-
         .detail-modal .detail-info .price-row .stock.in {
             background: #E0F2FE;
             color: #0284C7;
             border: 1px solid #7DD3FC;
         }
-
         .detail-modal .detail-info .price-row .stock.out {
             background: #FEE2E2;
             color: var(--discount);
             border: 1px solid #FECACA;
         }
-
         .detail-modal .detail-info .action {
             margin-top: 8px;
         }
-
         .detail-modal .detail-info .action .add-btn {
             width: 100%;
             padding: 12px;
@@ -1915,17 +2211,15 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-family: 'Poppins', sans-serif;
         }
-
         .detail-modal .detail-info .action .add-btn:hover {
             background: var(--accent);
         }
-
         .detail-modal .detail-info .action .add-btn:disabled {
             opacity: 0.5;
             pointer-events: none;
         }
-
         .detail-modal .detail-info .action .qty-row {
             display: flex;
             align-items: center;
@@ -1935,13 +2229,12 @@
             padding: 8px 16px;
             border: 1px solid var(--border-color);
         }
-
         .detail-modal .detail-info .action .qty-row .label {
             font-size: 0.8375rem;
             font-weight: 600;
             color: var(--text-muted);
+            font-family: 'Poppins', sans-serif;
         }
-
         .detail-modal .detail-info .action .qty-row .controls {
             display: flex;
             align-items: center;
@@ -1949,7 +2242,6 @@
             border-radius: 8px;
             overflow: hidden;
         }
-
         .detail-modal .detail-info .action .qty-row .controls button {
             background: transparent;
             border: none;
@@ -1961,12 +2253,10 @@
             transition: 0.3s;
             font-family: 'Inter', sans-serif;
         }
-
         .detail-modal .detail-info .action .qty-row .controls button:hover {
             background: var(--accent);
             color: white;
         }
-
         .detail-modal .detail-info .action .qty-row .controls .qty {
             color: white;
             font-family: 'Inter', monospace;
@@ -1975,8 +2265,6 @@
             min-width: 24px;
             text-align: center;
         }
-
-        /* ---------- FLOATING CART ---------- */
         .floating-cart {
             position: fixed;
             bottom: 24px;
@@ -1984,11 +2272,9 @@
             z-index: 30;
             display: none;
         }
-
         .floating-cart.visible {
             display: block;
         }
-
         .floating-cart button {
             display: flex;
             align-items: center;
@@ -2002,22 +2288,19 @@
             cursor: pointer;
             transition: all 0.3s;
             border: 2px solid rgba(6, 182, 212, 0.3);
+            font-family: 'Inter', sans-serif;
         }
-
         .floating-cart button:hover {
             background: var(--accent);
             transform: scale(1.05);
         }
-
         .floating-cart button .icon-wrap {
             position: relative;
         }
-
         .floating-cart button .icon-wrap i {
             font-size: 1.3875rem;
             color: var(--accent);
         }
-
         .floating-cart button .icon-wrap .badge {
             position: absolute;
             top: -8px;
@@ -2034,79 +2317,61 @@
             justify-content: center;
             font-family: 'Inter', monospace;
         }
-
         .floating-cart button .text {
             text-align: left;
         }
-
         .floating-cart button .text .label {
             font-size: 0.7375rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--accent);
             font-weight: 700;
+            font-family: 'Poppins', sans-serif;
         }
-
         .floating-cart button .text .total {
             font-family: 'Inter', monospace;
             font-weight: 700;
             font-size: 1.0375rem;
         }
-
-        /* ---------- UTILITY ---------- */
         .scroll-mt-24 {
             scroll-margin-top: 100px;
         }
-
         @media (max-width: 640px) {
-            .contact-hero .hero-title {
-                font-size: 2.2rem;
+            .hero-title {
+                font-size: 2rem;
             }
-            .info-card {
-                padding: 24px 16px;
-            }
-            .info-card .whatsapp-btn-large {
-                padding: 14px 20px;
-                font-size: 0.9875rem;
-                max-width: 100%;
+            .product-grid {
+                grid-template-columns: 1fr;
             }
         }
-
         .dir-rtl {
             direction: rtl;
         }
-
         .text-right-urdu {
             text-align: right;
         }
-
         .font-urdu {
             font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', serif;
             direction: rtl;
         }
     </style>
 </head>
-
 <body>
 
-    <!-- Toast Container -->
     <div id="toast-container"></div>
 
-    <!-- ==================== HEADER ==================== -->
-    <header>
+    <header id="main-header">
         <div class="header-inner">
-            <a href="home.html" class="logo" id="home-link">
+            <div class="logo" id="home-link">
                 <h1><span>Javed</span> Traders</h1>
                 <div class="sub"><i class="fas fa-map-pin"></i> MAIN CHOWK, BAFFA BAZAR</div>
-            </a>
-
+            </div>
             <nav class="nav-desktop" id="desktop-nav">
-                <a href="index.html">Home</a>
+                <a href="home.html" class="active">Home</a>
                 <a href="about.html">About</a>
                 <a href="catalogue.html">Products Catalogue</a>
-                <a href="contact.html" class="active">Contact</a>
+                <a href="contact.html">Contact</a>
             </nav>
-
             <div class="header-actions">
                 <div class="lang-toggle">
                     <button class="active" data-lang="en">EN</button>
@@ -2124,7 +2389,6 @@
         </div>
     </header>
 
-    <!-- ==================== MOBILE MENU ==================== -->
     <div class="mobile-overlay" id="mobile-overlay">
         <div class="mobile-menu">
             <div class="mobile-menu-header">
@@ -2132,10 +2396,10 @@
                 <button class="close-btn" id="close-mobile"><i class="fas fa-times"></i></button>
             </div>
             <nav class="mobile-nav" id="mobile-nav">
-                <a href="index.html">Home <span class="arrow">➔</span></a>
+                <a href="home.html" class="active">Home <span class="arrow">➔</span></a>
                 <a href="about.html">About Us <span class="arrow">➔</span></a>
                 <a href="catalogue.html">Products Catalogue <span class="arrow">➔</span></a>
-                <a href="contact.html" class="active">Contact <span class="arrow">➔</span></a>
+                <a href="contact.html">Contact <span class="arrow">➔</span></a>
             </nav>
             <button class="mobile-cart-btn" id="mobile-cart-btn">
                 <div class="cart-left">
@@ -2161,1079 +2425,1172 @@
         </div>
     </div>
 
-    <!-- ==================== CONTACT HERO (CENTERED, NO CARD) ==================== -->
-    <section class="contact-hero">
-        <div class="contact-hero-inner">
-            <div class="hero-badge"><i class="fas fa-phone-alt"></i> <span id="hero-badge-text">Get in Touch</span>
+    <section class="hero" id="home">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-badge"><i class="fas fa-user-check"></i> FAMILY-OWNED & TRUSTED</div>
+                <h1 class="hero-title"><span>Javed</span> Traders <br>Baffa</h1>
+                <p class="hero-desc" id="hero-desc">
+                    Welcome to Baffa's premier household & grocery showroom. Explore our live catalog, select items, and
+                    order directly on WhatsApp for instant collection!
+                </p>
+                <div class="hero-actions">
+                    <!-- Changed icon to fa-shopping-bag -->
+                    <button class="btn-primary" id="hero-catalogue-btn"><i class="fas fa-shopping-bag"></i> Browse Catalogue</button>
+                    <button class="btn-secondary" id="hero-about-btn">Our Story</button>
+                </div>
             </div>
-            <h1 class="hero-title"><span id="hero-title-main">Contact</span> <span id="hero-title-accent"
-                    style="color:white">Us</span></h1>
-            <p class="hero-desc" id="hero-desc">
-                We'd love to hear from you. Reach out for inquiries, orders, or just to say hello!
-            </p>
+            <div class="hero-portraits">
+                <div class="portrait-card">
+                    <div class="img-wrapper">
+                        <img src="./javedsahb.png" alt="Javed Iqbal - Founder" />
+                        <div class="caption">
+                            <div class="role">FOUNDER</div>
+                            <div class="name">Muhummad Javed</div>
+                        </div>
+                    </div>
+                    <div class="label">Senior Proprietor</div>
+                </div>
+                <div class="portrait-card">
+                    <div class="img-wrapper">
+                        <img src="./usman.png" alt="Usman Javed - Partner" />
+                        <div class="caption">
+                            <div class="role">PARTNER & Manager</div>
+                            <div class="name">Usman Javed</div>
+                        </div>
+                    </div>
+                    <div class="label">Junior Proprietor</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- ==================== MAIN ==================== -->
     <main>
-
-        <!-- ====== CONTACT INFO ====== -->
-        <section class="contact-info-section">
-            <div class="contact-info-grid">
-
-                <!-- Visit Us -->
-                <div class="info-card">
-                    <i class="fas fa-location-dot"></i>
-                    <h3 id="info-visit-title">Visit Us</h3>
-                    <p id="info-visit-desc">
-                        Main Chowk, Baffa<br />
-                        Mansehra, KP
-                    </p>
-                    <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu"
-                        target="_blank" class="directions-link" id="info-visit-link">
-                        <i class="fas fa-map-pin"></i> Get Directions
-                    </a>
+        <section class="how-it-works">
+            <div class="step-header">
+                <i class="fas fa-info-circle"></i> <span id="how-title">How It Works</span>
+            </div>
+            <div class="step">
+                <div class="num">01</div>
+                <div class="content">
+                    <h4 id="step1-title">Select Products</h4>
+                    <p id="step1-desc">Browse our catalogue and add desired items to your list with quantity.</p>
                 </div>
-
-                <!-- Call Us -->
-                <div class="info-card">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3 id="info-call-title">Call Us</h3>
-                    <div class="phone-numbers">
-                        <a href="tel:+923145160991"><i class="fas fa-phone"></i> +92 314 5160991</a>
-                        <a href="tel:+923369595531"><i class="fas fa-phone"></i> +92 336 9595531</a>
-                    </div>
-                    <a href="https://wa.me/923369595531" target="_blank" class="whatsapp-btn-large"
-                        id="whatsapp-large-btn">
-                        <i class="fab fa-whatsapp"></i> <span id="info-whatsapp-text">Chat on WhatsApp</span>
-                    </a>
+            </div>
+            <div class="step">
+                <div class="num">02</div>
+                <div class="content">
+                    <h4 id="step2-title">Review & Share</h4>
+                    <p id="step2-desc">Review your list, enter your name and phone, generate a WhatsApp order.</p>
                 </div>
-
-                <!-- Timings -->
-                <div class="info-card">
-                    <i class="fas fa-clock"></i>
-                    <h3 id="info-timings-title">Timings</h3>
-                    <p><strong id="timing-main">7:00 AM – 9:00 PM</strong><br />
-                        <span id="timing-sub">Monday to Sunday</span>
-                    </p>
-                    <p><strong id="timing-friday-label">Friday:</strong> <span id="timing-friday-text">Open (Closed for
-                            Jummah prayer only)</span></p>
-                    <p><strong id="timing-pack-label">Pack-time:</strong> <span id="timing-pack-text">24 Hours</span>
-                    </p>
+            </div>
+            <div class="step">
+                <div class="num">03</div>
+                <div class="content">
+                    <h4 id="step3-title">Collect in Store</h4>
+                    <p id="step3-desc">Pick up your order from Main Chowk Baffa Bazar within 24 hours.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ====== MAP ====== -->
-        <section class="map-section">
-            <div class="map-wrapper">
-                <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13265.384!2d73.2154808!3d34.4360667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38de17004ffded6f%3A0xae0220ffff8544ed!2sJAVED%20TRADERS%20BAFFA%20BAZAR!5e0!3m2!1sen!2s!4v1719999999999"
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            title="Javed Traders Baffa Location"></iframe>
-        </div>
-    </section>
-
-    <!-- ====== CONTACT FORM ====== -->
-    <section class="form-section">
-        <div class="form-wrapper">
-            <h2 id="form-title">Send us a Message</h2>
-            <p class="form-sub" id="form-sub">We'll get back to you as soon as possible.</p>
-            <form id="contact-form" class="form-grid">
-                <div class="form-group">
-                    <label for="form-name" id="form-name-label">Your Name <span class="required">*</span></label>
-                    <input type="text" id="form-name" placeholder="e.g. Usman Javed" required />
+        <section id="about-section" class="about scroll-mt-24">
+            <div class="about-header">
+                <h2 id="about-title">About Us</h2>
+                <div class="sub">MAIN CHOWK BAFFA BAZAR • FAMILY LEGACY</div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p id="about-p1">
+                        At Javed Traders, we pride ourselves on being the absolute cornerstone of Kiryana and household
+                        retail in Baffa. Established under the core philosophy of unbeatable prices and genuine product
+                        quality, we serve hundreds of loyal local families with absolute dedication.
+                    </p>
+                    <p id="about-p2">
+                        Our digital showroom brings convenience to your fingertips while maintaining the traditional
+                        values of trust and personal service.
+                    </p>
                 </div>
-                <div class="form-group">
-                    <label for="form-email" id="form-email-label">Your Email <span class="required">*</span></label>
-                    <input type="email" id="form-email" placeholder="e.g. usman@email.com" required />
-                </div>
-                <div class="form-group full-width">
-                    <label for="form-phone" id="form-phone-label">Phone Number</label>
-                    <input type="tel" id="form-phone" placeholder="e.g. 0314 5160991" />
-                </div>
-                <div class="form-group full-width">
-                    <label for="form-message" id="form-message-label">Your Message <span
-                        class="required">*</span></label>
-                    <textarea id="form-message" placeholder="How can we help you?" required></textarea>
-                </div>
-                <div class="form-group full-width" style="margin-top:8px;">
-                    <button type="submit" class="btn-submit" id="form-submit-btn">
-                        <i class="fas fa-paper-plane"></i> <span id="form-submit-text">Send Message</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
-
-</main>
-
-<!-- ==================== FOOTER (UPDATED TO MATCH HOMEPAGE) ==================== -->
-<footer>
-    <div class="footer-inner">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <span class="brand"><span>Javed</span> Traders</span>
-                <p class="about-text" id="footer-about">
-                    Your trusted household & grocery destination in Baffa. Family-owned, serving with integrity for generations.
-                </p>
-                <div class="trust-badges">
-                    <span><i class="fas fa-award"></i> 100% Genuine</span>
-                    <span><i class="fas fa-hand-holding-heart"></i> Baffa's Trusted</span>
+                <div class="about-highlights">
+                    <h3 id="why-title">Why Shop With Us?</h3>
+                    <ul>
+                        <li id="why1">Only Premium Grade Households & Kiryana Goods</li>
+                        <li id="why2">Direct Click & Collect WhatsApp Booking</li>
+                        <li id="why3">Located right at Main Chowk Baffa Bazar</li>
+                        <li id="why4">Generations of Trust and Authentic Pricing</li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-col">
-                <h4 id="footer-timings-title">Timings &amp; Pickup</h4>
-                <div class="footer-timing-wrapper">
-                    <span class="time-main">7:00 AM – 9:00 PM</span>
-                    <span class="time-sub">Monday to Sunday</span>
-                    <span class="time-friday"><strong>Friday:</strong> Open (Closed for Jummah prayer only)</span>
-                    <span class="time-pack">Pack-time: 24 Hours</span>
+        </section>
+
+        <section id="catalogue-section" class="scroll-mt-24">
+            <div class="catalogue-header">
+                <div>
+                    <h2 id="catalogue-title">Explore Our Products</h2>
+                    <div class="sub" id="catalogue-sub">Fresh Stock & House cleaning essentials</div>
                 </div>
             </div>
-            <div class="footer-col">
-                <h4 id="footer-location-title">Location</h4>
-                <div class="info-item">
-                    <i class="fas fa-map-pin"></i>
-                    <div>
-                        <span class="strong">Main Bazar Chowk, Baffa</span><br />
-                        <span>Tehsil Baffa-Pakhal, Mansehra, KP</span><br />
-                        <!-- Google Maps link with map-link class -->
-                        <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-link">
-                            <i class="fas fa-directions"></i> View on Google Maps
-                        </a>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <span class="strong">Muhummad Javed &amp; Usman Javed</span><br />
-                        <a href="tel:+923145160991">+92 314 5160991</a>
-                        <span style="color:rgba(255,255,255,0.7); margin:0 4px;">|</span>
-                        <a href="tel:+923369595531">+92 336 9595531</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>&copy; 2026 Javed Traders Baffa. All rights reserved.</span>
-            <span class="version">Premium Digital Showroom v1.2</span>
-            <span>Made with Click &amp; Collect Convenience</span>
-        </div>
-    </div>
-</footer>
 
-
-<!-- ==================== SHOPPING LIST DRAWER ==================== -->
-<div class="drawer-overlay" id="drawer-overlay">
-    <div class="drawer" id="drawer">
-        <div class="drawer-header">
-            <div class="left">
-                <div class="icon-wrap"><i class="fas fa-shopping-bag"></i></div>
-                <div class="title-group">
-                    <h3 id="drawer-title">Shopping List</h3>
-                    <p id="drawer-sub"><span id="item-count">0</span> items selected</p>
-                </div>
-            </div>
-            <button class="close-drawer" id="close-drawer"><i class="fas fa-times"></i></button>
-        </div>
-
-        <div class="drawer-body" id="drawer-body">
-            <div class="step-list" id="step-list">
-                <div id="drawer-items-container"></div>
+            <div class="filter-rail" id="category-rail">
+                <button class="active" data-cat="all">All Products</button>
+                <button data-cat="grocery">Grocery</button>
+                <button data-cat="household">Household</button>
             </div>
 
-            <div class="form-step" id="step-form">
-                <div class="summary-box">
-                    <div class="label">Order Summary</div>
-                    <div class="row">
-                        <span id="form-item-count">0 items</span>
-                        <span id="form-total">PKR 0</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-user"></i> <span id="form-name-label">Your Full Name *</span></label>
-                    <input type="text" id="customer-name" placeholder="e.g. Usman Javed" />
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-phone"></i> <span id="form-phone-label">Mobile Number *</span></label>
-                    <input type="tel" id="customer-phone" placeholder="e.g. 0314 5160991" />
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-clock"></i> <span id="form-pickup-label">When will you pick it
-                        up?</span></label>
-                    <select id="pickup-time">
-                        <option value="Immediate (15-30 mins)">Immediate (15-30 mins)</option>
-                        <option value="In 1 Hour">In 1 Hour</option>
-                        <option value="In 2 Hours">In 2 Hours</option>
-                        <option value="Later Today">Later Today / Evening</option>
-                        <option value="Tomorrow">Tomorrow</option>
+            <div class="filter-options">
+                <div class="filter-group">
+                    <i class="fas fa-filter"></i>
+                    <span id="brand-label">Brand:</span>
+                    <select id="brand-select">
+                        <option value="all" id="brand-all">All Brands</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label><i class="fas fa-pen"></i> <span id="form-notes-label">Special Instructions
-                        (Optional)</span></label>
-                    <textarea id="customer-notes" rows="2"
-                    placeholder="e.g. Please select the freshest packets only..."></textarea>
+                <div class="filter-group">
+                    <label>
+                        <input type="checkbox" id="in-stock-only" />
+                        <span id="stock-label">In Stock Only</span>
+                    </label>
                 </div>
-                <div class="form-hint" id="form-hint">
-                    Your data will be packed together with your shopping list into a neat WhatsApp message to notify
-                    the shop owner.
+                <div class="filter-group" style="margin-left:auto;">
+                    <i class="fas fa-arrow-up-wide-short"></i>
+                    <span id="sort-label">Sort:</span>
+                    <select id="sort-select">
+                        <option value="default" id="sort-default">Default</option>
+                        <option value="low-high" id="sort-low">Price: Low to High</option>
+                        <option value="high-low" id="sort-high">Price: High to Low</option>
+                    </select>
                 </div>
             </div>
-        </div>
 
-        <div class="drawer-footer" id="drawer-footer">
-            <div id="footer-step1">
-                <button class="clear-btn" id="clear-list"><i class="fas fa-trash"></i> Clear Entire List</button>
-                <div class="total">
-                    <span class="label" id="estimated-total-label">Estimated Total:</span>
-                    <span class="amount"><small>PKR</small> <span id="drawer-total">0</span></span>
-                </div>
-                <button class="proceed-btn" id="proceed-btn"><i class="fas fa-chevron-right"></i> Enter Order
-                Information</button>
-                <div class="note"><i class="fas fa-clock"></i> Ready in approx. 24 hours</div>
-            </div>
-            <div id="footer-step2" style="display:none;">
-                <button class="back-btn" id="back-to-list"><i class="fas fa-chevron-left"></i> Back to List</button>
-                <a class="whatsapp-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-whatsapp"></i> Confirm &amp; Send to WhatsApp
-                </a>
-                <div class="note" style="margin-top:4px;">NO ONLINE PAYMENT REQUIRED</div>
-            </div>
-        </div>
-    </div>
-</div>
+            <div class="product-grid" id="product-grid"></div>
+        </section>
 
-<!-- ==================== PRODUCT DETAIL MODAL ==================== -->
-<div class="detail-overlay" id="detail-overlay">
-    <div class="detail-modal" id="detail-modal">
-        <button class="close-detail" id="close-detail"><i class="fas fa-times"></i></button>
-        <div class="detail-grid">
-            <div class="detail-image">
-                <img id="detail-img" src="" alt="Product" />
+        <section id="contact-section" class="contact scroll-mt-24">
+            <div class="header">
+                <h2 id="contact-title">Contact Us</h2>
+                <div class="sub">MAIN CHOWK BAFFA BAZAR • IN-STORE PICKUP COORDINATES</div>
             </div>
-            <div class="detail-info">
-                <div class="brand-tag"><i class="fas fa-tag"></i> <span id="detail-brand"></span></div>
-                <div class="name" id="detail-name"></div>
-                <div class="unit-badge" id="detail-unit"></div>
-                <div class="desc" id="detail-desc"></div>
-                <div class="price-row">
-                    <div class="price">
-                        <span class="label">Price</span>
-                        <span class="amount"><small>PKR</small> <span id="detail-price"></span></span>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="label" id="owner-label">Proprietors</div>
+                    <div class="value">Muhummad Javed & Usman Javed</div>
+                    <div class="desc" id="owner-desc">
+                        Family grocery business serving the Pakhal region with dedication.
                     </div>
-                    <span class="stock in" id="detail-stock">In Stock</span>
                 </div>
-                <div class="action" id="detail-action"></div>
+                <div class="contact-item">
+                    <div class="label" id="loc-label">Location</div>
+                    <div class="value"><i class="fas fa-map-pin" style="color:var(--accent);"></i> MAIN CHOWK BAFFA BAZAR</div>
+                    <div class="desc" id="loc-desc">Main Chowk, Baffa, Mansehra, KP</div>
+                </div>
+                <div class="contact-item">
+                    <div class="label" id="timings-label">Timings</div>
+                    <div class="desc" style="display:flex; flex-direction:column; gap:2px; margin-top:4px;">
+                        <span style="font-weight:700; color:white; font-size:0.95rem; font-family:'Poppins',sans-serif;">7:00 AM – 9:00 PM</span>
+                        <span style="font-size:0.8rem; color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif;">Monday to Sunday</span>
+                        <span style="font-size:0.8rem; color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif;"><strong style="color:white; font-family:'Poppins',sans-serif;">Friday:</strong> Open (Closed for Jummah prayer only)</span>
+                        <span style="font-size:0.8rem; color:white; font-weight:600; font-family:'Poppins',sans-serif; margin-top:2px;">Pack-time: 24 Hours</span>
+                    </div>
+                    <div style="margin-top:12px;">
+                        <div class="label">Instant Order Line</div>
+                        <!-- Keep old number for display, add new number -->
+                        <div style="display:flex; flex-direction:column; gap:4px; margin-top:4px;">
+                            <a href="https://wa.me/923145160991" target="_blank" class="phone-link">
+                                <i class="fab fa-whatsapp"></i> +92 314 5160991
+                            </a>
+                            <a href="https://wa.me/923369595531" target="_blank" class="phone-link">
+                                <i class="fab fa-whatsapp"></i> +92 336 9595531
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-map">
+                <div class="info">
+                    <i class="fas fa-map-pin"></i>
+                    <div class="text">
+                        <div class="strong">Store Directions</div>
+                        <div class="sub">Stop by Main Chowk Baffa Bazar for immediate collection.</div>
+                    </div>
+                </div>
+                <!-- Added icon to Get Directions button -->
+                <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXSoASAFQAw%3D%3D" target="_blank" class="directions">
+                    <i class="fas fa-location-dot"></i> Get Directions
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="brand"><span>Javed</span> Traders</span>
+                    <p class="about-text" id="footer-about">
+                        Your trusted household & grocery destination in Baffa. Family-owned, serving with integrity for generations.
+                    </p>
+                    <div class="trust-badges">
+                        <span><i class="fas fa-award"></i> 100% Genuine</span>
+                        <span><i class="fas fa-hand-holding-heart"></i> Baffa's Trusted</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 id="footer-timings-title">Timings &amp; Pickup</h4>
+                    <div class="footer-timing-wrapper">
+                        <span class="time-main">7:00 AM – 9:00 PM</span>
+                        <span class="time-sub">Monday to Sunday</span>
+                        <span class="time-friday"><strong>Friday:</strong> Open (Closed for Jummah prayer only)</span>
+                        <span class="time-pack">Pack-time: 24 Hours</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 id="footer-location-title">Location</h4>
+                    <div class="info-item">
+                        <i class="fas fa-map-pin"></i>
+                        <div>
+                            <span class="strong">Main Chowk Baffa Bazar</span><br />
+                            <span>Main Chowk, Baffa, Mansehra, KP</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <span class="strong">Muhummad Javed &amp; Usman Javed</span><br />
+                            <a href="tel:+923145160991" style="color:#34d399; text-decoration:none; font-weight:700;">+92 314 5160991</a>
+                            <span style="color:rgba(255,255,255,0.7); margin:0 4px;">|</span>
+                            <a href="tel:+923369595531" style="color:#34d399; text-decoration:none; font-weight:700;">+92 336 9595531</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Javed Traders Baffa. All rights reserved.</span>
+                <span class="version">Premium Digital Showroom v1.2</span>
+                <span>Made with Click &amp; Collect Convenience</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="drawer-overlay" id="drawer-overlay">
+        <div class="drawer" id="drawer">
+            <div class="drawer-header">
+                <div class="left">
+                    <div class="icon-wrap"><i class="fas fa-shopping-bag"></i></div>
+                    <div class="title-group">
+                        <h3 id="drawer-title">Shopping List</h3>
+                        <p id="drawer-sub"><span id="item-count">0</span> items selected</p>
+                    </div>
+                </div>
+                <button class="close-drawer" id="close-drawer"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="drawer-body" id="drawer-body">
+                <div class="step-list" id="step-list">
+                    <div id="drawer-items-container"></div>
+                </div>
+
+                <div class="form-step" id="step-form">
+                    <div class="summary-box">
+                        <div class="label">Order Summary</div>
+                        <div class="row">
+                            <span id="form-item-count">0 items</span>
+                            <span id="form-total">PKR 0</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> <span id="form-name-label">Your Full Name *</span></label>
+                        <input type="text" id="customer-name" placeholder="e.g. Usman Javed" />
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> <span id="form-phone-label">Mobile Number *</span></label>
+                        <input type="tel" id="customer-phone" placeholder="e.g. 0314 5160991" />
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> <span id="form-pickup-label">When will you pick it up?</span></label>
+                        <select id="pickup-time">
+                            <option value="Immediate (15-30 mins)">Immediate (15-30 mins)</option>
+                            <option value="In 1 Hour">In 1 Hour</option>
+                            <option value="In 2 Hours">In 2 Hours</option>
+                            <option value="Later Today">Later Today / Evening</option>
+                            <option value="Tomorrow">Tomorrow</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-pen"></i> <span id="form-notes-label">Special Instructions (Optional)</span></label>
+                        <textarea id="customer-notes" rows="2" placeholder="e.g. Please select the freshest packets only..."></textarea>
+                    </div>
+                    <div class="form-hint" id="form-hint">
+                        Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.
+                    </div>
+                </div>
+            </div>
+
+            <div class="drawer-footer" id="drawer-footer">
+                <div id="footer-step1">
+                    <button class="clear-btn" id="clear-list"><i class="fas fa-trash"></i> Clear Entire List</button>
+                    <div class="total">
+                        <span class="label" id="estimated-total-label">Estimated Total:</span>
+                        <span class="amount"><small>PKR</small> <span id="drawer-total">0</span></span>
+                    </div>
+                    <button class="proceed-btn" id="proceed-btn"><i class="fas fa-chevron-right"></i> Enter Order Information</button>
+                    <div class="note"><i class="fas fa-clock"></i> Ready in approx. 24 hours</div>
+                </div>
+                <div id="footer-step2" style="display:none;">
+                    <button class="back-btn" id="back-to-list"><i class="fas fa-chevron-left"></i> Back to List</button>
+                    <!-- Changed WhatsApp button icon to fa-paper-plane for distinction -->
+                    <a class="whatsapp-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-paper-plane"></i> Confirm &amp; Send to WhatsApp
+                    </a>
+                    <div class="note" style="margin-top:4px;">NO ONLINE PAYMENT REQUIRED</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- ==================== FLOATING CART ==================== -->
-<div class="floating-cart" id="floating-cart">
-    <button id="floating-cart-btn">
-        <div class="icon-wrap">
-            <i class="fas fa-shopping-bag"></i>
-            <span class="badge" id="float-badge">0</span>
+    <div class="detail-overlay" id="detail-overlay">
+        <div class="detail-modal" id="detail-modal">
+            <button class="close-detail" id="close-detail"><i class="fas fa-times"></i></button>
+            <div class="detail-grid">
+                <div class="detail-image">
+                    <img id="detail-img" src="" alt="Product" />
+                </div>
+                <div class="detail-info">
+                    <div class="brand-tag"><i class="fas fa-tag"></i> <span id="detail-brand"></span></div>
+                    <div class="name" id="detail-name"></div>
+                    <div class="unit-badge" id="detail-unit"></div>
+                    <div class="desc" id="detail-desc"></div>
+                    <div class="price-row">
+                        <div class="price">
+                            <span class="label">Price</span>
+                            <span class="amount"><small>PKR</small> <span id="detail-price"></span></span>
+                        </div>
+                        <span class="stock in" id="detail-stock">In Stock</span>
+                    </div>
+                    <div class="action" id="detail-action"></div>
+                </div>
+            </div>
         </div>
-        <div class="text">
-            <div class="label">My List</div>
-            <div class="total">PKR <span id="float-total">0</span></div>
-        </div>
-        <i class="fas fa-chevron-right" style="color:var(--accent);"></i>
-    </button>
-</div>
+    </div>
 
-<!-- ==================== JAVASCRIPT ==================== -->
-<script>
-    // ------------------------------------
-    // DATA
-    // ------------------------------------
-    const productsData = [{
-        id: 'p1',
-        name: 'Premium Basmati Rice (5kg)',
-        urduName: 'بیسمنٹی چاول',
-        category: 'grocery',
-        brand: 'Kissan',
-        price: 1200,
-        unit: '5kg',
-        description: 'Premium quality long-grain basmati rice, aged for perfect aroma.',
-        urduDescription: 'اعلیٰ قسم کے بیسمنٹی چاول، خوشبودار اور لمبے دانے۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Rice'
-    }, {
-        id: 'p2',
-        name: 'Wheat Flour (10kg)',
-        urduName: 'گندم کا آٹا',
-        category: 'grocery',
-        brand: 'Chakki',
-        price: 850,
-        unit: '10kg',
-        description: 'Stone-ground whole wheat flour, fresh and nutritious.',
-        urduDescription: 'پتھر کی چکی کا تازہ گندم کا آٹا، صحت مند اور لذیذ۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Flour'
-    }, {
-        id: 'p3',
-        name: 'Cooking Oil (5L)',
-        urduName: 'کھانے کا تیل',
-        category: 'grocery',
-        brand: 'Dalda',
-        price: 1800,
-        unit: '5L',
-        description: 'Pure vegetable cooking oil, ideal for all cooking needs.',
-        urduDescription: 'خالص سبزیوں کا تیل، ہر قسم کے کھانے کے لیے بہترین۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Oil'
-    }, {
-        id: 'p4',
-        name: 'Sugar (5kg)',
-        urduName: 'شکر',
-        category: 'grocery',
-        brand: 'Safina',
-        price: 750,
-        unit: '5kg',
-        description: 'Fine granulated white sugar, perfect for sweetening.',
-        urduDescription: 'اعلیٰ معیار کی سفید شکر، میٹھے ذائقے کے لیے۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Sugar'
-    }, {
-        id: 'p5',
-        name: 'Red Lentils (Masoor) 1kg',
-        urduName: 'مصری دال',
-        category: 'grocery',
-        brand: 'National',
-        price: 250,
-        unit: '1kg',
-        description: 'Premium red lentils, rich in protein and fibre.',
-        urduDescription: 'اعلیٰ معیار کی مصری دال، پروٹین اور فائبر سے بھرپور۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Lentils'
-    }, {
-        id: 'p6',
-        name: 'Chickpeas (Kabuli) 2kg',
-        urduName: 'کابلی چنا',
-        category: 'grocery',
-        brand: 'Kisan',
-        price: 400,
-        unit: '2kg',
-        description: 'Large kabuli chickpeas, premium quality for curries.',
-        urduDescription: 'بڑے کابلی چنے، سالن اور چاٹ کے لیے بہترین۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Chickpeas'
-    }, {
-        id: 'p7',
-        name: 'Dish Washing Liquid (1L)',
-        urduName: 'برتن دھونے کا صابن',
-        category: 'household',
-        brand: 'Vim',
-        price: 220,
-        unit: '1L',
-        description: 'Effective grease-cutting dishwashing liquid, lemon fresh.',
-        urduDescription: 'چکنائی ختم کرنے والا برتن دھونے کا مائع، لیموں کی خوشبو۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Dish+Wash'
-    }, {
-        id: 'p8',
-        name: 'Floor Cleaner (2L)',
-        urduName: 'فرش کلینر',
-        category: 'household',
-        brand: 'Harpic',
-        price: 350,
-        unit: '2L',
-        description: 'Powerful floor cleaner that removes stains and leaves shine.',
-        urduDescription: 'طاقتور فرش کلینر جو داغ ہٹاتا ہے اور چمک لاتا ہے۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Floor+Cleaner'
-    }, {
-        id: 'p9',
-        name: 'Laundry Detergent (3kg)',
-        urduName: 'کپڑے دھونے کا پاؤڈر',
-        category: 'household',
-        brand: 'Surf Excel',
-        price: 480,
-        unit: '3kg',
-        description: 'High-performance detergent that removes tough stains.',
-        urduDescription: 'اعلیٰ کارکردگی کا ڈٹرجنٹ جو مشکل داغ ہٹاتا ہے۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Detergent'
-    }, {
-        id: 'p10',
-        name: 'Toilet Cleaner (500ml)',
-        urduName: 'ٹوائلٹ کلینر',
-        category: 'household',
-        brand: 'Harpic',
-        price: 180,
-        unit: '500ml',
-        description: 'Thick liquid toilet cleaner, kills germs and removes limescale.',
-        urduDescription: 'گاڑھا ٹوائلٹ کلینر، جراثیم کو ختم کرتا اور پتھری ہٹاتا ہے۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Toilet+Cleaner'
-    }, {
-        id: 'p11',
-        name: 'Insect Repellent Spray (500ml)',
-        urduName: 'کیڑے مکوڑے مارنے والا سپرے',
-        category: 'household',
-        brand: 'Mortein',
-        price: 300,
-        unit: '500ml',
-        description: 'Effective insect repellent for mosquitoes and flies.',
-        urduDescription: 'مچھروں اور مکھیوں کے لیے مؤثر کیڑے مار سپرے۔',
-        inStock: true,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Repellent'
-    }, {
-        id: 'p12',
-        name: 'Dusting Cloth (Pack of 2)',
-        urduName: 'جھاڑن کا کپڑا',
-        category: 'household',
-        brand: 'Brite',
-        price: 120,
-        unit: '2 pcs',
-        description: 'Soft, lint-free microfibre cloth for dusting.',
-        urduDescription: 'نرم، بغیر ریشے کے مائیکرو فائبر کپڑا جھاڑن کے لیے۔',
-        inStock: false,
-        image: 'https://placehold.co/400x400/009fb2/white?text=Cloth'
-    }, ];
+    <div class="floating-cart" id="floating-cart">
+        <button id="floating-cart-btn">
+            <div class="icon-wrap">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="badge" id="float-badge">0</span>
+            </div>
+            <div class="text">
+                <div class="label">My List</div>
+                <div class="total">PKR <span id="float-total">0</span></div>
+            </div>
+            <i class="fas fa-chevron-right" style="color:var(--accent);"></i>
+        </button>
+    </div>
 
-    // ------------------------------------
-    // TRANSLATIONS
-    // ------------------------------------
-    const translations = {
-        en: {
-            heroBadge: 'Get in Touch',
-            heroTitleMain: 'Contact',
-            heroTitleAccent: 'Us',
-            heroDesc: "We'd love to hear from you. Reach out for inquiries, orders, or just to say hello!",
-            infoVisitTitle: 'Visit Us',
-            infoVisitDesc: 'Main Chowk, Baffa\nMansehra, KP',
-            infoVisitLink: 'Get Directions',
-            infoCallTitle: 'Call Us',
-            infoWhatsappText: 'Chat on WhatsApp',
-            infoTimingsTitle: 'Timings',
-            timingMain: '7:00 AM – 9:00 PM',
-            timingSub: 'Monday to Sunday',
-            timingFridayLabel: 'Friday:',
-            timingFridayText: 'Open (Closed for Jummah prayer only)',
-            timingPackLabel: 'Pack-time:',
-            timingPackText: '24 Hours',
-            formTitle: 'Send us a Message',
-            formSub: "We'll get back to you as soon as possible.",
-            formNameLabel: 'Your Name *',
-            formEmailLabel: 'Your Email *',
-            formPhoneLabel: 'Phone Number',
-            formMessageLabel: 'Your Message *',
-            formSubmitText: 'Send Message',
-            footerAbout: 'Your trusted household & grocery destination in Baffa. Family-owned, serving with integrity for generations.',
-            footerTimings: 'Timings & Pickup',
-            footerLocation: 'Location',
-            drawerTitle: 'Shopping List',
-            drawerSub: 'items selected',
-            estimatedTotal: 'Estimated Total',
-            formNameLabel: 'Your Full Name *',
-            formPhoneLabel: 'Mobile Number *',
-            formPickupLabel: 'When will you pick it up?',
-            formNotesLabel: 'Special Instructions (Optional)',
-            formHint: 'Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.',
-            emptyList: 'Your list is empty. Start adding products from the catalogue!',
-        },
-        ur: {
-            heroBadge: 'رابطہ کریں',
-            heroTitleMain: 'رابطہ',
-            heroTitleAccent: 'کریں',
-            heroDesc: 'ہم آپ سے سننا پسند کریں گے۔ پوچھ گچھ، آرڈرز، یا صرف ہیلو کہنے کے لیے ہم تک پہنچیں!',
-            infoVisitTitle: 'ہم سے ملیں',
-            infoVisitDesc: 'مین چوک، بفہ\nمانسہرہ، کے پی',
-            infoVisitLink: 'راستہ حاصل کریں',
-            infoCallTitle: 'فون کریں',
-            infoWhatsappText: 'واٹس ایپ پر بات کریں',
-            infoTimingsTitle: 'اوقات',
-            timingMain: 'صبح 7 تا رات 9',
-            timingSub: 'پیر تا اتوار',
-            timingFridayLabel: 'جمعہ:',
-            timingFridayText: 'کھلا ہے (صرف جمعہ کی نماز کے لیے بند)',
-            timingPackLabel: 'پیکنگ کا وقت:',
-            timingPackText: '24 گھنٹے',
-            formTitle: 'ہمیں پیغام بھیجیں',
-            formSub: 'ہم جلد از جلد آپ سے رابطہ کریں گے۔',
-            formNameLabel: 'آپ کا نام *',
-            formEmailLabel: 'آپ کا ای میل *',
-            formPhoneLabel: 'فون نمبر',
-            formMessageLabel: 'آپ کا پیغام *',
-            formSubmitText: 'پیغام بھیجیں',
-            footerAbout: 'بفہ میں آپ کا بھروسہ مند گھریلو اور کریانہ کا ذریعہ۔ خاندانی کاروبار، نسلوں سے دیانتداری کے ساتھ۔',
-            footerTimings: 'اوقات اور وصولی',
-            footerLocation: 'پتہ',
-            drawerTitle: 'خریداری کی لسٹ',
-            drawerSub: 'اشیاء منتخب',
-            estimatedTotal: 'متوقع کل',
-            formNameLabel: 'آپ کا نام *',
-            formPhoneLabel: 'موبائل نمبر *',
-            formPickupLabel: 'وصولی کا وقت؟',
-            formNotesLabel: 'اضافی نوٹ (اختیاری)',
-            formHint: 'آپ کی فراہم کردہ معلومات اور لسٹ کو واٹس ایپ پیغام کی شکل میں تبدیل کیا جائے گا تاکہ جاوید ٹریڈرز بفہ آپ کا آرڈر باآسانی تیار رکھ سکیں۔',
-            emptyList: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
-        }
-    };
+    <script>
+        const productsData = [
+            { id: 'p1', name: 'Premium Basmati Rice (5kg)', urduName: 'بیسمنٹی چاول', category: 'grocery', brand: 'Kissan', price: 1200, unit: '5kg', description: 'Premium quality long-grain basmati rice, aged for perfect aroma.', urduDescription: 'اعلیٰ قسم کے بیسمنٹی چاول، خوشبودار اور لمبے دانے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Rice' },
+            { id: 'p2', name: 'Wheat Flour (10kg)', urduName: 'گندم کا آٹا', category: 'grocery', brand: 'Chakki', price: 850, unit: '10kg', description: 'Stone-ground whole wheat flour, fresh and nutritious.', urduDescription: 'پتھر کی چکی کا تازہ گندم کا آٹا، صحت مند اور لذیذ۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Flour' },
+            { id: 'p3', name: 'Cooking Oil (5L)', urduName: 'کھانے کا تیل', category: 'grocery', brand: 'Dalda', price: 1800, unit: '5L', description: 'Pure vegetable cooking oil, ideal for all cooking needs.', urduDescription: 'خالص سبزیوں کا تیل، ہر قسم کے کھانے کے لیے بہترین۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Oil' },
+            { id: 'p4', name: 'Sugar (5kg)', urduName: 'شکر', category: 'grocery', brand: 'Safina', price: 750, unit: '5kg', description: 'Fine granulated white sugar, perfect for sweetening.', urduDescription: 'اعلیٰ معیار کی سفید شکر، میٹھے ذائقے کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Sugar' },
+            { id: 'p5', name: 'Red Lentils (Masoor) 1kg', urduName: 'مصری دال', category: 'grocery', brand: 'National', price: 250, unit: '1kg', description: 'Premium red lentils, rich in protein and fibre.', urduDescription: 'اعلیٰ معیار کی مصری دال، پروٹین اور فائبر سے بھرپور۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Lentils' },
+            { id: 'p6', name: 'Chickpeas (Kabuli) 2kg', urduName: 'کابلی چنا', category: 'grocery', brand: 'Kisan', price: 400, unit: '2kg', description: 'Large kabuli chickpeas, premium quality for curries.', urduDescription: 'بڑے کابلی چنے، سالن اور چاٹ کے لیے بہترین۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Chickpeas' },
+            { id: 'p7', name: 'Dish Washing Liquid (1L)', urduName: 'برتن دھونے کا صابن', category: 'household', brand: 'Vim', price: 220, unit: '1L', description: 'Effective grease-cutting dishwashing liquid, lemon fresh.', urduDescription: 'چکنائی ختم کرنے والا برتن دھونے کا مائع، لیموں کی خوشبو۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Dish+Wash' },
+            { id: 'p8', name: 'Floor Cleaner (2L)', urduName: 'فرش کلینر', category: 'household', brand: 'Harpic', price: 350, unit: '2L', description: 'Powerful floor cleaner that removes stains and leaves shine.', urduDescription: 'طاقتور فرش کلینر جو داغ ہٹاتا ہے اور چمک لاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Floor+Cleaner' },
+            { id: 'p9', name: 'Laundry Detergent (3kg)', urduName: 'کپڑے دھونے کا پاؤڈر', category: 'household', brand: 'Surf Excel', price: 480, unit: '3kg', description: 'High-performance detergent that removes tough stains.', urduDescription: 'اعلیٰ کارکردگی کا ڈٹرجنٹ جو مشکل داغ ہٹاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Detergent' },
+            { id: 'p10', name: 'Toilet Cleaner (500ml)', urduName: 'ٹوائلٹ کلینر', category: 'household', brand: 'Harpic', price: 180, unit: '500ml', description: 'Thick liquid toilet cleaner, kills germs and removes limescale.', urduDescription: 'گاڑھا ٹوائلٹ کلینر، جراثیم کو ختم کرتا اور پتھری ہٹاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Toilet+Cleaner' },
+            { id: 'p11', name: 'Insect Repellent Spray (500ml)', urduName: 'کیڑے مکوڑے مارنے والا سپرے', category: 'household', brand: 'Mortein', price: 300, unit: '500ml', description: 'Effective insect repellent for mosquitoes and flies.', urduDescription: 'مچھروں اور مکھیوں کے لیے مؤثر کیڑے مار سپرے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Repellent' },
+            { id: 'p12', name: 'Dusting Cloth (Pack of 2)', urduName: 'جھاڑن کا کپڑا', category: 'household', brand: 'Brite', price: 120, unit: '2 pcs', description: 'Soft, lint-free microfibre cloth for dusting.', urduDescription: 'نرم، بغیر ریشے کے مائیکرو فائبر کپڑا جھاڑن کے لیے۔', inStock: false, image: 'https://placehold.co/400x400/009fb2/white?text=Cloth' },
+        ];
 
-    // ------------------------------------
-    // STATE
-    // ------------------------------------
-    let state = {
-        lang: 'en',
-        shoppingList: {},
-        listOpen: false,
-        detailProductId: null,
-        detailOpen: false,
-        formStep: false,
-        customerName: '',
-        customerPhone: '',
-        pickupTime: 'Immediate (15-30 mins)',
-        customerNotes: '',
-    };
+        const translations = {
+            en: {
+                allProducts: 'All Products', categoryGrocery: 'Grocery', categoryHousehold: 'Household',
+                brandFilter: 'Brand', allBrands: 'All Brands', inStockOnly: 'In Stock Only',
+                priceSort: 'Sort', priceLowToHigh: 'Price: Low to High', priceHighToLow: 'Price: High to Low',
+                addToShoppingList: 'Add to List', itemsSelected: 'items selected',
+                estimatedTotal: 'Estimated Total', shoppingListTitle: 'Shopping List',
+                shoppingListEmpty: 'Your list is empty. Start adding products from the catalogue!',
+                emptyProducts: 'No products match your filters. Try resetting.',
+                howItWorksTitle: 'How It Works', howItWorksStep1: 'Step 1: Browse and add products to your list.',
+                howItWorksStep2: 'Step 2: Fill in your details and generate WhatsApp order.',
+                howItWorksStep3: 'Step 3: Pick up from the store within 24 hours.',
+                aboutTitle: 'About Us',
+                aboutText: 'Javed Traders Baffa is a family-owned grocery and household store serving the community with integrity and affordability for generations.',
+                contactTitle: 'Contact Us', locationTitle: 'Location', timingsTitle: 'Timings', ownerLabel: 'Proprietors',
+            },
+            ur: {
+                allProducts: 'تمام اشیاء', categoryGrocery: 'کریانہ', categoryHousehold: 'گھریلو سامان',
+                brandFilter: 'برانڈ', allBrands: 'تمام برانڈز', inStockOnly: 'صرف دستیاب',
+                priceSort: 'ترتیب', priceLowToHigh: 'قیمت: کم سے زیادہ', priceHighToLow: 'قیمت: زیادہ سے کم',
+                addToShoppingList: 'لسٹ میں شامل کریں', itemsSelected: 'اشیاء منتخب',
+                estimatedTotal: 'متوقع کل', shoppingListTitle: 'خریداری کی لسٹ',
+                shoppingListEmpty: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
+                emptyProducts: 'کوئی پروڈکٹ نہیں ملی۔ فلٹرز دوبارہ سیٹ کریں۔',
+                howItWorksTitle: 'طریقہ کار', howItWorksStep1: 'مرحلہ 1: کیٹلاگ سے اشیاء منتخب کریں۔',
+                howItWorksStep2: 'مرحلہ 2: اپنی تفصیلات درج کریں اور واٹس ایپ آرڈر بنائیں۔',
+                howItWorksStep3: 'مرحلہ 3: دکان سے 24 گھنٹے میں سامان حاصل کریں۔',
+                aboutTitle: 'ہمارے بارے میں',
+                aboutText: 'جاوید ٹریڈرز بفہ ایک خاندانی کاروبار ہے جو نسلوں سے ایمانداری اور سستی کے ساتھ کریانہ اور گھریلو سامان فراہم کر رہا ہے۔',
+                contactTitle: 'رابطہ کریں', locationTitle: 'پتہ', timingsTitle: 'اوقات', ownerLabel: 'مالکان',
+            }
+        };
 
-    // ------------------------------------
-    // DOM REFS
-    // ------------------------------------
-    const $ = (sel, ctx = document) => ctx.querySelector(sel);
-    const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+        let state = {
+            lang: 'en', searchQuery: '', selectedCategory: 'all', selectedBrand: 'all',
+            priceSort: 'default', inStockOnly: false, shoppingList: {},
+            listOpen: false, detailProductId: null, detailOpen: false,
+            formStep: false, customerName: '', customerPhone: '',
+            pickupTime: 'Immediate (15-30 mins)', customerNotes: '',
+        };
 
-    const cartBadge = $('#cart-badge');
-    const mobileCartBadge = $('#mobile-cart-badge');
-    const mobileCartTotal = $('#mobile-cart-total');
-    const drawerOverlay = $('#drawer-overlay');
-    const drawerBody = $('#drawer-body');
-    const drawerItemsContainer = $('#drawer-items-container');
-    const drawerTotal = $('#drawer-total');
-    const drawerItemCount = $('#item-count');
-    const floatBadge = $('#float-badge');
-    const floatTotal = $('#float-total');
-    const floatingCart = $('#floating-cart');
-    const detailOverlay = $('#detail-overlay');
-    const detailModal = $('#detail-modal');
+        const $ = (sel, ctx = document) => ctx.querySelector(sel);
+        const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
-    // ------------------------------------
-    // HELPERS
-    // ------------------------------------
-    function getT() {
-        return translations[state.lang] || translations.en;
-    }
+        const productGrid = $('#product-grid');
+        const categoryRail = $('#category-rail');
+        const brandSelect = $('#brand-select');
+        const inStockCheck = $('#in-stock-only');
+        const sortSelect = $('#sort-select');
+        const cartBadge = $('#cart-badge');
+        const mobileCartBadge = $('#mobile-cart-badge');
+        const mobileCartTotal = $('#mobile-cart-total');
+        const drawerOverlay = $('#drawer-overlay');
+        const drawerBody = $('#drawer-body');
+        const drawerItemsContainer = $('#drawer-items-container');
+        const drawerTotal = $('#drawer-total');
+        const drawerItemCount = $('#item-count');
+        const floatBadge = $('#float-badge');
+        const floatTotal = $('#float-total');
+        const floatingCart = $('#floating-cart');
+        const detailOverlay = $('#detail-overlay');
+        const detailModal = $('#detail-modal');
 
-    function getProduct(id) {
-        return productsData.find(p => p.id === id);
-    }
+        function getT() { return translations[state.lang] || translations.en; }
 
-    function getListItems() {
-        return Object.entries(state.shoppingList)
-            .map(([id, qty]) => {
+        function getProduct(id) { return productsData.find(p => p.id === id); }
+
+        function getListItems() {
+            return Object.entries(state.shoppingList).map(([id, qty]) => {
                 const product = getProduct(id);
                 return product ? { product, quantity: qty } : null;
-            })
-            .filter(Boolean);
-    }
+            }).filter(Boolean);
+        }
 
-    function getTotalItems() {
-        return Object.values(state.shoppingList).reduce((a, b) => a + b, 0);
-    }
+        function getTotalItems() { return Object.values(state.shoppingList).reduce((a, b) => a + b, 0); }
 
-    function getTotalPrice() {
-        return getListItems().reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
-    }
+        function getTotalPrice() {
+            return getListItems().reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+        }
 
-    function showToast(msg) {
-        const container = $('#toast-container');
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
-        container.appendChild(toast);
-        requestAnimationFrame(() => {
-            toast.classList.add('show');
-        });
-        setTimeout(() => {
-            toast.classList.remove('show');
-            setTimeout(() => toast.remove(), 400);
-        }, 2500);
-    }
+        function showToast(msg) {
+            const container = $('#toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 2500);
+        }
 
-    function saveList() {
-        try {
-            localStorage.setItem('javed_traders_shopping_list', JSON.stringify(state.shoppingList));
-        } catch (e) {}
-    }
+        function saveList() {
+            try { localStorage.setItem('javed_traders_shopping_list', JSON.stringify(state.shoppingList)); } catch (e) {}
+        }
 
-    function loadList() {
-        try {
-            const saved = localStorage.getItem('javed_traders_shopping_list');
-            if (saved) {
-                state.shoppingList = JSON.parse(saved);
+        function loadList() {
+            try {
+                const saved = localStorage.getItem('javed_traders_shopping_list');
+                if (saved) state.shoppingList = JSON.parse(saved);
+            } catch (e) {}
+        }
+
+        function updateCartUI() {
+            const totalItems = getTotalItems();
+            const totalPrice = getTotalPrice();
+            cartBadge.textContent = totalItems;
+            mobileCartBadge.textContent = totalItems;
+            mobileCartTotal.textContent = totalPrice;
+            floatBadge.textContent = totalItems;
+            floatTotal.textContent = totalPrice;
+            drawerTotal.textContent = totalPrice;
+            drawerItemCount.textContent = totalItems;
+            floatingCart.classList.toggle('visible', totalItems > 0);
+        }
+
+        function renderProducts() {
+            let filtered = [...productsData];
+            if (state.selectedCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === state.selectedCategory);
             }
-        } catch (e) {}
-    }
+            if (state.selectedBrand !== 'all') {
+                filtered = filtered.filter(p => p.brand === state.selectedBrand);
+            }
+            if (state.inStockOnly) {
+                filtered = filtered.filter(p => p.inStock);
+            }
+            if (state.searchQuery.trim()) {
+                const q = state.searchQuery.toLowerCase().trim();
+                filtered = filtered.filter(p =>
+                    p.name.toLowerCase().includes(q) ||
+                    p.urduName.includes(q) ||
+                    p.brand.toLowerCase().includes(q) ||
+                    p.description.toLowerCase().includes(q) ||
+                    p.urduDescription.includes(q)
+                );
+            }
+            if (state.priceSort === 'low-high') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (state.priceSort === 'high-low') {
+                filtered.sort((a, b) => b.price - a.price);
+            }
 
-    // ------------------------------------
-    // UPDATE CART UI
-    // ------------------------------------
-    function updateCartUI() {
-        const totalItems = getTotalItems();
-        const totalPrice = getTotalPrice();
-
-        cartBadge.textContent = totalItems;
-        mobileCartBadge.textContent = totalItems;
-        mobileCartTotal.textContent = totalPrice;
-        floatBadge.textContent = totalItems;
-        floatTotal.textContent = totalPrice;
-        drawerTotal.textContent = totalPrice;
-        drawerItemCount.textContent = totalItems;
-
-        floatingCart.classList.toggle('visible', totalItems > 0);
-
-        const t = getT();
-        document.getElementById('drawer-sub').innerHTML =
-            `<span id="item-count">${totalItems}</span> ${t.drawerSub}`;
-    }
-
-    // ------------------------------------
-    // RENDER DRAWER ITEMS
-    // ------------------------------------
-    function renderDrawerItems() {
-        const items = getListItems();
-        const container = drawerItemsContainer;
-        const t = getT();
-
-        if (items.length === 0) {
-            container.innerHTML = `
-                            <div class="drawer-empty">
-                                <i class="fas fa-shopping-bag"></i>
-                                <h3>${state.lang === 'en' ? 'Your list is empty' : 'آپ کی لسٹ خالی ہے'}</h3>
-                                <p>${t.emptyList}</p>
-                            </div>
-                        `;
-            return;
-        }
-
-        let html = '';
-        items.forEach(item => {
-            const p = item.product;
-            const qty = item.quantity;
-            const lineTotal = p.price * qty;
-            const name = state.lang === 'en' ? p.name : p.urduName;
-            html += `
-                            <div class="drawer-item" data-id="${p.id}">
-                                <div class="left">
-                                    <img src="${p.image}" alt="${p.name}" />
-                                    <div class="details">
-                                        <div class="name">${name}</div>
-                                        <div class="meta">${p.unit} • PKR ${p.price}</div>
-                                    </div>
-                                </div>
-                                <div class="right">
-                                    <div class="line-total">PKR ${lineTotal}</div>
-                                    <div class="qty-control">
-                                        <button class="drawer-qty-dec" data-id="${p.id}">−</button>
-                                        <span class="qty">${qty}</span>
-                                        <button class="drawer-qty-inc" data-id="${p.id}">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-        });
-        container.innerHTML = html;
-        updateCartUI();
-    }
-
-    // ------------------------------------
-    // DRAWER FUNCTIONS
-    // ------------------------------------
-    function openDrawer() {
-        state.listOpen = true;
-        drawerOverlay.classList.add('open');
-        renderDrawerItems();
-        state.formStep = false;
-        showFormStep(false);
-    }
-
-    function closeDrawer() {
-        state.listOpen = false;
-        drawerOverlay.classList.remove('open');
-        state.formStep = false;
-        showFormStep(false);
-    }
-
-    function showFormStep(show) {
-        const stepList = $('#step-list');
-        const stepForm = $('#step-form');
-        const footer1 = $('#footer-step1');
-        const footer2 = $('#footer-step2');
-        const t = getT();
-
-        if (show) {
-            stepList.style.display = 'none';
-            stepForm.classList.add('active');
-            footer1.style.display = 'none';
-            footer2.style.display = 'block';
-            const items = getListItems();
-            document.getElementById('form-item-count').textContent = `${items.length} ${t.drawerSub}`;
-            document.getElementById('form-total').textContent = `PKR ${getTotalPrice()}`;
-            document.getElementById('customer-name').value = state.customerName;
-            document.getElementById('customer-phone').value = state.customerPhone;
-            document.getElementById('pickup-time').value = state.pickupTime;
-            document.getElementById('customer-notes').value = state.customerNotes;
-        } else {
-            stepList.style.display = 'block';
-            stepForm.classList.remove('active');
-            footer1.style.display = 'block';
-            footer2.style.display = 'none';
-        }
-    }
-
-    // ------------------------------------
-    // DETAIL MODAL
-    // ------------------------------------
-    function openDetail(id) {
-        const product = getProduct(id);
-        if (!product) return;
-        state.detailProductId = id;
-        state.detailOpen = true;
-        detailOverlay.classList.add('open');
-
-        document.getElementById('detail-img').src = product.image;
-        document.getElementById('detail-brand').textContent = product.brand || '';
-        document.getElementById('detail-name').textContent = state.lang === 'en' ? product.name : product.urduName;
-        document.getElementById('detail-unit').textContent = product.unit;
-        document.getElementById('detail-desc').textContent = state.lang === 'en' ? product.description : product
-            .urduDescription;
-        document.getElementById('detail-price').textContent = product.price;
-
-        const stockEl = document.getElementById('detail-stock');
-        if (product.inStock) {
-            stockEl.textContent = 'In Stock';
-            stockEl.className = 'stock in';
-        } else {
-            stockEl.textContent = 'Out of Stock';
-            stockEl.className = 'stock out';
-        }
-
-        const action = document.getElementById('detail-action');
-        const qty = state.shoppingList[id] || 0;
-        const t = getT();
-
-        if (qty === 0) {
-            action.innerHTML = `
-                            <button class="add-btn detail-add-btn" data-id="${id}" ${!product.inStock ? 'disabled' : ''}>
-                                <i class="fas fa-shopping-bag"></i> ${state.lang === 'en' ? 'Add to Shopping List' : 'لسٹ میں شامل کریں'}
-                            </button>
-                        `;
-        } else {
-            action.innerHTML = `
-                            <div class="qty-row">
-                                <span class="label">${state.lang === 'en' ? 'Quantity in your list:' : 'لسٹ میں شامل مقدار:'}</span>
-                                <div class="controls">
-                                    <button class="detail-qty-dec" data-id="${id}">−</button>
-                                    <span class="qty">${qty}</span>
-                                    <button class="detail-qty-inc" data-id="${id}">+</button>
-                                </div>
-                            </div>
-                        `;
-        }
-    }
-
-    function closeDetail() {
-        state.detailOpen = false;
-        state.detailProductId = null;
-        detailOverlay.classList.remove('open');
-    }
-
-    // ------------------------------------
-    // RENDER LANGUAGE UI
-    // ------------------------------------
-    function renderAll() {
-        const t = getT();
-
-        document.getElementById('hero-badge-text').textContent = t.heroBadge;
-        document.getElementById('hero-title-main').textContent = t.heroTitleMain;
-        document.getElementById('hero-title-accent').textContent = t.heroTitleAccent;
-        document.getElementById('hero-desc').textContent = t.heroDesc;
-
-        document.getElementById('info-visit-title').textContent = t.infoVisitTitle;
-        document.getElementById('info-visit-desc').innerHTML = t.infoVisitDesc.replace(/\n/g, '<br />');
-        document.getElementById('info-visit-link').innerHTML = `<i class="fas fa-map-pin"></i> ${t.infoVisitLink}`;
-        document.getElementById('info-call-title').textContent = t.infoCallTitle;
-        document.getElementById('info-whatsapp-text').textContent = t.infoWhatsappText;
-        document.getElementById('info-timings-title').textContent = t.infoTimingsTitle;
-        document.getElementById('timing-main').textContent = t.timingMain;
-        document.getElementById('timing-sub').textContent = t.timingSub;
-        document.getElementById('timing-friday-label').textContent = t.timingFridayLabel;
-        document.getElementById('timing-friday-text').textContent = t.timingFridayText;
-        document.getElementById('timing-pack-label').textContent = t.timingPackLabel;
-        document.getElementById('timing-pack-text').textContent = t.timingPackText;
-
-        document.getElementById('form-title').textContent = t.formTitle;
-        document.getElementById('form-sub').textContent = t.formSub;
-        document.getElementById('form-name-label').textContent = t.formNameLabel;
-        document.getElementById('form-email-label').textContent = t.formEmailLabel;
-        document.getElementById('form-phone-label').textContent = t.formPhoneLabel;
-        document.getElementById('form-message-label').textContent = t.formMessageLabel;
-        document.getElementById('form-submit-text').textContent = t.formSubmitText;
-
-        document.getElementById('footer-about').textContent = t.footerAbout;
-        document.getElementById('footer-timings-title').textContent = t.footerTimings;
-        document.getElementById('footer-location-title').textContent = t.footerLocation;
-
-        document.getElementById('drawer-title').textContent = t.drawerTitle;
-        document.getElementById('estimated-total-label').textContent = t.estimatedTotal + ':';
-        document.getElementById('form-name-label').textContent = t.formNameLabel;
-        document.getElementById('form-phone-label').textContent = t.formPhoneLabel;
-        document.getElementById('form-pickup-label').textContent = t.formPickupLabel;
-        document.getElementById('form-notes-label').textContent = t.formNotesLabel;
-        document.getElementById('form-hint').textContent = t.formHint;
-
-        document.querySelectorAll('.lang-toggle button').forEach(b => {
-            b.classList.toggle('active', b.dataset.lang === state.lang);
-        });
-
-        if (state.lang === 'ur') {
-            document.body.classList.add('dir-rtl');
-            document.querySelectorAll(
-                    '.contact-hero .hero-title, .info-card h3, .info-card p, .info-card a, .form-section h2, .form-section .form-sub, .form-section label'
-                )
-                .forEach(el => {
-                    if (el) el.style.textAlign = 'right';
-                });
-        } else {
-            document.body.classList.remove('dir-rtl');
-            document.querySelectorAll(
-                    '.contact-hero .hero-title, .info-card h3, .info-card p, .info-card a, .form-section h2, .form-section .form-sub, .form-section label'
-                )
-                .forEach(el => {
-                    if (el) el.style.textAlign = 'left';
-                });
-        }
-
-        updateCartUI();
-    }
-
-    // ------------------------------------
-    // EVENT LISTENERS
-    // ------------------------------------
-    function init() {
-        loadList();
-
-        document.querySelectorAll('.lang-toggle button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const lang = btn.dataset.lang;
-                if (lang && lang !== state.lang) {
-                    state.lang = lang;
-                    document.querySelectorAll('.lang-toggle button').forEach(b => {
-                        b.classList.toggle('active', b.dataset.lang === lang);
+            if (filtered.length === 0) {
+                productGrid.innerHTML = `
+                    <div class="empty-state" style="grid-column:1/-1;">
+                        <i class="fas fa-box-open"></i>
+                        <h3>No Products Found</h3>
+                        <p>${getT().emptyProducts}</p>
+                        <button class="reset-btn" id="reset-filters-btn">Reset All Filters</button>
+                    </div>
+                `;
+                const resetBtn = $('#reset-filters-btn');
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', () => {
+                        state.selectedCategory = 'all';
+                        state.selectedBrand = 'all';
+                        state.inStockOnly = false;
+                        state.priceSort = 'default';
+                        state.searchQuery = '';
+                        brandSelect.value = 'all';
+                        inStockCheck.checked = false;
+                        sortSelect.value = 'default';
+                        $$('#category-rail button').forEach(btn => {
+                            btn.classList.toggle('active', btn.dataset.cat === 'all');
+                        });
+                        renderAll();
                     });
-                    renderAll();
-                    if (state.detailOpen && state.detailProductId) {
-                        openDetail(state.detailProductId);
+                }
+                return;
+            }
+
+            let html = '';
+            filtered.forEach(product => {
+                const qty = state.shoppingList[product.id] || 0;
+                const selected = qty > 0;
+                const catClass = product.category === 'grocery' ? 'cat-grocery' : 'cat-household';
+                const catLabel = product.category === 'grocery' ? (state.lang === 'en' ? 'Grocery' : 'کریانہ') : (state.lang === 'en' ? 'Household' : 'گھریلو');
+                const brandLabel = product.brand || '';
+                const inStock = product.inStock;
+                const price = product.price;
+                const name = product.name;
+
+                html += `
+                    <div class="product-card ${selected ? 'selected' : ''}" data-id="${product.id}">
+                        <div class="img-wrap" data-id="${product.id}">
+                            <img src="${product.image}" alt="${name}" loading="lazy" />
+                            <div class="overlay"><span><i class="fas fa-eye"></i> Quick View</span></div>
+                            <div class="badges">
+                                <span class="${catClass}">${catLabel}</span>
+                                ${brandLabel ? `<span class="brand">${brandLabel}</span>` : ''}
+                            </div>
+                            ${selected ? `<div class="selected-overlay"><i class="fas fa-check"></i></div>` : ''}
+                            ${!inStock ? `<div class="stock-badge"><span>Out of Stock</span></div>` : ''}
+                        </div>
+                        <div class="info">
+                            <div class="title" data-id="${product.id}">${name}</div>
+                            <div class="unit">${product.unit}</div>
+                            <div class="desc">${product.description}</div>
+                            <div class="bottom">
+                                <div class="price">
+                                    <span class="label">Price</span>
+                                    <span class="amount"><small>PKR</small> ${price}</span>
+                                </div>
+                                <div class="actions">
+                                    ${!selected ? `
+                                        <button class="add-btn" data-id="${product.id}" ${!inStock ? 'disabled' : ''}>
+                                            <i class="fas fa-plus"></i> Add
+                                        </button>
+                                    ` : `
+                                        <div class="qty-control">
+                                            <button class="qty-dec" data-id="${product.id}">−</button>
+                                            <span class="qty">${qty}</span>
+                                            <button class="qty-inc" data-id="${product.id}">+</button>
+                                        </div>
+                                    `}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            productGrid.innerHTML = html;
+        }
+
+        function renderDrawerItems() {
+            const items = getListItems();
+            const container = drawerItemsContainer;
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="drawer-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>${state.lang === 'en' ? 'Your list is empty' : 'آپ کی لسٹ خالی ہے'}</h3>
+                        <p>${getT().shoppingListEmpty}</p>
+                    </div>
+                `;
+                return;
+            }
+            let html = '';
+            items.forEach(item => {
+                const p = item.product;
+                const qty = item.quantity;
+                const lineTotal = p.price * qty;
+                const name = state.lang === 'en' ? p.name : p.urduName;
+                html += `
+                    <div class="drawer-item" data-id="${p.id}">
+                        <div class="left">
+                            <img src="${p.image}" alt="${p.name}" />
+                            <div class="details">
+                                <div class="name">${name}</div>
+                                <div class="meta">${p.unit} • PKR ${p.price}</div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="line-total">PKR ${lineTotal}</div>
+                            <div class="qty-control">
+                                <button class="drawer-qty-dec" data-id="${p.id}">−</button>
+                                <span class="qty">${qty}</span>
+                                <button class="drawer-qty-inc" data-id="${p.id}">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+            updateCartUI();
+        }
+
+        function renderDrawer() {
+            renderDrawerItems();
+            updateCartUI();
+            if (state.formStep) {
+                showFormStep(true);
+            } else {
+                showFormStep(false);
+            }
+        }
+
+        function showFormStep(show) {
+            const stepList = $('#step-list');
+            const stepForm = $('#step-form');
+            const footer1 = $('#footer-step1');
+            const footer2 = $('#footer-step2');
+            if (show) {
+                stepList.style.display = 'none';
+                stepForm.classList.add('active');
+                footer1.style.display = 'none';
+                footer2.style.display = 'block';
+                const items = getListItems();
+                document.getElementById('form-item-count').textContent = `${items.length} items`;
+                document.getElementById('form-total').textContent = `PKR ${getTotalPrice()}`;
+                document.getElementById('customer-name').value = state.customerName;
+                document.getElementById('customer-phone').value = state.customerPhone;
+                document.getElementById('pickup-time').value = state.pickupTime;
+                document.getElementById('customer-notes').value = state.customerNotes;
+            } else {
+                stepList.style.display = 'block';
+                stepForm.classList.remove('active');
+                footer1.style.display = 'block';
+                footer2.style.display = 'none';
+            }
+        }
+
+        function renderAll() {
+            renderProducts();
+            renderDrawer();
+            updateLanguageUI();
+            populateBrands();
+        }
+
+        function populateBrands() {
+            const brands = [...new Set(productsData.map(p => p.brand).filter(Boolean))];
+            const current = brandSelect.value;
+            brandSelect.innerHTML = `<option value="all">${getT().allBrands}</option>`;
+            brands.forEach(b => {
+                const opt = document.createElement('option');
+                opt.value = b;
+                opt.textContent = b;
+                brandSelect.appendChild(opt);
+            });
+            brandSelect.value = current;
+        }
+
+        function updateLanguageUI() {
+            const t = getT();
+            document.querySelectorAll('[data-lang-text]').forEach(el => {
+                const key = el.dataset.langText;
+                if (t[key]) el.textContent = t[key];
+            });
+
+            $$('#category-rail button').forEach(btn => {
+                const cat = btn.dataset.cat;
+                if (cat === 'all') btn.textContent = t.allProducts;
+                else if (cat === 'grocery') btn.textContent = t.categoryGrocery;
+                else if (cat === 'household') btn.textContent = t.categoryHousehold;
+            });
+
+            document.querySelector('#brand-label').textContent = t.brandFilter + ':';
+            document.querySelector('#stock-label').textContent = t.inStockOnly;
+            document.querySelector('#sort-label').textContent = t.priceSort + ':';
+            document.querySelector('#sort-default').textContent = 'Default';
+            document.querySelector('#sort-low').textContent = t.priceLowToHigh;
+            document.querySelector('#sort-high').textContent = t.priceHighToLow;
+
+            document.getElementById('hero-desc').textContent = state.lang === 'en' ?
+                "Welcome to Baffa's premier household & grocery showroom. Explore our live catalog, select items, and order directly on WhatsApp for instant collection!" :
+                "بفہ کے پہلے جدید کریانہ اور گھریلو اشیاء کے ڈیجیٹل شو روم میں خوش آمدید۔ یہاں سے اپنے مطلوبہ سامان کا انتخاب کریں، ڈیجیٹل بل لسٹ بنائیں، اور ہمارے واٹس ایپ نمبر پر بھیج کر دکان پر پہنچنے سے پہلے اپنا آرڈر تیار کروائیں۔";
+
+            document.getElementById('how-title').textContent = t.howItWorksTitle;
+            document.getElementById('step1-title').textContent = state.lang === 'en' ? 'Select Products' : 'اشیاء منتخب کریں';
+            document.getElementById('step2-title').textContent = state.lang === 'en' ? 'Review & Share' : 'تفصیلات درج کریں';
+            document.getElementById('step3-title').textContent = state.lang === 'en' ? 'Collect in Store' : 'دکان سے حاصل کریں';
+            document.getElementById('step1-desc').textContent = t.howItWorksStep1;
+            document.getElementById('step2-desc').textContent = t.howItWorksStep2;
+            document.getElementById('step3-desc').textContent = t.howItWorksStep3;
+
+            document.getElementById('about-title').textContent = t.aboutTitle;
+            document.getElementById('about-p1').textContent = state.lang === 'en' ?
+                "At Javed Traders, we pride ourselves on being the absolute cornerstone of Kiryana and household retail in Baffa. Established under the core philosophy of unbeatable prices and genuine product quality, we serve hundreds of loyal local families with absolute dedication." :
+                "جاوید ٹریڈرز بفہ بازار میں مخلص اور دیانتدار خاندانی روایات کے تحت کریانہ اور گھریلو سامان کی فراہمی کا سب سے معتبر ادارہ ہے۔ ہمارا مقصد اپنے تمام صارفین کو مارکیٹ سے سستی اور خالص ترین اشیاء فراہم کرنا ہے۔";
+            document.getElementById('about-p2').textContent = t.aboutText;
+            document.getElementById('why-title').textContent = state.lang === 'en' ? 'Why Shop With Us?' : 'ہماری دکان کی خصوصیات';
+            document.getElementById('why1').textContent = state.lang === 'en' ? 'Only Premium Grade Households & Kiryana Goods' : 'صرف اعلیٰ برانڈز اور خالص ترین اشیاء';
+            document.getElementById('why2').textContent = state.lang === 'en' ? 'Direct Click & Collect WhatsApp Booking' : 'براہ راست واٹس ایپ آرڈر اور فوری پیکنگ سروس';
+            document.getElementById('why3').textContent = state.lang === 'en' ? 'Located right at Main Chowk Baffa Bazar' : 'بفہ بازار کے مرکز مین چوک پر بہترین لوکیشن';
+            document.getElementById('why4').textContent = state.lang === 'en' ? 'Generations of Trust and Authentic Pricing' : 'نسلوں کا اعتماد اور انتہائی سستی قیمتیں';
+
+            document.getElementById('catalogue-title').textContent = state.lang === 'en' ? 'Explore Our Products' : 'اشیاء کی مکمل لسٹ';
+            document.getElementById('catalogue-sub').textContent = state.lang === 'en' ? 'Fresh Stock & House cleaning essentials' : 'تازہ راشن اور صفائی کا سامان';
+
+            document.getElementById('contact-title').textContent = t.contactTitle;
+            document.getElementById('owner-label').textContent = t.ownerLabel;
+            document.getElementById('owner-desc').textContent = state.lang === 'en' ?
+                'Family grocery business serving the Pakhal region with dedication.' :
+                'تحصیل بفہ-پکھل میں بھروسہ اور دیانتداری کی علامت۔';
+            document.getElementById('loc-label').textContent = t.locationTitle;
+            document.getElementById('loc-desc').textContent = state.lang === 'en' ?
+                'Main Chowk, Baffa, Mansehra, KP' :
+                'مین چوک، بفہ، مانسہرہ، کے پی';
+            document.getElementById('timings-label').textContent = t.timingsTitle;
+
+            const contactTimingDesc = document.querySelector('.contact-item .desc');
+            if (contactTimingDesc && contactTimingDesc.parentElement && contactTimingDesc.parentElement.querySelector('.contact-item .label') === document.getElementById('timings-label')) {
+                if (state.lang === 'ur') {
+                    contactTimingDesc.innerHTML = `
+                        <span style="font-weight:700; color:white; font-size:0.95rem; font-family:'Poppins',sans-serif;">صبح 7 تا رات 9</span>
+                        <span style="font-size:0.8rem; color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif;">پیر تا اتوار</span>
+                        <span style="font-size:0.8rem; color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif;"><strong style="color:white; font-family:'Poppins',sans-serif;">جمعہ:</strong> کھلا ہے (صرف جمعہ کی نماز کے لیے بند)</span>
+                        <span style="font-size:0.8rem; color:white; font-weight:600; font-family:'Poppins',sans-serif; margin-top:2px;">پیکنگ کا وقت: 24 گھنٹے</span>
+                    `;
+                } else {
+                    contactTimingDesc.innerHTML = `
+                        <span style="font-weight:700; color:white; font-size:0.95rem; font-family:'Poppins',sans-serif;">7:00 AM – 9:00 PM</span>
+                        <span style="font-size:0.8rem; color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif;">Monday to Sunday</span>
+                        <span style="font-size:0.8rem; color:rgba(255,255,255,0.8); font-family:'Inter',sans-serif;"><strong style="color:white; font-family:'Poppins',sans-serif;">Friday:</strong> Open (Closed for Jummah prayer only)</span>
+                        <span style="font-size:0.8rem; color:white; font-weight:600; font-family:'Poppins',sans-serif; margin-top:2px;">Pack-time: 24 Hours</span>
+                    `;
+                }
+                contactTimingDesc.style.display = 'flex';
+                contactTimingDesc.style.flexDirection = 'column';
+                contactTimingDesc.style.gap = '2px';
+                contactTimingDesc.style.marginTop = '4px';
+            }
+
+            document.getElementById('drawer-title').textContent = t.shoppingListTitle;
+            document.getElementById('drawer-sub').innerHTML = `<span id="item-count">${getTotalItems()}</span> ${t.itemsSelected}`;
+            document.getElementById('estimated-total-label').textContent = t.estimatedTotal + ':';
+
+            document.getElementById('footer-about').textContent = state.lang === 'en' ?
+                'Your trusted household & grocery destination in Baffa. Family-owned, serving with integrity for generations.' :
+                'بفہ میں آپ کا بھروسہ مند کریانہ اور گھریلو سامان کا ذریعہ۔ خاندانی کاروبار، نسلوں سے دیانتداری کے ساتھ۔';
+            document.getElementById('footer-timings-title').textContent = t.timingsTitle;
+            document.getElementById('footer-location-title').textContent = t.locationTitle;
+
+            const timingWrapper = document.querySelector('.footer-timing-wrapper');
+            if (timingWrapper) {
+                if (state.lang === 'ur') {
+                    timingWrapper.innerHTML = `
+                        <span class="time-main">صبح 7 تا رات 9</span>
+                        <span class="time-sub">پیر تا اتوار</span>
+                        <span class="time-friday"><strong>جمعہ:</strong> کھلا ہے (صرف جمعہ کی نماز کے لیے بند)</span>
+                        <span class="time-pack">پیکنگ کا وقت: 24 گھنٹے</span>
+                    `;
+                } else {
+                    timingWrapper.innerHTML = `
+                        <span class="time-main">7:00 AM – 9:00 PM</span>
+                        <span class="time-sub">Monday to Sunday</span>
+                        <span class="time-friday"><strong>Friday:</strong> Open (Closed for Jummah prayer only)</span>
+                        <span class="time-pack">Pack-time: 24 Hours</span>
+                    `;
+                }
+            }
+
+            document.getElementById('form-name-label').textContent = state.lang === 'en' ? 'Your Full Name *' : 'آپ کا نام *';
+            document.getElementById('form-phone-label').textContent = state.lang === 'en' ? 'Mobile Number *' : 'موبائل نمبر *';
+            document.getElementById('form-pickup-label').textContent = state.lang === 'en' ? 'When will you pick it up?' : 'وصولی کا وقت؟';
+            document.getElementById('form-notes-label').textContent = state.lang === 'en' ? 'Special Instructions (Optional)' : 'اضافی نوٹ (اختیاری)';
+            document.getElementById('form-hint').textContent = state.lang === 'en' ?
+                'Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.' :
+                'آپ کی فراہم کردہ معلومات اور لسٹ کو واٹس ایپ پیغام کی شکل میں تبدیل کیا جائے گا تاکہ جاوید ٹریڈرز بفہ آپ کا آرڈر باآسانی تیار رکھ سکیں۔';
+        }
+
+        function openDetail(id) {
+            const product = getProduct(id);
+            if (!product) return;
+            state.detailProductId = id;
+            state.detailOpen = true;
+            detailOverlay.classList.add('open');
+            document.getElementById('detail-img').src = product.image;
+            document.getElementById('detail-brand').textContent = product.brand || '';
+            document.getElementById('detail-name').textContent = product.name;
+            document.getElementById('detail-unit').textContent = product.unit;
+            document.getElementById('detail-desc').textContent = product.description;
+            document.getElementById('detail-price').textContent = product.price;
+            const stockEl = document.getElementById('detail-stock');
+            if (product.inStock) {
+                stockEl.textContent = 'In Stock';
+                stockEl.className = 'stock in';
+            } else {
+                stockEl.textContent = 'Out of Stock';
+                stockEl.className = 'stock out';
+            }
+            const action = document.getElementById('detail-action');
+            const qty = state.shoppingList[id] || 0;
+            if (qty === 0) {
+                action.innerHTML = `
+                    <button class="add-btn detail-add-btn" data-id="${id}" ${!product.inStock ? 'disabled' : ''}>
+                        <i class="fas fa-shopping-bag"></i> ${state.lang === 'en' ? 'Add to Shopping List' : 'لسٹ میں شامل کریں'}
+                    </button>
+                `;
+            } else {
+                action.innerHTML = `
+                    <div class="qty-row">
+                        <span class="label">${state.lang === 'en' ? 'Quantity in your list:' : 'لسٹ میں شامل مقدار:'}</span>
+                        <div class="controls">
+                            <button class="detail-qty-dec" data-id="${id}">−</button>
+                            <span class="qty">${qty}</span>
+                            <button class="detail-qty-inc" data-id="${id}">+</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function closeDetail() {
+            state.detailOpen = false;
+            state.detailProductId = null;
+            detailOverlay.classList.remove('open');
+        }
+
+        function init() {
+            loadList();
+
+            categoryRail.addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+                const cat = btn.dataset.cat;
+                state.selectedCategory = cat;
+                $$('#category-rail button').forEach(b => b.classList.toggle('active', b === btn));
+                renderProducts();
+            });
+
+            brandSelect.addEventListener('change', (e) => {
+                state.selectedBrand = e.target.value;
+                renderProducts();
+            });
+
+            inStockCheck.addEventListener('change', (e) => {
+                state.inStockOnly = e.target.checked;
+                renderProducts();
+            });
+
+            sortSelect.addEventListener('change', (e) => {
+                state.priceSort = e.target.value;
+                renderProducts();
+            });
+
+            productGrid.addEventListener('click', (e) => {
+                const target = e.target.closest('button, .title, .img-wrap');
+                if (!target) return;
+
+                if (target.classList.contains('add-btn')) {
+                    const id = target.dataset.id;
+                    if (id) {
+                        const product = getProduct(id);
+                        if (product && product.inStock) {
+                            state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
+                            saveList();
+                            renderAll();
+                            showToast(state.lang === 'en' ? 'Item added to list!' : 'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+                        }
                     }
-                    showToast(state.lang === 'en' ? 'Language switched to English' :
-                        'زبان اردو میں تبدیل کر دی گئی ہے');
+                    return;
+                }
+
+                if (target.classList.contains('qty-inc') || target.classList.contains('qty-dec')) {
+                    const id = target.dataset.id;
+                    if (!id) return;
+                    const delta = target.classList.contains('qty-inc') ? 1 : -1;
+                    const current = state.shoppingList[id] || 0;
+                    const newQty = current + delta;
+                    if (newQty <= 0) {
+                        delete state.shoppingList[id];
+                        showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                    } else {
+                        state.shoppingList[id] = newQty;
+                    }
+                    saveList();
+                    renderAll();
+                    return;
+                }
+
+                if (target.classList.contains('img-wrap') || target.classList.contains('title')) {
+                    const card = target.closest('.product-card');
+                    if (card) {
+                        const id = card.dataset.id;
+                        if (id) openDetail(id);
+                    }
+                    return;
                 }
             });
-        });
 
-        document.getElementById('menu-toggle').addEventListener('click', () => {
-            document.getElementById('mobile-overlay').classList.add('open');
-        });
-        document.getElementById('close-mobile').addEventListener('click', () => {
-            document.getElementById('mobile-overlay').classList.remove('open');
-        });
-        document.getElementById('mobile-overlay').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('mobile-overlay')) {
+            drawerOverlay.addEventListener('click', (e) => {
+                if (e.target === drawerOverlay) closeDrawer();
+            });
+
+            document.getElementById('close-drawer').addEventListener('click', closeDrawer);
+            document.getElementById('cart-btn').addEventListener('click', openDrawer);
+            document.getElementById('mobile-cart-btn').addEventListener('click', function(e) {
+                e.preventDefault();
                 document.getElementById('mobile-overlay').classList.remove('open');
+                openDrawer();
+            });
+            document.getElementById('floating-cart-btn').addEventListener('click', openDrawer);
+
+            function openDrawer() {
+                state.listOpen = true;
+                drawerOverlay.classList.add('open');
+                renderDrawer();
+                state.formStep = false;
+                showFormStep(false);
             }
-        });
 
-        document.getElementById('cart-btn').addEventListener('click', openDrawer);
-        document.getElementById('mobile-cart-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('mobile-overlay').classList.remove('open');
-            openDrawer();
-        });
-        document.getElementById('floating-cart-btn').addEventListener('click', openDrawer);
-        document.getElementById('close-drawer').addEventListener('click', closeDrawer);
-        drawerOverlay.addEventListener('click', (e) => {
-            if (e.target === drawerOverlay) closeDrawer();
-        });
+            function closeDrawer() {
+                state.listOpen = false;
+                drawerOverlay.classList.remove('open');
+                state.formStep = false;
+                showFormStep(false);
+            }
 
-        drawerBody.addEventListener('click', (e) => {
-            const target = e.target.closest('button');
-            if (!target) return;
-            if (target.classList.contains('drawer-qty-inc') || target.classList.contains('drawer-qty-dec')) {
+            drawerBody.addEventListener('click', (e) => {
+                const target = e.target.closest('button');
+                if (!target) return;
+                if (target.classList.contains('drawer-qty-inc') || target.classList.contains('drawer-qty-dec')) {
+                    const id = target.dataset.id;
+                    if (!id) return;
+                    const delta = target.classList.contains('drawer-qty-inc') ? 1 : -1;
+                    const current = state.shoppingList[id] || 0;
+                    const newQty = current + delta;
+                    if (newQty <= 0) {
+                        delete state.shoppingList[id];
+                        showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                    } else {
+                        state.shoppingList[id] = newQty;
+                    }
+                    saveList();
+                    renderAll();
+                    renderDrawerItems();
+                    renderDrawer();
+                }
+            });
+
+            document.getElementById('clear-list').addEventListener('click', () => {
+                if (confirm(state.lang === 'en' ? 'Clear all items?' : 'پوری لسٹ صاف کریں؟')) {
+                    state.shoppingList = {};
+                    saveList();
+                    renderAll();
+                    closeDrawer();
+                    showToast(state.lang === 'en' ? 'List cleared completely' : 'خریداری کی لسٹ صاف کر دی گئی ہے');
+                }
+            });
+
+            document.getElementById('proceed-btn').addEventListener('click', () => {
+                if (getListItems().length === 0) return;
+                state.formStep = true;
+                showFormStep(true);
+                document.getElementById('customer-name').value = state.customerName;
+                document.getElementById('customer-phone').value = state.customerPhone;
+                document.getElementById('pickup-time').value = state.pickupTime;
+                document.getElementById('customer-notes').value = state.customerNotes;
+            });
+
+            document.getElementById('back-to-list').addEventListener('click', () => {
+                state.formStep = false;
+                showFormStep(false);
+            });
+
+            document.getElementById('customer-name').addEventListener('input', (e) => {
+                state.customerName = e.target.value;
+            });
+            document.getElementById('customer-phone').addEventListener('input', (e) => {
+                state.customerPhone = e.target.value;
+            });
+            document.getElementById('pickup-time').addEventListener('change', (e) => {
+                state.pickupTime = e.target.value;
+            });
+            document.getElementById('customer-notes').addEventListener('input', (e) => {
+                state.customerNotes = e.target.value;
+            });
+
+            // Updated WhatsApp link to use new number +92 336 9595531
+            document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
+                const name = document.getElementById('customer-name').value.trim();
+                const phone = document.getElementById('customer-phone').value.trim();
+                if (!name || !phone) {
+                    e.preventDefault();
+                    alert(state.lang === 'en' ? 'Please fill in both Name and Phone number first!' : 'براہ کرم اپنا نام اور فون نمبر درج کریں!');
+                    return;
+                }
+                const items = getListItems();
+                const total = getTotalPrice();
+                const isUr = state.lang === 'ur';
+                let msg = isUr ?
+                    `السلام علیکم جاوید ٹریڈرز بفہ! میں نے پریمیم ڈیجیٹل شو روم سے کلک اینڈ کلیکٹ آرڈر تیار کیا ہے۔` :
+                    `Assalam-o-Alaikum Javed Traders Baffa! I have generated a Click & Collect order from your digital showroom.`;
+                msg += '\n\n';
+                msg += isUr ? `👤 *کسٹمر کی معلومات (Customer Details):*` : `👤 *CUSTOMER DETAILS:*`;
+                msg += `\n• ${isUr ? 'نام:' : 'Name:'} ${name}`;
+                msg += `\n• ${isUr ? 'فون نمبر:' : 'Phone:'} ${phone}`;
+                msg += `\n• ${isUr ? 'وصولی کا وقت:' : 'Preferred Pickup:'} ${state.pickupTime}`;
+                if (state.customerNotes) {
+                    msg += `\n• ${isUr ? 'اضافی تفصیلات:' : 'Special Notes:'} ${state.customerNotes}`;
+                }
+                msg += '\n\n';
+                msg += isUr ? `📦 *آرڈر کی تفصیلات (Order Items):*` : `📦 *ORDER ITEMS:*`;
+                items.forEach((item, idx) => {
+                    const line = item.product.price * item.quantity;
+                    const prodName = isUr ? item.product.urduName : item.product.name;
+                    msg += `\n${idx + 1}. *${prodName}* (${item.product.unit}) \n   _Qty:_ ${item.quantity}  |  _Price:_ Rs ${line}`;
+                });
+                msg += `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
+                msg += `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
+                // NEW NUMBER HERE
+                const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
+                window.open(url, '_blank');
+            });
+
+            document.getElementById('close-detail').addEventListener('click', closeDetail);
+            detailOverlay.addEventListener('click', (e) => {
+                if (e.target === detailOverlay) closeDetail();
+            });
+
+            detailModal.addEventListener('click', (e) => {
+                const target = e.target.closest('button');
+                if (!target) return;
                 const id = target.dataset.id;
                 if (!id) return;
-                const delta = target.classList.contains('drawer-qty-inc') ? 1 : -1;
-                const current = state.shoppingList[id] || 0;
-                const newQty = current + delta;
-                if (newQty <= 0) {
-                    delete state.shoppingList[id];
-                    showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
-                } else {
-                    state.shoppingList[id] = newQty;
+                if (target.classList.contains('detail-add-btn')) {
+                    const product = getProduct(id);
+                    if (product && product.inStock) {
+                        state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
+                        saveList();
+                        renderAll();
+                        openDetail(id);
+                        showToast(state.lang === 'en' ? 'Item added to list!' : 'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+                    }
+                    return;
                 }
-                saveList();
-                renderDrawerItems();
-                updateCartUI();
-                if (state.detailOpen && state.detailProductId) {
-                    openDetail(state.detailProductId);
-                }
-            }
-        });
-
-        document.getElementById('clear-list').addEventListener('click', () => {
-            if (confirm(state.lang === 'en' ? 'Clear all items?' : 'پوری لسٹ صاف کریں؟')) {
-                state.shoppingList = {};
-                saveList();
-                renderDrawerItems();
-                updateCartUI();
-                closeDrawer();
-                if (state.detailOpen) closeDetail();
-                showToast(state.lang === 'en' ? 'List cleared completely' : 'خریداری کی لسٹ صاف کر دی گئی ہے');
-            }
-        });
-
-        document.getElementById('proceed-btn').addEventListener('click', () => {
-            if (getListItems().length === 0) return;
-            state.formStep = true;
-            showFormStep(true);
-            document.getElementById('customer-name').value = state.customerName;
-            document.getElementById('customer-phone').value = state.customerPhone;
-            document.getElementById('pickup-time').value = state.pickupTime;
-            document.getElementById('customer-notes').value = state.customerNotes;
-        });
-
-        document.getElementById('back-to-list').addEventListener('click', () => {
-            state.formStep = false;
-            showFormStep(false);
-        });
-
-        document.getElementById('customer-name').addEventListener('input', (e) => {
-            state.customerName = e.target.value;
-        });
-        document.getElementById('customer-phone').addEventListener('input', (e) => {
-            state.customerPhone = e.target.value;
-        });
-        document.getElementById('pickup-time').addEventListener('change', (e) => {
-            state.pickupTime = e.target.value;
-        });
-        document.getElementById('customer-notes').addEventListener('input', (e) => {
-            state.customerNotes = e.target.value;
-        });
-
-        document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
-            const name = document.getElementById('customer-name').value.trim();
-            const phone = document.getElementById('customer-phone').value.trim();
-            if (!name || !phone) {
-                e.preventDefault();
-                alert(state.lang === 'en' ? 'Please fill in both Name and Phone number first!' :
-                    'براہ کرم اپنا نام اور فون نمبر درج کریں!');
-                return;
-            }
-            const items = getListItems();
-            const total = getTotalPrice();
-            const isUr = state.lang === 'ur';
-
-            let msg = isUr ?
-                `السلام علیکم جاوید ٹریڈرز بفہ! میں نے پریمیم ڈیجیٹل شو روم سے کلک اینڈ کلیکٹ آرڈر تیار کیا ہے۔` :
-                `Assalam-o-Alaikum Javed Traders Baffa! I have generated a Click & Collect order from your digital showroom.`;
-            msg += '\n\n';
-            msg += isUr ? `👤 *کسٹمر کی معلومات (Customer Details):*` : `👤 *CUSTOMER DETAILS:*`;
-            msg += `\n• ${isUr ? 'نام:' : 'Name:'} ${name}`;
-            msg += `\n• ${isUr ? 'فون نمبر:' : 'Phone:'} ${phone}`;
-            msg += `\n• ${isUr ? 'وصولی کا وقت:' : 'Preferred Pickup:'} ${state.pickupTime}`;
-            if (state.customerNotes) {
-                msg += `\n• ${isUr ? 'اضافی تفصیلات:' : 'Special Notes:'} ${state.customerNotes}`;
-            }
-            msg += '\n\n';
-            msg += isUr ? `📦 *آرڈر کی تفصیلات (Order Items):*` : `📦 *ORDER ITEMS:*`;
-            items.forEach((item, idx) => {
-                const line = item.product.price * item.quantity;
-                const prodName = isUr ? item.product.urduName : item.product.name;
-                msg +=
-                    `\n${idx + 1}. *${prodName}* (${item.product.unit}) \n   _Qty:_ ${item.quantity}  |  _Price:_ Rs ${line}`;
-            });
-            msg +=
-                `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
-            msg +=
-                `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
-
-            const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
-            window.open(url, '_blank');
-        });
-
-        document.getElementById('close-detail').addEventListener('click', closeDetail);
-        detailOverlay.addEventListener('click', (e) => {
-            if (e.target === detailOverlay) closeDetail();
-        });
-
-        detailModal.addEventListener('click', (e) => {
-            const target = e.target.closest('button');
-            if (!target) return;
-            const id = target.dataset.id;
-            if (!id) return;
-
-            if (target.classList.contains('detail-add-btn')) {
-                const product = getProduct(id);
-                if (product && product.inStock) {
-                    state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
+                if (target.classList.contains('detail-qty-inc') || target.classList.contains('detail-qty-dec')) {
+                    const delta = target.classList.contains('detail-qty-inc') ? 1 : -1;
+                    const current = state.shoppingList[id] || 0;
+                    const newQty = current + delta;
+                    if (newQty <= 0) {
+                        delete state.shoppingList[id];
+                        showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                    } else {
+                        state.shoppingList[id] = newQty;
+                    }
                     saveList();
-                    updateCartUI();
-                    renderDrawerItems();
+                    renderAll();
                     openDetail(id);
-                    showToast(state.lang === 'en' ? 'Item added to list!' : 'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
                 }
-                return;
-            }
+            });
 
-            if (target.classList.contains('detail-qty-inc') || target.classList.contains('detail-qty-dec')) {
-                const delta = target.classList.contains('detail-qty-inc') ? 1 : -1;
-                const current = state.shoppingList[id] || 0;
-                const newQty = current + delta;
-                if (newQty <= 0) {
-                    delete state.shoppingList[id];
-                    showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
-                } else {
-                    state.shoppingList[id] = newQty;
+            document.querySelectorAll('.lang-toggle button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    if (lang && lang !== state.lang) {
+                        state.lang = lang;
+                        document.querySelectorAll('.lang-toggle button').forEach(b => {
+                            b.classList.toggle('active', b.dataset.lang === lang);
+                        });
+                        renderAll();
+                        if (state.detailOpen && state.detailProductId) {
+                            openDetail(state.detailProductId);
+                        }
+                        if (state.listOpen) {
+                            renderDrawer();
+                        }
+                    }
+                });
+            });
+
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                document.getElementById('mobile-overlay').classList.add('open');
+            });
+            document.getElementById('close-mobile').addEventListener('click', () => {
+                document.getElementById('mobile-overlay').classList.remove('open');
+            });
+            document.getElementById('mobile-overlay').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('mobile-overlay')) {
+                    document.getElementById('mobile-overlay').classList.remove('open');
                 }
-                saveList();
-                updateCartUI();
-                renderDrawerItems();
-                openDetail(id);
-            }
-        });
+            });
+            document.querySelectorAll('#mobile-nav a').forEach(a => {
+                a.addEventListener('click', () => {
+                    document.getElementById('mobile-overlay').classList.remove('open');
+                });
+            });
 
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('form-name').value.trim();
-            const email = document.getElementById('form-email').value.trim();
-            const message = document.getElementById('form-message').value.trim();
-            if (name && email && message) {
-                showToast(state.lang === 'en' ? 'Thank you! Your message has been sent.' :
-                    'شکریہ! آپ کا پیغام بھیج دیا گیا ہے۔');
-                this.reset();
-            } else {
-                showToast(state.lang === 'en' ? 'Please fill in all required fields.' :
-                    'براہ کرم تمام ضروری فیلڈز پُر کریں۔');
-            }
-        });
+            document.getElementById('home-link').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
 
-        document.querySelectorAll('.lang-toggle button').forEach(b => {
-            b.classList.toggle('active', b.dataset.lang === state.lang);
-        });
+            document.getElementById('hero-catalogue-btn').addEventListener('click', () => {
+                const el = document.getElementById('catalogue-section');
+                if (el) {
+                    const offset = 80;
+                    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+            document.getElementById('hero-about-btn').addEventListener('click', () => {
+                const el = document.getElementById('about-section');
+                if (el) {
+                    const offset = 80;
+                    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
 
-        renderAll();
+            renderAll();
+            document.querySelectorAll('.lang-toggle button').forEach(b => {
+                b.classList.toggle('active', b.dataset.lang === state.lang);
+            });
+        }
 
-        console.log('Contact page loaded with hero centered and updated footer.');
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
-</script>
-
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
-
 </html>
