@@ -603,7 +603,7 @@
             background: var(--accent);
         }
 
-        /* ---------- CONTACT HERO (CENTERED) ---------- */
+        /* ---------- CONTACT HERO (CENTERED, NO CARD) ---------- */
         .contact-hero {
             background: var(--primary);
             padding: 40px 16px 40px;
@@ -700,140 +700,6 @@
             line-height: 1.6;
             margin: 0 auto;
             text-align: center;
-        }
-
-        /* ---------- HERO DECORATIVE FEATURE CARD ---------- */
-        .hero-feature-card {
-            display: none;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 24px 28px;
-            margin-top: 28px;
-            max-width: 480px;
-            width: 100%;
-            text-align: left;
-            transition: all 0.4s ease;
-        }
-
-        .hero-feature-card:hover {
-            background: rgba(255, 255, 255, 0.14);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-        }
-
-        .hero-feature-card .feature-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 12px;
-        }
-
-        .hero-feature-card .feature-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .hero-feature-card .feature-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(6, 182, 212, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .hero-feature-card .feature-icon i {
-            font-size: 1.2rem;
-            color: var(--accent);
-        }
-
-        .hero-feature-card .feature-content {
-            flex: 1;
-        }
-
-        .hero-feature-card .feature-content .label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 600;
-        }
-
-        .hero-feature-card .feature-content .value {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .hero-feature-card .feature-content .value i {
-            color: var(--accent);
-            margin-right: 4px;
-        }
-
-        .hero-feature-card .feature-divider {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.08);
-            margin: 12px 0;
-        }
-
-        .hero-feature-card .quick-action {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--whatsapp);
-            color: white;
-            padding: 10px 22px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.3s;
-            margin-top: 4px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .hero-feature-card .quick-action:hover {
-            background: #20ba59;
-            transform: scale(1.02);
-            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-        }
-
-        .hero-feature-card .quick-action i {
-            font-size: 1.1rem;
-        }
-
-        @media (min-width: 768px) {
-            .hero-feature-card {
-                display: block;
-                position: absolute;
-                right: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                margin-top: 0;
-                max-width: 340px;
-            }
-
-            .hero-feature-card:hover {
-                transform: translateY(calc(-50% - 4px));
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-feature-card {
-                max-width: 380px;
-                padding: 28px 32px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .hero-feature-card {
-                display: block;
-                margin-top: 24px;
-            }
         }
 
         /* ---------- CONTACT INFO SECTION ---------- */
@@ -2309,7 +2175,7 @@
         </div>
     </div>
 
-    <!-- ==================== CONTACT HERO (CENTERED) ==================== -->
+    <!-- ==================== CONTACT HERO (CENTERED, NO CARD) ==================== -->
     <section class="contact-hero">
         <div class="contact-hero-inner">
             <div class="hero-badge"><i class="fas fa-phone-alt"></i> <span id="hero-badge-text">Get in Touch</span>
@@ -2319,48 +2185,6 @@
             <p class="hero-desc" id="hero-desc">
                 We'd love to hear from you. Reach out for inquiries, orders, or just to say hello!
             </p>
-
-            <!-- Decorative Feature Card - fills empty right side on desktop, shown below on mobile -->
-            <div class="hero-feature-card">
-                <div class="feature-row">
-                    <div class="feature-icon">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <div class="feature-content">
-                        <div class="label">Visit Our Store</div>
-                        <div class="value"><i class="fas fa-location-dot"></i> Main Chowk, Baffa</div>
-                    </div>
-                </div>
-
-                <div class="feature-divider"></div>
-
-                <div class="feature-row">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="feature-content">
-                        <div class="label">Opening Hours</div>
-                        <div class="value">7:00 AM – 9:00 PM <span style="font-weight:400;opacity:0.6;">· Daily</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="feature-divider"></div>
-
-                <div class="feature-row">
-                    <div class="feature-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="feature-content">
-                        <div class="label">Call or WhatsApp</div>
-                        <div class="value" style="font-size:0.85rem;">+92 336 9595531</div>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/923369595531" target="_blank" class="quick-action">
-                    <i class="fab fa-whatsapp"></i> Chat with us
-                </a>
-            </div>
         </div>
     </section>
 
@@ -3427,7 +3251,7 @@
 
             renderAll();
 
-            console.log('Contact page loaded with hero centered and feature card added.');
+            console.log('Contact page loaded with hero centered and feature card removed.');
         }
 
         document.addEventListener('DOMContentLoaded', init);
