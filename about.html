@@ -556,7 +556,7 @@
             background: var(--accent);
         }
 
-        /* ---------- Hero (About) ---------- */
+        /* ---------- Hero (About) — CENTERED with "About" same size ---------- */
         .about-hero {
             background: var(--primary);
             padding: 60px 16px 50px;
@@ -564,6 +564,7 @@
             position: relative;
             overflow: hidden;
             color: white;
+            text-align: center;
         }
 
         @media (min-width: 768px) {
@@ -591,23 +592,19 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-
-        @media (min-width: 768px) {
-            .about-hero-inner {
-                grid-template-columns: 1fr 1fr;
-                align-items: center;
-                gap: 48px;
-            }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .about-hero-text {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 16px;
+            max-width: 800px;
+            width: 100%;
         }
 
         .hero-badge {
@@ -632,22 +629,36 @@
             color: var(--accent);
         }
 
+        /* Hero title: "About" is now same size as the brand line */
         .hero-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             font-size: 2.5rem;
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -0.02em;
             text-transform: uppercase;
             color: white;
+            text-align: center;
         }
 
-        /* Accent color for "About" */
         #hero-title-main {
             color: #06B6D4;
+            font-size: 1em; /* same as parent */
+            letter-spacing: 0.05em;
+            margin-bottom: 0.1rem;
         }
 
         .hero-title .accent-text {
             color: white;
+        }
+
+        .hero-title .brand-line {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.2rem;
         }
 
         @media (min-width: 640px) {
@@ -665,51 +676,10 @@
         .hero-desc {
             font-size: 1.0875rem;
             color: rgba(255, 255, 255, 0.85);
-            max-width: 520px;
+            max-width: 600px;
             line-height: 1.7;
-        }
-
-        .about-hero-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            padding: 24px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        @media (max-width: 480px) {
-            .about-hero-stats {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .stat-item {
             text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: white;
-            line-height: 1.1;
-        }
-
-        @media (min-width: 640px) {
-            .stat-number {
-                font-size: 2.5rem;
-            }
-        }
-
-        .stat-label {
-            font-size: 0.7375rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 2px;
+            margin: 0 auto;
         }
 
         /* ---------- Main ---------- */
@@ -1351,7 +1321,6 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Updated Friday timing — changed as requested */
         .footer-timing-wrapper .time-friday {
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.8);
@@ -2295,7 +2264,7 @@
             <nav class="mobile-nav" id="mobile-nav">
                 <a href="index.html">Home <span class="arrow">➔</span></a>
                 <a href="about.html" class="active">About Us <span class="arrow">➔</span></a>
-                <a href="catalogue.html>Catalogue <span class="arrow">➔</span></a>
+                <a href="catalogue.html">Catalogue <span class="arrow">➔</span></a>
                 <a href="contact.html">Contact <span class="arrow">➔</span></a>
             </nav>
 
@@ -2318,33 +2287,21 @@
         </div>
     </div>
 
-    <!-- ==================== ABOUT HERO ==================== -->
+    <!-- ==================== ABOUT HERO — "About" same size as "Javed Traders" ==================== -->
     <section class="about-hero" id="about-hero">
         <div class="about-hero-inner">
             <div class="about-hero-text">
                 <div class="hero-badge"><i class="fas fa-store"></i> <span id="hero-badge-text">Family-Owned Since 1985</span></div>
                 <h1 class="hero-title">
                     <span id="hero-title-main">About</span>
-                    <span class="accent-text" id="hero-title-accent">Javed</span>
-                    <span id="hero-title-traders">Traders</span>
+                    <span class="brand-line">
+                        <span class="accent-text" id="hero-title-accent">Javed</span>
+                        <span id="hero-title-traders">Traders</span>
+                    </span>
                 </h1>
                 <p class="hero-desc" id="hero-desc">
                     For over three generations, we've been the trusted name in Baffa for premium household goods and kiryana items.
                 </p>
-            </div>
-            <div class="about-hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number" id="stat-years">40+</div>
-                    <div class="stat-label" id="stat-years-label">Years of Service</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="stat-families">500+</div>
-                    <div class="stat-label" id="stat-families-label">Loyal Families</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="stat-products">200+</div>
-                    <div class="stat-label" id="stat-products-label">Quality Products</div>
-                </div>
             </div>
         </div>
     </section>
@@ -2486,7 +2443,6 @@
             </p>
             <div class="btn-group">
                 <a href="./catalogue.html" class="btn-primary"><i class="fas fa-shopping-bag"></i> <span id="cta-btn1">Browse Catalogue</span></a>
-                <!-- Find Us button now points directly to Google Maps -->
                 <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn-secondary">
                     <i class="fas fa-map-pin"></i> <span id="cta-btn2">Find Us</span>
                 </a>
@@ -2514,7 +2470,6 @@
                     <div class="footer-timing-wrapper">
                         <span class="time-main">7:00 AM – 9:00 PM</span>
                         <span class="time-sub">(Mon–Thu, Sat)</span>
-                        <!-- Updated Friday timing -->
                         <span class="time-friday"><strong>Friday:</strong> 7:00 AM – 9:00 PM (Closed for Jummah prayer only)</span>
                         <span class="time-pack">Pack-time: 24 Hours</span>
                     </div>
@@ -2526,7 +2481,6 @@
                         <div>
                             <span class="strong">Main Bazar, Baffa</span><br />
                             <span>Tehsil Baffa-Pakhal, Mansehra, KP</span><br />
-                            <!-- Google Maps link -->
                             <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-link">
                                 <i class="fas fa-directions"></i> View on Google Maps
                             </a>
@@ -2619,7 +2573,6 @@
                 </div>
                 <div id="footer-step2" style="display:none;">
                     <button class="back-btn" id="back-to-list"><i class="fas fa-chevron-left"></i> Back to List</button>
-                    <!-- WhatsApp button uses the NEW number: +92 336 9595531 -->
                     <a class="whatsapp-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-whatsapp"></i> Confirm &amp; Send to WhatsApp
                     </a>
@@ -2740,12 +2693,6 @@
                 heroTitleAccent: 'Javed',
                 heroTitleTraders: 'Traders',
                 heroDesc: 'For over three generations, we\'ve been the trusted name in Baffa for premium household goods and kiryana items.',
-                statYears: '40+',
-                statYearsLabel: 'Years of Service',
-                statFamilies: '500+',
-                statFamiliesLabel: 'Loyal Families',
-                statProducts: '200+',
-                statProductsLabel: 'Quality Products',
                 // Story
                 storyTitle: 'Our Story',
                 storySub: 'FROM A SMALL SHOP TO BAFFA\'S TRUSTED GROCERY DESTINATION',
@@ -2819,12 +2766,6 @@
                 heroTitleAccent: 'جاوید',
                 heroTitleTraders: 'ٹریڈرز',
                 heroDesc: 'تین نسلوں سے بفہ میں اعلیٰ معیار کے گھریلو اور کریانہ کے سامان کا بھروسہ مند نام۔',
-                statYears: '40+',
-                statYearsLabel: 'سال کی خدمات',
-                statFamilies: '500+',
-                statFamiliesLabel: 'وفادار خاندان',
-                statProducts: '200+',
-                statProductsLabel: 'معیاری اشیاء',
                 // Story
                 storyTitle: 'ہماری کہانی',
                 storySub: 'ایک چھوٹی سی دکان سے بفہ کے بھروسہ مند کریانے تک',
@@ -3172,12 +3113,6 @@
             document.getElementById('hero-title-accent').textContent = t.heroTitleAccent;
             document.getElementById('hero-title-traders').textContent = t.heroTitleTraders;
             document.getElementById('hero-desc').textContent = t.heroDesc;
-            document.getElementById('stat-years').textContent = t.statYears;
-            document.getElementById('stat-years-label').textContent = t.statYearsLabel;
-            document.getElementById('stat-families').textContent = t.statFamilies;
-            document.getElementById('stat-families-label').textContent = t.statFamiliesLabel;
-            document.getElementById('stat-products').textContent = t.statProducts;
-            document.getElementById('stat-products-label').textContent = t.statProductsLabel;
 
             // Story
             document.getElementById('story-title').textContent = t.storyTitle;
@@ -3504,7 +3439,7 @@
 
             renderAll();
 
-            console.log('About Us page with cart loaded.');
+            console.log('About Us page with centered hero and cart loaded.');
         }
 
         document.addEventListener('DOMContentLoaded', init);
