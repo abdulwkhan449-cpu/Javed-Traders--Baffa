@@ -594,6 +594,7 @@
             position: relative;
             overflow: hidden;
             color: white;
+            text-align: center;
         }
 
         @media (min-width: 768px) {
@@ -616,23 +617,20 @@
         }
 
         .catalogue-hero-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 28px;
-        }
-
-        @media (min-width: 768px) {
-            .catalogue-hero-content {
-                grid-template-columns: 1fr 1fr;
-                align-items: center;
-                gap: 40px;
-            }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
         }
 
         .catalogue-hero-text {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 12px;
+            max-width: 720px;
+            margin: 0 auto;
         }
 
         .hero-badge {
@@ -687,184 +685,7 @@
             color: rgba(255, 255, 255, 0.85);
             max-width: 560px;
             line-height: 1.6;
-        }
-
-        /* Right Panel */
-        .hero-right-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Hero Search Bar */
-        .hero-search {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            padding: 4px 4px 4px 18px;
-            width: 100%;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .hero-search:focus-within {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
-        }
-
-        .hero-search i {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.0375rem;
-        }
-
-        .hero-search input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 10px 12px;
-            font-size: 0.9875rem;
-            color: white;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            min-width: 120px;
-        }
-
-        .hero-search input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .hero-search .clear-search {
-            background: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            font-size: 1.1rem;
-            padding: 0 6px;
-            display: none;
-            transition: color 0.3s;
-        }
-
-        .hero-search .clear-search:hover {
-            color: white;
-        }
-
-        .hero-search .clear-search.visible {
-            display: block;
-        }
-
-        .hero-search button {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 0.8875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Poppins', sans-serif;
-            white-space: nowrap;
-        }
-
-        .hero-search button:hover {
-            background: white;
-            color: var(--primary);
-        }
-
-        /* Quick category links */
-        .hero-quick-cats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .hero-quick-cats a {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 14px;
-            border-radius: 999px;
-            font-size: 0.7875rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .hero-quick-cats a:hover {
-            background: rgba(255, 255, 255, 0.18);
-            color: white;
-            transform: translateY(-1px);
-        }
-
-        .hero-quick-cats a i {
-            color: var(--accent);
-            font-size: 0.7375rem;
-        }
-
-        .hero-quick-cats a.active {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Stats Card */
-        .hero-stats-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            padding: 24px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            height: fit-content;
-        }
-
-        @media (max-width: 480px) {
-            .hero-stats-card {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .hero-stats-card .stat-item {
-            text-align: center;
-        }
-
-        .hero-stats-card .stat-item .num {
-            font-size: 2rem;
-            font-weight: 800;
-            color: white;
-            font-family: 'Inter', monospace;
-            line-height: 1.1;
-        }
-
-        .hero-stats-card .stat-item .num i {
-            color: white;
-        }
-
-        @media (min-width: 640px) {
-            .hero-stats-card .stat-item .num {
-                font-size: 2.5rem;
-            }
-        }
-
-        .hero-stats-card .stat-item .label {
-            font-size: 0.7375rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 2px;
+            margin: 0 auto;
         }
 
         /* ---------- Main ---------- */
@@ -2313,22 +2134,6 @@
             .product-grid {
                 grid-template-columns: 1fr;
             }
-            .hero-search {
-                flex-wrap: wrap;
-                background: rgba(255, 255, 255, 0.08);
-            }
-            .hero-search input {
-                width: 100%;
-                padding: 8px 12px;
-            }
-            .hero-search button {
-                width: 100%;
-                justify-content: center;
-                padding: 10px;
-            }
-            .hero-stats-card {
-                grid-template-columns: 1fr 1fr;
-            }
         }
 
         .dir-rtl {
@@ -2470,7 +2275,7 @@
     <section class="catalogue-hero">
         <div class="catalogue-hero-inner">
             <div class="catalogue-hero-content">
-                <!-- Left Column: Text -->
+                <!-- Centered Text -->
                 <div class="catalogue-hero-text">
                     <div class="hero-badge"><i class="fas fa-store"></i> PREMIUM HOUSEHOLD &amp; GROCERY</div>
                     <h1 class="hero-title"><span>Our</span> Product <br>Catalogue</h1>
@@ -2478,39 +2283,6 @@
                         Explore our complete range of premium household goods and kiryana essentials.
                         Select items, build your list, and order directly on WhatsApp for instant collection.
                     </p>
-                </div>
-
-                <!-- Right Column: Search, Categories, Stats -->
-                <div class="hero-right-panel">
-                    <div class="hero-search" id="hero-search">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="hero-search-input" placeholder="Search products by name or brand..." />
-                        <button class="clear-search" id="clear-search-btn" aria-label="Clear search"><i class="fas fa-times-circle"></i></button>
-                        <button id="hero-search-btn"><i class="fas fa-arrow-right"></i> Search</button>
-                    </div>
-
-                    <div class="hero-quick-cats">
-                        <a href="#" data-cat="all" class="active"><i class="fas fa-th-large"></i> All</a>
-                        <a href="#" data-cat="grocery"><i class="fas fa-wheat-awn"></i> Grocery</a>
-                        <a href="#" data-cat="household"><i class="fas fa-soap"></i> Household</a>
-                        <a href="#" data-cat="view-all" style="border-style:dashed;" id="view-all-link"><i class="fas fa-tag"></i> View All</a>
-                    </div>
-
-                    <!-- Stats Card -->
-                    <div class="hero-stats-card">
-                        <div class="stat-item">
-                            <div class="num" id="stat-products-count">12</div>
-                            <div class="label" id="stat-products-label">Products Available</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="num" id="stat-categories-count">2</div>
-                            <div class="label" id="stat-categories-label">Categories</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="num"><i class="fas fa-check-circle"></i></div>
-                            <div class="label" id="stat-stock-label">In Stock Ready</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -2925,9 +2697,6 @@
         const floatingCart = $('#floating-cart');
         const detailOverlay = $('#detail-overlay');
         const detailModal = $('#detail-modal');
-        const heroSearchInput = $('#hero-search-input');
-        const heroSearchBtn = $('#hero-search-btn');
-        const clearSearchBtn = $('#clear-search-btn');
         const backToTopBtn = $('#back-to-top');
 
         // ------------------------------------
@@ -3045,7 +2814,7 @@
                 filtered.sort((a, b) => b.price - a.price);
             }
 
-            // Update stats
+            // Update stats (only product count, categories count)
             const totalProducts = productsData.length;
             const inStockCount = productsData.filter(p => p.inStock).length;
             const categories = [...new Set(productsData.map(p => p.category))];
@@ -3073,8 +2842,6 @@
                         state.inStockOnly = false;
                         state.priceSort = 'default';
                         state.searchQuery = '';
-                        heroSearchInput.value = '';
-                        clearSearchBtn.classList.remove('visible');
                         brandSelect.value = 'all';
                         inStockCheck.checked = false;
                         sortSelect.value = 'default';
@@ -3266,10 +3033,6 @@
 
             document.getElementById('catalogue-title').textContent = t.catalogueTitle;
             document.getElementById('catalogue-sub').textContent = t.catalogueSub;
-            document.getElementById('stat-products-label').textContent = t.statProductsLabel;
-            document.getElementById('stat-categories-label').textContent = t.statCategoriesLabel;
-            document.getElementById('stat-stock-label').textContent = t.statStockLabel;
-            heroSearchInput.placeholder = t.searchPlaceholder;
 
             const filteredCount = productGrid.querySelectorAll('.product-card').length;
             document.getElementById('results-count').textContent =
@@ -3402,74 +3165,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // ---- Clear Search ----
-            clearSearchBtn.addEventListener('click', () => {
-                heroSearchInput.value = '';
-                clearSearchBtn.classList.remove('visible');
-                state.searchQuery = '';
-                renderProducts();
-                const t = getT();
-                const filteredCount = productGrid.querySelectorAll('.product-card').length;
-                document.getElementById('results-count').textContent =
-                    t.resultsCount.replace('{count}', filteredCount);
-            });
-
-            heroSearchInput.addEventListener('input', () => {
-                if (heroSearchInput.value.trim().length > 0) {
-                    clearSearchBtn.classList.add('visible');
-                } else {
-                    clearSearchBtn.classList.remove('visible');
-                }
-            });
-
-            // ---- Hero Search ----
-            function performSearch() {
-                const query = heroSearchInput.value.trim();
-                state.searchQuery = query;
-                if (query.length > 0) {
-                    clearSearchBtn.classList.add('visible');
-                } else {
-                    clearSearchBtn.classList.remove('visible');
-                }
-                renderProducts();
-                const t = getT();
-                const filteredCount = productGrid.querySelectorAll('.product-card').length;
-                document.getElementById('results-count').textContent =
-                    t.resultsCount.replace('{count}', filteredCount);
-            }
-
-            heroSearchBtn.addEventListener('click', performSearch);
-            heroSearchInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') performSearch();
-            });
-
-            // ---- Quick category links ----
-            document.querySelectorAll('.hero-quick-cats a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const cat = link.dataset.cat;
-
-                    if (cat === 'view-all') {
-                        // Smooth scroll to catalogue
-                        document.getElementById('catalogue-section').scrollIntoView({ behavior: 'smooth' });
-                        return;
-                    }
-
-                    document.querySelectorAll('.hero-quick-cats a').forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-
-                    state.selectedCategory = cat;
-                    $$('#category-rail button').forEach(btn => {
-                        btn.classList.toggle('active', btn.dataset.cat === cat);
-                    });
-                    renderProducts();
-                    const t = getT();
-                    const filteredCount = productGrid.querySelectorAll('.product-card').length;
-                    document.getElementById('results-count').textContent =
-                        t.resultsCount.replace('{count}', filteredCount);
-                });
-            });
-
             // ---- Category filter rail ----
             categoryRail.addEventListener('click', (e) => {
                 const btn = e.target.closest('button');
@@ -3477,11 +3172,6 @@
                 const cat = btn.dataset.cat;
                 state.selectedCategory = cat;
                 $$('#category-rail button').forEach(b => b.classList.toggle('active', b === btn));
-
-                document.querySelectorAll('.hero-quick-cats a').forEach(link => {
-                    link.classList.toggle('active', link.dataset.cat === cat);
-                });
-
                 renderProducts();
                 const t = getT();
                 const filteredCount = productGrid.querySelectorAll('.product-card').length;
