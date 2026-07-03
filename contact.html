@@ -603,7 +603,7 @@
             background: var(--accent);
         }
 
-        /* ---------- CONTACT HERO ---------- */
+        /* ---------- CONTACT HERO (CENTERED) ---------- */
         .contact-hero {
             background: var(--primary);
             padding: 40px 16px 40px;
@@ -616,20 +616,19 @@
 
         @media (min-width: 640px) {
             .contact-hero {
-                padding: 40px 24px 40px;
+                padding: 50px 24px 50px;
             }
         }
 
         @media (min-width: 768px) {
             .contact-hero {
-                padding: 60px 32px 50px;
-                text-align: left;
+                padding: 70px 32px 60px;
             }
         }
 
         @media (min-width: 1024px) {
             .contact-hero {
-                padding: 80px 48px 60px;
+                padding: 90px 48px 80px;
             }
         }
 
@@ -638,6 +637,11 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .contact-hero .hero-badge {
@@ -658,12 +662,6 @@
             margin: 0 auto 16px;
         }
 
-        @media (min-width: 768px) {
-            .contact-hero .hero-badge {
-                margin: 0 0 16px 0;
-            }
-        }
-
         .contact-hero .hero-badge i {
             font-size: 0.8875rem;
             color: var(--accent);
@@ -676,6 +674,7 @@
             letter-spacing: -0.02em;
             text-transform: uppercase;
             color: white;
+            text-align: center;
         }
 
         .contact-hero .hero-title span {
@@ -700,11 +699,140 @@
             max-width: 560px;
             line-height: 1.6;
             margin: 0 auto;
+            text-align: center;
+        }
+
+        /* ---------- HERO DECORATIVE FEATURE CARD ---------- */
+        .hero-feature-card {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 24px 28px;
+            margin-top: 28px;
+            max-width: 480px;
+            width: 100%;
+            text-align: left;
+            transition: all 0.4s ease;
+        }
+
+        .hero-feature-card:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-feature-card .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .hero-feature-card .feature-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .hero-feature-card .feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(6, 182, 212, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .hero-feature-card .feature-icon i {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .hero-feature-card .feature-content {
+            flex: 1;
+        }
+
+        .hero-feature-card .feature-content .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        .hero-feature-card .feature-content .value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .hero-feature-card .feature-content .value i {
+            color: var(--accent);
+            margin-right: 4px;
+        }
+
+        .hero-feature-card .feature-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 12px 0;
+        }
+
+        .hero-feature-card .quick-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--whatsapp);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 4px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-feature-card .quick-action:hover {
+            background: #20ba59;
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+        }
+
+        .hero-feature-card .quick-action i {
+            font-size: 1.1rem;
         }
 
         @media (min-width: 768px) {
-            .contact-hero .hero-desc {
-                margin: 0;
+            .hero-feature-card {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-top: 0;
+                max-width: 340px;
+            }
+
+            .hero-feature-card:hover {
+                transform: translateY(calc(-50% - 4px));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-feature-card {
+                max-width: 380px;
+                padding: 28px 32px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-feature-card {
+                display: block;
+                margin-top: 24px;
             }
         }
 
@@ -1094,7 +1222,7 @@
             color: white;
         }
 
-        /* ---------- FOOTER (FIXED ALIGNMENT) ---------- */
+        /* ---------- FOOTER ---------- */
         footer {
             background: var(--primary);
             color: white;
@@ -1254,6 +1382,21 @@
         }
 
         .footer-col .info-item a:hover {
+            color: white;
+        }
+
+        .footer-col .info-item .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 2px;
+            text-decoration: none;
+        }
+
+        .footer-col .info-item .map-link:hover {
             color: white;
         }
 
@@ -2166,7 +2309,7 @@
         </div>
     </div>
 
-    <!-- ==================== CONTACT HERO ==================== -->
+    <!-- ==================== CONTACT HERO (CENTERED) ==================== -->
     <section class="contact-hero">
         <div class="contact-hero-inner">
             <div class="hero-badge"><i class="fas fa-phone-alt"></i> <span id="hero-badge-text">Get in Touch</span>
@@ -2176,6 +2319,48 @@
             <p class="hero-desc" id="hero-desc">
                 We'd love to hear from you. Reach out for inquiries, orders, or just to say hello!
             </p>
+
+            <!-- Decorative Feature Card - fills empty right side on desktop, shown below on mobile -->
+            <div class="hero-feature-card">
+                <div class="feature-row">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="feature-content">
+                        <div class="label">Visit Our Store</div>
+                        <div class="value"><i class="fas fa-location-dot"></i> Main Chowk, Baffa</div>
+                    </div>
+                </div>
+
+                <div class="feature-divider"></div>
+
+                <div class="feature-row">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="feature-content">
+                        <div class="label">Opening Hours</div>
+                        <div class="value">7:00 AM – 9:00 PM <span style="font-weight:400;opacity:0.6;">· Daily</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-divider"></div>
+
+                <div class="feature-row">
+                    <div class="feature-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="feature-content">
+                        <div class="label">Call or WhatsApp</div>
+                        <div class="value" style="font-size:0.85rem;">+92 336 9595531</div>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/923369595531" target="_blank" class="quick-action">
+                    <i class="fab fa-whatsapp"></i> Chat with us
+                </a>
+            </div>
         </div>
     </section>
 
@@ -2273,7 +2458,7 @@
 
     </main>
 
-    <!-- ==================== FOOTER (FIXED ALIGNMENT) ==================== -->
+    <!-- ==================== FOOTER ==================== -->
     <footer>
         <div class="footer-inner">
             <div class="footer-grid">
@@ -2302,10 +2487,10 @@
                     <div class="info-item">
                         <i class="fas fa-map-pin"></i>
                         <div>
-                            <span class="strong">Main Bazar Chowk, Baffa</span><br />
-                            <span>Tehsil Baffa-Pakhal, Mansehra, KP</span><br />
-                            <!-- Google Maps link -->
-                            <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-link">
+                            <span class="strong">Main Chowk, Baffa</span><br />
+                            <span>Mansehra, KP</span>
+                            <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu"
+                                target="_blank" class="map-link">
                                 <i class="fas fa-directions"></i> View on Google Maps
                             </a>
                         </div>
@@ -3242,7 +3427,7 @@
 
             renderAll();
 
-            console.log('Contact page loaded with updated map and left-aligned cards.');
+            console.log('Contact page loaded with hero centered and feature card added.');
         }
 
         document.addEventListener('DOMContentLoaded', init);
