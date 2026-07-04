@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        /* (same as before, no changes) */
+        /* (your existing CSS – unchanged) */
         * {
             margin: 0;
             padding: 0;
@@ -2435,7 +2435,6 @@
                     order directly on WhatsApp for instant collection!
                 </p>
                 <div class="hero-actions">
-                    <!-- Changed icon to fa-shopping-bag -->
                     <button class="btn-primary" id="hero-catalogue-btn"><i class="fas fa-shopping-bag"></i> Browse Catalogue</button>
                     <button class="btn-secondary" id="hero-about-btn">Our Story</button>
                 </div>
@@ -2592,7 +2591,6 @@
                     </div>
                     <div style="margin-top:12px;">
                         <div class="label">Instant Order Line</div>
-                        <!-- Keep old number for display, add new number -->
                         <div style="display:flex; flex-direction:column; gap:4px; margin-top:4px;">
                             <a href="https://wa.me/923145160991" target="_blank" class="phone-link">
                                 <i class="fab fa-whatsapp"></i> +92 314 5160991
@@ -2613,7 +2611,6 @@
                         <div class="sub">Stop by Main Chowk Baffa Bazar for immediate collection.</div>
                     </div>
                 </div>
-                <!-- Added icon to Get Directions button -->
                 <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXSoASAFQAw%3D%3D" target="_blank" class="directions">
                     <i class="fas fa-location-dot"></i> Get Directions
                 </a>
@@ -2737,7 +2734,6 @@
                 </div>
                 <div id="footer-step2" style="display:none;">
                     <button class="back-btn" id="back-to-list"><i class="fas fa-chevron-left"></i> Back to List</button>
-                    <!-- Changed WhatsApp button icon to fa-paper-plane for distinction -->
                     <a class="whatsapp-btn" id="whatsapp-btn" href="#" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-paper-plane"></i> Confirm &amp; Send to WhatsApp
                     </a>
@@ -2787,21 +2783,38 @@
     </div>
 
     <script>
+        // ========== UPDATED PRODUCTS DATA ==========
         const productsData = [
-            { id: 'p1', name: 'Premium Basmati Rice (5kg)', urduName: 'بیسمنٹی چاول', category: 'grocery', brand: 'Kissan', price: 1200, unit: '5kg', description: 'Premium quality long-grain basmati rice, aged for perfect aroma.', urduDescription: 'اعلیٰ قسم کے بیسمنٹی چاول، خوشبودار اور لمبے دانے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Rice' },
-            { id: 'p2', name: 'Wheat Flour (10kg)', urduName: 'گندم کا آٹا', category: 'grocery', brand: 'Chakki', price: 850, unit: '10kg', description: 'Stone-ground whole wheat flour, fresh and nutritious.', urduDescription: 'پتھر کی چکی کا تازہ گندم کا آٹا، صحت مند اور لذیذ۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Flour' },
-            { id: 'p3', name: 'Cooking Oil (5L)', urduName: 'کھانے کا تیل', category: 'grocery', brand: 'Dalda', price: 1800, unit: '5L', description: 'Pure vegetable cooking oil, ideal for all cooking needs.', urduDescription: 'خالص سبزیوں کا تیل، ہر قسم کے کھانے کے لیے بہترین۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Oil' },
-            { id: 'p4', name: 'Sugar (5kg)', urduName: 'شکر', category: 'grocery', brand: 'Safina', price: 750, unit: '5kg', description: 'Fine granulated white sugar, perfect for sweetening.', urduDescription: 'اعلیٰ معیار کی سفید شکر، میٹھے ذائقے کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Sugar' },
-            { id: 'p5', name: 'Red Lentils (Masoor) 1kg', urduName: 'مصری دال', category: 'grocery', brand: 'National', price: 250, unit: '1kg', description: 'Premium red lentils, rich in protein and fibre.', urduDescription: 'اعلیٰ معیار کی مصری دال، پروٹین اور فائبر سے بھرپور۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Lentils' },
-            { id: 'p6', name: 'Chickpeas (Kabuli) 2kg', urduName: 'کابلی چنا', category: 'grocery', brand: 'Kisan', price: 400, unit: '2kg', description: 'Large kabuli chickpeas, premium quality for curries.', urduDescription: 'بڑے کابلی چنے، سالن اور چاٹ کے لیے بہترین۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Chickpeas' },
-            { id: 'p7', name: 'Dish Washing Liquid (1L)', urduName: 'برتن دھونے کا صابن', category: 'household', brand: 'Vim', price: 220, unit: '1L', description: 'Effective grease-cutting dishwashing liquid, lemon fresh.', urduDescription: 'چکنائی ختم کرنے والا برتن دھونے کا مائع، لیموں کی خوشبو۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Dish+Wash' },
-            { id: 'p8', name: 'Floor Cleaner (2L)', urduName: 'فرش کلینر', category: 'household', brand: 'Harpic', price: 350, unit: '2L', description: 'Powerful floor cleaner that removes stains and leaves shine.', urduDescription: 'طاقتور فرش کلینر جو داغ ہٹاتا ہے اور چمک لاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Floor+Cleaner' },
-            { id: 'p9', name: 'Laundry Detergent (3kg)', urduName: 'کپڑے دھونے کا پاؤڈر', category: 'household', brand: 'Surf Excel', price: 480, unit: '3kg', description: 'High-performance detergent that removes tough stains.', urduDescription: 'اعلیٰ کارکردگی کا ڈٹرجنٹ جو مشکل داغ ہٹاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Detergent' },
-            { id: 'p10', name: 'Toilet Cleaner (500ml)', urduName: 'ٹوائلٹ کلینر', category: 'household', brand: 'Harpic', price: 180, unit: '500ml', description: 'Thick liquid toilet cleaner, kills germs and removes limescale.', urduDescription: 'گاڑھا ٹوائلٹ کلینر، جراثیم کو ختم کرتا اور پتھری ہٹاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Toilet+Cleaner' },
-            { id: 'p11', name: 'Insect Repellent Spray (500ml)', urduName: 'کیڑے مکوڑے مارنے والا سپرے', category: 'household', brand: 'Mortein', price: 300, unit: '500ml', description: 'Effective insect repellent for mosquitoes and flies.', urduDescription: 'مچھروں اور مکھیوں کے لیے مؤثر کیڑے مار سپرے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Repellent' },
-            { id: 'p12', name: 'Dusting Cloth (Pack of 2)', urduName: 'جھاڑن کا کپڑا', category: 'household', brand: 'Brite', price: 120, unit: '2 pcs', description: 'Soft, lint-free microfibre cloth for dusting.', urduDescription: 'نرم، بغیر ریشے کے مائیکرو فائبر کپڑا جھاڑن کے لیے۔', inStock: false, image: 'https://placehold.co/400x400/009fb2/white?text=Cloth' },
+            // ----- GROCERY ITEMS (5) -----
+            { id: 'p1', name: 'Wheat Flour (Atta) 20kg', urduName: 'گندم کا آٹا', category: 'grocery', brand: 'Fine', price:2400, unit: '20kg', description: 'Premium stone-ground whole wheat flour, fresh and nutritious.', urduDescription: 'پتھر کی چکی کا اعلیٰ گندم کا آٹا، تازہ اور غذائیت سے بھرپور۔', inStock: true, image: './Atta.png' },
+            { id: 'p2', name: 'Basmati Rice 5kg', urduName: 'بیسمنٹی چاول', category: 'grocery', brand: 'Kissan', price: 700, unit: '5kg', description: 'Aged premium basmati rice with long grains and rich aroma.', urduDescription: 'پرانا اعلیٰ بیسمنٹی چاول، لمبے دانے اور خوشبو دار۔', inStock: true, image: './rice.png' },
+            { id: 'p3', name: 'Cooking Oil 5L', urduName: 'کھانے کا تیل', category: 'grocery', brand: 'Dalda', price: 2000, unit: '5L', description: 'Pure vegetable cooking oil for all your daily cooking needs.', urduDescription: 'خالص سبزیوں کا تیل، روزمرہ کھانے کے لیے۔', inStock: true, image: './Dalda.png' },
+            { id: 'p4', name: 'Sugar 5kg', urduName: 'شکر', category: 'grocery', brand: 'Safina', price: 800, unit: '5kg', description: 'Fine white granulated sugar for perfect sweetness.', urduDescription: 'اعلیٰ سفید شکر، میٹھے ذائقے کے لیے۔', inStock: true, image: './sugar.png' },
+            { id: 'p5', name: 'Red Chili Powder 500g', urduName: 'لال مرچ پاؤڈر', category: 'grocery', brand: 'National', price: 300, unit: '500g', description: 'Pure ground red chili with rich color and heat.', urduDescription: 'خالص لال مرچ پاؤڈر، تیز رنگ اور گرمائش۔', inStock: true, image: './redchilipowder.png' },
+
+            // ----- DRY FRUITS (5) -----
+            { id: 'p6', name: 'Almonds 500g', urduName: 'بادام', category: 'grocery', brand: 'Premium', price: 1200, unit: '500g', description: 'Premium quality almonds, rich in nutrients and crunch.', urduDescription: 'اعلیٰ بادام، غذائیت سے بھرپور اور کرسپی۔', inStock: true, image: './almond.png' },
+            { id: 'p7', name: 'Walnuts 500g', urduName: 'اخروٹ', category: 'grocery', brand: 'Premium', price: 1000, unit: '500g', description: 'Fresh walnuts with a healthy dose of omega-3.', urduDescription: 'تازہ اخروٹ، اومیگا ۳ سے بھرپور۔', inStock: true, image: './walnuts.png' },
+            { id: 'p8', name: 'Dates 500g', urduName: 'کھجور', category: 'grocery', brand: 'Premium', price: 600, unit: '500g', description: 'Natural sweet dates, perfect for snacks and energy.', urduDescription: 'قدرتی میٹھی کھجور، ناشتے اور توانائی کے لیے۔', inStock: true, image: 'DATES.png' },
+            { id: 'p9', name: 'Raisins 500g', urduName: 'کشمش', category: 'grocery', brand: 'Premium', price: 700, unit: '500g', description: 'Sun-dried raisins, sweet and chewy.', urduDescription: 'دھوپ میں خشک کشمش، میٹھی اور چبانے والی۔', inStock: true, image: './raisins.png' },
+            { id: 'p10', name: 'Pistachios 500g', urduName: 'پستہ', category: 'grocery', brand: 'Premium', price: 1500, unit: '500g', description: 'Premium pistachios with vibrant green colour and rich taste.', urduDescription: 'اعلیٰ پستہ، خوش رنگ اور ذائقہ دار۔', inStock: true, image: './pista.png' },
+
+            // ----- MISCELLANEOUS & UTILITY (5) -----
+            { id: 'p11', name: 'Matchbox (Pack of 10)', urduName: 'ماچس (۱۰ پیک)', category: 'household', brand: 'Lion', price: 100, unit: '10pk', description: 'Durable matchboxes for everyday use.', urduDescription: 'پائیدار ماچس روزمرہ استعمال کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Matchbox' },
+            { id: 'p12', name: 'Mosquito Coil (5 coils)', urduName: 'مچھر مار کوئل', category: 'household', brand: 'Mortein', price: 200, unit: '5 coils', description: 'Effective mosquito repellent coils for a peaceful night.', urduDescription: 'مؤثر مچھر مار کوئل، رات کو پرسکون نیند کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Coil' },
+            { id: 'p13', name: 'Panadol (10 tablets)', urduName: 'پیناڈول (۱۰ گولیاں)', category: 'household', brand: 'Panadol', price: 150, unit: '10 tabs', description: 'Fast-acting pain relief tablets.', urduDescription: 'تیز اثر والی درد کش گولیاں۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Panadol' },
+            { id: 'p14', name: 'Notebook', urduName: 'کاپی', category: 'household', brand: 'Oxford', price: 120, unit: 'each', description: 'Premium quality notebook for notes and writing.', urduDescription: 'اعلیٰ کوالٹی کاپی نوٹس اور لکھائی کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Notebook' },
+            { id: 'p15', name: 'AA Batteries (Pack of 4)', urduName: 'اے اے بیٹریاں (۴ پیک)', category: 'household', brand: 'Duracell', price: 400, unit: '4 pack', description: 'Long-lasting alkaline batteries for all your devices.', urduDescription: 'لمبی عمر والی الکلائن بیٹریاں آپ کے آلات کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Batteries' },
+
+            // ----- CLEANING & LAUNDRY (5) -----
+            { id: 'p16', name: 'Washing Powder 3kg', urduName: 'کپڑے دھونے کا پاؤڈر', category: 'household', brand: 'Surf Excel', price: 500, unit: '3kg', description: 'Powerful detergent that removes tough stains effortlessly.', urduDescription: 'طاقتور ڈٹرجنٹ جو مشکل داغ آسانی سے ہٹاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Wash+powder' },
+            { id: 'p17', name: 'Dishwash Liquid 1L', urduName: 'برتن دھونے کا مائع', category: 'household', brand: 'Vim', price: 250, unit: '1L', description: 'Grease-cutting dishwash liquid with lemon freshness.', urduDescription: 'چکنائی ختم کرنے والا برتن دھونے کا مائع، لیموں کی خوشبو۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Dishwash' },
+            { id: 'p18', name: 'Floor Cleaner 2L', urduName: 'فرش کلینر', category: 'household', brand: 'Harpic', price: 350, unit: '2L', description: 'Effective floor cleaner that removes stains and leaves shine.', urduDescription: 'مؤثر فرش کلینر جو داغ ہٹاتا اور چمک لاتا ہے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Floor+cleaner' },
+            { id: 'p19', name: 'Toilet Cleaner 500ml', urduName: 'ٹوائلٹ کلینر', category: 'household', brand: 'Harpic', price: 180, unit: '500ml', description: 'Thick liquid toilet cleaner for thorough hygiene.', urduDescription: 'گاڑھا ٹوائلٹ کلینر مکمل صفائی کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Toilet+cleaner' },
+            { id: 'p20', name: 'Bleach 500ml', urduName: 'بلیچ', category: 'household', brand: 'Robin Blue', price: 150, unit: '500ml', description: 'Strong bleach for whitening and stain removal.', urduDescription: 'طاقتور بلیچ سفیدی اور داغ ہٹانے کے لیے۔', inStock: true, image: 'https://placehold.co/400x400/009fb2/white?text=Bleach' },
         ];
 
+        // --- The rest of your JavaScript (unchanged) ---
         const translations = {
             en: {
                 allProducts: 'All Products', categoryGrocery: 'Grocery', categoryHousehold: 'Household',
@@ -3453,7 +3466,6 @@
                 state.customerNotes = e.target.value;
             });
 
-            // Updated WhatsApp link to use new number +92 336 9595531
             document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
                 const name = document.getElementById('customer-name').value.trim();
                 const phone = document.getElementById('customer-phone').value.trim();
@@ -3485,7 +3497,6 @@
                 });
                 msg += `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
                 msg += `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
-                // NEW NUMBER HERE
                 const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
                 window.open(url, '_blank');
             });
