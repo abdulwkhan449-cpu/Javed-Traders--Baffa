@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <style>
-        /* ========== STYLES (unchanged – standard 4-column grid) ========== */
+        /* ---------- RESET & BASE ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -79,7 +79,7 @@
             font-family: 'Courier New', monospace;
         }
 
-        /* ---------- Toast ---------- */
+        /* ---------- TOAST ---------- */
         #toast-container {
             position: fixed;
             top: 20px;
@@ -116,7 +116,7 @@
             color: var(--accent);
         }
 
-        /* ---------- Header ---------- */
+        /* ---------- HEADER (FORCED LTR) ---------- */
         header {
             position: sticky;
             top: 0;
@@ -125,6 +125,7 @@
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-color);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            direction: ltr !important;
         }
 
         .header-inner {
@@ -159,10 +160,10 @@
             line-height: 1.2;
             color: var(--text-primary);
         }
-
         .logo h1 span {
             color: var(--primary);
         }
+
         .logo .sub {
             display: none;
             font-size: 0.7875rem;
@@ -350,7 +351,7 @@
             }
         }
 
-        /* ---------- Mobile Menu ---------- */
+        /* ---------- MOBILE MENU (FORCED LTR) ---------- */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -364,6 +365,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
+            direction: ltr !important;
         }
 
         .mobile-overlay.open {
@@ -481,12 +483,10 @@
             gap: 10px;
             color: white;
         }
-
         .mobile-cart-btn .cart-left i {
             color: var(--accent);
             font-size: 1.1rem;
         }
-
         .mobile-cart-btn .cart-left .label {
             font-size: 0.85rem;
             font-weight: 600;
@@ -498,7 +498,6 @@
             align-items: center;
             gap: 8px;
         }
-
         .mobile-cart-btn .cart-right .badge {
             background: var(--discount);
             color: white;
@@ -512,14 +511,12 @@
             font-weight: 700;
             font-family: 'Inter', monospace;
         }
-
         .mobile-cart-btn .cart-right .total {
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.8rem;
             font-weight: 600;
             font-family: 'Inter', monospace;
         }
-
         .mobile-cart-btn .cart-right .arrow {
             color: var(--accent);
             font-size: 0.8rem;
@@ -573,14 +570,13 @@
         .mobile-call:hover {
             background: var(--accent);
         }
-
         .mobile-call .num-sep {
             color: rgba(255, 255, 255, 0.4);
             font-weight: 300;
             margin: 0 4px;
         }
 
-        /* ---------- Catalogue Hero ---------- */
+        /* ---------- CATALOGUE HERO ---------- */
         .catalogue-hero {
             background: var(--primary);
             padding: 40px 16px 40px;
@@ -682,14 +678,14 @@
             margin: 0 auto;
         }
 
-        /* ---------- Main ---------- */
+        /* ---------- MAIN ---------- */
         main {
             max-width: 1280px;
             margin: 0 auto;
             padding: 40px 16px 60px;
         }
 
-        /* ---------- Catalogue Filters ---------- */
+        /* ---------- CATALOGUE FILTERS ---------- */
         .catalogue-header {
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 12px;
@@ -803,7 +799,7 @@
             cursor: pointer;
         }
 
-        /* ---------- Product Grid ---------- */
+        /* ---------- PRODUCT GRID ---------- */
         .product-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1119,7 +1115,7 @@
             text-align: center;
         }
 
-        /* ---------- Empty State ---------- */
+        /* ---------- EMPTY STATE ---------- */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
@@ -1167,7 +1163,7 @@
             background: var(--primary);
         }
 
-        /* ---------- Footer ---------- */
+        /* ---------- FOOTER ---------- */
         footer {
             background: var(--primary);
             color: white;
@@ -1340,7 +1336,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* ---------- Drawer ---------- */
+        /* ---------- DRAWER ---------- */
         .drawer-overlay {
             position: fixed;
             inset: 0;
@@ -1780,7 +1776,7 @@
             font-size: 1.1875rem;
         }
 
-        /* ---------- Detail Modal ---------- */
+        /* ---------- DETAIL MODAL ---------- */
         .detail-overlay {
             position: fixed;
             inset: 0;
@@ -2040,7 +2036,7 @@
             text-align: center;
         }
 
-        /* ---------- Floating Cart ---------- */
+        /* ---------- FLOATING CART ---------- */
         .floating-cart {
             position: fixed;
             bottom: 24px;
@@ -2117,33 +2113,7 @@
             font-size: 1.0375rem;
         }
 
-        .scroll-mt-24 {
-            scroll-margin-top: 100px;
-        }
-
-        @media (max-width: 640px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .dir-rtl {
-            direction: rtl;
-        }
-
-        .text-right-urdu {
-            text-align: right;
-        }
-
-        .font-urdu {
-            font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', serif;
-            direction: rtl;
-        }
-
-        /* ---------- Back to Top ---------- */
+        /* ---------- BACK TO TOP ---------- */
         .back-to-top {
             position: fixed;
             bottom: 90px;
@@ -2184,6 +2154,40 @@
                 height: 42px;
                 font-size: 1rem;
             }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---------- DIRECTION OVERRIDES ---------- */
+        .dir-rtl {
+            direction: rtl;
+        }
+
+        .dir-rtl .catalogue-hero,
+        .dir-rtl main,
+        .dir-rtl footer,
+        .dir-rtl .drawer-overlay,
+        .dir-rtl .detail-overlay,
+        .dir-rtl .floating-cart,
+        .dir-rtl .back-to-top {
+            direction: rtl;
+        }
+
+        .text-right-urdu {
+            text-align: right;
+        }
+
+        .font-urdu {
+            font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', serif;
+            direction: rtl;
+        }
+
+        .scroll-mt-24 {
+            scroll-margin-top: 100px;
         }
     </style>
 </head>
@@ -2193,8 +2197,8 @@
     <!-- Toast Container -->
     <div id="toast-container"></div>
 
-    <!-- ==================== HEADER ==================== -->
-    <header>
+    <!-- ===== HEADER – FORCED LTR ===== -->
+    <header dir="ltr">
         <div class="header-inner">
             <a href="index.html" class="logo" id="home-link">
                 <h1><span>Javed</span> Traders</h1>
@@ -2225,8 +2229,8 @@
         </div>
     </header>
 
-    <!-- ==================== MOBILE MENU ==================== -->
-    <div class="mobile-overlay" id="mobile-overlay">
+    <!-- ===== MOBILE MENU – FORCED LTR ===== -->
+    <div class="mobile-overlay" id="mobile-overlay" dir="ltr">
         <div class="mobile-menu">
             <div class="mobile-menu-header">
                 <div class="logo-text"><span>Javed</span> Traders</div>
@@ -2265,14 +2269,14 @@
         </div>
     </div>
 
-    <!-- ==================== CATALOGUE HERO ==================== -->
+    <!-- ===== CATALOGUE HERO ===== -->
     <section class="catalogue-hero">
         <div class="catalogue-hero-inner">
             <div class="catalogue-hero-content">
                 <div class="catalogue-hero-text">
                     <div class="hero-badge"><i class="fas fa-store"></i> PREMIUM HOUSEHOLD &amp; GROCERY</div>
                     <h1 class="hero-title"><span>Our</span> Product <br>Catalogue</h1>
-                    <p class="hero-desc">
+                    <p class="hero-desc" id="hero-desc">
                         Explore our complete range of premium household goods and kiryana essentials.
                         Select items, build your list, and order directly on WhatsApp for instant collection.
                     </p>
@@ -2281,7 +2285,7 @@
         </div>
     </section>
 
-    <!-- ==================== MAIN ==================== -->
+    <!-- ===== MAIN ===== -->
     <main id="main-content">
 
         <section id="catalogue-section">
@@ -2331,7 +2335,7 @@
 
     </main>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-inner">
             <div class="footer-grid">
@@ -2386,7 +2390,7 @@
         </div>
     </footer>
 
-    <!-- ==================== SHOPPING LIST DRAWER ==================== -->
+    <!-- ===== DRAWER ===== -->
     <div class="drawer-overlay" id="drawer-overlay">
         <div class="drawer" id="drawer">
             <div class="drawer-header">
@@ -2462,7 +2466,7 @@
         </div>
     </div>
 
-    <!-- ==================== PRODUCT DETAIL MODAL ==================== -->
+    <!-- ===== DETAIL MODAL ===== -->
     <div class="detail-overlay" id="detail-overlay">
         <div class="detail-modal" id="detail-modal">
             <button class="close-detail" id="close-detail"><i class="fas fa-times"></i></button>
@@ -2488,7 +2492,7 @@
         </div>
     </div>
 
-    <!-- ==================== FLOATING CART ==================== -->
+    <!-- ===== FLOATING CART ===== -->
     <div class="floating-cart" id="floating-cart">
         <button id="floating-cart-btn">
             <div class="icon-wrap">
@@ -2503,15 +2507,17 @@
         </button>
     </div>
 
-    <!-- ==================== BACK TO TOP ==================== -->
+    <!-- ===== BACK TO TOP ===== -->
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- ==================== JAVASCRIPT ==================== -->
+    <!-- ============================================================ -->
+    <!-- ==================== JAVASCRIPT ============================= -->
+    <!-- ============================================================ -->
     <script>
         // ================================================================
-        // ALL PRODUCTS — EVERY ITEM FROM YOUR LISTS
+        // ALL PRODUCTS
         // ================================================================
         const productsData = [
             // ---------- GROCERY: Flour & Rice ----------
@@ -2651,6 +2657,36 @@
                 formNotesLabel: 'Special Instructions (Optional)',
                 formHint: 'Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.',
                 emptyList: 'Your list is empty. Start adding products from the catalogue!',
+                heroDesc: 'Explore our complete range of premium household goods and kiryana essentials. Select items, build your list, and order directly on WhatsApp for instant collection.',
+                aboutP1: 'At Javed Traders, we pride ourselves on being the absolute cornerstone of Kiryana and household retail in Baffa. Established under the core philosophy of unbeatable prices and genuine product quality, we serve hundreds of loyal local families with absolute dedication.',
+                aboutP2: 'Our digital showroom brings convenience to your fingertips while maintaining the traditional values of trust and personal service.',
+                whyTitle: 'Why Shop With Us?',
+                why1: 'Only Premium Grade Households & Kiryana Goods',
+                why2: 'Direct Click & Collect WhatsApp Booking',
+                why3: 'Located right at Main Chowk Baffa Bazar',
+                why4: 'Generations of Trust and Authentic Pricing',
+                contactTitle: 'Contact Us',
+                contactSub: 'MAIN CHOWK BAFFA BAZAR • IN-STORE PICKUP COORDINATES',
+                ownerLabel: 'Proprietors',
+                ownerDesc: 'Family grocery business serving the Pakhal region with dedication.',
+                locationLabel: 'Location',
+                locationDesc: 'Main Chowk, Baffa, Mansehra, KP',
+                timingsLabel: 'Timings',
+                timingMain: '7:00 AM – 9:00 PM',
+                timingDays: 'Monday to Sunday',
+                timingFriday: 'Friday: Open (Closed for Jummah prayer only)',
+                packTime: 'Pack-time: 24 Hours',
+                whatsappOrder: 'Confirm & Send to WhatsApp',
+                backToList: 'Back to List',
+                proceedToForm: 'Enter Order Information',
+                clearList: 'Clear Entire List',
+                formSummary: 'Order Summary',
+                namePlaceholder: 'e.g. Usman Javed',
+                phonePlaceholder: 'e.g. 0336 9595531',
+                notesPlaceholder: 'e.g. Please select the freshest packets only...',
+                readyNote: 'Ready in approx. 24 hours',
+                noPaymentNote: 'NO ONLINE PAYMENT REQUIRED',
+                drawerEmpty: 'Your list is empty. Start adding products from the catalogue!',
             },
             ur: {
                 allProducts: 'تمام اشیاء',
@@ -2682,6 +2718,36 @@
                 formNotesLabel: 'اضافی نوٹ (اختیاری)',
                 formHint: 'آپ کی فراہم کردہ معلومات اور لسٹ کو واٹس ایپ پیغام کی شکل میں تبدیل کیا جائے گا تاکہ جاوید ٹریڈرز بفہ آپ کا آرڈر باآسانی تیار رکھ سکیں۔',
                 emptyList: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
+                heroDesc: 'بفہ کے جدید گھریلو اور کریانہ کے شو روم میں خوش آمدید۔ ہماری مکمل رینج دیکھیں، اشیاء منتخب کریں، اور براہ راست واٹس ایپ پر آرڈر دیں۔',
+                aboutP1: 'جاوید ٹریڈرز بفہ بازار میں مخلص اور دیانتدار خاندانی روایات کے تحت کریانہ اور گھریلو سامان کی فراہمی کا سب سے معتبر ادارہ ہے۔ ہمارا مقصد اپنے تمام صارفین کو مارکیٹ سے سستی اور خالص ترین اشیاء فراہم کرنا ہے۔',
+                aboutP2: 'ہمارا ڈیجیٹل شو روم آپ کی سہولت کے لیے ہے، جبکہ روایتی اقدار اور اعتماد کو برقرار رکھتا ہے۔',
+                whyTitle: 'ہماری دکان کی خصوصیات',
+                why1: 'صرف اعلیٰ برانڈز اور خالص ترین اشیاء',
+                why2: 'براہ راست واٹس ایپ آرڈر اور فوری پیکنگ سروس',
+                why3: 'بفہ بازار کے مرکز مین چوک پر بہترین لوکیشن',
+                why4: 'نسلوں کا اعتماد اور انتہائی سستی قیمتیں',
+                contactTitle: 'رابطہ کریں',
+                contactSub: 'مین چوک بفہ بازار • ان اسٹور وصولی کوآرڈینٹس',
+                ownerLabel: 'مالکان',
+                ownerDesc: 'خاندانی کریانہ کاروبار جو پکھل علاقے میں دیانتداری کے ساتھ خدمات فراہم کر رہا ہے۔',
+                locationLabel: 'پتہ',
+                locationDesc: 'مین چوک، بفہ، مانسہرہ، کے پی',
+                timingsLabel: 'اوقات',
+                timingMain: 'صبح 7 تا رات 9',
+                timingDays: 'پیر تا اتوار',
+                timingFriday: 'جمعہ: کھلا ہے (صرف جمعہ کی نماز کے لیے بند)',
+                packTime: 'پیکنگ کا وقت: 24 گھنٹے',
+                whatsappOrder: 'تصدیق کریں اور واٹس ایپ پر بھیجیں',
+                backToList: 'لسٹ پر واپس جائیں',
+                proceedToForm: 'آرڈر کی معلومات درج کریں',
+                clearList: 'پوری لسٹ صاف کریں',
+                formSummary: 'آرڈر کا خلاصہ',
+                namePlaceholder: 'مثال: اسمان جاوید',
+                phonePlaceholder: 'مثال: 0336 9595531',
+                notesPlaceholder: 'مثال: براہ کرم تازہ ترین پیکٹ منتخب کریں...',
+                readyNote: 'تقریباً 24 گھنٹے میں تیار',
+                noPaymentNote: 'آن لائن ادائیگی کی ضرورت نہیں',
+                drawerEmpty: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
             }
         };
 
@@ -3040,9 +3106,15 @@
             brandSelect.value = current;
         }
 
+        // --------------------------------------------------------------
+        // updateLanguageUI – header is NOT touched; stays in English LTR
+        // --------------------------------------------------------------
         function updateLanguageUI() {
             const t = getT();
 
+            // ----- HEADER IS IGNORED – stays English + LTR -----
+
+            // ----- FILTERS -----
             $$('#category-rail button').forEach(btn => {
                 const cat = btn.dataset.cat;
                 if (cat === 'all') btn.textContent = t.allProducts;
@@ -3064,10 +3136,34 @@
             document.getElementById('results-count').textContent =
                 t.resultsCount.replace('{count}', filteredCount || productsData.length);
 
+            // ----- HERO -----
+            document.getElementById('hero-desc').textContent = t.heroDesc;
+
+            // ----- FOOTER -----
             document.getElementById('footer-about').textContent = t.footerAbout;
             document.getElementById('footer-timings-title').textContent = t.footerTimings;
             document.getElementById('footer-location-title').textContent = t.footerLocation;
 
+            const timingWrapper = document.querySelector('.footer-timing-wrapper');
+            if (timingWrapper) {
+                if (state.lang === 'ur') {
+                    timingWrapper.innerHTML = `
+                        <span class="time-main">${t.timingMain}</span>
+                        <span class="time-sub">${t.timingDays}</span>
+                        <span class="time-friday"><strong>جمعہ:</strong> ${t.timingFriday}</span>
+                        <span class="time-pack">${t.packTime}</span>
+                    `;
+                } else {
+                    timingWrapper.innerHTML = `
+                        <span class="time-main">${t.timingMain}</span>
+                        <span class="time-sub">${t.timingDays}</span>
+                        <span class="time-friday"><strong>Friday:</strong> ${t.timingFriday}</span>
+                        <span class="time-pack">${t.packTime}</span>
+                    `;
+                }
+            }
+
+            // ----- DRAWER -----
             document.getElementById('drawer-title').textContent = t.shoppingListTitle;
             document.getElementById('estimated-total-label').textContent = t.estimatedTotal + ':';
             document.getElementById('form-name-label').textContent = t.formNameLabel;
@@ -3075,11 +3171,23 @@
             document.getElementById('form-pickup-label').textContent = t.formPickupLabel;
             document.getElementById('form-notes-label').textContent = t.formNotesLabel;
             document.getElementById('form-hint').textContent = t.formHint;
+            document.getElementById('customer-name').placeholder = t.namePlaceholder;
+            document.getElementById('customer-phone').placeholder = t.phonePlaceholder;
+            document.getElementById('customer-notes').placeholder = t.notesPlaceholder;
+            document.querySelector('.drawer-footer .note').textContent = t.readyNote;
+            document.querySelector('#footer-step2 .note').textContent = t.noPaymentNote;
+            document.getElementById('proceed-btn').innerHTML = `<i class="fas fa-chevron-right"></i> ${t.proceedToForm}`;
+            document.getElementById('back-to-list').innerHTML = `<i class="fas fa-chevron-left"></i> ${t.backToList}`;
+            document.getElementById('whatsapp-btn').innerHTML = `<i class="fab fa-whatsapp"></i> ${t.whatsappOrder}`;
+            document.getElementById('clear-list').innerHTML = `<i class="fas fa-trash"></i> ${t.clearList}`;
+            document.querySelector('.form-step .summary-box .label').textContent = t.formSummary;
 
+            // ----- LANGUAGE TOGGLE ACTIVE STATE -----
             document.querySelectorAll('.lang-toggle button').forEach(b => {
                 b.classList.toggle('active', b.dataset.lang === state.lang);
             });
 
+            // ----- BODY DIRECTION (RTL for Urdu, LTR for English) -----
             if (state.lang === 'ur') {
                 document.body.classList.add('dir-rtl');
             } else {
@@ -3354,7 +3462,7 @@
                 state.customerNotes = e.target.value;
             });
 
-            // ---- WhatsApp order (UPDATED NUMBER: +92 336 9595531) ----
+            // ---- WhatsApp order ----
             document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
                 const name = document.getElementById('customer-name').value.trim();
                 const phone = document.getElementById('customer-phone').value.trim();
@@ -3438,7 +3546,7 @@
                 }
             });
 
-            // ---- Language toggle ----
+            // ---- Language toggle (NO POPUP) ----
             document.querySelectorAll('.lang-toggle button').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const lang = btn.dataset.lang;
@@ -3454,8 +3562,7 @@
                         if (state.listOpen) {
                             renderDrawer();
                         }
-                        showToast(state.lang === 'en' ? 'Language switched to English' :
-                            'زبان اردو میں تبدیل کر دی گئی ہے');
+                        // No toast / popup on language change
                     }
                 });
             });
@@ -3483,14 +3590,13 @@
                 window.location.href = 'home.html';
             });
 
-            // ---- Init language state ----
+            // ---- Init ----
             document.querySelectorAll('.lang-toggle button').forEach(b => {
                 b.classList.toggle('active', b.dataset.lang === state.lang);
             });
 
             renderAll();
-
-            console.log('Catalogue page loaded with ALL products.');
+            console.log('Catalogue page loaded.');
         }
 
         document.addEventListener('DOMContentLoaded', init);
