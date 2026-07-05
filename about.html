@@ -121,7 +121,7 @@
             color: var(--accent);
         }
 
-        /* ---------- Header ---------- */
+        /* ---------- Header (FORCED LTR) ---------- */
         header {
             position: sticky;
             top: 0;
@@ -130,6 +130,7 @@
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-color);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            direction: ltr !important;
         }
 
         .header-inner {
@@ -286,7 +287,6 @@
             font-size: 0.8875rem;
         }
 
-        /* Header Cart Button - hidden on mobile, visible on desktop */
         .cart-btn-header {
             position: relative;
             display: none;
@@ -356,7 +356,7 @@
             }
         }
 
-        /* ---------- Mobile Menu ---------- */
+        /* ---------- Mobile Menu (FORCED LTR) ---------- */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -370,6 +370,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
+            direction: ltr !important;
         }
 
         .mobile-overlay.open {
@@ -462,7 +463,6 @@
             transform: translateX(4px);
         }
 
-        /* Mobile Cart Button inside popup */
         .mobile-cart-btn {
             display: flex;
             align-items: center;
@@ -556,7 +556,7 @@
             background: var(--accent);
         }
 
-        /* ---------- Hero (About) — CENTERED with "About" same size ---------- */
+        /* ---------- Hero (About) — CENTERED ---------- */
         .about-hero {
             background: var(--primary);
             padding: 60px 16px 50px;
@@ -629,7 +629,6 @@
             color: var(--accent);
         }
 
-        /* Hero title: "About" is now same size as the brand line */
         .hero-title {
             display: flex;
             flex-direction: column;
@@ -645,7 +644,7 @@
 
         #hero-title-main {
             color: #06B6D4;
-            font-size: 1em; /* same as parent */
+            font-size: 1em;
             letter-spacing: 0.05em;
             margin-bottom: 0.1rem;
         }
@@ -934,7 +933,7 @@
             margin-right: auto;
         }
 
-        /* ---------- Timeline / Milestones ---------- */
+        /* ---------- Timeline ---------- */
         .milestones-section {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -1406,7 +1405,7 @@
             text-decoration: underline;
         }
 
-        /* ---------- DRAWER (Shopping List) ---------- */
+        /* ---------- DRAWER ---------- */
         .drawer-overlay {
             position: fixed;
             inset: 0;
@@ -1705,7 +1704,6 @@
             text-transform: uppercase;
         }
 
-        /* Form inside drawer */
         .drawer-body .form-step {
             display: none;
         }
@@ -1851,7 +1849,7 @@
             font-size: 1.1875rem;
         }
 
-        /* Floating Cart */
+        /* ---------- Floating Cart ---------- */
         .floating-cart {
             position: fixed;
             bottom: 24px;
@@ -1929,7 +1927,7 @@
             font-size: 1.0375rem;
         }
 
-        /* ---------- Product Detail Modal ---------- */
+        /* ---------- Detail Modal ---------- */
         .detail-overlay {
             position: fixed;
             inset: 0;
@@ -2219,16 +2217,16 @@
     <!-- Toast Container -->
     <div id="toast-container"></div>
 
-    <!-- ==================== HEADER ==================== -->
-    <header>
+    <!-- ==================== HEADER (FORCED LTR) ==================== -->
+    <header dir="ltr">
         <div class="header-inner">
-            <a href="index.html" class="logo" id="home-link">
+            <a href="home.html" class="logo" id="home-link">
                 <h1><span>Javed</span> Traders</h1>
                 <div class="sub"><i class="fas fa-map-pin"></i> MAIN CHOWK, BAFFA BAZAR</div>
             </a>
 
             <nav class="nav-desktop" id="desktop-nav">
-                <a href="index.html">Home</a>
+                <a href="home.html">Home</a>
                 <a href="about.html" class="active">About</a>
                 <a href="catalogue.html">Products Catalogue</a>
                 <a href="contact.html">Contact</a>
@@ -2239,14 +2237,11 @@
                     <button class="active" data-lang="en">EN</button>
                     <button class="urdu-btn" data-lang="ur">اردو</button>
                 </div>
-
-                <!-- Cart Button - Desktop -->
                 <button class="cart-btn-header" id="cart-btn">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-label">My List</span>
                     <span class="cart-badge" id="cart-badge">0</span>
                 </button>
-
                 <button class="menu-toggle" id="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -2254,21 +2249,20 @@
         </div>
     </header>
 
-    <!-- ==================== MOBILE MENU ==================== -->
-    <div class="mobile-overlay" id="mobile-overlay">
+    <!-- ==================== MOBILE MENU (FORCED LTR) ==================== -->
+    <div class="mobile-overlay" id="mobile-overlay" dir="ltr">
         <div class="mobile-menu">
             <div class="mobile-menu-header">
                 <div class="logo-text"><span>Javed</span> Traders</div>
                 <button class="close-btn" id="close-mobile"><i class="fas fa-times"></i></button>
             </div>
             <nav class="mobile-nav" id="mobile-nav">
-                <a href="index.html">Home <span class="arrow">➔</span></a>
+                <a href="home.html">Home <span class="arrow">➔</span></a>
                 <a href="about.html" class="active">About Us <span class="arrow">➔</span></a>
                 <a href="catalogue.html">Catalogue <span class="arrow">➔</span></a>
                 <a href="contact.html">Contact <span class="arrow">➔</span></a>
             </nav>
 
-            <!-- Mobile Cart Button -->
             <button class="mobile-cart-btn" id="mobile-cart-btn">
                 <div class="cart-left">
                     <i class="fas fa-shopping-bag"></i>
@@ -2287,7 +2281,7 @@
         </div>
     </div>
 
-    <!-- ==================== ABOUT HERO — "About" same size as "Javed Traders" ==================== -->
+    <!-- ==================== ABOUT HERO ==================== -->
     <section class="about-hero" id="about-hero">
         <div class="about-hero-inner">
             <div class="about-hero-text">
@@ -2945,7 +2939,6 @@
 
             floatingCart.classList.toggle('visible', totalItems > 0);
 
-            // Update drawer sub title
             const t = getT();
             document.getElementById('drawer-sub').innerHTML =
                 `<span id="item-count">${totalItems}</span> ${t.drawerSub}`;
@@ -2961,12 +2954,12 @@
 
             if (items.length === 0) {
                 container.innerHTML = `
-              <div class="drawer-empty">
-                <i class="fas fa-shopping-bag"></i>
-                <h3>${state.lang === 'en' ? 'Your list is empty' : 'آپ کی لسٹ خالی ہے'}</h3>
-                <p>${t.emptyList}</p>
-              </div>
-            `;
+                    <div class="drawer-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>${state.lang === 'en' ? 'Your list is empty' : 'آپ کی لسٹ خالی ہے'}</h3>
+                        <p>${t.emptyList}</p>
+                    </div>
+                `;
                 return;
             }
 
@@ -2977,24 +2970,24 @@
                 const lineTotal = p.price * qty;
                 const name = state.lang === 'en' ? p.name : p.urduName;
                 html += `
-              <div class="drawer-item" data-id="${p.id}">
-                <div class="left">
-                  <img src="${p.image}" alt="${p.name}" />
-                  <div class="details">
-                    <div class="name">${name}</div>
-                    <div class="meta">${p.unit} • PKR ${p.price}</div>
-                  </div>
-                </div>
-                <div class="right">
-                  <div class="line-total">PKR ${lineTotal}</div>
-                  <div class="qty-control">
-                    <button class="drawer-qty-dec" data-id="${p.id}">−</button>
-                    <span class="qty">${qty}</span>
-                    <button class="drawer-qty-inc" data-id="${p.id}">+</button>
-                  </div>
-                </div>
-              </div>
-            `;
+                    <div class="drawer-item" data-id="${p.id}">
+                        <div class="left">
+                            <img src="${p.image}" alt="${p.name}" />
+                            <div class="details">
+                                <div class="name">${name}</div>
+                                <div class="meta">${p.unit} • PKR ${p.price}</div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="line-total">PKR ${lineTotal}</div>
+                            <div class="qty-control">
+                                <button class="drawer-qty-dec" data-id="${p.id}">−</button>
+                                <span class="qty">${qty}</span>
+                                <button class="drawer-qty-inc" data-id="${p.id}">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
             });
             container.innerHTML = html;
             updateCartUI();
@@ -3077,21 +3070,21 @@
 
             if (qty === 0) {
                 action.innerHTML = `
-              <button class="add-btn detail-add-btn" data-id="${id}" ${!product.inStock ? 'disabled' : ''}>
-                <i class="fas fa-shopping-bag"></i> ${state.lang === 'en' ? 'Add to Shopping List' : 'لسٹ میں شامل کریں'}
-              </button>
-            `;
+                    <button class="add-btn detail-add-btn" data-id="${id}" ${!product.inStock ? 'disabled' : ''}>
+                        <i class="fas fa-shopping-bag"></i> ${state.lang === 'en' ? 'Add to Shopping List' : 'لسٹ میں شامل کریں'}
+                    </button>
+                `;
             } else {
                 action.innerHTML = `
-              <div class="qty-row">
-                <span class="label">${state.lang === 'en' ? 'Quantity in your list:' : 'لسٹ میں شامل مقدار:'}</span>
-                <div class="controls">
-                  <button class="detail-qty-dec" data-id="${id}">−</button>
-                  <span class="qty">${qty}</span>
-                  <button class="detail-qty-inc" data-id="${id}">+</button>
-                </div>
-              </div>
-            `;
+                    <div class="qty-row">
+                        <span class="label">${state.lang === 'en' ? 'Quantity in your list:' : 'لسٹ میں شامل مقدار:'}</span>
+                        <div class="controls">
+                            <button class="detail-qty-dec" data-id="${id}">−</button>
+                            <span class="qty">${qty}</span>
+                            <button class="detail-qty-inc" data-id="${id}">+</button>
+                        </div>
+                    </div>
+                `;
             }
         }
 
@@ -3107,14 +3100,14 @@
         function renderAll() {
             const t = getT();
 
-            // Hero
+            // --- Hero ---
             document.getElementById('hero-badge-text').textContent = t.heroBadge;
             document.getElementById('hero-title-main').textContent = t.heroTitleMain;
             document.getElementById('hero-title-accent').textContent = t.heroTitleAccent;
             document.getElementById('hero-title-traders').textContent = t.heroTitleTraders;
             document.getElementById('hero-desc').textContent = t.heroDesc;
 
-            // Story
+            // --- Story ---
             document.getElementById('story-title').textContent = t.storyTitle;
             document.getElementById('story-sub').textContent = t.storySub;
             document.getElementById('story-p1').textContent = t.storyP1;
@@ -3130,7 +3123,7 @@
             document.getElementById('val4-label').textContent = t.val4Label;
             document.getElementById('val4-desc').textContent = t.val4Desc;
 
-            // Team
+            // --- Team ---
             document.getElementById('team-title').textContent = t.teamTitle;
             document.getElementById('team-sub').textContent = t.teamSub;
             document.getElementById('badge-founder').textContent = t.badgeFounder;
@@ -3140,7 +3133,7 @@
             document.getElementById('role-partner').textContent = t.rolePartner;
             document.getElementById('desc-partner').textContent = t.descPartner;
 
-            // Milestones
+            // --- Milestones ---
             document.getElementById('milestones-title').textContent = t.milestonesTitle;
             document.getElementById('milestones-sub').textContent = t.milestonesSub;
             document.getElementById('milestone1-title').textContent = t.milestone1Title;
@@ -3152,7 +3145,7 @@
             document.getElementById('milestone4-title').textContent = t.milestone4Title;
             document.getElementById('milestone4-desc').textContent = t.milestone4Desc;
 
-            // Why
+            // --- Why ---
             document.getElementById('why-title').textContent = t.whyTitle;
             document.getElementById('why-sub').textContent = t.whySub;
             document.getElementById('why1-title').textContent = t.why1Title;
@@ -3164,18 +3157,18 @@
             document.getElementById('why4-title').textContent = t.why4Title;
             document.getElementById('why4-desc').textContent = t.why4Desc;
 
-            // CTA
+            // --- CTA ---
             document.getElementById('cta-title').textContent = t.ctaTitle;
             document.getElementById('cta-desc').textContent = t.ctaDesc;
             document.getElementById('cta-btn1').textContent = t.ctaBtn1;
             document.getElementById('cta-btn2').textContent = t.ctaBtn2;
 
-            // Footer
+            // --- Footer ---
             document.getElementById('footer-about').textContent = t.footerAbout;
             document.getElementById('footer-timings-title').textContent = t.footerTimings;
             document.getElementById('footer-location-title').textContent = t.footerLocation;
 
-            // Drawer
+            // --- Drawer ---
             document.getElementById('drawer-title').textContent = t.drawerTitle;
             document.getElementById('estimated-total-label').textContent = t.estimatedTotal + ':';
             document.getElementById('form-name-label').textContent = t.formNameLabel;
@@ -3184,32 +3177,29 @@
             document.getElementById('form-notes-label').textContent = t.formNotesLabel;
             document.getElementById('form-hint').textContent = t.formHint;
 
-            // Update language toggle buttons
+            // --- Language toggle ---
             document.querySelectorAll('.lang-toggle button').forEach(b => {
                 b.classList.toggle('active', b.dataset.lang === state.lang);
             });
 
-            // Update direction for Urdu
+            // --- Direction: RTL for Urdu, LTR for English ---
             if (state.lang === 'ur') {
                 document.body.classList.add('dir-rtl');
-                document.querySelectorAll(
+                // Align text right for Urdu
+                const rtlElements = document.querySelectorAll(
                     '.about-hero-text .hero-title, .story-text p, .team-desc, .timeline-item .desc, .why-item .desc, .cta-section p'
-                    ).forEach(el => {
-                    el.style.textAlign = 'right';
-                });
-                document.querySelectorAll('.team-card .info, .why-item, .timeline-item, .cta-section').forEach(el => {
-                    el.style.direction = 'rtl';
-                });
+                );
+                rtlElements.forEach(el => el.style.textAlign = 'right');
+                const cardElements = document.querySelectorAll('.team-card .info, .why-item, .timeline-item, .cta-section');
+                cardElements.forEach(el => el.style.direction = 'rtl');
             } else {
                 document.body.classList.remove('dir-rtl');
-                document.querySelectorAll(
+                const ltrElements = document.querySelectorAll(
                     '.about-hero-text .hero-title, .story-text p, .team-desc, .timeline-item .desc, .why-item .desc, .cta-section p'
-                    ).forEach(el => {
-                    el.style.textAlign = 'left';
-                });
-                document.querySelectorAll('.team-card .info, .why-item, .timeline-item, .cta-section').forEach(el => {
-                    el.style.direction = 'ltr';
-                });
+                );
+                ltrElements.forEach(el => el.style.textAlign = 'left');
+                const cardElements = document.querySelectorAll('.team-card .info, .why-item, .timeline-item, .cta-section');
+                cardElements.forEach(el => el.style.direction = 'ltr');
             }
 
             updateCartUI();
@@ -3222,7 +3212,7 @@
         function init() {
             loadList();
 
-            // Language toggle
+            // --- Language toggle – NO TOAST ---
             document.querySelectorAll('.lang-toggle button').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const lang = btn.dataset.lang;
@@ -3235,13 +3225,12 @@
                         if (state.detailOpen && state.detailProductId) {
                             openDetail(state.detailProductId);
                         }
-                        showToast(state.lang === 'en' ? 'Language switched to English' :
-                            'زبان اردو میں تبدیل کر دی گئی ہے');
+                        // NO popup on language change
                     }
                 });
             });
 
-            // Mobile menu
+            // --- Mobile menu ---
             document.getElementById('menu-toggle').addEventListener('click', () => {
                 document.getElementById('mobile-overlay').classList.add('open');
             });
@@ -3254,7 +3243,7 @@
                 }
             });
 
-            // Drawer open/close
+            // --- Drawer ---
             document.getElementById('cart-btn').addEventListener('click', openDrawer);
             document.getElementById('mobile-cart-btn').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -3267,7 +3256,7 @@
                 if (e.target === drawerOverlay) closeDrawer();
             });
 
-            // Drawer item quantity controls
+            // --- Drawer quantity controls ---
             drawerBody.addEventListener('click', (e) => {
                 const target = e.target.closest('button');
                 if (!target) return;
@@ -3292,7 +3281,7 @@
                 }
             });
 
-            // Clear list
+            // --- Clear list ---
             document.getElementById('clear-list').addEventListener('click', () => {
                 if (confirm(state.lang === 'en' ? 'Clear all items?' : 'پوری لسٹ صاف کریں؟')) {
                     state.shoppingList = {};
@@ -3305,7 +3294,7 @@
                 }
             });
 
-            // Proceed to form
+            // --- Proceed to form ---
             document.getElementById('proceed-btn').addEventListener('click', () => {
                 if (getListItems().length === 0) return;
                 state.formStep = true;
@@ -3321,7 +3310,7 @@
                 showFormStep(false);
             });
 
-            // Form input tracking
+            // --- Form inputs ---
             document.getElementById('customer-name').addEventListener('input', (e) => {
                 state.customerName = e.target.value;
             });
@@ -3335,7 +3324,7 @@
                 state.customerNotes = e.target.value;
             });
 
-            // WhatsApp order — uses NEW number +92 336 9595531
+            // --- WhatsApp order (number +92 336 9595531) ---
             document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
                 const name = document.getElementById('customer-name').value.trim();
                 const phone = document.getElementById('customer-phone').value.trim();
@@ -3370,18 +3359,16 @@
                 msg += `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
                 msg += `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
 
-                // NEW WhatsApp number: +92 336 9595531
                 const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
                 window.open(url, '_blank');
             });
 
-            // Detail modal
+            // --- Detail modal ---
             document.getElementById('close-detail').addEventListener('click', closeDetail);
             detailOverlay.addEventListener('click', (e) => {
                 if (e.target === detailOverlay) closeDetail();
             });
 
-            // Detail modal actions
             detailModal.addEventListener('click', (e) => {
                 const target = e.target.closest('button');
                 if (!target) return;
@@ -3418,7 +3405,7 @@
                 }
             });
 
-            // Smooth scroll for CTA buttons
+            // --- Smooth scroll for anchor links ---
             document.querySelectorAll('a[href^="#"]').forEach(a => {
                 a.addEventListener('click', (e) => {
                     const target = document.querySelector(a.getAttribute('href'));
@@ -3432,14 +3419,14 @@
                 });
             });
 
-            // Set initial language active state
+            // --- Init language ---
             document.querySelectorAll('.lang-toggle button').forEach(b => {
                 b.classList.toggle('active', b.dataset.lang === state.lang);
             });
 
             renderAll();
 
-            console.log('About Us page with centered hero and cart loaded.');
+            console.log('About Us page with header forced to LTR and no language toast.');
         }
 
         document.addEventListener('DOMContentLoaded', init);
