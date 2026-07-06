@@ -2752,6 +2752,7 @@
                 formNotesLabel: 'Special Instructions (Optional)',
                 formHint: 'Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.',
                 emptyList: 'Your list is empty. Start adding products from the catalogue!',
+                orderConfirmed: '✅ Order confirmed! Your shopping list has been cleared.'
             },
             ur: {
                 // Hero
@@ -2825,6 +2826,7 @@
                 formNotesLabel: 'اضافی نوٹ (اختیاری)',
                 formHint: 'آپ کی فراہم کردہ معلومات اور لسٹ کو واٹس ایپ پیغام کی شکل میں تبدیل کیا جائے گا تاکہ جاوید ٹریڈرز بفہ آپ کا آرڈر باآسانی تیار رکھ سکیں۔',
                 emptyList: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
+                orderConfirmed: '✅ آرڈر موصول ہوگیا! آپ کی خریداری کی لسٹ خالی کر دی گئی ہے۔'
             }
         };
 
@@ -2910,15 +2912,6 @@
         function saveList() {
             try {
                 localStorage.setItem('javed_traders_shopping_list', JSON.stringify(state.shoppingList));
-            } catch (e) {}
-        }
-
-        function loadList() {
-            try {
-                const saved = localStorage.getItem('javed_traders_shopping_list');
-                if (saved) {
-                    state.shoppingList = JSON.parse(saved);
-                }
             } catch (e) {}
         }
 
@@ -3095,6 +3088,23 @@
         }
 
         // ------------------------------------
+        // CLEAR CART AND RELOAD UI
+        // ------------------------------------
+        function clearCartAndReload() {
+            state.shoppingList = {};
+            saveList(); // save empty
+            renderDrawerItems();
+            updateCartUI();
+            if (state.listOpen) {
+                closeDrawer();
+            }
+            if (state.detailOpen) {
+                closeDetail();
+            }
+            showToast(getT().orderConfirmed);
+        }
+
+        // ------------------------------------
         // RENDER LANGUAGE UI
         // ------------------------------------
         function renderAll() {
@@ -3210,7 +3220,10 @@
         // EVENT LISTENERS
         // ------------------------------------
         function init() {
-            loadList();
+            // --- START FRESH: clear any previously saved cart ---
+            localStorage.removeItem('javed_traders_shopping_list');
+            state.shoppingList = {};
+            // --- end fresh start ---
 
             // --- Language toggle – NO TOAST ---
             document.querySelectorAll('.lang-toggle button').forEach(btn => {
@@ -3361,6 +3374,11 @@
 
                 const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
                 window.open(url, '_blank');
+
+                // ---- CLEAR CART AFTER CONFIRMATION ----
+                setTimeout(() => {
+                    clearCartAndReload();
+                }, 400);
             });
 
             // --- Detail modal ---
@@ -3426,7 +3444,7 @@
 
             renderAll();
 
-            console.log('About Us page with header forced to LTR and no language toast.');
+            console.log('About Us page with header forced to LTR, cart cleared on load, and order confirmation clearing cart.');
         }
 
         document.addEventListener('DOMContentLoaded', init);
