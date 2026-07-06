@@ -2059,6 +2059,7 @@
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
             transform: scale(0.95) translateY(20px);
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
         }
         .detail-overlay.open .detail-modal {
             transform: scale(1) translateY(0);
@@ -2783,30 +2784,27 @@
     </div>
 
     <script>
-        // ========== UPDATED PRODUCTS DATA ==========
+        // ========== PRODUCTS DATA (unchanged) ==========
         const productsData = [
-            // ----- GROCERY ITEMS (5) -----
-            { id: 'p1', name: 'Wheat Flour (Atta) 20kg', urduName: 'گندم کا آٹا', category: 'grocery', brand: 'Fine', price:2400, unit: '20kg', description: 'Premium stone-ground whole wheat flour, fresh and nutritious.', urduDescription: 'پتھر کی چکی کا اعلیٰ گندم کا آٹا، تازہ اور غذائیت سے بھرپور۔', inStock: true, image: './Atta.png' },
+            // Grocery (5)
+            { id: 'p1', name: 'Wheat Flour (Atta) 20kg', urduName: 'گندم کا آٹا', category: 'grocery', brand: 'Fine', price: 2400, unit: '20kg', description: 'Premium stone-ground whole wheat flour, fresh and nutritious.', urduDescription: 'پتھر کی چکی کا اعلیٰ گندم کا آٹا، تازہ اور غذائیت سے بھرپور۔', inStock: true, image: './Atta.png' },
             { id: 'p2', name: 'Basmati Rice 5kg', urduName: 'بیسمنٹی چاول', category: 'grocery', brand: 'Kissan', price: 700, unit: '5kg', description: 'Aged premium basmati rice with long grains and rich aroma.', urduDescription: 'پرانا اعلیٰ بیسمنٹی چاول، لمبے دانے اور خوشبو دار۔', inStock: true, image: './rice.png' },
             { id: 'p3', name: 'Cooking Oil 5L', urduName: 'کھانے کا تیل', category: 'grocery', brand: 'Dalda', price: 2000, unit: '5L', description: 'Pure vegetable cooking oil for all your daily cooking needs.', urduDescription: 'خالص سبزیوں کا تیل، روزمرہ کھانے کے لیے۔', inStock: true, image: './Dalda.png' },
             { id: 'p4', name: 'Sugar 5kg', urduName: 'شکر', category: 'grocery', brand: 'Safina', price: 800, unit: '5kg', description: 'Fine white granulated sugar for perfect sweetness.', urduDescription: 'اعلیٰ سفید شکر، میٹھے ذائقے کے لیے۔', inStock: true, image: './sugar.png' },
             { id: 'p5', name: 'Red Chili Powder 500g', urduName: 'لال مرچ پاؤڈر', category: 'grocery', brand: 'National', price: 300, unit: '500g', description: 'Pure ground red chili with rich color and heat.', urduDescription: 'خالص لال مرچ پاؤڈر، تیز رنگ اور گرمائش۔', inStock: true, image: './redchilipowder.png' },
-
-            // ----- DRY FRUITS (5) -----
+            // Dry Fruits (5)
             { id: 'p6', name: 'Almonds 500g', urduName: 'بادام', category: 'grocery', brand: 'Premium', price: 1200, unit: '500g', description: 'Premium quality almonds, rich in nutrients and crunch.', urduDescription: 'اعلیٰ بادام، غذائیت سے بھرپور اور کرسپی۔', inStock: true, image: './almond.png' },
             { id: 'p7', name: 'Walnuts 500g', urduName: 'اخروٹ', category: 'grocery', brand: 'Premium', price: 1000, unit: '500g', description: 'Fresh walnuts with a healthy dose of omega-3.', urduDescription: 'تازہ اخروٹ، اومیگا ۳ سے بھرپور۔', inStock: true, image: './walnuts.png' },
-            { id: 'p8', name: 'Dates 500g', urduName: 'کھجور', category: 'grocery', brand: 'Premium', price: 600, unit: '500g', description: 'Natural sweet dates, perfect for snacks and energy.', urduDescription: 'قدرتی میٹھی کھجور، ناشتے اور توانائی کے لیے۔', inStock: true, image: 'DATES.png' },
+            { id: 'p8', name: 'Dates 500g', urduName: 'کھجور', category: 'grocery', brand: 'Premium', price: 600, unit: '500g', description: 'Natural sweet dates, perfect for snacks and energy.', urduDescription: 'قدرتی میٹھی کھجور، ناشتے اور توانائی کے لیے۔', inStock: true, image: './DATES.png' },
             { id: 'p9', name: 'Raisins 500g', urduName: 'کشمش', category: 'grocery', brand: 'Premium', price: 700, unit: '500g', description: 'Sun-dried raisins, sweet and chewy.', urduDescription: 'دھوپ میں خشک کشمش، میٹھی اور چبانے والی۔', inStock: true, image: './raisins.png' },
             { id: 'p10', name: 'Pistachios 500g', urduName: 'پستہ', category: 'grocery', brand: 'Premium', price: 1500, unit: '500g', description: 'Premium pistachios with vibrant green colour and rich taste.', urduDescription: 'اعلیٰ پستہ، خوش رنگ اور ذائقہ دار۔', inStock: true, image: './pista.png' },
-
-            // ----- MISCELLANEOUS & UTILITY (5) -----
+            // Misc (5)
             { id: 'p11', name: 'Matchbox (Pack of 10)', urduName: 'ماچس (۱۰ پیک)', category: 'household', brand: 'Lion', price: 100, unit: '10pk', description: 'Durable matchboxes for everyday use.', urduDescription: 'پائیدار ماچس روزمرہ استعمال کے لیے۔', inStock: true, image: './matchbox.png' },
             { id: 'p12', name: 'Mosquito Coil (5 coils)', urduName: 'مچھر مار کوئل', category: 'household', brand: 'Mortein', price: 200, unit: '5 coils', description: 'Effective mosquito repellent coils for a peaceful night.', urduDescription: 'مؤثر مچھر مار کوئل، رات کو پرسکون نیند کے لیے۔', inStock: true, image: './mortin.png' },
             { id: 'p13', name: 'Panadol (10 tablets)', urduName: 'پیناڈول (۱۰ گولیاں)', category: 'household', brand: 'Panadol', price: 150, unit: '10 tabs', description: 'Fast-acting pain relief tablets.', urduDescription: 'تیز اثر والی درد کش گولیاں۔', inStock: true, image: './panadol.png' },
             { id: 'p14', name: 'Notebook', urduName: 'کاپی', category: 'household', brand: 'Oxford', price: 120, unit: 'each', description: 'Premium quality notebook for notes and writing.', urduDescription: 'اعلیٰ کوالٹی کاپی نوٹس اور لکھائی کے لیے۔', inStock: true, image: './notesbook.png' },
             { id: 'p15', name: 'AA Batteries (Pack of 4)', urduName: 'اے اے بیٹریاں (۴ پیک)', category: 'household', brand: 'Duracell', price: 400, unit: '4 pack', description: 'Long-lasting alkaline batteries for all your devices.', urduDescription: 'لمبی عمر والی الکلائن بیٹریاں آپ کے آلات کے لیے۔', inStock: true, image: './batteries.png' },
-
-            // ----- CLEANING & LAUNDRY (5) -----
+            // Cleaning (5)
             { id: 'p16', name: 'Washing Powder 3kg', urduName: 'کپڑے دھونے کا پاؤڈر', category: 'household', brand: 'Surf Excel', price: 500, unit: '3kg', description: 'Powerful detergent that removes tough stains effortlessly.', urduDescription: 'طاقتور ڈٹرجنٹ جو مشکل داغ آسانی سے ہٹاتا ہے۔', inStock: true, image: './surfexcel.png' },
             { id: 'p17', name: 'Dishwash Liquid 1L', urduName: 'برتن دھونے کا مائع', category: 'household', brand: 'Vim', price: 250, unit: '1L', description: 'Grease-cutting dishwash liquid with lemon freshness.', urduDescription: 'چکنائی ختم کرنے والا برتن دھونے کا مائع، لیموں کی خوشبو۔', inStock: true, image: './dishwash.png' },
             { id: 'p18', name: 'Floor Cleaner 2L', urduName: 'فرش کلینر', category: 'household', brand: 'Harpic', price: 350, unit: '2L', description: 'Effective floor cleaner that removes stains and leaves shine.', urduDescription: 'مؤثر فرش کلینر جو داغ ہٹاتا اور چمک لاتا ہے۔', inStock: true, image: './phenyl.png' },
@@ -2814,7 +2812,7 @@
             { id: 'p20', name: 'Bleach 500ml', urduName: 'بلیچ', category: 'household', brand: 'Robin Blue', price: 150, unit: '500ml', description: 'Strong bleach for whitening and stain removal.', urduDescription: 'طاقتور بلیچ سفیدی اور داغ ہٹانے کے لیے۔', inStock: true, image: './bleach.png' },
         ];
 
-        // --- The rest of your JavaScript (unchanged) ---
+        // ========== TRANSLATIONS (unchanged) ==========
         const translations = {
             en: {
                 allProducts: 'All Products', categoryGrocery: 'Grocery', categoryHousehold: 'Household',
@@ -2830,6 +2828,7 @@
                 aboutTitle: 'About Us',
                 aboutText: 'Javed Traders Baffa is a family-owned grocery and household store serving the community with integrity and affordability for generations.',
                 contactTitle: 'Contact Us', locationTitle: 'Location', timingsTitle: 'Timings', ownerLabel: 'Proprietors',
+                orderConfirmed: '✅ Order confirmed! Your shopping list has been cleared.'
             },
             ur: {
                 allProducts: 'تمام اشیاء', categoryGrocery: 'کریانہ', categoryHousehold: 'گھریلو سامان',
@@ -2845,9 +2844,11 @@
                 aboutTitle: 'ہمارے بارے میں',
                 aboutText: 'جاوید ٹریڈرز بفہ ایک خاندانی کاروبار ہے جو نسلوں سے ایمانداری اور سستی کے ساتھ کریانہ اور گھریلو سامان فراہم کر رہا ہے۔',
                 contactTitle: 'رابطہ کریں', locationTitle: 'پتہ', timingsTitle: 'اوقات', ownerLabel: 'مالکان',
+                orderConfirmed: '✅ آرڈر موصول ہوگیا! آپ کی خریداری کی لسٹ خالی کر دی گئی ہے۔'
             }
         };
 
+        // ========== STATE ==========
         let state = {
             lang: 'en', searchQuery: '', selectedCategory: 'all', selectedBrand: 'all',
             priceSort: 'default', inStockOnly: false, shoppingList: {},
@@ -2856,31 +2857,11 @@
             pickupTime: 'Immediate (15-30 mins)', customerNotes: '',
         };
 
+        // ========== HELPERS ==========
         const $ = (sel, ctx = document) => ctx.querySelector(sel);
         const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
-
-        const productGrid = $('#product-grid');
-        const categoryRail = $('#category-rail');
-        const brandSelect = $('#brand-select');
-        const inStockCheck = $('#in-stock-only');
-        const sortSelect = $('#sort-select');
-        const cartBadge = $('#cart-badge');
-        const mobileCartBadge = $('#mobile-cart-badge');
-        const mobileCartTotal = $('#mobile-cart-total');
-        const drawerOverlay = $('#drawer-overlay');
-        const drawerBody = $('#drawer-body');
-        const drawerItemsContainer = $('#drawer-items-container');
-        const drawerTotal = $('#drawer-total');
-        const drawerItemCount = $('#item-count');
-        const floatBadge = $('#float-badge');
-        const floatTotal = $('#float-total');
-        const floatingCart = $('#floating-cart');
-        const detailOverlay = $('#detail-overlay');
-        const detailModal = $('#detail-modal');
-
-        function getT() { return translations[state.lang] || translations.en; }
-
-        function getProduct(id) { return productsData.find(p => p.id === id); }
+        const getT = () => translations[state.lang] || translations.en;
+        const getProduct = (id) => productsData.find(p => p.id === id);
 
         function getListItems() {
             return Object.entries(state.shoppingList).map(([id, qty]) => {
@@ -2912,26 +2893,23 @@
             try { localStorage.setItem('javed_traders_shopping_list', JSON.stringify(state.shoppingList)); } catch (e) {}
         }
 
-        function loadList() {
-            try {
-                const saved = localStorage.getItem('javed_traders_shopping_list');
-                if (saved) state.shoppingList = JSON.parse(saved);
-            } catch (e) {}
-        }
+        // Removed loadList() – we never want to load a previous cart.
 
+        // ========== UI UPDATES ==========
         function updateCartUI() {
             const totalItems = getTotalItems();
             const totalPrice = getTotalPrice();
-            cartBadge.textContent = totalItems;
-            mobileCartBadge.textContent = totalItems;
-            mobileCartTotal.textContent = totalPrice;
-            floatBadge.textContent = totalItems;
-            floatTotal.textContent = totalPrice;
-            drawerTotal.textContent = totalPrice;
-            drawerItemCount.textContent = totalItems;
-            floatingCart.classList.toggle('visible', totalItems > 0);
+            $('#cart-badge').textContent = totalItems;
+            $('#mobile-cart-badge').textContent = totalItems;
+            $('#mobile-cart-total').textContent = totalPrice;
+            $('#float-badge').textContent = totalItems;
+            $('#float-total').textContent = totalPrice;
+            $('#drawer-total').textContent = totalPrice;
+            $('#item-count').textContent = totalItems;
+            $('#floating-cart').classList.toggle('visible', totalItems > 0);
         }
 
+        // ========== RENDER PRODUCTS ==========
         function renderProducts() {
             let filtered = [...productsData];
             if (state.selectedCategory !== 'all') {
@@ -2959,8 +2937,9 @@
                 filtered.sort((a, b) => b.price - a.price);
             }
 
+            const grid = $('#product-grid');
             if (filtered.length === 0) {
-                productGrid.innerHTML = `
+                grid.innerHTML = `
                     <div class="empty-state" style="grid-column:1/-1;">
                         <i class="fas fa-box-open"></i>
                         <h3>No Products Found</h3>
@@ -2976,11 +2955,11 @@
                         state.inStockOnly = false;
                         state.priceSort = 'default';
                         state.searchQuery = '';
-                        brandSelect.value = 'all';
-                        inStockCheck.checked = false;
-                        sortSelect.value = 'default';
-                        $$('#category-rail button').forEach(btn => {
-                            btn.classList.toggle('active', btn.dataset.cat === 'all');
+                        $('#brand-select').value = 'all';
+                        $('#in-stock-only').checked = false;
+                        $('#sort-select').value = 'default';
+                        $$('#category-rail button').forEach(b => {
+                            b.classList.toggle('active', b.dataset.cat === 'all');
                         });
                         renderAll();
                     });
@@ -2993,7 +2972,8 @@
                 const qty = state.shoppingList[product.id] || 0;
                 const selected = qty > 0;
                 const catClass = product.category === 'grocery' ? 'cat-grocery' : 'cat-household';
-                const catLabel = product.category === 'grocery' ? (state.lang === 'en' ? 'Grocery' : 'کریانہ') : (state.lang === 'en' ? 'Household' : 'گھریلو');
+                const catLabel = product.category === 'grocery' ? (state.lang === 'en' ? 'Grocery' : 'کریانہ') : (state.lang ===
+                    'en' ? 'Household' : 'گھریلو');
                 const brandLabel = product.brand || '';
                 const inStock = product.inStock;
                 const price = product.price;
@@ -3038,12 +3018,13 @@
                     </div>
                 `;
             });
-            productGrid.innerHTML = html;
+            grid.innerHTML = html;
         }
 
+        // ========== RENDER DRAWER ==========
         function renderDrawerItems() {
             const items = getListItems();
-            const container = drawerItemsContainer;
+            const container = $('#drawer-items-container');
             if (items.length === 0) {
                 container.innerHTML = `
                     <div class="drawer-empty">
@@ -3084,16 +3065,6 @@
             updateCartUI();
         }
 
-        function renderDrawer() {
-            renderDrawerItems();
-            updateCartUI();
-            if (state.formStep) {
-                showFormStep(true);
-            } else {
-                showFormStep(false);
-            }
-        }
-
         function showFormStep(show) {
             const stepList = $('#step-list');
             const stepForm = $('#step-form');
@@ -3105,12 +3076,12 @@
                 footer1.style.display = 'none';
                 footer2.style.display = 'block';
                 const items = getListItems();
-                document.getElementById('form-item-count').textContent = `${items.length} items`;
-                document.getElementById('form-total').textContent = `PKR ${getTotalPrice()}`;
-                document.getElementById('customer-name').value = state.customerName;
-                document.getElementById('customer-phone').value = state.customerPhone;
-                document.getElementById('pickup-time').value = state.pickupTime;
-                document.getElementById('customer-notes').value = state.customerNotes;
+                $('#form-item-count').textContent = `${items.length} items`;
+                $('#form-total').textContent = `PKR ${getTotalPrice()}`;
+                $('#customer-name').value = state.customerName;
+                $('#customer-phone').value = state.customerPhone;
+                $('#pickup-time').value = state.pickupTime;
+                $('#customer-notes').value = state.customerNotes;
             } else {
                 stepList.style.display = 'block';
                 stepForm.classList.remove('active');
@@ -3119,6 +3090,17 @@
             }
         }
 
+        function renderDrawer() {
+            renderDrawerItems();
+            updateCartUI();
+            if (state.formStep) {
+                showFormStep(true);
+            } else {
+                showFormStep(false);
+            }
+        }
+
+        // ========== RENDER ALL ==========
         function renderAll() {
             renderProducts();
             renderDrawer();
@@ -3126,79 +3108,81 @@
             populateBrands();
         }
 
+        // ========== POPULATE BRANDS ==========
         function populateBrands() {
             const brands = [...new Set(productsData.map(p => p.brand).filter(Boolean))];
-            const current = brandSelect.value;
-            brandSelect.innerHTML = `<option value="all">${getT().allBrands}</option>`;
+            const current = $('#brand-select').value;
+            $('#brand-select').innerHTML = `<option value="all">${getT().allBrands}</option>`;
             brands.forEach(b => {
                 const opt = document.createElement('option');
                 opt.value = b;
                 opt.textContent = b;
-                brandSelect.appendChild(opt);
+                $('#brand-select').appendChild(opt);
             });
-            brandSelect.value = current;
+            $('#brand-select').value = current;
         }
 
+        // ========== LANGUAGE UI ==========
         function updateLanguageUI() {
             const t = getT();
-            document.querySelectorAll('[data-lang-text]').forEach(el => {
-                const key = el.dataset.langText;
-                if (t[key]) el.textContent = t[key];
-            });
-
+            // Catalogue
             $$('#category-rail button').forEach(btn => {
                 const cat = btn.dataset.cat;
                 if (cat === 'all') btn.textContent = t.allProducts;
                 else if (cat === 'grocery') btn.textContent = t.categoryGrocery;
                 else if (cat === 'household') btn.textContent = t.categoryHousehold;
             });
-
-            document.querySelector('#brand-label').textContent = t.brandFilter + ':';
-            document.querySelector('#stock-label').textContent = t.inStockOnly;
-            document.querySelector('#sort-label').textContent = t.priceSort + ':';
-            document.querySelector('#sort-default').textContent = 'Default';
-            document.querySelector('#sort-low').textContent = t.priceLowToHigh;
-            document.querySelector('#sort-high').textContent = t.priceHighToLow;
-
-            document.getElementById('hero-desc').textContent = state.lang === 'en' ?
+            $('#brand-label').textContent = t.brandFilter + ':';
+            $('#stock-label').textContent = t.inStockOnly;
+            $('#sort-label').textContent = t.priceSort + ':';
+            $('#sort-default').textContent = 'Default';
+            $('#sort-low').textContent = t.priceLowToHigh;
+            $('#sort-high').textContent = t.priceHighToLow;
+            // Hero
+            $('#hero-desc').textContent = state.lang === 'en' ?
                 "Welcome to Baffa's premier household & grocery showroom. Explore our live catalog, select items, and order directly on WhatsApp for instant collection!" :
                 "بفہ کے پہلے جدید کریانہ اور گھریلو اشیاء کے ڈیجیٹل شو روم میں خوش آمدید۔ یہاں سے اپنے مطلوبہ سامان کا انتخاب کریں، ڈیجیٹل بل لسٹ بنائیں، اور ہمارے واٹس ایپ نمبر پر بھیج کر دکان پر پہنچنے سے پہلے اپنا آرڈر تیار کروائیں۔";
-
-            document.getElementById('how-title').textContent = t.howItWorksTitle;
-            document.getElementById('step1-title').textContent = state.lang === 'en' ? 'Select Products' : 'اشیاء منتخب کریں';
-            document.getElementById('step2-title').textContent = state.lang === 'en' ? 'Review & Share' : 'تفصیلات درج کریں';
-            document.getElementById('step3-title').textContent = state.lang === 'en' ? 'Collect in Store' : 'دکان سے حاصل کریں';
-            document.getElementById('step1-desc').textContent = t.howItWorksStep1;
-            document.getElementById('step2-desc').textContent = t.howItWorksStep2;
-            document.getElementById('step3-desc').textContent = t.howItWorksStep3;
-
-            document.getElementById('about-title').textContent = t.aboutTitle;
-            document.getElementById('about-p1').textContent = state.lang === 'en' ?
+            // How it works
+            $('#how-title').textContent = t.howItWorksTitle;
+            $('#step1-title').textContent = state.lang === 'en' ? 'Select Products' : 'اشیاء منتخب کریں';
+            $('#step2-title').textContent = state.lang === 'en' ? 'Review & Share' : 'تفصیلات درج کریں';
+            $('#step3-title').textContent = state.lang === 'en' ? 'Collect in Store' : 'دکان سے حاصل کریں';
+            $('#step1-desc').textContent = t.howItWorksStep1;
+            $('#step2-desc').textContent = t.howItWorksStep2;
+            $('#step3-desc').textContent = t.howItWorksStep3;
+            // About
+            $('#about-title').textContent = t.aboutTitle;
+            $('#about-p1').textContent = state.lang === 'en' ?
                 "At Javed Traders, we pride ourselves on being the absolute cornerstone of Kiryana and household retail in Baffa. Established under the core philosophy of unbeatable prices and genuine product quality, we serve hundreds of loyal local families with absolute dedication." :
                 "جاوید ٹریڈرز بفہ بازار میں مخلص اور دیانتدار خاندانی روایات کے تحت کریانہ اور گھریلو سامان کی فراہمی کا سب سے معتبر ادارہ ہے۔ ہمارا مقصد اپنے تمام صارفین کو مارکیٹ سے سستی اور خالص ترین اشیاء فراہم کرنا ہے۔";
-            document.getElementById('about-p2').textContent = t.aboutText;
-            document.getElementById('why-title').textContent = state.lang === 'en' ? 'Why Shop With Us?' : 'ہماری دکان کی خصوصیات';
-            document.getElementById('why1').textContent = state.lang === 'en' ? 'Only Premium Grade Households & Kiryana Goods' : 'صرف اعلیٰ برانڈز اور خالص ترین اشیاء';
-            document.getElementById('why2').textContent = state.lang === 'en' ? 'Direct Click & Collect WhatsApp Booking' : 'براہ راست واٹس ایپ آرڈر اور فوری پیکنگ سروس';
-            document.getElementById('why3').textContent = state.lang === 'en' ? 'Located right at Main Chowk Baffa Bazar' : 'بفہ بازار کے مرکز مین چوک پر بہترین لوکیشن';
-            document.getElementById('why4').textContent = state.lang === 'en' ? 'Generations of Trust and Authentic Pricing' : 'نسلوں کا اعتماد اور انتہائی سستی قیمتیں';
-
-            document.getElementById('catalogue-title').textContent = state.lang === 'en' ? 'Explore Our Products' : 'اشیاء کی مکمل لسٹ';
-            document.getElementById('catalogue-sub').textContent = state.lang === 'en' ? 'Fresh Stock & House cleaning essentials' : 'تازہ راشن اور صفائی کا سامان';
-
-            document.getElementById('contact-title').textContent = t.contactTitle;
-            document.getElementById('owner-label').textContent = t.ownerLabel;
-            document.getElementById('owner-desc').textContent = state.lang === 'en' ?
+            $('#about-p2').textContent = t.aboutText;
+            $('#why-title').textContent = state.lang === 'en' ? 'Why Shop With Us?' : 'ہماری دکان کی خصوصیات';
+            $('#why1').textContent = state.lang === 'en' ? 'Only Premium Grade Households & Kiryana Goods' :
+                'صرف اعلیٰ برانڈز اور خالص ترین اشیاء';
+            $('#why2').textContent = state.lang === 'en' ? 'Direct Click & Collect WhatsApp Booking' :
+                'براہ راست واٹس ایپ آرڈر اور فوری پیکنگ سروس';
+            $('#why3').textContent = state.lang === 'en' ? 'Located right at Main Chowk Baffa Bazar' :
+                'بفہ بازار کے مرکز مین چوک پر بہترین لوکیشن';
+            $('#why4').textContent = state.lang === 'en' ? 'Generations of Trust and Authentic Pricing' :
+                'نسلوں کا اعتماد اور انتہائی سستی قیمتیں';
+            // Catalogue header
+            $('#catalogue-title').textContent = state.lang === 'en' ? 'Explore Our Products' : 'اشیاء کی مکمل لسٹ';
+            $('#catalogue-sub').textContent = state.lang === 'en' ? 'Fresh Stock & House cleaning essentials' :
+                'تازہ راشن اور صفائی کا سامان';
+            // Contact
+            $('#contact-title').textContent = t.contactTitle;
+            $('#owner-label').textContent = t.ownerLabel;
+            $('#owner-desc').textContent = state.lang === 'en' ?
                 'Family grocery business serving the Pakhal region with dedication.' :
                 'تحصیل بفہ-پکھل میں بھروسہ اور دیانتداری کی علامت۔';
-            document.getElementById('loc-label').textContent = t.locationTitle;
-            document.getElementById('loc-desc').textContent = state.lang === 'en' ?
+            $('#loc-label').textContent = t.locationTitle;
+            $('#loc-desc').textContent = state.lang === 'en' ?
                 'Main Chowk, Baffa, Mansehra, KP' :
                 'مین چوک، بفہ، مانسہرہ، کے پی';
-            document.getElementById('timings-label').textContent = t.timingsTitle;
-
+            $('#timings-label').textContent = t.timingsTitle;
             const contactTimingDesc = document.querySelector('.contact-item .desc');
-            if (contactTimingDesc && contactTimingDesc.parentElement && contactTimingDesc.parentElement.querySelector('.contact-item .label') === document.getElementById('timings-label')) {
+            if (contactTimingDesc && contactTimingDesc.parentElement && contactTimingDesc.parentElement.querySelector(
+                    '.contact-item .label') === $('#timings-label')) {
                 if (state.lang === 'ur') {
                     contactTimingDesc.innerHTML = `
                         <span style="font-weight:700; color:white; font-size:0.95rem; font-family:'Poppins',sans-serif;">صبح 7 تا رات 9</span>
@@ -3219,17 +3203,16 @@
                 contactTimingDesc.style.gap = '2px';
                 contactTimingDesc.style.marginTop = '4px';
             }
-
-            document.getElementById('drawer-title').textContent = t.shoppingListTitle;
-            document.getElementById('drawer-sub').innerHTML = `<span id="item-count">${getTotalItems()}</span> ${t.itemsSelected}`;
-            document.getElementById('estimated-total-label').textContent = t.estimatedTotal + ':';
-
-            document.getElementById('footer-about').textContent = state.lang === 'en' ?
+            // Drawer
+            $('#drawer-title').textContent = t.shoppingListTitle;
+            $('#drawer-sub').innerHTML = `<span id="item-count">${getTotalItems()}</span> ${t.itemsSelected}`;
+            $('#estimated-total-label').textContent = t.estimatedTotal + ':';
+            // Footer
+            $('#footer-about').textContent = state.lang === 'en' ?
                 'Your trusted household & grocery destination in Baffa. Family-owned, serving with integrity for generations.' :
                 'بفہ میں آپ کا بھروسہ مند کریانہ اور گھریلو سامان کا ذریعہ۔ خاندانی کاروبار، نسلوں سے دیانتداری کے ساتھ۔';
-            document.getElementById('footer-timings-title').textContent = t.timingsTitle;
-            document.getElementById('footer-location-title').textContent = t.locationTitle;
-
+            $('#footer-timings-title').textContent = t.timingsTitle;
+            $('#footer-location-title').textContent = t.locationTitle;
             const timingWrapper = document.querySelector('.footer-timing-wrapper');
             if (timingWrapper) {
                 if (state.lang === 'ur') {
@@ -3248,29 +3231,30 @@
                     `;
                 }
             }
-
-            document.getElementById('form-name-label').textContent = state.lang === 'en' ? 'Your Full Name *' : 'آپ کا نام *';
-            document.getElementById('form-phone-label').textContent = state.lang === 'en' ? 'Mobile Number *' : 'موبائل نمبر *';
-            document.getElementById('form-pickup-label').textContent = state.lang === 'en' ? 'When will you pick it up?' : 'وصولی کا وقت؟';
-            document.getElementById('form-notes-label').textContent = state.lang === 'en' ? 'Special Instructions (Optional)' : 'اضافی نوٹ (اختیاری)';
-            document.getElementById('form-hint').textContent = state.lang === 'en' ?
+            // Form
+            $('#form-name-label').textContent = state.lang === 'en' ? 'Your Full Name *' : 'آپ کا نام *';
+            $('#form-phone-label').textContent = state.lang === 'en' ? 'Mobile Number *' : 'موبائل نمبر *';
+            $('#form-pickup-label').textContent = state.lang === 'en' ? 'When will you pick it up?' : 'وصولی کا وقت؟';
+            $('#form-notes-label').textContent = state.lang === 'en' ? 'Special Instructions (Optional)' : 'اضافی نوٹ (اختیاری)';
+            $('#form-hint').textContent = state.lang === 'en' ?
                 'Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.' :
                 'آپ کی فراہم کردہ معلومات اور لسٹ کو واٹس ایپ پیغام کی شکل میں تبدیل کیا جائے گا تاکہ جاوید ٹریڈرز بفہ آپ کا آرڈر باآسانی تیار رکھ سکیں۔';
         }
 
+        // ========== DETAIL MODAL ==========
         function openDetail(id) {
             const product = getProduct(id);
             if (!product) return;
             state.detailProductId = id;
             state.detailOpen = true;
-            detailOverlay.classList.add('open');
-            document.getElementById('detail-img').src = product.image;
-            document.getElementById('detail-brand').textContent = product.brand || '';
-            document.getElementById('detail-name').textContent = product.name;
-            document.getElementById('detail-unit').textContent = product.unit;
-            document.getElementById('detail-desc').textContent = product.description;
-            document.getElementById('detail-price').textContent = product.price;
-            const stockEl = document.getElementById('detail-stock');
+            $('#detail-overlay').classList.add('open');
+            $('#detail-img').src = product.image;
+            $('#detail-brand').textContent = product.brand || '';
+            $('#detail-name').textContent = product.name;
+            $('#detail-unit').textContent = product.unit;
+            $('#detail-desc').textContent = product.description;
+            $('#detail-price').textContent = product.price;
+            const stockEl = $('#detail-stock');
             if (product.inStock) {
                 stockEl.textContent = 'In Stock';
                 stockEl.className = 'stock in';
@@ -3278,7 +3262,7 @@
                 stockEl.textContent = 'Out of Stock';
                 stockEl.className = 'stock out';
             }
-            const action = document.getElementById('detail-action');
+            const action = $('#detail-action');
             const qty = state.shoppingList[id] || 0;
             if (qty === 0) {
                 action.innerHTML = `
@@ -3303,13 +3287,45 @@
         function closeDetail() {
             state.detailOpen = false;
             state.detailProductId = null;
-            detailOverlay.classList.remove('open');
+            $('#detail-overlay').classList.remove('open');
         }
 
-        function init() {
-            loadList();
+        // ========== DRAWER ==========
+        function openDrawer() {
+            state.listOpen = true;
+            $('#drawer-overlay').classList.add('open');
+            renderDrawer();
+            state.formStep = false;
+            showFormStep(false);
+        }
 
-            categoryRail.addEventListener('click', (e) => {
+        function closeDrawer() {
+            state.listOpen = false;
+            $('#drawer-overlay').classList.remove('open');
+            state.formStep = false;
+            showFormStep(false);
+        }
+
+        // ========== CLEAR CART & RELOAD ==========
+        function clearCartAndReload() {
+            state.shoppingList = {};
+            saveList(); // saves empty object
+            renderAll();
+            if (state.listOpen) {
+                closeDrawer();
+            }
+            showToast(getT().orderConfirmed);
+        }
+
+        // ========== INIT ==========
+        function init() {
+            // --- START FRESH: clear any previously saved cart ---
+            localStorage.removeItem('javed_traders_shopping_list');
+            state.shoppingList = {};
+            // --- end fresh start ---
+
+            // ---- Category filter ----
+            $('#category-rail').addEventListener('click', (e) => {
                 const btn = e.target.closest('button');
                 if (!btn) return;
                 const cat = btn.dataset.cat;
@@ -3318,106 +3334,86 @@
                 renderProducts();
             });
 
-            brandSelect.addEventListener('change', (e) => {
+            // ---- Brand filter ----
+            $('#brand-select').addEventListener('change', (e) => {
                 state.selectedBrand = e.target.value;
                 renderProducts();
             });
 
-            inStockCheck.addEventListener('change', (e) => {
+            // ---- In-stock filter ----
+            $('#in-stock-only').addEventListener('change', (e) => {
                 state.inStockOnly = e.target.checked;
                 renderProducts();
             });
 
-            sortSelect.addEventListener('change', (e) => {
+            // ---- Sort ----
+            $('#sort-select').addEventListener('change', (e) => {
                 state.priceSort = e.target.value;
                 renderProducts();
             });
 
-            productGrid.addEventListener('click', (e) => {
-                const target = e.target.closest('button, .title, .img-wrap');
-                if (!target) return;
-
-                if (target.classList.contains('add-btn')) {
-                    const id = target.dataset.id;
-                    if (id) {
-                        const product = getProduct(id);
-                        if (product && product.inStock) {
-                            state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
-                            saveList();
-                            renderAll();
-                            showToast(state.lang === 'en' ? 'Item added to list!' : 'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+            // ---- Product grid clicks ----
+            $('#product-grid').addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (btn) {
+                    if (btn.classList.contains('add-btn')) {
+                        const id = btn.dataset.id;
+                        if (id) {
+                            const product = getProduct(id);
+                            if (product && product.inStock) {
+                                state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
+                                saveList();
+                                renderAll();
+                                showToast(state.lang === 'en' ? 'Item added to list!' :
+                                    'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+                            }
                         }
+                        return;
+                    }
+                    if (btn.classList.contains('qty-inc') || btn.classList.contains('qty-dec')) {
+                        const id = btn.dataset.id;
+                        if (!id) return;
+                        const delta = btn.classList.contains('qty-inc') ? 1 : -1;
+                        const current = state.shoppingList[id] || 0;
+                        const newQty = current + delta;
+                        if (newQty <= 0) {
+                            delete state.shoppingList[id];
+                            showToast(state.lang === 'en' ? 'Item removed from list' :
+                                'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                        } else {
+                            state.shoppingList[id] = newQty;
+                        }
+                        saveList();
+                        renderAll();
+                        return;
                     }
                     return;
                 }
-
-                if (target.classList.contains('qty-inc') || target.classList.contains('qty-dec')) {
-                    const id = target.dataset.id;
-                    if (!id) return;
-                    const delta = target.classList.contains('qty-inc') ? 1 : -1;
-                    const current = state.shoppingList[id] || 0;
-                    const newQty = current + delta;
-                    if (newQty <= 0) {
-                        delete state.shoppingList[id];
-                        showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
-                    } else {
-                        state.shoppingList[id] = newQty;
-                    }
-                    saveList();
-                    renderAll();
-                    return;
-                }
-
-                if (target.classList.contains('img-wrap') || target.classList.contains('title')) {
-                    const card = target.closest('.product-card');
+                const imgWrap = e.target.closest('.img-wrap');
+                const title = e.target.closest('.title');
+                if (imgWrap || title) {
+                    const card = (imgWrap || title).closest('.product-card');
                     if (card) {
                         const id = card.dataset.id;
                         if (id) openDetail(id);
                     }
-                    return;
                 }
             });
 
-            drawerOverlay.addEventListener('click', (e) => {
-                if (e.target === drawerOverlay) closeDrawer();
-            });
-
-            document.getElementById('close-drawer').addEventListener('click', closeDrawer);
-            document.getElementById('cart-btn').addEventListener('click', openDrawer);
-            document.getElementById('mobile-cart-btn').addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('mobile-overlay').classList.remove('open');
-                openDrawer();
-            });
-            document.getElementById('floating-cart-btn').addEventListener('click', openDrawer);
-
-            function openDrawer() {
-                state.listOpen = true;
-                drawerOverlay.classList.add('open');
-                renderDrawer();
-                state.formStep = false;
-                showFormStep(false);
-            }
-
-            function closeDrawer() {
-                state.listOpen = false;
-                drawerOverlay.classList.remove('open');
-                state.formStep = false;
-                showFormStep(false);
-            }
-
-            drawerBody.addEventListener('click', (e) => {
-                const target = e.target.closest('button');
-                if (!target) return;
-                if (target.classList.contains('drawer-qty-inc') || target.classList.contains('drawer-qty-dec')) {
-                    const id = target.dataset.id;
+            // ---- Drawer body clicks ----
+            $('#drawer-body').addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+                if (btn.classList.contains('drawer-qty-inc') || btn.classList.contains('drawer-qty-dec')) {
+                    const id = btn.dataset.id;
                     if (!id) return;
-                    const delta = target.classList.contains('drawer-qty-inc') ? 1 : -1;
+                    const delta = btn.classList.contains('drawer-qty-inc') ? 1 : -1;
                     const current = state.shoppingList[id] || 0;
                     const newQty = current + delta;
                     if (newQty <= 0) {
                         delete state.shoppingList[id];
-                        showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                        showToast(state.lang === 'en' ? 'Item removed from list' :
+                            'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
                     } else {
                         state.shoppingList[id] = newQty;
                     }
@@ -3428,7 +3424,56 @@
                 }
             });
 
-            document.getElementById('clear-list').addEventListener('click', () => {
+            // ---- Detail modal clicks ----
+            $('#detail-modal').addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+                const id = btn.dataset.id;
+                if (!id) return;
+                if (btn.classList.contains('detail-add-btn')) {
+                    const product = getProduct(id);
+                    if (product && product.inStock) {
+                        state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
+                        saveList();
+                        renderAll();
+                        openDetail(id);
+                        showToast(state.lang === 'en' ? 'Item added to list!' :
+                            'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+                    }
+                    return;
+                }
+                if (btn.classList.contains('detail-qty-inc') || btn.classList.contains('detail-qty-dec')) {
+                    const delta = btn.classList.contains('detail-qty-inc') ? 1 : -1;
+                    const current = state.shoppingList[id] || 0;
+                    const newQty = current + delta;
+                    if (newQty <= 0) {
+                        delete state.shoppingList[id];
+                        showToast(state.lang === 'en' ? 'Item removed from list' :
+                            'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                    } else {
+                        state.shoppingList[id] = newQty;
+                    }
+                    saveList();
+                    renderAll();
+                    openDetail(id);
+                }
+            });
+
+            // ---- Drawer overlay ----
+            $('#drawer-overlay').addEventListener('click', (e) => {
+                if (e.target === $('#drawer-overlay')) closeDrawer();
+            });
+            $('#close-drawer').addEventListener('click', closeDrawer);
+            $('#cart-btn').addEventListener('click', openDrawer);
+            $('#mobile-cart-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                $('#mobile-overlay').classList.remove('open');
+                openDrawer();
+            });
+            $('#floating-cart-btn').addEventListener('click', openDrawer);
+
+            // ---- Clear list ----
+            $('#clear-list').addEventListener('click', () => {
                 if (confirm(state.lang === 'en' ? 'Clear all items?' : 'پوری لسٹ صاف کریں؟')) {
                     state.shoppingList = {};
                     saveList();
@@ -3438,40 +3483,35 @@
                 }
             });
 
-            document.getElementById('proceed-btn').addEventListener('click', () => {
+            // ---- Proceed / Back ----
+            $('#proceed-btn').addEventListener('click', () => {
                 if (getListItems().length === 0) return;
                 state.formStep = true;
                 showFormStep(true);
-                document.getElementById('customer-name').value = state.customerName;
-                document.getElementById('customer-phone').value = state.customerPhone;
-                document.getElementById('pickup-time').value = state.pickupTime;
-                document.getElementById('customer-notes').value = state.customerNotes;
+                $('#customer-name').value = state.customerName;
+                $('#customer-phone').value = state.customerPhone;
+                $('#pickup-time').value = state.pickupTime;
+                $('#customer-notes').value = state.customerNotes;
             });
-
-            document.getElementById('back-to-list').addEventListener('click', () => {
+            $('#back-to-list').addEventListener('click', () => {
                 state.formStep = false;
                 showFormStep(false);
             });
 
-            document.getElementById('customer-name').addEventListener('input', (e) => {
-                state.customerName = e.target.value;
-            });
-            document.getElementById('customer-phone').addEventListener('input', (e) => {
-                state.customerPhone = e.target.value;
-            });
-            document.getElementById('pickup-time').addEventListener('change', (e) => {
-                state.pickupTime = e.target.value;
-            });
-            document.getElementById('customer-notes').addEventListener('input', (e) => {
-                state.customerNotes = e.target.value;
-            });
+            // ---- Form inputs ----
+            $('#customer-name').addEventListener('input', (e) => { state.customerName = e.target.value; });
+            $('#customer-phone').addEventListener('input', (e) => { state.customerPhone = e.target.value; });
+            $('#pickup-time').addEventListener('change', (e) => { state.pickupTime = e.target.value; });
+            $('#customer-notes').addEventListener('input', (e) => { state.customerNotes = e.target.value; });
 
-            document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
-                const name = document.getElementById('customer-name').value.trim();
-                const phone = document.getElementById('customer-phone').value.trim();
+            // ---- WhatsApp ----
+            $('#whatsapp-btn').addEventListener('click', (e) => {
+                const name = $('#customer-name').value.trim();
+                const phone = $('#customer-phone').value.trim();
                 if (!name || !phone) {
                     e.preventDefault();
-                    alert(state.lang === 'en' ? 'Please fill in both Name and Phone number first!' : 'براہ کرم اپنا نام اور فون نمبر درج کریں!');
+                    alert(state.lang === 'en' ? 'Please fill in both Name and Phone number first!' :
+                        'براہ کرم اپنا نام اور فون نمبر درج کریں!');
                     return;
                 }
                 const items = getListItems();
@@ -3496,48 +3536,24 @@
                     msg += `\n${idx + 1}. *${prodName}* (${item.product.unit}) \n   _Qty:_ ${item.quantity}  |  _Price:_ Rs ${line}`;
                 });
                 msg += `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
-                msg += `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
+                msg +=
+                    `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
                 const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
                 window.open(url, '_blank');
+
+                // ---- CLEAR CART AFTER CONFIRMATION ----
+                setTimeout(() => {
+                    clearCartAndReload();
+                }, 400);
             });
 
-            document.getElementById('close-detail').addEventListener('click', closeDetail);
-            detailOverlay.addEventListener('click', (e) => {
-                if (e.target === detailOverlay) closeDetail();
+            // ---- Detail close ----
+            $('#close-detail').addEventListener('click', closeDetail);
+            $('#detail-overlay').addEventListener('click', (e) => {
+                if (e.target === $('#detail-overlay')) closeDetail();
             });
 
-            detailModal.addEventListener('click', (e) => {
-                const target = e.target.closest('button');
-                if (!target) return;
-                const id = target.dataset.id;
-                if (!id) return;
-                if (target.classList.contains('detail-add-btn')) {
-                    const product = getProduct(id);
-                    if (product && product.inStock) {
-                        state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
-                        saveList();
-                        renderAll();
-                        openDetail(id);
-                        showToast(state.lang === 'en' ? 'Item added to list!' : 'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
-                    }
-                    return;
-                }
-                if (target.classList.contains('detail-qty-inc') || target.classList.contains('detail-qty-dec')) {
-                    const delta = target.classList.contains('detail-qty-inc') ? 1 : -1;
-                    const current = state.shoppingList[id] || 0;
-                    const newQty = current + delta;
-                    if (newQty <= 0) {
-                        delete state.shoppingList[id];
-                        showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
-                    } else {
-                        state.shoppingList[id] = newQty;
-                    }
-                    saveList();
-                    renderAll();
-                    openDetail(id);
-                }
-            });
-
+            // ---- Language toggle ----
             document.querySelectorAll('.lang-toggle button').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const lang = btn.dataset.lang;
@@ -3557,28 +3573,31 @@
                 });
             });
 
-            document.getElementById('menu-toggle').addEventListener('click', () => {
-                document.getElementById('mobile-overlay').classList.add('open');
+            // ---- Mobile menu ----
+            $('#menu-toggle').addEventListener('click', () => {
+                $('#mobile-overlay').classList.add('open');
             });
-            document.getElementById('close-mobile').addEventListener('click', () => {
-                document.getElementById('mobile-overlay').classList.remove('open');
+            $('#close-mobile').addEventListener('click', () => {
+                $('#mobile-overlay').classList.remove('open');
             });
-            document.getElementById('mobile-overlay').addEventListener('click', (e) => {
-                if (e.target === document.getElementById('mobile-overlay')) {
-                    document.getElementById('mobile-overlay').classList.remove('open');
+            $('#mobile-overlay').addEventListener('click', (e) => {
+                if (e.target === $('#mobile-overlay')) {
+                    $('#mobile-overlay').classList.remove('open');
                 }
             });
             document.querySelectorAll('#mobile-nav a').forEach(a => {
                 a.addEventListener('click', () => {
-                    document.getElementById('mobile-overlay').classList.remove('open');
+                    $('#mobile-overlay').classList.remove('open');
                 });
             });
 
-            document.getElementById('home-link').addEventListener('click', () => {
+            // ---- Home link ----
+            $('#home-link').addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            document.getElementById('hero-catalogue-btn').addEventListener('click', () => {
+            // ---- Hero buttons ----
+            $('#hero-catalogue-btn').addEventListener('click', () => {
                 const el = document.getElementById('catalogue-section');
                 if (el) {
                     const offset = 80;
@@ -3586,7 +3605,7 @@
                     window.scrollTo({ top, behavior: 'smooth' });
                 }
             });
-            document.getElementById('hero-about-btn').addEventListener('click', () => {
+            $('#hero-about-btn').addEventListener('click', () => {
                 const el = document.getElementById('about-section');
                 if (el) {
                     const offset = 80;
@@ -3595,6 +3614,7 @@
                 }
             });
 
+            // ---- Initial render ----
             renderAll();
             document.querySelectorAll('.lang-toggle button').forEach(b => {
                 b.classList.toggle('active', b.dataset.lang === state.lang);
