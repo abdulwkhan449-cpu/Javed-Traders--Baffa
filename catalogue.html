@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Us | Javed Traders Baffa</title>
+    <title>Catalogue | Javed Traders Baffa</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <style>
+        /* ---------- RESET & BASE ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -34,47 +35,39 @@
             font-size: 18px;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
+        h1, h2, h3, h4, h5, h6,
         .font-display,
         .logo h1,
         .hero-title,
-        .about-header h2,
+        .catalogue-header h2,
         .footer-col .brand,
-        .btn-primary,
-        .btn-secondary,
-        .nav-desktop a,
+        .drawer-header .left .title-group h3,
+        .detail-modal .detail-info .name,
         .mobile-menu-header .logo-text,
-        .mobile-nav a,
-        .mobile-call,
-        .footer-col h4,
-        .footer-bottom .version,
-        .stat-number,
-        .stat-label,
-        .team-name,
-        .team-role,
-        .value-title,
-        .timeline-year,
-        .timeline-title,
-        .milestone-title,
+        .product-card .info .title,
         .cart-btn .cart-label,
         .floating-cart button .text .label,
-        .drawer-header .left .title-group h3,
+        .btn-primary,
+        .btn-secondary,
+        .filter-rail button,
+        .filter-group label,
+        .empty-state h3,
+        .empty-state .reset-btn,
         .drawer-footer .proceed-btn,
         .drawer-footer .clear-btn,
         .drawer-footer .total .label,
-        .form-group label,
         .form-step .summary-box .label,
-        .detail-modal .detail-info .name,
+        .form-group label,
         .detail-modal .detail-info .brand-tag,
         .detail-modal .detail-info .unit-badge,
         .detail-modal .detail-info .price-row .price .label,
+        .detail-modal .detail-info .price-row .stock,
         .detail-modal .detail-info .action .add-btn,
-        .detail-modal .detail-info .action .qty-row .label {
+        .detail-modal .detail-info .action .qty-row .label,
+        .footer-col h4,
+        .footer-col .trust-badges span,
+        .footer-bottom .version,
+        .toast {
             font-family: 'Poppins', sans-serif;
         }
 
@@ -82,8 +75,11 @@
             font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', serif;
             direction: rtl;
         }
+        .font-mono {
+            font-family: 'Courier New', monospace;
+        }
 
-        /* ---------- Toast ---------- */
+        /* ---------- TOAST ---------- */
         #toast-container {
             position: fixed;
             top: 20px;
@@ -116,12 +112,11 @@
             opacity: 1;
             transform: translateY(0);
         }
-
         .toast i {
             color: var(--accent);
         }
 
-        /* ---------- Header (FORCED LTR) ---------- */
+        /* ---------- HEADER (FORCED LTR) ---------- */
         header {
             position: sticky;
             top: 0;
@@ -165,10 +160,10 @@
             line-height: 1.2;
             color: var(--text-primary);
         }
-
         .logo h1 span {
             color: var(--primary);
         }
+
         .logo .sub {
             display: none;
             font-size: 0.7875rem;
@@ -356,7 +351,7 @@
             }
         }
 
-        /* ---------- Mobile Menu (FORCED LTR) ---------- */
+        /* ---------- MOBILE MENU (FORCED LTR) ---------- */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -488,12 +483,10 @@
             gap: 10px;
             color: white;
         }
-
         .mobile-cart-btn .cart-left i {
             color: var(--accent);
             font-size: 1.1rem;
         }
-
         .mobile-cart-btn .cart-left .label {
             font-size: 0.85rem;
             font-weight: 600;
@@ -505,7 +498,6 @@
             align-items: center;
             gap: 8px;
         }
-
         .mobile-cart-btn .cart-right .badge {
             background: var(--discount);
             color: white;
@@ -519,17 +511,38 @@
             font-weight: 700;
             font-family: 'Inter', monospace;
         }
-
         .mobile-cart-btn .cart-right .total {
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.8rem;
             font-weight: 600;
             font-family: 'Inter', monospace;
         }
-
         .mobile-cart-btn .cart-right .arrow {
             color: var(--accent);
             font-size: 0.8rem;
+        }
+
+        .mobile-lang {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin: 12px 0;
+        }
+
+        .mobile-lang span {
+            font-size: 0.8375rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .mobile-lang .lang-toggle {
+            background: white;
         }
 
         .mobile-call {
@@ -546,7 +559,9 @@
             font-weight: 700;
             text-transform: uppercase;
             transition: 0.3s;
-            margin-top: 12px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            text-align: center;
         }
 
         .mobile-call i {
@@ -555,11 +570,16 @@
         .mobile-call:hover {
             background: var(--accent);
         }
+        .mobile-call .num-sep {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+            margin: 0 4px;
+        }
 
-        /* ---------- Hero (About) — CENTERED ---------- */
-        .about-hero {
+        /* ---------- CATALOGUE HERO ---------- */
+        .catalogue-hero {
             background: var(--primary);
-            padding: 60px 16px 50px;
+            padding: 40px 16px 40px;
             border-bottom: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
@@ -568,50 +588,46 @@
         }
 
         @media (min-width: 768px) {
-            .about-hero {
-                padding: 80px 32px 70px;
+            .catalogue-hero {
+                padding: 60px 32px 50px;
             }
         }
 
         @media (min-width: 1024px) {
-            .about-hero {
-                padding: 100px 48px 80px;
+            .catalogue-hero {
+                padding: 80px 48px 60px;
             }
         }
 
-        .about-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .about-hero-inner {
+        .catalogue-hero-inner {
             max-width: 1280px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
+        }
+
+        .catalogue-hero-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 20px;
         }
 
-        .about-hero-text {
+        .catalogue-hero-text {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            max-width: 800px;
-            width: 100%;
+            gap: 12px;
+            max-width: 720px;
+            margin: 0 auto;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(4px);
             padding: 6px 16px;
             border-radius: 999px;
@@ -619,7 +635,7 @@
             font-weight: 600;
             letter-spacing: 0.1em;
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             text-transform: uppercase;
             width: fit-content;
         }
@@ -630,34 +646,16 @@
         }
 
         .hero-title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             font-size: 2.5rem;
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -0.02em;
             text-transform: uppercase;
             color: white;
-            text-align: center;
         }
 
-        #hero-title-main {
-            color: #06B6D4;
-            font-size: 1em;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.1rem;
-        }
-
-        .hero-title .accent-text {
-            color: white;
-        }
-
-        .hero-title .brand-line {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.2rem;
+        .hero-title span {
+            color: var(--accent);
         }
 
         @media (min-width: 640px) {
@@ -668,561 +666,504 @@
 
         @media (min-width: 1024px) {
             .hero-title {
-                font-size: 4.2rem;
+                font-size: 4rem;
             }
         }
 
         .hero-desc {
             font-size: 1.0875rem;
             color: rgba(255, 255, 255, 0.85);
-            max-width: 600px;
-            line-height: 1.7;
-            text-align: center;
+            max-width: 560px;
+            line-height: 1.6;
             margin: 0 auto;
         }
 
-        /* ---------- Main ---------- */
+        /* ---------- MAIN ---------- */
         main {
             max-width: 1280px;
             margin: 0 auto;
             padding: 40px 16px 60px;
         }
 
-        section {
-            margin-bottom: 64px;
+        /* ---------- CATALOGUE FILTERS ---------- */
+        .catalogue-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
         }
 
-        /* ---------- Our Story ---------- */
-        .story-section {
+        .catalogue-header h2 {
+            font-size: 1.6875rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .catalogue-header .sub {
+            font-size: 0.8375rem;
+            color: var(--accent);
+            font-family: 'Inter', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-rail {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            background: var(--bg);
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .filter-rail button {
+            border: none;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.8875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .filter-rail button.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-rail button:hover:not(.active) {
+            background: white;
+            color: var(--text-primary);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 32px 24px;
-        }
-
-        @media (min-width: 768px) {
-            .story-section {
-                padding: 48px;
-            }
-        }
-
-        .story-header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
+            border-radius: 16px;
+            padding: 12px 16px;
             margin-bottom: 24px;
         }
 
-        .story-header h2 {
-            font-size: 1.6875rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .story-header .sub {
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
             font-size: 0.8375rem;
-            color: var(--accent);
-            font-family: 'Inter', monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .story-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-
-        @media (min-width: 768px) {
-            .story-grid {
-                grid-template-columns: 3fr 2fr;
-                align-items: start;
-            }
-        }
-
-        .story-text p {
-            font-size: 1.0375rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .story-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .story-text .highlight {
-            color: var(--primary);
             font-weight: 600;
+            color: var(--text-muted);
+            flex-wrap: wrap;
         }
 
-        .story-values {
+        .filter-group i {
+            color: var(--accent);
+        }
+
+        .filter-group select,
+        .filter-group input[type="checkbox"] {
             background: var(--bg);
-            border-radius: 16px;
-            padding: 24px;
             border: 1px solid var(--border-color);
-        }
-
-        .story-values h3 {
+            border-radius: 8px;
+            padding: 4px 8px;
             font-size: 0.8875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--primary);
-            margin-bottom: 16px;
-        }
-
-        .story-values ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .story-values ul li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 0.9375rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .story-values ul li .icon {
-            color: var(--accent);
-            flex-shrink: 0;
-            margin-top: 2px;
-            width: 20px;
-            text-align: center;
-        }
-
-        .story-values ul li .strong {
-            color: var(--text-primary);
             font-weight: 600;
-        }
-
-        /* ---------- Team ---------- */
-        .team-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 32px 24px;
-        }
-
-        @media (min-width: 768px) {
-            .team-section {
-                padding: 48px;
-            }
-        }
-
-        .team-header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-
-        .team-header h2 {
-            font-size: 1.6875rem;
-            font-weight: 700;
             color: var(--text-primary);
+            cursor: pointer;
+            outline: none;
         }
 
-        .team-header .sub {
-            font-size: 0.8375rem;
-            color: var(--accent);
-            font-family: 'Inter', monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        .filter-group select:focus,
+        .filter-group input:focus {
+            border-color: var(--accent);
         }
 
-        .team-grid {
+        .filter-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        /* ---------- PRODUCT GRID ---------- */
+        .product-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 24px;
         }
 
         @media (min-width: 640px) {
-            .team-grid {
+            .product-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (min-width: 1024px) {
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 800px;
-                margin: 0 auto;
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        .team-card {
-            background: var(--bg);
+        @media (min-width: 1280px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .product-card {
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             transition: all 0.3s;
-            text-align: center;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
         }
 
-        .team-card:hover {
+        .product-card:hover {
             border-color: var(--accent);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
 
-        .team-card .img-wrapper {
-            aspect-ratio: 1/1;
-            background: white;
-            overflow: hidden;
+        .product-card.selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+        }
+
+        .product-card .img-wrap {
             position: relative;
-            border-bottom: 1px solid var(--border-color);
+            aspect-ratio: 1;
+            background: var(--bg);
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .team-card .img-wrapper img {
+        .product-card .img-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
 
-        .team-card:hover .img-wrapper img {
-            transform: scale(1.03);
+        .product-card:hover .img-wrap img {
+            transform: scale(1.05);
         }
 
-        .team-card .img-wrapper .badge {
+        .product-card .img-wrap .overlay {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--accent);
+            inset: 0;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover .img-wrap .overlay {
+            opacity: 1;
+        }
+
+        .product-card .img-wrap .overlay span {
+            background: var(--primary);
             color: white;
-            font-size: 0.6875rem;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8375rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card .img-wrap .badges {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .product-card .img-wrap .badges span {
+            font-size: 0.7375rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            padding: 4px 12px;
+            padding: 2px 10px;
             border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid;
+            background: white;
         }
 
-        .team-card .info {
-            padding: 20px 16px 24px;
+        .product-card .img-wrap .badges .cat-grocery {
+            color: #0284C7;
+            background: #E0F2FE;
+            border-color: #7DD3FC;
         }
 
-        .team-name {
+        .product-card .img-wrap .badges .cat-household {
+            color: #FB923C;
+            background: #FFF7ED;
+            border-color: #FDBA74;
+        }
+
+        .product-card .img-wrap .badges .brand {
+            background: rgba(2, 132, 199, 0.8);
+            color: white;
+            border-color: transparent;
+            font-family: 'Inter', monospace;
+        }
+
+        .product-card .img-wrap .selected-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 182, 212, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .product-card .img-wrap .selected-overlay i {
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            border-radius: 999px;
+            font-size: 1.3875rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card .img-wrap .stock-badge {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card .img-wrap .stock-badge span {
+            background: #FEE2E2;
+            color: #DC2626;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            border: 2px solid #FECACA;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .product-card .info {
+            padding: 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card .info .title {
+            font-size: 1.0375rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+
+        .product-card .info .unit {
+            display: inline-block;
+            font-size: 0.8375rem;
+            font-weight: 600;
+            font-family: 'Inter', monospace;
+            background: var(--bg);
+            padding: 2px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            margin-top: 4px;
+            color: var(--text-muted);
+        }
+
+        .product-card .info .desc {
+            font-size: 0.8875rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-top: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 36px;
+        }
+
+        .product-card .info .bottom {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-card .info .bottom .price {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card .info .bottom .price .label {
+            font-size: 0.7375rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .product-card .info .bottom .price .amount {
+            font-size: 1.2875rem;
+            font-weight: 700;
+            font-family: 'Inter', monospace;
+            color: var(--text-primary);
+        }
+
+        .product-card .info .bottom .price .amount small {
+            font-size: 0.8875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .product-card .info .bottom .actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-card .info .bottom .actions .add-btn {
+            background: var(--bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.8375rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .product-card .info .bottom .actions .add-btn:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .product-card .info .bottom .actions .add-btn:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .product-card .info .bottom .actions .qty-control {
+            display: flex;
+            align-items: center;
+            background: var(--primary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card .info .bottom .actions .qty-control button {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            padding: 6px 12px;
+            font-size: 0.9875rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .product-card .info .bottom .actions .qty-control button:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .product-card .info .bottom .actions .qty-control .qty {
+            color: white;
+            font-family: 'Inter', monospace;
+            font-weight: 700;
+            font-size: 1.0375rem;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        /* ---------- EMPTY STATE ---------- */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+        }
+
+        .empty-state i {
+            font-size: 2.6875rem;
+            color: var(--accent);
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
             font-size: 1.1875rem;
             font-weight: 700;
             color: var(--text-primary);
+            margin-bottom: 4px;
         }
 
-        .team-role {
-            font-size: 0.8875rem;
-            font-weight: 600;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 2px;
-        }
-
-        .team-desc {
-            font-size: 0.9375rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-top: 10px;
-            max-width: 320px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* ---------- Timeline ---------- */
-        .milestones-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 32px 24px;
-        }
-
-        @media (min-width: 768px) {
-            .milestones-section {
-                padding: 48px;
-            }
-        }
-
-        .milestones-header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
-            margin-bottom: 32px;
-        }
-
-        .milestones-header h2 {
-            font-size: 1.6875rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .milestones-header .sub {
-            font-size: 0.8375rem;
-            color: var(--accent);
-            font-family: 'Inter', monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            position: relative;
-            padding-left: 28px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 12px;
-            bottom: 12px;
-            width: 2px;
-            background: var(--border-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-bottom: 32px;
-            padding-left: 20px;
-        }
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -26px;
-            top: 4px;
-            width: 14px;
-            height: 14px;
-            border-radius: 999px;
-            background: var(--accent);
-            border: 3px solid var(--bg);
-            box-shadow: 0 0 0 2px var(--accent);
-        }
-
-        .timeline-item .year {
-            font-size: 1.0375rem;
-            font-weight: 800;
-            color: var(--accent);
-            font-family: 'Inter', monospace;
-            margin-bottom: 2px;
-        }
-
-        .timeline-item .title {
-            font-size: 1.0875rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .timeline-item .desc {
-            font-size: 0.9375rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-top: 4px;
-        }
-
-        /* ---------- Why Choose Us ---------- */
-        .why-section {
-            background: var(--primary);
-            color: white;
-            border-radius: 24px;
-            padding: 32px 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @media (min-width: 768px) {
-            .why-section {
-                padding: 48px;
-            }
-        }
-
-        .why-section::before {
-            content: '';
-            position: absolute;
-            top: -60px;
-            right: -60px;
-            width: 250px;
-            height: 250px;
-            background: rgba(6, 182, 212, 0.1);
-            border-radius: 999px;
-            filter: blur(80px);
-        }
-
-        .why-section .header {
-            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
-            padding-bottom: 16px;
-            margin-bottom: 32px;
-        }
-
-        .why-section .header h2 {
-            font-size: 1.6875rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .why-section .header .sub {
-            font-size: 0.8375rem;
-            color: var(--accent);
-            font-family: 'Inter', monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (min-width: 640px) {
-            .why-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .why-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .why-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 20px 16px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .why-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .why-item .icon {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .why-item .title {
+        .empty-state p {
             font-size: 0.9875rem;
-            font-weight: 700;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .why-item .desc {
-            font-size: 0.8875rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.5;
-            margin-top: 4px;
-        }
-
-        /* ---------- CTA ---------- */
-        .cta-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 40px 24px;
-            text-align: center;
-        }
-
-        @media (min-width: 768px) {
-            .cta-section {
-                padding: 60px 48px;
-            }
-        }
-
-        .cta-section h2 {
-            font-size: 1.6875rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .cta-section p {
-            font-size: 1.0375rem;
             color: var(--text-muted);
-            max-width: 560px;
-            margin: 8px auto 20px;
-            line-height: 1.6;
+            max-width: 300px;
+            margin: 0 auto 16px;
         }
 
-        .cta-section .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
+        .empty-state .reset-btn {
+            background: var(--accent);
             color: white;
             border: none;
-            padding: 12px 28px;
-            border-radius: 12px;
+            padding: 8px 20px;
+            border-radius: 8px;
             font-size: 0.8875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
         }
 
-        .btn-primary i {
-            color: var(--accent);
-        }
-        .btn-primary:hover {
-            background: var(--accent);
-            color: white;
-            transform: scale(1.02);
-        }
-        .btn-primary:hover i {
-            color: white;
+        .empty-state .reset-btn:hover {
+            background: var(--primary);
         }
 
-        .btn-secondary {
-            background: var(--bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            padding: 12px 28px;
-            border-radius: 12px;
-            font-size: 0.8875rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            background: var(--border-color);
-            transform: scale(1.02);
-        }
-
-        /* ---------- Footer ---------- */
+        /* ---------- FOOTER ---------- */
         footer {
             background: var(--primary);
             color: white;
@@ -1366,6 +1307,11 @@
             text-decoration: underline;
         }
 
+        .footer-col .info-item .phone-sep {
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 4px;
+        }
+
         .footer-bottom {
             padding-top: 20px;
             display: flex;
@@ -1388,21 +1334,6 @@
         .footer-bottom .version {
             color: rgba(255, 255, 255, 0.7);
             letter-spacing: 0.05em;
-        }
-
-        .map-link {
-            color: #34d399;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: 0.3s;
-        }
-
-        .map-link:hover {
-            color: white;
-            text-decoration: underline;
         }
 
         /* ---------- DRAWER ---------- */
@@ -1633,7 +1564,6 @@
             letter-spacing: 0.05em;
             cursor: pointer;
             transition: 0.3s;
-            font-family: 'Poppins', sans-serif;
             margin-bottom: 8px;
             display: inline-flex;
             align-items: center;
@@ -1733,7 +1663,6 @@
             font-size: 0.9875rem;
             font-weight: 600;
             color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
         }
 
         .form-group {
@@ -1768,7 +1697,6 @@
             background: white;
             outline: none;
             transition: 0.3s;
-            font-family: 'Inter', sans-serif;
         }
 
         .form-group input:focus,
@@ -1792,7 +1720,6 @@
             color: var(--accent);
             font-weight: 600;
             margin-top: 12px;
-            font-family: 'Inter', sans-serif;
         }
 
         .drawer-footer .back-btn {
@@ -1849,85 +1776,7 @@
             font-size: 1.1875rem;
         }
 
-        /* ---------- Floating Cart ---------- */
-        .floating-cart {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 30;
-            display: none;
-        }
-
-        .floating-cart.visible {
-            display: block;
-        }
-
-        .floating-cart button {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid rgba(6, 182, 212, 0.3);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .floating-cart button:hover {
-            background: var(--accent);
-            transform: scale(1.05);
-        }
-
-        .floating-cart button .icon-wrap {
-            position: relative;
-        }
-
-        .floating-cart button .icon-wrap i {
-            font-size: 1.3875rem;
-            color: var(--accent);
-        }
-
-        .floating-cart button .icon-wrap .badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--discount);
-            color: white;
-            border-radius: 999px;
-            width: 16px;
-            height: 16px;
-            font-size: 0.7375rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Inter', monospace;
-        }
-
-        .floating-cart button .text {
-            text-align: left;
-        }
-
-        .floating-cart button .text .label {
-            font-size: 0.7375rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .floating-cart button .text .total {
-            font-family: 'Inter', monospace;
-            font-weight: 700;
-            font-size: 1.0375rem;
-        }
-
-        /* ---------- Detail Modal ---------- */
+        /* ---------- DETAIL MODAL ---------- */
         .detail-overlay {
             position: fixed;
             inset: 0;
@@ -2101,7 +1950,7 @@
 
         .detail-modal .detail-info .price-row .stock.out {
             background: #FEE2E2;
-            color: var(--discount);
+            color: #DC2626;
             border: 1px solid #FECACA;
         }
 
@@ -2187,17 +2036,144 @@
             text-align: center;
         }
 
-        .scroll-mt-24 {
-            scroll-margin-top: 100px;
+        /* ---------- FLOATING CART ---------- */
+        .floating-cart {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 30;
+            display: none;
+        }
+
+        .floating-cart.visible {
+            display: block;
+        }
+
+        .floating-cart button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .floating-cart button:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .floating-cart button .icon-wrap {
+            position: relative;
+        }
+
+        .floating-cart button .icon-wrap i {
+            font-size: 1.3875rem;
+            color: var(--accent);
+        }
+
+        .floating-cart button .icon-wrap .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--discount);
+            color: white;
+            border-radius: 999px;
+            width: 16px;
+            height: 16px;
+            font-size: 0.7375rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', monospace;
+        }
+
+        .floating-cart button .text {
+            text-align: left;
+        }
+
+        .floating-cart button .text .label {
+            font-size: 0.7375rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .floating-cart button .text .total {
+            font-family: 'Inter', monospace;
+            font-weight: 700;
+            font-size: 1.0375rem;
+        }
+
+        /* ---------- BACK TO TOP ---------- */
+        .back-to-top {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            z-index: 25;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            width: 48px;
+            height: 48px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            border: 2px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: scale(1.1);
         }
 
         @media (max-width: 640px) {
+            .back-to-top {
+                bottom: 80px;
+                right: 16px;
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
             .hero-title {
                 font-size: 2rem;
             }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
+        /* ---------- DIRECTION OVERRIDES ---------- */
         .dir-rtl {
+            direction: rtl;
+        }
+
+        .dir-rtl .catalogue-hero,
+        .dir-rtl main,
+        .dir-rtl footer,
+        .dir-rtl .drawer-overlay,
+        .dir-rtl .detail-overlay,
+        .dir-rtl .floating-cart,
+        .dir-rtl .back-to-top {
             direction: rtl;
         }
 
@@ -2209,6 +2185,10 @@
             font-family: 'Noto Nastaliq Urdu', 'Urdu Typesetting', serif;
             direction: rtl;
         }
+
+        .scroll-mt-24 {
+            scroll-margin-top: 100px;
+        }
     </style>
 </head>
 
@@ -2217,7 +2197,7 @@
     <!-- Toast Container -->
     <div id="toast-container"></div>
 
-    <!-- ==================== HEADER (FORCED LTR) ==================== -->
+    <!-- ===== HEADER – FORCED LTR ===== -->
     <header dir="ltr">
         <div class="header-inner">
             <a href="index.html" class="logo" id="home-link">
@@ -2227,8 +2207,8 @@
 
             <nav class="nav-desktop" id="desktop-nav">
                 <a href="index.html">Home</a>
-                <a href="about.html" class="active">About</a>
-                <a href="catalogue.html">Products Catalogue</a>
+                <a href="about.html">About</a>
+                <a href="catalogue.html" class="active">Products Catalogue</a>
                 <a href="contact.html">Contact</a>
             </nav>
 
@@ -2249,7 +2229,7 @@
         </div>
     </header>
 
-    <!-- ==================== MOBILE MENU (FORCED LTR) ==================== -->
+    <!-- ===== MOBILE MENU – FORCED LTR ===== -->
     <div class="mobile-overlay" id="mobile-overlay" dir="ltr">
         <div class="mobile-menu">
             <div class="mobile-menu-header">
@@ -2257,12 +2237,11 @@
                 <button class="close-btn" id="close-mobile"><i class="fas fa-times"></i></button>
             </div>
             <nav class="mobile-nav" id="mobile-nav">
-                <a href="index.html">Home <span class="arrow">➔</span></a>
-                <a href="about.html" class="active">About Us <span class="arrow">➔</span></a>
-                <a href="catalogue.html">Catalogue <span class="arrow">➔</span></a>
+                <a href="home.html">Home <span class="arrow">➔</span></a>
+                <a href="about.html">About Us <span class="arrow">➔</span></a>
+                <a href="catalogue.html" class="active">Products Catalogue <span class="arrow">➔</span></a>
                 <a href="contact.html">Contact <span class="arrow">➔</span></a>
             </nav>
-
             <button class="mobile-cart-btn" id="mobile-cart-btn">
                 <div class="cart-left">
                     <i class="fas fa-shopping-bag"></i>
@@ -2274,178 +2253,89 @@
                     <span class="arrow">➔</span>
                 </div>
             </button>
-
-            <a href="tel:+923145160991" class="mobile-call">
-                <i class="fas fa-phone-alt"></i> Call: +92 314 5160991
+            <div class="mobile-lang">
+                <span>Language:</span>
+                <div class="lang-toggle">
+                    <button class="active" data-lang="en">EN</button>
+                    <button class="urdu-btn" data-lang="ur">اردو</button>
+                </div>
+            </div>
+            <a href="tel:+9233659595531" class="mobile-call">
+                <i class="fas fa-phone-alt"></i>
+                <span>+92 336 9595531</span>
+                <span class="num-sep">|</span>
+                <span>+92 314 5160991</span>
             </a>
         </div>
     </div>
 
-    <!-- ==================== ABOUT HERO ==================== -->
-    <section class="about-hero" id="about-hero">
-        <div class="about-hero-inner">
-            <div class="about-hero-text">
-                <div class="hero-badge"><i class="fas fa-store"></i> <span id="hero-badge-text">Family-Owned Since 1985</span></div>
-                <h1 class="hero-title">
-                    <span id="hero-title-main">About</span>
-                    <span class="brand-line">
-                        <span class="accent-text" id="hero-title-accent">Javed</span>
-                        <span id="hero-title-traders">Traders</span>
-                    </span>
-                </h1>
-                <p class="hero-desc" id="hero-desc">
-                    For over three generations, we've been the trusted name in Baffa for premium household goods and kiryana items.
-                </p>
+    <!-- ===== CATALOGUE HERO ===== -->
+    <section class="catalogue-hero">
+        <div class="catalogue-hero-inner">
+            <div class="catalogue-hero-content">
+                <div class="catalogue-hero-text">
+                    <div class="hero-badge"><i class="fas fa-store"></i> PREMIUM HOUSEHOLD &amp; GROCERY</div>
+                    <h1 class="hero-title"><span>Our</span> Product <br>Catalogue</h1>
+                    <p class="hero-desc" id="hero-desc">
+                        Explore our complete range of premium household goods and kiryana essentials.
+                        Select items, build your list, and order directly on WhatsApp for instant collection.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== MAIN ==================== -->
-    <main>
+    <!-- ===== MAIN ===== -->
+    <main id="main-content">
 
-        <!-- ====== Our Story ====== -->
-        <section class="story-section">
-            <div class="story-header">
-                <h2 id="story-title">Our Story</h2>
-                <div class="sub" id="story-sub">FROM A SMALL SHOP TO BAFFA'S TRUSTED GROCERY DESTINATION</div>
-            </div>
-            <div class="story-grid">
-                <div class="story-text">
-                    <p id="story-p1">
-                        <span class="highlight">Javed Traders</span> was founded in <span class="highlight">1985</span> by <span class="highlight">Muhammad Javed</span> with a simple vision: to provide the people of Baffa and the wider Pakhal region with the highest quality household and grocery items at the most affordable prices.
-                    </p>
-                    <p id="story-p2">
-                        What started as a small corner shop at Main Chowk has grown into a premier retail destination, thanks to decades of unwavering trust, integrity, and a deep understanding of the community's needs. From fresh kiryana staples to premium cleaning essentials, every product on our shelves is chosen with care.
-                    </p>
-                    <p id="story-p3">
-                        Today, the legacy continues under the leadership of <span class="highlight">Usman Javed</span>, who has modernized the business with a digital showroom while preserving the traditional values that made Javed Traders a household name.
-                    </p>
+        <section id="catalogue-section">
+            <div class="catalogue-header">
+                <div>
+                    <h2 id="catalogue-title">All Products</h2>
+                    <div class="sub" id="catalogue-sub">Fresh Stock &amp; Household Essentials</div>
                 </div>
-                <div class="story-values">
-                    <h3 id="values-title">Our Core Values</h3>
-                    <ul>
-                        <li><span class="icon"><i class="fas fa-hand-holding-heart"></i></span> <span class="strong" id="val1-label">Trust &amp; Integrity</span> — <span id="val1-desc">Generations of honest dealings with every customer.</span></li>
-                        <li><span class="icon"><i class="fas fa-tag"></i></span> <span class="strong" id="val2-label">Unbeatable Pricing</span> — <span id="val2-desc">Market-competitive rates without compromising quality.</span></li>
-                        <li><span class="icon"><i class="fas fa-seedling"></i></span> <span class="strong" id="val3-label">Premium Quality</span> — <span id="val3-desc">Only the finest products from trusted brands and suppliers.</span></li>
-                        <li><span class="icon"><i class="fas fa-users"></i></span> <span class="strong" id="val4-label">Community First</span> — <span id="val4-desc">Serving our neighbours with respect, warmth, and dedication.</span></li>
-                    </ul>
-                </div>
+                <div class="sub" id="results-count">Showing 80+ products</div>
             </div>
-        </section>
 
-        <!-- ====== Team ====== -->
-        <section class="team-section">
-            <div class="team-header">
-                <h2 id="team-title">Meet the Team</h2>
-                <div class="sub" id="team-sub">THE FAMILY BEHIND THE LEGACY</div>
+            <div class="filter-rail" id="category-rail">
+                <button class="active" data-cat="all" id="filter-all">All Products</button>
+                <button data-cat="grocery" id="filter-grocery">Grocery</button>
+                <button data-cat="household" id="filter-household">Household</button>
             </div>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="img-wrapper">
-                        <img src="./javedsahb.png" alt="Muhammad Javed - Founder" />
-                        <span class="badge" id="badge-founder">Founder</span>
-                    </div>
-                    <div class="info">
-                        <div class="team-name">Muhammad Javed</div>
-                        <div class="team-role" id="role-founder">Senior Proprietor</div>
-                        <div class="team-desc" id="desc-founder">
-                            The visionary who built Javed Traders from the ground up. With decades of experience, he is the heart and soul of the business, known for his warm smile and unmatched market knowledge.
-                        </div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="img-wrapper">
-                        <img src="./usman.png" alt="Usman Javed - Partner" />
-                        <span class="badge" id="badge-partner">Partner</span>
-                    </div>
-                    <div class="info">
-                        <div class="team-name">Usman Javed</div>
-                        <div class="team-role" id="role-partner">Partner &amp; Manager</div>
-                        <div class="team-desc" id="desc-partner">
-                            Carrying forward his father's legacy, Usman brings modern retail innovation to the business. He leads the digital transformation, ensuring Javed Traders stays ahead while honouring tradition.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- ====== Milestones ====== -->
-        <section class="milestones-section">
-            <div class="milestones-header">
-                <h2 id="milestones-title">Our Journey</h2>
-                <div class="sub" id="milestones-sub">KEY MILESTONES IN OUR STORY</div>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="year">1985</div>
-                    <div class="title" id="milestone1-title">The Beginning</div>
-                    <div class="desc" id="milestone1-desc">Muhammad Javed opens a small grocery shop at Main Chowk Baffa Bazar, serving the local community with daily essentials.</div>
+            <div class="filter-options">
+                <div class="filter-group">
+                    <i class="fas fa-filter"></i>
+                    <span id="brand-label">Brand:</span>
+                    <select id="brand-select">
+                        <option value="all" id="brand-all">All Brands</option>
+                    </select>
                 </div>
-                <div class="timeline-item">
-                    <div class="year">2000</div>
-                    <div class="title" id="milestone2-title">Expansion &amp; Renovation</div>
-                    <div class="desc" id="milestone2-desc">The shop is expanded to a full-scale showroom, introducing a wider range of household goods and becoming a one-stop destination for families.</div>
+                <div class="filter-group">
+                    <label>
+                        <input type="checkbox" id="in-stock-only" />
+                        <span id="stock-label">In Stock Only</span>
+                    </label>
                 </div>
-                <div class="timeline-item">
-                    <div class="year">2020</div>
-                    <div class="title" id="milestone3-title">Digital Transformation</div>
-                    <div class="desc" id="milestone3-desc">Usman Javed joins as Partner and launches the Click &amp; Collect digital showroom, making ordering seamless and modern.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="year">2025</div>
-                    <div class="title" id="milestone4-title">40 Years of Trust</div>
-                    <div class="desc" id="milestone4-desc">Celebrating four decades of service, Javed Traders continues to be Baffa's most trusted household &amp; grocery destination, now serving 500+ loyal families.</div>
+                <div class="filter-group" style="margin-left:auto;">
+                    <i class="fas fa-arrow-up-wide-short"></i>
+                    <span id="sort-label">Sort:</span>
+                    <select id="sort-select">
+                        <option value="default" id="sort-default">Default</option>
+                        <option value="low-high" id="sort-low">Price: Low to High</option>
+                        <option value="high-low" id="sort-high">Price: High to Low</option>
+                    </select>
                 </div>
             </div>
-        </section>
 
-        <!-- ====== Why Choose Us ====== -->
-        <section class="why-section">
-            <div class="header">
-                <h2 id="why-title">Why Javed Traders?</h2>
-                <div class="sub" id="why-sub">QUALITY · TRUST · AFFORDABILITY</div>
-            </div>
-            <div class="why-grid">
-                <div class="why-item">
-                    <div class="icon"><i class="fas fa-star"></i></div>
-                    <div class="title" id="why1-title">Generations of Trust</div>
-                    <div class="desc" id="why1-desc">A legacy of honest, transparent dealings that has earned the loyalty of thousands across the Pakhal region.</div>
-                </div>
-                <div class="why-item">
-                    <div class="icon"><i class="fas fa-boxes"></i></div>
-                    <div class="title" id="why2-title">Premium Quality Products</div>
-                    <div class="desc" id="why2-desc">We handpick every item — from the finest basmati rice to the most effective household cleaners.</div>
-                </div>
-                <div class="why-item">
-                    <div class="icon"><i class="fas fa-hand-holding-usd"></i></div>
-                    <div class="title" id="why3-title">Best Price Guarantee</div>
-                    <div class="desc" id="why3-desc">We believe everyone deserves access to top-tier goods at prices that don't break the bank.</div>
-                </div>
-                <div class="why-item">
-                    <div class="icon"><i class="fas fa-clock"></i></div>
-                    <div class="title" id="why4-title">Click &amp; Collect Convenience</div>
-                    <div class="desc" id="why4-desc">Order online and pick up from the store in no time — no wait, no hassle, no online payments.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ====== CTA ====== -->
-        <section class="cta-section">
-            <h2 id="cta-title">Ready to Experience Javed Traders?</h2>
-            <p id="cta-desc">
-                Browse our full catalogue, add items to your list, and send a WhatsApp order — we'll have it packed and ready for you at Main Chowk Baffa Bazar.
-            </p>
-            <div class="btn-group">
-                <a href="./catalogue.html" class="btn-primary"><i class="fas fa-shopping-bag"></i> <span id="cta-btn1">Browse Catalogue</span></a>
-                <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                    <i class="fas fa-map-pin"></i> <span id="cta-btn2">Find Us</span>
-                </a>
+            <div class="product-grid" id="product-grid">
+                <!-- Rendered by JS -->
             </div>
         </section>
 
     </main>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-inner">
             <div class="footer-grid">
@@ -2463,8 +2353,9 @@
                     <h4 id="footer-timings-title">Timings &amp; Pickup</h4>
                     <div class="footer-timing-wrapper">
                         <span class="time-main">7:00 AM – 9:00 PM</span>
-                        <span class="time-sub">(Mon–Thu, Sat)</span>
-                        <span class="time-friday"><strong>Friday:</strong> 7:00 AM – 9:00 PM (Closed for Jummah prayer only)</span>
+                        <span class="time-sub">(Mon-Thu, Sat)</span>
+                        <span class="time-friday"><strong>Friday:</strong> 7:00 AM – 12:30 PM &amp; 2:30 PM – 9:00 PM</span>
+                        <span class="time-sub" style="font-size:0.75rem; color:rgba(255,255,255,0.6);">(Closed for Jummah prayer 1:00 PM – 2:30 PM)</span>
                         <span class="time-pack">Pack-time: 24 Hours</span>
                     </div>
                 </div>
@@ -2473,7 +2364,7 @@
                     <div class="info-item">
                         <i class="fas fa-map-pin"></i>
                         <div>
-                            <span class="strong">Main Bazar, Baffa</span><br />
+                            <span class="strong">Main Bazar Chowk, Baffa</span><br />
                             <span>Tehsil Baffa-Pakhal, Mansehra, KP</span><br />
                             <a href="https://www.google.com/maps/place/JAVED+TRADERS+BAFFA+BAZAR/@34.4360667,73.2154808,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38de17004ffded6f:0xae0220ffff8544ed!8m2!3d34.4360667!4d73.2180557!16s%2Fg%2F11w7rbkk3p?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-link">
                                 <i class="fas fa-directions"></i> View on Google Maps
@@ -2483,10 +2374,10 @@
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
                         <div>
-                            <span class="strong">Javed Iqbal &amp; Usman Javed</span><br />
+                            <span class="strong">Call or WhatsApp:</span><br />
+                            <a href="tel:+9233659595531">+92 336 9595531</a>
+                            <span class="phone-sep">|</span>
                             <a href="tel:+923145160991">+92 314 5160991</a>
-                            <span style="color:rgba(255,255,255,0.5);margin:0 4px;">|</span>
-                            <a href="tel:+923369595531" style="color:#34d399;text-decoration:none;font-weight:700;">+92 336 9595531</a>
                         </div>
                     </div>
                 </div>
@@ -2499,7 +2390,7 @@
         </div>
     </footer>
 
-    <!-- ==================== SHOPPING LIST DRAWER ==================== -->
+    <!-- ===== DRAWER ===== -->
     <div class="drawer-overlay" id="drawer-overlay">
         <div class="drawer" id="drawer">
             <div class="drawer-header">
@@ -2526,14 +2417,13 @@
                             <span id="form-total">PKR 0</span>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label><i class="fas fa-user"></i> <span id="form-name-label">Your Full Name *</span></label>
                         <input type="text" id="customer-name" placeholder="e.g. Usman Javed" />
                     </div>
                     <div class="form-group">
                         <label><i class="fas fa-phone"></i> <span id="form-phone-label">Mobile Number *</span></label>
-                        <input type="tel" id="customer-phone" placeholder="e.g. 0314 5160991" />
+                        <input type="tel" id="customer-phone" placeholder="e.g. 0336 9595531" />
                     </div>
                     <div class="form-group">
                         <label><i class="fas fa-clock"></i> <span id="form-pickup-label">When will you pick it up?</span></label>
@@ -2576,7 +2466,7 @@
         </div>
     </div>
 
-    <!-- ==================== PRODUCT DETAIL MODAL ==================== -->
+    <!-- ===== DETAIL MODAL ===== -->
     <div class="detail-overlay" id="detail-overlay">
         <div class="detail-modal" id="detail-modal">
             <button class="close-detail" id="close-detail"><i class="fas fa-times"></i></button>
@@ -2602,7 +2492,7 @@
         </div>
     </div>
 
-    <!-- ==================== FLOATING CART ==================== -->
+    <!-- ===== FLOATING CART ===== -->
     <div class="floating-cart" id="floating-cart">
         <button id="floating-cart-btn">
             <div class="icon-wrap">
@@ -2617,63 +2507,120 @@
         </button>
     </div>
 
-    <!-- ==================== JAVASCRIPT ==================== -->
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ============================================================ -->
+    <!-- ==================== JAVASCRIPT ============================= -->
+    <!-- ============================================================ -->
     <script>
-        // ------------------------------------
-        // PRODUCTS DATA (shared with homepage)
-        // ------------------------------------
+        // ================================================================
+        // ALL PRODUCTS
+        // ================================================================
         const productsData = [
-            // Grocery items
-            { id: 'p1', name: 'Premium Basmati Rice (5kg)', urduName: 'بیسمنٹی چاول', category: 'grocery', brand: 'Kissan',
-                price: 1200, unit: '5kg', description: 'Premium quality long-grain basmati rice, aged for perfect aroma.',
-                urduDescription: 'اعلیٰ قسم کے بیسمنٹی چاول، خوشبودار اور لمبے دانے۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Rice' },
-            { id: 'p2', name: 'Wheat Flour (10kg)', urduName: 'گندم کا آٹا', category: 'grocery', brand: 'Chakki', price: 850,
-                unit: '10kg', description: 'Stone-ground whole wheat flour, fresh and nutritious.',
-                urduDescription: 'پتھر کی چکی کا تازہ گندم کا آٹا، صحت مند اور لذیذ۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Flour' },
-            { id: 'p3', name: 'Cooking Oil (5L)', urduName: 'کھانے کا تیل', category: 'grocery', brand: 'Dalda', price: 1800,
-                unit: '5L', description: 'Pure vegetable cooking oil, ideal for all cooking needs.',
-                urduDescription: 'خالص سبزیوں کا تیل، ہر قسم کے کھانے کے لیے بہترین۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Oil' },
-            { id: 'p4', name: 'Sugar (5kg)', urduName: 'شکر', category: 'grocery', brand: 'Safina', price: 750, unit: '5kg',
-                description: 'Fine granulated white sugar, perfect for sweetening.',
-                urduDescription: 'اعلیٰ معیار کی سفید شکر، میٹھے ذائقے کے لیے۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Sugar' },
-            { id: 'p5', name: 'Red Lentils (Masoor) 1kg', urduName: 'مصری دال', category: 'grocery', brand: 'National',
-                price: 250, unit: '1kg', description: 'Premium red lentils, rich in protein and fibre.',
-                urduDescription: 'اعلیٰ معیار کی مصری دال، پروٹین اور فائبر سے بھرپور۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Lentils' },
-            { id: 'p6', name: 'Chickpeas (Kabuli) 2kg', urduName: 'کابلی چنا', category: 'grocery', brand: 'Kisan', price: 400,
-                unit: '2kg', description: 'Large kabuli chickpeas, premium quality for curries.',
-                urduDescription: 'بڑے کابلی چنے، سالن اور چاٹ کے لیے بہترین۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Chickpeas' },
-            // Household
-            { id: 'p7', name: 'Dish Washing Liquid (1L)', urduName: 'برتن دھونے کا صابن', category: 'household', brand: 'Vim',
-                price: 220, unit: '1L', description: 'Effective grease-cutting dishwashing liquid, lemon fresh.',
-                urduDescription: 'چکنائی ختم کرنے والا برتن دھونے کا مائع، لیموں کی خوشبو۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Dish+Wash' },
-            { id: 'p8', name: 'Floor Cleaner (2L)', urduName: 'فرش کلینر', category: 'household', brand: 'Harpic', price: 350,
-                unit: '2L', description: 'Powerful floor cleaner that removes stains and leaves shine.',
-                urduDescription: 'طاقتور فرش کلینر جو داغ ہٹاتا ہے اور چمک لاتا ہے۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Floor+Cleaner' },
-            { id: 'p9', name: 'Laundry Detergent (3kg)', urduName: 'کپڑے دھونے کا پاؤڈر', category: 'household',
-                brand: 'Surf Excel', price: 480, unit: '3kg', description: 'High-performance detergent that removes tough stains.',
-                urduDescription: 'اعلیٰ کارکردگی کا ڈٹرجنٹ جو مشکل داغ ہٹاتا ہے۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Detergent' },
-            { id: 'p10', name: 'Toilet Cleaner (500ml)', urduName: 'ٹوائلٹ کلینر', category: 'household', brand: 'Harpic',
-                price: 180, unit: '500ml', description: 'Thick liquid toilet cleaner, kills germs and removes limescale.',
-                urduDescription: 'گاڑھا ٹوائلٹ کلینر، جراثیم کو ختم کرتا اور پتھری ہٹاتا ہے۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Toilet+Cleaner' },
-            { id: 'p11', name: 'Insect Repellent Spray (500ml)', urduName: 'کیڑے مکوڑے مارنے والا سپرے',
-                category: 'household', brand: 'Mortein', price: 300, unit: '500ml',
-                description: 'Effective insect repellent for mosquitoes and flies.',
-                urduDescription: 'مچھروں اور مکھیوں کے لیے مؤثر کیڑے مار سپرے۔', inStock: true,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Repellent' },
-            { id: 'p12', name: 'Dusting Cloth (Pack of 2)', urduName: 'جھاڑن کا کپڑا', category: 'household', brand: 'Brite',
-                price: 120, unit: '2 pcs', description: 'Soft, lint-free microfibre cloth for dusting.',
-                urduDescription: 'نرم، بغیر ریشے کے مائیکرو فائبر کپڑا جھاڑن کے لیے۔', inStock: false,
-                image: 'https://placehold.co/400x400/009fb2/white?text=Cloth' },
+            // ---------- GROCERY: Flour & Rice ----------
+            { id: 'p1', name: 'Wheat Flour (Atta) 20kg', urduName: 'گندم کا آٹا', category: 'grocery', brand: 'Fine', price: 2250, unit: '20kg', description: 'Premium stone-ground whole wheat flour, fresh and nutritious.', urduDescription: 'پتھر کی چکی کا تازہ گندم کا آٹا، صحت مند اور لذیذ۔', inStock: true, image: './Atta.png' },
+            { id: 'p2', name: 'Basmati Rice 5kg', urduName: 'بیسمنٹی چاول', category: 'grocery', brand: 'Kissan', price: 1400, unit: '5kg', description: 'Aged premium basmati rice with long grains and rich aroma.', urduDescription: 'پرانا اعلیٰ بیسمنٹی چاول، لمبے دانے اور خوشبو دار۔', inStock: true, image: './rice.png' },
+            { id: 'p3', name: 'Maida (Refined Flour) 5kg', urduName: 'میدہ', category: 'grocery', brand: 'Chakki', price: 600, unit: '5kg', description: 'Fine refined wheat flour for baking and naan.', urduDescription: 'باریک میدہ، بیکنگ اور نان کے لیے بہترین۔', inStock: true, image: './maida.png' },
+
+            // ---------- GROCERY: Lentils & Pulses ----------
+            { id: 'p4', name: 'Daal Chana (Split Chickpeas) 1kg', urduName: 'چنا دال', category: 'grocery', brand: 'National', price: 280, unit: '1kg', description: 'High-quality split chickpeas, perfect for dal and curries.', urduDescription: 'اعلیٰ چنا دال، دال اور سالن کے لیے بہترین۔', inStock: true, image: './daalchanna.png' },
+            { id: 'p5', name: 'Daal Masoor (Red Lentils) 1kg', urduName: 'مصری دال', category: 'grocery', brand: 'National', price: 250, unit: '1kg', description: 'Premium red lentils, rich in protein and fibre.', urduDescription: 'اعلیٰ معیار کی مصری دال، پروٹین اور فائبر سے بھرپور۔', inStock: true, image: './daalmasoor.png' },
+            { id: 'p6', name: 'Moong Daal 1kg', urduName: 'مونگ دال', category: 'grocery', brand: 'National', price: 300, unit: '1kg', description: 'Split green gram, light and easy to digest.', urduDescription: 'مونگ دال، ہلکی اور آسانی سے ہضم ہونے والی۔', inStock: true, image: './daalmong.png' },
+            { id: 'p7', name: 'Mash Daal 1kg', urduName: 'ماش دال', category: 'grocery', brand: 'National', price: 350, unit: '1kg', description: 'Black gram dal, rich in flavour and nutrients.', urduDescription: 'ماش دال، ذائقے اور غذائیت سے بھرپور۔', inStock: true, image: './mashdaal.png' },
+            { id: 'p8', name: 'White Chickpeas (Kabuli) 2kg', urduName: 'کابلی چنا', category: 'grocery', brand: 'Kisan', price: 400, unit: '2kg', description: 'Large kabuli chickpeas, premium quality for curries and chaat.', urduDescription: 'بڑے کابلی چنے، سالن اور چاٹ کے لیے بہترین۔', inStock: true, image: './kablichanna.png' },
+
+            // ---------- GROCERY: Oils & Fats ----------
+            { id: 'p9', name: 'Canola Oil 5L', urduName: 'کینولا آئل', category: 'grocery', brand: 'Dalda', price: 1900, unit: '5L', description: 'Pure canola oil, low in saturated fats.', urduDescription: 'خالص کینولا آئل، کم سیر شدہ چکنائی۔', inStock: true, image: './daldacanolaoil.png' },
+            { id: 'p10', name: 'Sunflower Oil 5L', urduName: 'سورج مکھی کا تیل', category: 'grocery', brand: 'Dalda', price: 2000, unit: '5L', description: 'Pure sunflower oil, light and healthy.', urduDescription: 'خالص سورج مکھی کا تیل، ہلکا اور صحت مند۔', inStock: true, image: './daldasunflower.png' },
+            { id: 'p11', name: 'Olive Oil 1L', urduName: 'زیتون کا تیل', category: 'grocery', brand: 'Olive', price: 1200, unit: '1L', description: 'Extra virgin olive oil for salads and cooking.', urduDescription: 'ایکسٹرا ورجن زیتون کا تیل، سلاد اور کھانے کے لیے۔', inStock: true, image: 'oliveoil.png' },
+            { id: 'p12', name: 'Desi Ghee 1kg', urduName: 'دیسی گھی', category: 'grocery', brand: 'Shezan', price: 1500, unit: '1kg', description: 'Pure desi ghee, rich aroma and taste.', urduDescription: 'خالص دیسی گھی، بھرپور خوشبو اور ذائقہ۔', inStock: true, image: './shezan sdi ghee.png' },
+
+            // ---------- GROCERY: Sweeteners ----------
+            { id: 'p13', name: 'White Sugar 5kg', urduName: 'سفید شکر', category: 'grocery', brand: 'Safina', price: 750, unit: '5kg', description: 'Fine granulated white sugar for perfect sweetness.', urduDescription: 'اعلیٰ سفید شکر، میٹھے ذائقے کے لیے۔', inStock: true, image: './sugar.png' },
+            { id: 'p14', name: 'Brown Sugar 1kg', urduName: 'براؤن شوگر', category: 'grocery', brand: 'Safina', price: 300, unit: '1kg', description: 'Natural brown sugar with a rich caramel flavour.', urduDescription: 'قدرتی براؤن شوگر، کیریمل ذائقہ۔', inStock: true, image: './brownsugar.png' },
+            { id: 'p15', name: 'Jaggery (Gur) 1kg', urduName: 'گڑ', category: 'grocery', brand: 'Premium', price: 250, unit: '1kg', description: 'Traditional unrefined jaggery, rich in minerals.', urduDescription: 'روایتی گڑ، معدنیات سے بھرپور۔', inStock: true, image: './jaggerygur.png' },
+
+            // ---------- GROCERY: Salt & Spices ----------
+            { id: 'p16', name: 'Refined Salt 1kg', urduName: 'ریفائن نمک', category: 'grocery', brand: 'National', price: 80, unit: '1kg', description: 'Pure refined iodised salt for daily use.', urduDescription: 'خالص ریفائن آئوڈائزڈ نمک۔', inStock: true, image: './salt.png' },
+            { id: 'p17', name: 'Red Chili Powder 500g', urduName: 'لال مرچ پاؤڈر', category: 'grocery', brand: 'National', price: 300, unit: '500g', description: 'Pure ground red chili with rich colour and heat.', urduDescription: 'خالص لال مرچ پاؤڈر، تیز رنگ اور گرمائش۔', inStock: true, image: './redchilipowder.png' },
+            { id: 'p18', name: 'Turmeric (Haldi) 500g', urduName: 'ہلدی', category: 'grocery', brand: 'National', price: 250, unit: '500g', description: 'Premium ground turmeric with vibrant colour and flavour.', urduDescription: 'اعلیٰ ہلدی پاؤڈر، بھرپور رنگ اور ذائقہ۔', inStock: true, image: './haldipowder.png' },
+            { id: 'p19', name: 'Zeera (Cumin) 500g', urduName: 'زیرہ', category: 'grocery', brand: 'National', price: 400, unit: '500g', description: 'Aromatic cumin seeds for tempering and cooking.', urduDescription: 'خوشبودار زیرہ، تڑکے اور کھانے کے لیے۔', inStock: true, image: './zeerapowder.png' },
+            { id: 'p20', name: 'Garam Masala 500g', urduName: 'گرم مصالحہ', category: 'grocery', brand: 'National', price: 450, unit: '500g', description: 'Authentic whole garam masala blend for rich curries.', urduDescription: 'خالص گرم مصالحہ، سالن کے لیے بہترین۔', inStock: true, image: './garammasala.png' },
+
+            // ---------- DRY FRUITS: Nuts ----------
+            { id: 'p21', name: 'Almonds 500g', urduName: 'بادام', category: 'grocery', brand: 'Premium', price: 1200, unit: '500g', description: 'Premium quality almonds, rich in nutrients and crunch.', urduDescription: 'اعلیٰ بادام، غذائیت سے بھرپور اور کرسپی۔', inStock: true, image: './almond.png' },
+            { id: 'p22', name: 'Walnuts 500g', urduName: 'اخروٹ', category: 'grocery', brand: 'Premium', price: 1000, unit: '500g', description: 'Fresh walnuts with a healthy dose of omega-3.', urduDescription: 'تازہ اخروٹ، اومیگا ۳ سے بھرپور۔', inStock: true, image: './walnuts.png' },
+            { id: 'p23', name: 'Pistachios 500g', urduName: 'پستہ', category: 'grocery', brand: 'Premium', price: 1500, unit: '500g', description: 'Premium pistachios with vibrant green colour and rich taste.', urduDescription: 'اعلیٰ پستہ، خوش رنگ اور ذائقہ دار۔', inStock: true, image: './pista.png' },
+            { id: 'p24', name: 'Cashews 500g', urduName: 'کاجو', category: 'grocery', brand: 'Premium', price: 1300, unit: '500g', description: 'Premium cashews, creamy and sweet.', urduDescription: 'اعلیٰ کاجو، کریمی اور میٹھے۔', inStock: true, image: './chasews.png' },
+            { id: 'p25', name: 'Hazelnuts 500g', urduName: 'ہیزلنٹ', category: 'grocery', brand: 'Premium', price: 1800, unit: '500g', description: 'Premium hazelnuts, rich in flavour and crunch.', urduDescription: 'اعلیٰ ہیزلنٹ، بھرپور ذائقہ اور کرسپ۔', inStock: true, image: './hazelnuts.png' },
+            { id: 'p26', name: 'Pecans 500g', urduName: 'پیکن', category: 'grocery', brand: 'Premium', price: 2000, unit: '500g', description: 'Premium pecans, buttery and sweet.', urduDescription: 'اعلیٰ پیکن، مکھنی اور میٹھے۔', inStock: true, image: './pecans.png' },
+            { id: 'p27', name: 'Macadamia Nuts 500g', urduName: 'میکادمیا', category: 'grocery', brand: 'Premium', price: 2500, unit: '500g', description: 'Premium macadamia nuts, rich and creamy.', urduDescription: 'اعلیٰ میکادمیا، بھرپور اور کریمی۔', inStock: true, image: './mecadanuts.png' },
+            { id: 'p28', name: 'Brazil Nuts 500g', urduName: 'برازیل نٹ', category: 'grocery', brand: 'Premium', price: 1600, unit: '500g', description: 'Premium brazil nuts, rich in selenium.', urduDescription: 'اعلیٰ برازیل نٹ، سیلینیم سے بھرپور۔', inStock: true, image: './brazilnuts.png' },
+            { id: 'p29', name: 'Chestnuts 500g', urduName: 'شاہ بلوط', category: 'grocery', brand: 'Premium', price: 700, unit: '500g', description: 'Fresh chestnuts, sweet and earthy.', urduDescription: 'تازہ شاہ بلوط، میٹھے اور مٹی کے ذائقے والے۔', inStock: true, image: './chesenuts.png' },
+
+            // ---------- DRY FRUITS: Dried Fruits ----------
+            { id: 'p30', name: 'Dates 500g', urduName: 'کھجور', category: 'grocery', brand: 'Premium', price: 600, unit: '500g', description: 'Natural sweet dates, perfect for snacks and energy.', urduDescription: 'قدرتی میٹھی کھجور، ناشتے اور توانائی کے لیے۔', inStock: true, image: 'DATES.png' },
+            { id: 'p31', name: 'Figs 500g', urduName: 'انجیر', category: 'grocery', brand: 'Premium', price: 900, unit: '500g', description: 'Dried figs, naturally sweet and chewy.', urduDescription: 'خشک انجیر، قدرتی طور پر میٹھی اور چبانے والی۔', inStock: true, image: './FIGS.png' },
+            { id: 'p32', name: 'Raisins 500g', urduName: 'کشمش', category: 'grocery', brand: 'Premium', price: 700, unit: '500g', description: 'Sun-dried raisins, sweet and chewy.', urduDescription: 'دھوپ میں خشک کشمش، میٹھی اور چبانے والی۔', inStock: true, image: './Raisins.png' },
+            { id: 'p33', name: 'Prunes 500g', urduName: 'آلو بخارا', category: 'grocery', brand: 'Premium', price: 800, unit: '500g', description: 'Dried prunes, naturally sweet with a tangy twist.', urduDescription: 'خشک آلو بخارا، قدرتی میٹھا اور کھٹا۔', inStock: true, image: './prunes.png' },
+            { id: 'p34', name: 'Apricots 500g', urduName: 'خوبانی', category: 'grocery', brand: 'Premium', price: 1100, unit: '500g', description: 'Dried apricots, sweet and tart.', urduDescription: 'خشک خوبانی، میٹھی اور کھٹی۔', inStock: true, image: 'apricots.png' },
+            { id: 'p35', name: 'Cranberries 500g', urduName: 'کرین بیری', category: 'grocery', brand: 'Premium', price: 1200, unit: '500g', description: 'Dried cranberries, sweet and tangy.', urduDescription: 'خشک کرین بیری، میٹھی اور کھٹی۔', inStock: true, image: './canaberries.png' },
+            { id: 'p36', name: 'Blueberries 500g', urduName: 'بلو بیری', category: 'grocery', brand: 'Premium', price: 1400, unit: '500g', description: 'Dried blueberries, packed with antioxidants.', urduDescription: 'خشک بلو بیری، اینٹی آکسائیڈنٹس سے بھرپور۔', inStock: true, image: './bluebarries.png' },
+            { id: 'p37', name: 'Cherries 500g', urduName: 'چیری', category: 'grocery', brand: 'Premium', price: 1000, unit: '500g', description: 'Dried cherries, sweet and slightly tart.', urduDescription: 'خشک چیری، میٹھی اور ہلکی کھٹی۔', inStock: true, image: './cherries.png' },
+            { id: 'p38', name: 'Mulberries 500g', urduName: 'شہتوت', category: 'grocery', brand: 'Premium', price: 850, unit: '500g', description: 'Dried mulberries, naturally sweet and nutritious.', urduDescription: 'خشک شہتوت، قدرتی میٹھا اور غذائیت سے بھرپور۔', inStock: true, image: './mulberries.png' },
+            { id: 'p39', name: 'Goji Berries 500g', urduName: 'گوجی بیری', category: 'grocery', brand: 'Premium', price: 1600, unit: '500g', description: 'Dried goji berries, rich in vitamins and minerals.', urduDescription: 'خشک گوجی بیری، وٹامنز اور منرلز سے بھرپور۔', inStock: true, image: './gijiberries.png' },
+            { id: 'p40', name: 'Sultanas 500g', urduName: 'سلطانہ', category: 'grocery', brand: 'Premium', price: 750, unit: '500g', description: 'Golden sultanas, sweet and juicy.', urduDescription: 'سنہری سلطانہ، میٹھی اور رس دار۔', inStock: true, image: './sultanas.png' },
+            { id: 'p41', name: 'Currants 500g', urduName: 'کورنٹ', category: 'grocery', brand: 'Premium', price: 800, unit: '500g', description: 'Dried currants, small and intensely sweet.', urduDescription: 'خشک کورنٹ، چھوٹی اور شدید میٹھی۔', inStock: true, image: './currants.png' },
+
+            // ---------- DRY FRUITS: Seeds ----------
+            { id: 'p42', name: 'Pine Nuts 500g', urduName: 'چلغوزہ', category: 'grocery', brand: 'Premium', price: 2200, unit: '500g', description: 'Premium pine nuts, buttery and delicate.', urduDescription: 'اعلیٰ چلغوزہ، مکھنی اور نازک۔', inStock: true, image: './pinenuts.png' },
+            { id: 'p43', name: 'Peanuts 500g', urduName: 'مونگ پھلی', category: 'grocery', brand: 'Premium', price: 300, unit: '500g', description: 'Roasted peanuts, crunchy and flavourful.', urduDescription: 'بھنی ہوئی مونگ پھلی، کرسپی اور ذائقے دار۔', inStock: true, image: 'peanuts.png' },
+            { id: 'p44', name: 'Pumpkin Seeds 500g', urduName: 'کدو کے بیج', category: 'grocery', brand: 'Premium', price: 500, unit: '500g', description: 'Shelled pumpkin seeds, rich in zinc.', urduDescription: 'چھلکے والے کدو کے بیج، زنک سے بھرپور۔', inStock: true, image: 'pumpkinsseeds.png' },
+            { id: 'p45', name: 'Sunflower Seeds 500g', urduName: 'سورج مکھی کے بیج', category: 'grocery', brand: 'Premium', price: 450, unit: '500g', description: 'Roasted sunflower seeds, crunchy and nutritious.', urduDescription: 'بھنے ہوئے سورج مکھی کے بیج، کرسپی اور غذائیت سے بھرپور۔', inStock: true, image: './sunflowerseeds.png' },
+            { id: 'p46', name: 'Flaxseeds 500g', urduName: 'السى کے بیج', category: 'grocery', brand: 'Premium', price: 400, unit: '500g', description: 'Brown flaxseeds, high in omega-3 and fibre.', urduDescription: 'براؤن السى کے بیج، اومیگا ۳ اور فائبر سے بھرپور۔', inStock: true, image: './flaxseeds.png' },
+            { id: 'p47', name: 'Chia Seeds 500g', urduName: 'چیا بیج', category: 'grocery', brand: 'Premium', price: 600, unit: '500g', description: 'Black chia seeds, superfood rich in omega-3.', urduDescription: 'سیاہ چیا بیج، سپر فوڈ اور اومیگا ۳ سے بھرپور۔', inStock: true, image: './chiaseeds.png' },
+            { id: 'p48', name: 'Sesame Seeds 500g', urduName: 'تل', category: 'grocery', brand: 'Premium', price: 350, unit: '500g', description: 'White sesame seeds, nutty and versatile.', urduDescription: 'سفید تل، نٹی اور ورسٹائل۔', inStock: true, image: './seasameseeds.png' },
+            { id: 'p49', name: 'Melon Seeds 500g', urduName: 'خربوزے کے بیج', category: 'grocery', brand: 'Premium', price: 380, unit: '500g', description: 'Roasted melon seeds, light and crunchy.', urduDescription: 'بھنے ہوئے خربوزے کے بیج، ہلکے اور کرسپی۔', inStock: true, image: './melonseeds.png' },
+
+            // ---------- MISCELLANEOUS & UTILITY ----------
+            { id: 'p50', name: 'Matchbox (Pack of 10)', urduName: 'ماچس (۱۰ پیک)', category: 'household', brand: 'Lion', price: 100, unit: '10pk', description: 'Durable matchboxes for everyday use.', urduDescription: 'پائیدار ماچس روزمرہ استعمال کے لیے۔', inStock: true, image: './matchbox.png' },
+            { id: 'p51', name: 'Lighter (1 pc)', urduName: 'لائٹر', category: 'household', brand: 'Cricket', price: 80, unit: '1 pc', description: 'Refillable gas lighter for kitchen use.', urduDescription: 'دوبارہ بھرنے والا لائٹر، کچن کے لیے۔', inStock: true, image: 'liter1.png' },
+            { id: 'p52', name: 'Aluminium Foil (1 Roll)', urduName: 'ایلومینیم فوائل', category: 'household', brand: 'Diamond', price: 250, unit: '1 roll', description: 'Premium aluminium foil for wrapping and baking.', urduDescription: 'اعلیٰ ایلومینیم فوائل، ریپنگ اور بیکنگ کے لیے۔', inStock: true, image: './aluminum foil.png' },
+            { id: 'p53', name: 'Cling Wrap (1 Roll)', urduName: 'کلنگ ریپ', category: 'household', brand: 'Diamond', price: 200, unit: '1 roll', description: 'Transparent cling film for preserving food.', urduDescription: 'شفاف کلنگ فلم، کھانے کو محفوظ رکھنے کے لیے۔', inStock: true, image: './clingwrap.png' },
+            { id: 'p54', name: 'Mosquito Coil (5 coils)', urduName: 'مچھر مار کوئل', category: 'household', brand: 'Mortein', price: 200, unit: '5 coils', description: 'Effective mosquito repellent coils for a peaceful night.', urduDescription: 'مؤثر مچھر مار کوئل، رات کو پرسکون نیند کے لیے۔', inStock: true, image: './mortin.png' },
+            { id: 'p55', name: 'Liquid Vaporizer (1 pc)', urduName: 'مائع ویپورائزر', category: 'household', brand: 'Mortein', price: 350, unit: '1 pc', description: 'Liquid vaporizer for mosquito control, with 1 refill.', urduDescription: 'مائع ویپورائزر، مچھروں کے کنٹرول کے لیے (۱ ریفل کے ساتھ)۔', inStock: true, image: 'liquidvapoizer.png' },
+            { id: 'p56', name: 'Insecticide Spray (500ml)', urduName: 'کیڑے مار سپرے', category: 'household', brand: 'Mortein', price: 300, unit: '500ml', description: 'Effective insect repellent for mosquitoes and flies.', urduDescription: 'مچھروں اور مکھیوں کے لیے مؤثر کیڑے مار سپرے۔', inStock: true, image: './spray.png' },
+            { id: 'p57', name: 'Panadol (10 tablets)', urduName: 'پیناڈول (۱۰ گولیاں)', category: 'household', brand: 'Panadol', price: 150, unit: '10 tabs', description: 'Fast-acting pain relief tablets.', urduDescription: 'تیز اثر والی درد کش گولیاں۔', inStock: true, image: './panadol.png' },
+            { id: 'p58', name: 'Band-aids (20 pack)', urduName: 'بینڈ ایڈ (۲۰ پیک)', category: 'household', brand: 'Johnson', price: 120, unit: '20 pk', description: 'Adhesive bandages for minor cuts and wounds.', urduDescription: 'چپکنے والی پٹیاں، معمولی کٹ اور زخم کے لیے۔', inStock: true, image: './bandid.png' },
+            { id: 'p59', name: 'ORS (10 sachets)', urduName: 'او آر ایس (۱۰ پیکٹ)', category: 'household', brand: 'Haleeb', price: 100, unit: '10 sachets', description: 'Oral Rehydration Salts for dehydration.', urduDescription: 'پانی کی کمی کے لیے زبانی ریہائیڈریشن نمکیات۔', inStock: true, image: './orc.png' },
+            { id: 'p60', name: 'Cough Drops (1 pack)', urduName: 'کھانسی کے لوزینجز', category: 'household', brand: 'Strepsils', price: 80, unit: '1 pack', description: 'Effective cough drops for sore throat relief.', urduDescription: 'کھانسی اور گلے کی سوزش کے لیے مؤثر لوزینجز۔', inStock: true, image: './cough.png' },
+            { id: 'p61', name: 'Pens (Pack of 10)', urduName: 'قلم (۱۰ پیک)', category: 'household', brand: 'Dollar', price: 200, unit: '10 pcs', description: 'Smooth writing ballpoint pens.', urduDescription: 'ہموار لکھنے والے بال پوائنٹ قلم۔', inStock: true, image: './pens.png' },
+            { id: 'p62', name: 'Pencils (Pack of 10)', urduName: 'پنسل (۱۰ پیک)', category: 'household', brand: 'Dollar', price: 150, unit: '10 pcs', description: 'High-quality wooden pencils with soft lead.', urduDescription: 'اعلیٰ لکڑی کی پنسل، نرم لیڈ کے ساتھ۔', inStock: true, image: './pencils.png' },
+            { id: 'p63', name: 'Notebooks (Pack of 5)', urduName: 'کاپیاں (۵ پیک)', category: 'household', brand: 'Oxford', price: 400, unit: '5 pcs', description: 'Premium quality notebooks for notes and writing.', urduDescription: 'اعلیٰ کوالٹی کاپیاں نوٹس اور لکھائی کے لیے۔', inStock: true, image: './notesbook.png' },
+            { id: 'p64', name: 'Erasers (Pack of 5)', urduName: 'ربڑ (۵ پیک)', category: 'household', brand: 'Dollar', price: 80, unit: '5 pcs', description: 'Soft erasers for clean corrections.', urduDescription: 'نرم ربڑ، صاف تصحیح کے لیے۔', inStock: true, image: './eraser.png' },
+            { id: 'p65', name: 'Sharpeners (Pack of 5)', urduName: 'شارپنر (۵ پیک)', category: 'household', brand: 'Dollar', price: 100, unit: '5 pcs', description: 'Durable pencil sharpeners.', urduDescription: 'پائیدار پنسل شارپنر۔', inStock: true, image: 'shapner.png' },
+            { id: 'p66', name: 'Scotch Tape (1 roll)', urduName: 'اسکاچ ٹیپ', category: 'household', brand: 'Cellux', price: 120, unit: '1 roll', description: 'Transparent adhesive tape for office and home.', urduDescription: 'شفاف چپکنے والی ٹیپ، آفس اور گھر کے لیے۔', inStock: true, image: './tape.png' },
+            { id: 'p67', name: 'AA Batteries (Pack of 4)', urduName: 'اے اے بیٹریاں (۴ پیک)', category: 'household', brand: 'Duracell', price: 400, unit: '4 pack', description: 'Long-lasting alkaline batteries for your devices.', urduDescription: 'لمبی عمر والی الکلائن بیٹریاں آپ کے آلات کے لیے۔', inStock: true, image: './batteries.png' },
+            { id: 'p68', name: 'AAA Batteries (Pack of 4)', urduName: 'اے اے اے بیٹریاں (۴ پیک)', category: 'household', brand: 'Duracell', price: 400, unit: '4 pack', description: 'Compact AAA batteries for remote controls and more.', urduDescription: 'چھوٹی AAA بیٹریاں، ریموٹ اور دیگر آلات کے لیے۔', inStock: true, image: 'AAA.png' },
+            { id: 'p69', name: 'Emergency Candles (5 pack)', urduName: 'ایمرجنسی موم بتیاں (۵ پیک)', category: 'household', brand: 'Premium', price: 250, unit: '5 pk', description: 'Long-burning emergency candles for power outages.', urduDescription: 'لمبے وقت تک جلنے والی موم بتیاں، بجلی کی بندش کے لیے۔', inStock: true, image: 'cnadels.png' },
+            { id: 'p70', name: 'Light Bulb (1 pc)', urduName: 'لائٹ بلب', category: 'household', brand: 'Philips', price: 180, unit: '1 pc', description: 'Energy-efficient LED bulb, 9W.', urduDescription: 'توانائی بچانے والا ایل ای ڈی بلب، ۹W۔', inStock: true, image: './bulb.png' },
+
+            // ---------- CLEANING & LAUNDRY ----------
+            { id: 'p71', name: 'Washing Powder 3kg', urduName: 'کپڑے دھونے کا پاؤڈر', category: 'household', brand: 'Surf Excel', price: 500, unit: '3kg', description: 'Powerful detergent that removes tough stains effortlessly.', urduDescription: 'طاقتور ڈٹرجنٹ جو مشکل داغ آسانی سے ہٹاتا ہے۔', inStock: true, image: './surfexcel.png' },
+            { id: 'p72', name: 'Detergent Bars (4 pack)', urduName: 'ڈٹرجنٹ بار (۴ پیک)', category: 'household', brand: 'Surf Excel', price: 300, unit: '4 pcs', description: 'Solid detergent bars for tough laundry stains.', urduDescription: 'ٹھوس ڈٹرجنٹ بار، کپڑوں کے مشکل داغوں کے لیے۔', inStock: true, image: 'detergent.png' },
+            { id: 'p73', name: 'Fabric Softener 1L', urduName: 'فیبرک سافنر', category: 'household', brand: 'Comfort', price: 280, unit: '1L', description: 'Leaves clothes soft and fragrant.', urduDescription: 'کپڑوں کو نرم اور خوشبودار بناتا ہے۔', inStock: true, image: 'fabricsoft.png' },
+            { id: 'p74', name: 'Bleach 1L', urduName: 'بلیچ', category: 'household', brand: 'Robin Blue', price: 200, unit: '1L', description: 'Strong bleach for whitening and stain removal.', urduDescription: 'طاقتور بلیچ سفیدی اور داغ ہٹانے کے لیے۔', inStock: true, image: './bleach.png' },
+            { id: 'p75', name: 'Indigo (Neel) 1 pack', urduName: 'نیل', category: 'household', brand: 'Robin Blue', price: 80, unit: '1 pack', description: 'Traditional indigo for whitening clothes.', urduDescription: 'روایتی نیل، کپڑوں کو سفید کرنے کے لیے۔', inStock: true, image: './neel.png' },
+            { id: 'p76', name: 'Dishwash Bars (6 pack)', urduName: 'برتن صابن (۶ پیک)', category: 'household', brand: 'Vim', price: 180, unit: '6 pcs', description: 'Effective dishwash bars for greasy utensils.', urduDescription: 'مؤثر برتن صابن، چکنائی والے برتنوں کے لیے۔', inStock: true, image: 'dishwash.png' },
+            { id: 'p77', name: 'Liquid Soap (1L)', urduName: 'مائع صابن', category: 'household', brand: 'Vim', price: 250, unit: '1L', description: 'Powerful liquid soap for dishes and utensils.', urduDescription: 'طاقتور مائع صابن، برتنوں کے لیے۔', inStock: true, image: 'liquidsoap.png' },
+            { id: 'p78', name: 'Scrubber Pads (6 pack)', urduName: 'اسکرب پیڈ (۶ پیک)', category: 'household', brand: 'Scotch', price: 150, unit: '6 pcs', description: 'Durable scrubber pads for tough stains.', urduDescription: 'پائیدار اسکرب پیڈ، مشکل داغوں کے لیے۔', inStock: true, image: 'scrubber.png' },
+            { id: 'p79', name: 'Steel Wool (4 pack)', urduName: 'اسٹیل وول (۴ پیک)', category: 'household', brand: 'Scotch', price: 200, unit: '4 pcs', description: 'Fine steel wool for deep cleaning.', urduDescription: 'باریک اسٹیل وول، گہری صفائی کے لیے۔', inStock: true, image: './steelwool.png' },
+            { id: 'p80', name: 'Floor Cleaner (Phenyl) 1L', urduName: 'فرش کلینر (فینائل)', category: 'household', brand: 'Harpic', price: 300, unit: '1L', description: 'Powerful floor cleaner with a fresh scent.', urduDescription: 'طاقتور فرش کلینر، تازہ خوشبو کے ساتھ۔', inStock: true, image: './phenyl.png' },
+            { id: 'p81', name: 'Toilet Cleaner 1L', urduName: 'ٹوائلٹ کلینر', category: 'household', brand: 'Harpic', price: 320, unit: '1L', description: 'Thick liquid toilet cleaner for thorough hygiene.', urduDescription: 'گاڑھا ٹوائلٹ کلینر مکمل صفائی کے لیے۔', inStock: true, image: './toi;et.png' },
+            { id: 'p82', name: 'Glass Cleaner 1L', urduName: 'گلاس کلینر', category: 'household', brand: 'Mr. Muscle', price: 280, unit: '1L', description: 'Streak-free glass cleaner for windows and mirrors.', urduDescription: 'گلاس کلینر، کھڑکیوں اور آئینے کے لیے بغیر دھبوں کے۔', inStock: true, image: './glass.png' },
         ];
 
         // ------------------------------------
@@ -2681,152 +2628,126 @@
         // ------------------------------------
         const translations = {
             en: {
-                // Hero
-                heroBadge: 'Family-Owned Since 1985',
-                heroTitleMain: 'About',
-                heroTitleAccent: 'Javed',
-                heroTitleTraders: 'Traders',
-                heroDesc: 'For over three generations, we\'ve been the trusted name in Baffa for premium household goods and kiryana items.',
-                // Story
-                storyTitle: 'Our Story',
-                storySub: 'FROM A SMALL SHOP TO BAFFA\'S TRUSTED GROCERY DESTINATION',
-                storyP1: 'Javed Traders was founded in 1985 by Muhammad Javed with a simple vision: to provide the people of Baffa and the wider Pakhal region with the highest quality household and grocery items at the most affordable prices.',
-                storyP2: 'What started as a small corner shop at Main Chowk has grown into a premier retail destination, thanks to decades of unwavering trust, integrity, and a deep understanding of the community\'s needs. From fresh kiryana staples to premium cleaning essentials, every product on our shelves is chosen with care.',
-                storyP3: 'Today, the legacy continues under the leadership of Usman Javed, who has modernized the business with a digital showroom while preserving the traditional values that made Javed Traders a household name.',
-                valuesTitle: 'Our Core Values',
-                val1Label: 'Trust & Integrity',
-                val1Desc: 'Generations of honest dealings with every customer.',
-                val2Label: 'Unbeatable Pricing',
-                val2Desc: 'Market-competitive rates without compromising quality.',
-                val3Label: 'Premium Quality',
-                val3Desc: 'Only the finest products from trusted brands and suppliers.',
-                val4Label: 'Community First',
-                val4Desc: 'Serving our neighbours with respect, warmth, and dedication.',
-                // Team
-                teamTitle: 'Meet the Team',
-                teamSub: 'THE FAMILY BEHIND THE LEGACY',
-                badgeFounder: 'Founder',
-                roleFounder: 'Senior Proprietor',
-                descFounder: 'The visionary who built Javed Traders from the ground up. With decades of experience, he is the heart and soul of the business, known for his warm smile and unmatched market knowledge.',
-                badgePartner: 'Partner',
-                rolePartner: 'Partner & Manager',
-                descPartner: 'Carrying forward his father\'s legacy, Usman brings modern retail innovation to the business. He leads the digital transformation, ensuring Javed Traders stays ahead while honouring tradition.',
-                // Milestones
-                milestonesTitle: 'Our Journey',
-                milestonesSub: 'KEY MILESTONES IN OUR STORY',
-                milestone1Title: 'The Beginning',
-                milestone1Desc: 'Muhammad Javed opens a small grocery shop at Main Chowk Baffa Bazar, serving the local community with daily essentials.',
-                milestone2Title: 'Expansion & Renovation',
-                milestone2Desc: 'The shop is expanded to a full-scale showroom, introducing a wider range of household goods and becoming a one-stop destination for families.',
-                milestone3Title: 'Digital Transformation',
-                milestone3Desc: 'Usman Javed joins as Partner and launches the Click & Collect digital showroom, making ordering seamless and modern.',
-                milestone4Title: '40 Years of Trust',
-                milestone4Desc: 'Celebrating four decades of service, Javed Traders continues to be Baffa\'s most trusted household & grocery destination, now serving 500+ loyal families.',
-                // Why
-                whyTitle: 'Why Javed Traders?',
-                whySub: 'QUALITY · TRUST · AFFORDABILITY',
-                why1Title: 'Generations of Trust',
-                why1Desc: 'A legacy of honest, transparent dealings that has earned the loyalty of thousands across the Pakhal region.',
-                why2Title: 'Premium Quality Products',
-                why2Desc: 'We handpick every item — from the finest basmati rice to the most effective household cleaners.',
-                why3Title: 'Best Price Guarantee',
-                why3Desc: 'We believe everyone deserves access to top-tier goods at prices that don\'t break the bank.',
-                why4Title: 'Click & Collect Convenience',
-                why4Desc: 'Order online and pick up from the store in no time — no wait, no hassle, no online payments.',
-                // CTA
-                ctaTitle: 'Ready to Experience Javed Traders?',
-                ctaDesc: 'Browse our full catalogue, add items to your list, and send a WhatsApp order — we\'ll have it packed and ready for you at Main Chowk Baffa Bazar.',
-                ctaBtn1: 'Browse Catalogue',
-                ctaBtn2: 'Find Us',
-                // Footer
+                allProducts: 'All Products',
+                categoryGrocery: 'Grocery',
+                categoryHousehold: 'Household',
+                brandFilter: 'Brand',
+                allBrands: 'All Brands',
+                inStockOnly: 'In Stock Only',
+                priceSort: 'Sort',
+                priceLowToHigh: 'Price: Low to High',
+                priceHighToLow: 'Price: High to Low',
+                addToShoppingList: 'Add to List',
+                itemsSelected: 'items selected',
+                estimatedTotal: 'Estimated Total',
+                shoppingListTitle: 'Shopping List',
+                shoppingListEmpty: 'Your list is empty. Start adding products from the catalogue!',
+                emptyProducts: 'No products match your filters. Try resetting.',
+                catalogueTitle: 'All Products',
+                catalogueSub: 'Fresh Stock &amp; Household Essentials',
+                resultsCount: 'Showing {count} products',
                 footerAbout: 'Your trusted household & grocery destination in Baffa. Family-owned, serving with integrity for generations.',
                 footerTimings: 'Timings & Pickup',
                 footerLocation: 'Location',
-                // Drawer
                 drawerTitle: 'Shopping List',
                 drawerSub: 'items selected',
-                estimatedTotal: 'Estimated Total',
                 formNameLabel: 'Your Full Name *',
                 formPhoneLabel: 'Mobile Number *',
                 formPickupLabel: 'When will you pick it up?',
                 formNotesLabel: 'Special Instructions (Optional)',
                 formHint: 'Your data will be packed together with your shopping list into a neat WhatsApp message to notify the shop owner.',
                 emptyList: 'Your list is empty. Start adding products from the catalogue!',
-                orderConfirmed: '✅ Order confirmed! Your shopping list has been cleared.'
+                heroDesc: 'Explore our complete range of premium household goods and kiryana essentials. Select items, build your list, and order directly on WhatsApp for instant collection.',
+                aboutP1: 'At Javed Traders, we pride ourselves on being the absolute cornerstone of Kiryana and household retail in Baffa. Established under the core philosophy of unbeatable prices and genuine product quality, we serve hundreds of loyal local families with absolute dedication.',
+                aboutP2: 'Our digital showroom brings convenience to your fingertips while maintaining the traditional values of trust and personal service.',
+                whyTitle: 'Why Shop With Us?',
+                why1: 'Only Premium Grade Households & Kiryana Goods',
+                why2: 'Direct Click & Collect WhatsApp Booking',
+                why3: 'Located right at Main Chowk Baffa Bazar',
+                why4: 'Generations of Trust and Authentic Pricing',
+                contactTitle: 'Contact Us',
+                contactSub: 'MAIN CHOWK BAFFA BAZAR • IN-STORE PICKUP COORDINATES',
+                ownerLabel: 'Proprietors',
+                ownerDesc: 'Family grocery business serving the Pakhal region with dedication.',
+                locationLabel: 'Location',
+                locationDesc: 'Main Chowk, Baffa, Mansehra, KP',
+                timingsLabel: 'Timings',
+                timingMain: '7:00 AM – 9:00 PM',
+                timingDays: 'Monday to Sunday',
+                timingFriday: 'Friday: Open (Closed for Jummah prayer only)',
+                packTime: 'Pack-time: 24 Hours',
+                whatsappOrder: 'Confirm & Send to WhatsApp',
+                backToList: 'Back to List',
+                proceedToForm: 'Enter Order Information',
+                clearList: 'Clear Entire List',
+                formSummary: 'Order Summary',
+                namePlaceholder: 'e.g. Usman Javed',
+                phonePlaceholder: 'e.g. 0336 9595531',
+                notesPlaceholder: 'e.g. Please select the freshest packets only...',
+                readyNote: 'Ready in approx. 24 hours',
+                noPaymentNote: 'NO ONLINE PAYMENT REQUIRED',
+                drawerEmpty: 'Your list is empty. Start adding products from the catalogue!',
             },
             ur: {
-                // Hero
-                heroBadge: 'خاندانی کاروبار 1985 سے',
-                heroTitleMain: 'ہمارے',
-                heroTitleAccent: 'جاوید',
-                heroTitleTraders: 'ٹریڈرز',
-                heroDesc: 'تین نسلوں سے بفہ میں اعلیٰ معیار کے گھریلو اور کریانہ کے سامان کا بھروسہ مند نام۔',
-                // Story
-                storyTitle: 'ہماری کہانی',
-                storySub: 'ایک چھوٹی سی دکان سے بفہ کے بھروسہ مند کریانے تک',
-                storyP1: 'جاوید ٹریڈرز 1985 میں محمد جاوید نے ایک سادہ وژن کے ساتھ قائم کیا: بفہ اور پکھل کے لوگوں کو اعلیٰ ترین معیار کے گھریلو اور کریانہ کے سامان انتہائی سستی قیمتوں پر فراہم کرنا۔',
-                storyP2: 'جو مین چوک میں ایک چھوٹی سی دکان کے طور پر شروع ہوا وہ آج ایک بڑے ریٹیل اسٹور کی شکل میں ہے، دہائیوں کی غیر متزلزل اعتماد، دیانت، اور کمیونٹی کی ضروریات کی گہری سمجھ کی بدولت۔ تازہ کریانہ سے لے کر صفائی کے بہترین سامان تک، ہمارے شیلف پر ہر پروڈکٹ پوری توجہ سے منتخب کی گئی ہے۔',
-                storyP3: 'آج یہ میراث عثمان جاوید کی قیادت میں جاری ہے، جنہوں نے کاروبار کو ڈیجیٹل شو روم کے ساتھ جدید بنایا ہے جبکہ روایتی اقدار کو برقرار رکھا ہے جنہوں نے جاوید ٹریڈرز کو ایک گھریلو نام بنا دیا۔',
-                valuesTitle: 'ہماری بنیادی اقدار',
-                val1Label: 'اعتماد اور دیانت',
-                val1Desc: 'نسلوں سے ہر گاہک کے ساتھ ایمانداری۔',
-                val2Label: 'بے مثال قیمتیں',
-                val2Desc: 'معیار پر سمجھوتہ کیے بغیر مارکیٹ میں مسابقتی نرخ۔',
-                val3Label: 'اعلیٰ معیار',
-                val3Desc: 'صرف بہترین مصنوعات معروف برانڈز اور سپلائرز سے۔',
-                val4Label: 'کمیونٹی اول',
-                val4Desc: 'اپنے پڑوسیوں کی عزت، گرمجوشی اور لگن کے ساتھ خدمت۔',
-                // Team
-                teamTitle: 'ٹیم سے ملو',
-                teamSub: 'میراث کے پیچھے خاندان',
-                badgeFounder: 'بانی',
-                roleFounder: 'سینئر مالک',
-                descFounder: 'وہ وژنری جنہوں نے جاوید ٹریڈرز کو زمین سے تعمیر کیا۔ دہائیوں کے تجربے کے ساتھ، وہ کاروبار کی روح ہیں، اپنی گرم مسکراہٹ اور بے مثال مارکیٹ کے علم کے لیے مشہور ہیں۔',
-                badgePartner: 'پارٹنر',
-                rolePartner: 'پارٹنر اور مینیجر',
-                descPartner: 'اپنے والد کی میراث کو آگے بڑھاتے ہوئے، عثمان کاروبار میں جدید ریٹیل ایجادات لاتے ہیں۔ وہ ڈیجیٹل تبدیلی کی قیادت کرتے ہیں، اس بات کو یقینی بناتے ہیں کہ جاوید ٹریڈرز روایت کا احترام کرتے ہوئے آگے رہیں۔',
-                // Milestones
-                milestonesTitle: 'ہمارا سفر',
-                milestonesSub: 'ہماری کہانی کے اہم سنگ میل',
-                milestone1Title: 'آغاز',
-                milestone1Desc: 'محمد جاوید نے مین چوک بفہ بازار میں ایک چھوٹی کریانہ کی دکان کھولی، مقامی کمیونٹی کو روزمرہ کی ضروریات فراہم کرتے ہوئے۔',
-                milestone2Title: 'توسیع اور تزئین',
-                milestone2Desc: 'دکان کو ایک بڑے شو روم میں تبدیل کیا گیا، جس میں گھریلو سامان کی وسیع رینج متعارف کرائی گئی اور یہ خاندانوں کے لیے ایک مکمل مرکز بن گیا۔',
-                milestone3Title: 'ڈیجیٹل تبدیلی',
-                milestone3Desc: 'عثمان جاوید پارٹنر کے طور پر شامل ہوئے اور کلک اینڈ کلیکٹ ڈیجیٹل شو روم کا آغاز کیا، جس سے آرڈرنگ کو آسان اور جدید بنایا گیا۔',
-                milestone4Title: '40 سال کا اعتماد',
-                milestone4Desc: 'خدمت کے چار دہائیوں کا جشن مناتے ہوئے، جاوید ٹریڈرز بفہ کا سب سے بھروسہ مند گھریلو اور کریانہ کا مقام ہے، جو اب 500 سے زائد وفادار خاندانوں کی خدمت کر رہا ہے۔',
-                // Why
-                whyTitle: 'جاوید ٹریڈرز کیوں؟',
-                whySub: 'معیار · اعتماد · سستی',
-                why1Title: 'نسلوں کا اعتماد',
-                why1Desc: 'ایماندار اور شفاف معاملات کی میراث جس نے پکھل کے ہزاروں لوگوں کی وفاداری حاصل کی ہے۔',
-                why2Title: 'اعلیٰ معیار کی اشیاء',
-                why2Desc: 'ہم ہر چیز کو خود منتخب کرتے ہیں — بہترین بیسمنٹی چاول سے لے کر موثر ترین گھریلو کلینرز تک۔',
-                why3Title: 'بہترین قیمت کی ضمانت',
-                why3Desc: 'ہمارا ماننا ہے کہ ہر کوئی اعلیٰ معیار کے سامان تک رسائی کا مستحق ہے۔',
-                why4Title: 'کلک اینڈ کلیکٹ سہولت',
-                why4Desc: 'آن لائن آرڈر کریں اور فوری طور پر دکان سے وصول کریں — کوئی انتظار نہیں، کوئی پریشانی نہیں، کوئی آن لائن ادائیگی نہیں۔',
-                // CTA
-                ctaTitle: 'جاوید ٹریڈرز کا تجربہ کرنے کے لیے تیار ہیں؟',
-                ctaDesc: 'ہمارا مکمل کیٹلاگ دیکھیں، اپنی لسٹ میں اشیاء شامل کریں، اور واٹس ایپ آرڈر بھیجیں — ہم آپ کے لیے مین چوک بفہ بازار میں سامان پیک کر کے تیار رکھیں گے۔',
-                ctaBtn1: 'کیٹلاگ دیکھیں',
-                ctaBtn2: 'ہم تک پہنچیں',
-                // Footer
+                allProducts: 'تمام اشیاء',
+                categoryGrocery: 'کریانہ',
+                categoryHousehold: 'گھریلو سامان',
+                brandFilter: 'برانڈ',
+                allBrands: 'تمام برانڈز',
+                inStockOnly: 'صرف دستیاب',
+                priceSort: 'ترتیب',
+                priceLowToHigh: 'قیمت: کم سے زیادہ',
+                priceHighToLow: 'قیمت: زیادہ سے کم',
+                addToShoppingList: 'لسٹ میں شامل کریں',
+                itemsSelected: 'اشیاء منتخب',
+                estimatedTotal: 'متوقع کل',
+                shoppingListTitle: 'خریداری کی لسٹ',
+                shoppingListEmpty: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
+                emptyProducts: 'کوئی پروڈکٹ نہیں ملی۔ فلٹرز دوبارہ سیٹ کریں۔',
+                catalogueTitle: 'تمام اشیاء',
+                catalogueSub: 'تازہ راشن اور گھریلو سامان',
+                resultsCount: '{count} اشیاء دکھا رہے ہیں',
                 footerAbout: 'بفہ میں آپ کا بھروسہ مند گھریلو اور کریانہ کا ذریعہ۔ خاندانی کاروبار، نسلوں سے دیانتداری کے ساتھ۔',
                 footerTimings: 'اوقات اور وصولی',
                 footerLocation: 'پتہ',
-                // Drawer
                 drawerTitle: 'خریداری کی لسٹ',
                 drawerSub: 'اشیاء منتخب',
-                estimatedTotal: 'متوقع کل',
                 formNameLabel: 'آپ کا نام *',
                 formPhoneLabel: 'موبائل نمبر *',
                 formPickupLabel: 'وصولی کا وقت؟',
                 formNotesLabel: 'اضافی نوٹ (اختیاری)',
                 formHint: 'آپ کی فراہم کردہ معلومات اور لسٹ کو واٹس ایپ پیغام کی شکل میں تبدیل کیا جائے گا تاکہ جاوید ٹریڈرز بفہ آپ کا آرڈر باآسانی تیار رکھ سکیں۔',
                 emptyList: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
-                orderConfirmed: '✅ آرڈر موصول ہوگیا! آپ کی خریداری کی لسٹ خالی کر دی گئی ہے۔'
+                heroDesc: 'بفہ کے جدید گھریلو اور کریانہ کے شو روم میں خوش آمدید۔ ہماری مکمل رینج دیکھیں، اشیاء منتخب کریں، اور براہ راست واٹس ایپ پر آرڈر دیں۔',
+                aboutP1: 'جاوید ٹریڈرز بفہ بازار میں مخلص اور دیانتدار خاندانی روایات کے تحت کریانہ اور گھریلو سامان کی فراہمی کا سب سے معتبر ادارہ ہے۔ ہمارا مقصد اپنے تمام صارفین کو مارکیٹ سے سستی اور خالص ترین اشیاء فراہم کرنا ہے۔',
+                aboutP2: 'ہمارا ڈیجیٹل شو روم آپ کی سہولت کے لیے ہے، جبکہ روایتی اقدار اور اعتماد کو برقرار رکھتا ہے۔',
+                whyTitle: 'ہماری دکان کی خصوصیات',
+                why1: 'صرف اعلیٰ برانڈز اور خالص ترین اشیاء',
+                why2: 'براہ راست واٹس ایپ آرڈر اور فوری پیکنگ سروس',
+                why3: 'بفہ بازار کے مرکز مین چوک پر بہترین لوکیشن',
+                why4: 'نسلوں کا اعتماد اور انتہائی سستی قیمتیں',
+                contactTitle: 'رابطہ کریں',
+                contactSub: 'مین چوک بفہ بازار • ان اسٹور وصولی کوآرڈینٹس',
+                ownerLabel: 'مالکان',
+                ownerDesc: 'خاندانی کریانہ کاروبار جو پکھل علاقے میں دیانتداری کے ساتھ خدمات فراہم کر رہا ہے۔',
+                locationLabel: 'پتہ',
+                locationDesc: 'مین چوک، بفہ، مانسہرہ، کے پی',
+                timingsLabel: 'اوقات',
+                timingMain: 'صبح 7 تا رات 9',
+                timingDays: 'پیر تا اتوار',
+                timingFriday: 'جمعہ: کھلا ہے (صرف جمعہ کی نماز کے لیے بند)',
+                packTime: 'پیکنگ کا وقت: 24 گھنٹے',
+                whatsappOrder: 'تصدیق کریں اور واٹس ایپ پر بھیجیں',
+                backToList: 'لسٹ پر واپس جائیں',
+                proceedToForm: 'آرڈر کی معلومات درج کریں',
+                clearList: 'پوری لسٹ صاف کریں',
+                formSummary: 'آرڈر کا خلاصہ',
+                namePlaceholder: 'مثال: اسمان جاوید',
+                phonePlaceholder: 'مثال: 0336 9595531',
+                notesPlaceholder: 'مثال: براہ کرم تازہ ترین پیکٹ منتخب کریں...',
+                readyNote: 'تقریباً 24 گھنٹے میں تیار',
+                noPaymentNote: 'آن لائن ادائیگی کی ضرورت نہیں',
+                drawerEmpty: 'آپ کی لسٹ خالی ہے۔ کیٹلاگ سے اشیاء شامل کریں!',
             }
         };
 
@@ -2835,6 +2756,11 @@
         // ------------------------------------
         let state = {
             lang: 'en',
+            searchQuery: '',
+            selectedCategory: 'all',
+            selectedBrand: 'all',
+            priceSort: 'default',
+            inStockOnly: false,
             shoppingList: {},
             listOpen: false,
             detailProductId: null,
@@ -2852,6 +2778,11 @@
         const $ = (sel, ctx = document) => ctx.querySelector(sel);
         const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
+        const productGrid = $('#product-grid');
+        const categoryRail = $('#category-rail');
+        const brandSelect = $('#brand-select');
+        const inStockCheck = $('#in-stock-only');
+        const sortSelect = $('#sort-select');
         const cartBadge = $('#cart-badge');
         const mobileCartBadge = $('#mobile-cart-badge');
         const mobileCartTotal = $('#mobile-cart-total');
@@ -2865,6 +2796,7 @@
         const floatingCart = $('#floating-cart');
         const detailOverlay = $('#detail-overlay');
         const detailModal = $('#detail-modal');
+        const backToTopBtn = $('#back-to-top');
 
         // ------------------------------------
         // HELPERS
@@ -2915,6 +2847,15 @@
             } catch (e) {}
         }
 
+        function loadList() {
+            try {
+                const saved = localStorage.getItem('javed_traders_shopping_list');
+                if (saved) {
+                    state.shoppingList = JSON.parse(saved);
+                }
+            } catch (e) {}
+        }
+
         // ------------------------------------
         // UPDATE CART UI
         // ------------------------------------
@@ -2938,8 +2879,129 @@
         }
 
         // ------------------------------------
-        // RENDER DRAWER ITEMS
+        // RENDER FUNCTIONS
         // ------------------------------------
+        function renderProducts() {
+            let filtered = [...productsData];
+
+            if (state.searchQuery.trim()) {
+                const q = state.searchQuery.toLowerCase().trim();
+                filtered = filtered.filter(p =>
+                    p.name.toLowerCase().includes(q) ||
+                    p.urduName.includes(q) ||
+                    p.brand.toLowerCase().includes(q) ||
+                    p.description.toLowerCase().includes(q) ||
+                    p.urduDescription.includes(q)
+                );
+            }
+
+            if (state.selectedCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === state.selectedCategory);
+            }
+
+            if (state.selectedBrand !== 'all') {
+                filtered = filtered.filter(p => p.brand === state.selectedBrand);
+            }
+
+            if (state.inStockOnly) {
+                filtered = filtered.filter(p => p.inStock);
+            }
+
+            if (state.priceSort === 'low-high') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (state.priceSort === 'high-low') {
+                filtered.sort((a, b) => b.price - a.price);
+            }
+
+            const t = getT();
+            document.getElementById('results-count').textContent =
+                t.resultsCount.replace('{count}', filtered.length);
+
+            if (filtered.length === 0) {
+                productGrid.innerHTML = `
+                            <div class="empty-state" style="grid-column:1/-1;">
+                                <i class="fas fa-box-open"></i>
+                                <h3>No Products Found</h3>
+                                <p>${getT().emptyProducts}</p>
+                                <button class="reset-btn" id="reset-filters-btn">Reset All Filters</button>
+                            </div>
+                        `;
+                const resetBtn = $('#reset-filters-btn');
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', () => {
+                        state.selectedCategory = 'all';
+                        state.selectedBrand = 'all';
+                        state.inStockOnly = false;
+                        state.priceSort = 'default';
+                        state.searchQuery = '';
+                        brandSelect.value = 'all';
+                        inStockCheck.checked = false;
+                        sortSelect.value = 'default';
+                        $$('#category-rail button').forEach(btn => {
+                            btn.classList.toggle('active', btn.dataset.cat === 'all');
+                        });
+                        renderAll();
+                    });
+                }
+                return;
+            }
+
+            let html = '';
+            filtered.forEach(product => {
+                const qty = state.shoppingList[product.id] || 0;
+                const selected = qty > 0;
+                const catClass = product.category === 'grocery' ? 'cat-grocery' : 'cat-household';
+                const catLabel = product.category === 'grocery' ? (state.lang === 'en' ? 'Grocery' : 'کریانہ') :
+                    (state.lang === 'en' ? 'Household' : 'گھریلو');
+                const brandLabel = product.brand || '';
+                const inStock = product.inStock;
+                const price = product.price;
+                const name = state.lang === 'en' ? product.name : product.urduName;
+                const desc = state.lang === 'en' ? product.description : product.urduDescription;
+
+                html += `
+                            <div class="product-card ${selected ? 'selected' : ''}" data-id="${product.id}">
+                                <div class="img-wrap" data-id="${product.id}">
+                                    <img src="${product.image}" alt="${product.name}" loading="lazy" />
+                                    <div class="overlay"><span><i class="fas fa-eye"></i> Quick View</span></div>
+                                    <div class="badges">
+                                        <span class="${catClass}">${catLabel}</span>
+                                        ${brandLabel ? `<span class="brand">${brandLabel}</span>` : ''}
+                                    </div>
+                                    ${selected ? `<div class="selected-overlay"><i class="fas fa-check"></i></div>` : ''}
+                                    ${!inStock ? `<div class="stock-badge"><span>Out of Stock</span></div>` : ''}
+                                </div>
+                                <div class="info">
+                                    <div class="title" data-id="${product.id}">${name}</div>
+                                    <div class="unit">${product.unit}</div>
+                                    <div class="desc">${desc}</div>
+                                    <div class="bottom">
+                                        <div class="price">
+                                            <span class="label">Price</span>
+                                            <span class="amount"><small>PKR</small> ${price}</span>
+                                        </div>
+                                        <div class="actions">
+                                            ${!selected ? `
+                                                <button class="add-btn" data-id="${product.id}" ${!inStock ? 'disabled' : ''}>
+                                                    <i class="fas fa-plus"></i> ${state.lang === 'en' ? 'Add' : 'شامل کریں'}
+                                                </button>
+                                            ` : `
+                                                <div class="qty-control">
+                                                    <button class="qty-dec" data-id="${product.id}">−</button>
+                                                    <span class="qty">${qty}</span>
+                                                    <button class="qty-inc" data-id="${product.id}">+</button>
+                                                </div>
+                                            `}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+            });
+
+            productGrid.innerHTML = html;
+        }
+
         function renderDrawerItems() {
             const items = getListItems();
             const container = drawerItemsContainer;
@@ -2947,12 +3009,12 @@
 
             if (items.length === 0) {
                 container.innerHTML = `
-                    <div class="drawer-empty">
-                        <i class="fas fa-shopping-bag"></i>
-                        <h3>${state.lang === 'en' ? 'Your list is empty' : 'آپ کی لسٹ خالی ہے'}</h3>
-                        <p>${t.emptyList}</p>
-                    </div>
-                `;
+                            <div class="drawer-empty">
+                                <i class="fas fa-shopping-bag"></i>
+                                <h3>${state.lang === 'en' ? 'Your list is empty' : 'آپ کی لسٹ خالی ہے'}</h3>
+                                <p>${t.emptyList}</p>
+                            </div>
+                        `;
                 return;
             }
 
@@ -2963,45 +3025,37 @@
                 const lineTotal = p.price * qty;
                 const name = state.lang === 'en' ? p.name : p.urduName;
                 html += `
-                    <div class="drawer-item" data-id="${p.id}">
-                        <div class="left">
-                            <img src="${p.image}" alt="${p.name}" />
-                            <div class="details">
-                                <div class="name">${name}</div>
-                                <div class="meta">${p.unit} • PKR ${p.price}</div>
+                            <div class="drawer-item" data-id="${p.id}">
+                                <div class="left">
+                                    <img src="${p.image}" alt="${p.name}" />
+                                    <div class="details">
+                                        <div class="name">${name}</div>
+                                        <div class="meta">${p.unit} • PKR ${p.price}</div>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="line-total">PKR ${lineTotal}</div>
+                                    <div class="qty-control">
+                                        <button class="drawer-qty-dec" data-id="${p.id}">−</button>
+                                        <span class="qty">${qty}</span>
+                                        <button class="drawer-qty-inc" data-id="${p.id}">+</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="right">
-                            <div class="line-total">PKR ${lineTotal}</div>
-                            <div class="qty-control">
-                                <button class="drawer-qty-dec" data-id="${p.id}">−</button>
-                                <span class="qty">${qty}</span>
-                                <button class="drawer-qty-inc" data-id="${p.id}">+</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                        `;
             });
             container.innerHTML = html;
             updateCartUI();
         }
 
-        // ------------------------------------
-        // DRAWER FUNCTIONS
-        // ------------------------------------
-        function openDrawer() {
-            state.listOpen = true;
-            drawerOverlay.classList.add('open');
+        function renderDrawer() {
             renderDrawerItems();
-            state.formStep = false;
-            showFormStep(false);
-        }
-
-        function closeDrawer() {
-            state.listOpen = false;
-            drawerOverlay.classList.remove('open');
-            state.formStep = false;
-            showFormStep(false);
+            updateCartUI();
+            if (state.formStep) {
+                showFormStep(true);
+            } else {
+                showFormStep(false);
+            }
         }
 
         function showFormStep(show) {
@@ -3031,6 +3085,116 @@
             }
         }
 
+        function renderAll() {
+            renderProducts();
+            renderDrawer();
+            updateLanguageUI();
+            populateBrands();
+            updateCartUI();
+        }
+
+        function populateBrands() {
+            const brands = [...new Set(productsData.map(p => p.brand).filter(Boolean))];
+            const current = brandSelect.value;
+            brandSelect.innerHTML = `<option value="all">${getT().allBrands}</option>`;
+            brands.forEach(b => {
+                const opt = document.createElement('option');
+                opt.value = b;
+                opt.textContent = b;
+                brandSelect.appendChild(opt);
+            });
+            brandSelect.value = current;
+        }
+
+        // --------------------------------------------------------------
+        // updateLanguageUI – header is NOT touched; stays in English LTR
+        // --------------------------------------------------------------
+        function updateLanguageUI() {
+            const t = getT();
+
+            // ----- HEADER IS IGNORED – stays English + LTR -----
+
+            // ----- FILTERS -----
+            $$('#category-rail button').forEach(btn => {
+                const cat = btn.dataset.cat;
+                if (cat === 'all') btn.textContent = t.allProducts;
+                else if (cat === 'grocery') btn.textContent = t.categoryGrocery;
+                else if (cat === 'household') btn.textContent = t.categoryHousehold;
+            });
+
+            document.querySelector('#brand-label').textContent = t.brandFilter + ':';
+            document.querySelector('#stock-label').textContent = t.inStockOnly;
+            document.querySelector('#sort-label').textContent = t.priceSort + ':';
+            document.querySelector('#sort-default').textContent = 'Default';
+            document.querySelector('#sort-low').textContent = t.priceLowToHigh;
+            document.querySelector('#sort-high').textContent = t.priceHighToLow;
+
+            document.getElementById('catalogue-title').textContent = t.catalogueTitle;
+            document.getElementById('catalogue-sub').textContent = t.catalogueSub;
+
+            const filteredCount = productGrid.querySelectorAll('.product-card').length;
+            document.getElementById('results-count').textContent =
+                t.resultsCount.replace('{count}', filteredCount || productsData.length);
+
+            // ----- HERO -----
+            document.getElementById('hero-desc').textContent = t.heroDesc;
+
+            // ----- FOOTER -----
+            document.getElementById('footer-about').textContent = t.footerAbout;
+            document.getElementById('footer-timings-title').textContent = t.footerTimings;
+            document.getElementById('footer-location-title').textContent = t.footerLocation;
+
+            const timingWrapper = document.querySelector('.footer-timing-wrapper');
+            if (timingWrapper) {
+                if (state.lang === 'ur') {
+                    timingWrapper.innerHTML = `
+                        <span class="time-main">${t.timingMain}</span>
+                        <span class="time-sub">${t.timingDays}</span>
+                        <span class="time-friday"><strong>جمعہ:</strong> ${t.timingFriday}</span>
+                        <span class="time-pack">${t.packTime}</span>
+                    `;
+                } else {
+                    timingWrapper.innerHTML = `
+                        <span class="time-main">${t.timingMain}</span>
+                        <span class="time-sub">${t.timingDays}</span>
+                        <span class="time-friday"><strong>Friday:</strong> ${t.timingFriday}</span>
+                        <span class="time-pack">${t.packTime}</span>
+                    `;
+                }
+            }
+
+            // ----- DRAWER -----
+            document.getElementById('drawer-title').textContent = t.shoppingListTitle;
+            document.getElementById('estimated-total-label').textContent = t.estimatedTotal + ':';
+            document.getElementById('form-name-label').textContent = t.formNameLabel;
+            document.getElementById('form-phone-label').textContent = t.formPhoneLabel;
+            document.getElementById('form-pickup-label').textContent = t.formPickupLabel;
+            document.getElementById('form-notes-label').textContent = t.formNotesLabel;
+            document.getElementById('form-hint').textContent = t.formHint;
+            document.getElementById('customer-name').placeholder = t.namePlaceholder;
+            document.getElementById('customer-phone').placeholder = t.phonePlaceholder;
+            document.getElementById('customer-notes').placeholder = t.notesPlaceholder;
+            document.querySelector('.drawer-footer .note').textContent = t.readyNote;
+            document.querySelector('#footer-step2 .note').textContent = t.noPaymentNote;
+            document.getElementById('proceed-btn').innerHTML = `<i class="fas fa-chevron-right"></i> ${t.proceedToForm}`;
+            document.getElementById('back-to-list').innerHTML = `<i class="fas fa-chevron-left"></i> ${t.backToList}`;
+            document.getElementById('whatsapp-btn').innerHTML = `<i class="fab fa-whatsapp"></i> ${t.whatsappOrder}`;
+            document.getElementById('clear-list').innerHTML = `<i class="fas fa-trash"></i> ${t.clearList}`;
+            document.querySelector('.form-step .summary-box .label').textContent = t.formSummary;
+
+            // ----- LANGUAGE TOGGLE ACTIVE STATE -----
+            document.querySelectorAll('.lang-toggle button').forEach(b => {
+                b.classList.toggle('active', b.dataset.lang === state.lang);
+            });
+
+            // ----- BODY DIRECTION (RTL for Urdu, LTR for English) -----
+            if (state.lang === 'ur') {
+                document.body.classList.add('dir-rtl');
+            } else {
+                document.body.classList.remove('dir-rtl');
+            }
+        }
+
         // ------------------------------------
         // DETAIL MODAL
         // ------------------------------------
@@ -3043,9 +3207,10 @@
 
             document.getElementById('detail-img').src = product.image;
             document.getElementById('detail-brand').textContent = product.brand || '';
-            document.getElementById('detail-name').textContent = product.name;
+            document.getElementById('detail-name').textContent = state.lang === 'en' ? product.name : product.urduName;
             document.getElementById('detail-unit').textContent = product.unit;
-            document.getElementById('detail-desc').textContent = product.description;
+            document.getElementById('detail-desc').textContent = state.lang === 'en' ? product.description : product
+                .urduDescription;
             document.getElementById('detail-price').textContent = product.price;
 
             const stockEl = document.getElementById('detail-stock');
@@ -3063,21 +3228,21 @@
 
             if (qty === 0) {
                 action.innerHTML = `
-                    <button class="add-btn detail-add-btn" data-id="${id}" ${!product.inStock ? 'disabled' : ''}>
-                        <i class="fas fa-shopping-bag"></i> ${state.lang === 'en' ? 'Add to Shopping List' : 'لسٹ میں شامل کریں'}
-                    </button>
-                `;
+                            <button class="add-btn detail-add-btn" data-id="${id}" ${!product.inStock ? 'disabled' : ''}>
+                                <i class="fas fa-shopping-bag"></i> ${state.lang === 'en' ? 'Add to Shopping List' : 'لسٹ میں شامل کریں'}
+                            </button>
+                        `;
             } else {
                 action.innerHTML = `
-                    <div class="qty-row">
-                        <span class="label">${state.lang === 'en' ? 'Quantity in your list:' : 'لسٹ میں شامل مقدار:'}</span>
-                        <div class="controls">
-                            <button class="detail-qty-dec" data-id="${id}">−</button>
-                            <span class="qty">${qty}</span>
-                            <button class="detail-qty-inc" data-id="${id}">+</button>
-                        </div>
-                    </div>
-                `;
+                            <div class="qty-row">
+                                <span class="label">${state.lang === 'en' ? 'Quantity in your list:' : 'لسٹ میں شامل مقدار:'}</span>
+                                <div class="controls">
+                                    <button class="detail-qty-dec" data-id="${id}">−</button>
+                                    <span class="qty">${qty}</span>
+                                    <button class="detail-qty-inc" data-id="${id}">+</button>
+                                </div>
+                            </div>
+                        `;
             }
         }
 
@@ -3088,175 +3253,136 @@
         }
 
         // ------------------------------------
-        // CLEAR CART AND RELOAD UI
+        // DRAWER FUNCTIONS
         // ------------------------------------
-        function clearCartAndReload() {
-            state.shoppingList = {};
-            saveList(); // save empty
-            renderDrawerItems();
-            updateCartUI();
-            if (state.listOpen) {
-                closeDrawer();
-            }
-            if (state.detailOpen) {
-                closeDetail();
-            }
-            showToast(getT().orderConfirmed);
+        function openDrawer() {
+            state.listOpen = true;
+            drawerOverlay.classList.add('open');
+            renderDrawer();
+            state.formStep = false;
+            showFormStep(false);
         }
 
-        // ------------------------------------
-        // RENDER LANGUAGE UI
-        // ------------------------------------
-        function renderAll() {
-            const t = getT();
-
-            // --- Hero ---
-            document.getElementById('hero-badge-text').textContent = t.heroBadge;
-            document.getElementById('hero-title-main').textContent = t.heroTitleMain;
-            document.getElementById('hero-title-accent').textContent = t.heroTitleAccent;
-            document.getElementById('hero-title-traders').textContent = t.heroTitleTraders;
-            document.getElementById('hero-desc').textContent = t.heroDesc;
-
-            // --- Story ---
-            document.getElementById('story-title').textContent = t.storyTitle;
-            document.getElementById('story-sub').textContent = t.storySub;
-            document.getElementById('story-p1').textContent = t.storyP1;
-            document.getElementById('story-p2').textContent = t.storyP2;
-            document.getElementById('story-p3').textContent = t.storyP3;
-            document.getElementById('values-title').textContent = t.valuesTitle;
-            document.getElementById('val1-label').textContent = t.val1Label;
-            document.getElementById('val1-desc').textContent = t.val1Desc;
-            document.getElementById('val2-label').textContent = t.val2Label;
-            document.getElementById('val2-desc').textContent = t.val2Desc;
-            document.getElementById('val3-label').textContent = t.val3Label;
-            document.getElementById('val3-desc').textContent = t.val3Desc;
-            document.getElementById('val4-label').textContent = t.val4Label;
-            document.getElementById('val4-desc').textContent = t.val4Desc;
-
-            // --- Team ---
-            document.getElementById('team-title').textContent = t.teamTitle;
-            document.getElementById('team-sub').textContent = t.teamSub;
-            document.getElementById('badge-founder').textContent = t.badgeFounder;
-            document.getElementById('role-founder').textContent = t.roleFounder;
-            document.getElementById('desc-founder').textContent = t.descFounder;
-            document.getElementById('badge-partner').textContent = t.badgePartner;
-            document.getElementById('role-partner').textContent = t.rolePartner;
-            document.getElementById('desc-partner').textContent = t.descPartner;
-
-            // --- Milestones ---
-            document.getElementById('milestones-title').textContent = t.milestonesTitle;
-            document.getElementById('milestones-sub').textContent = t.milestonesSub;
-            document.getElementById('milestone1-title').textContent = t.milestone1Title;
-            document.getElementById('milestone1-desc').textContent = t.milestone1Desc;
-            document.getElementById('milestone2-title').textContent = t.milestone2Title;
-            document.getElementById('milestone2-desc').textContent = t.milestone2Desc;
-            document.getElementById('milestone3-title').textContent = t.milestone3Title;
-            document.getElementById('milestone3-desc').textContent = t.milestone3Desc;
-            document.getElementById('milestone4-title').textContent = t.milestone4Title;
-            document.getElementById('milestone4-desc').textContent = t.milestone4Desc;
-
-            // --- Why ---
-            document.getElementById('why-title').textContent = t.whyTitle;
-            document.getElementById('why-sub').textContent = t.whySub;
-            document.getElementById('why1-title').textContent = t.why1Title;
-            document.getElementById('why1-desc').textContent = t.why1Desc;
-            document.getElementById('why2-title').textContent = t.why2Title;
-            document.getElementById('why2-desc').textContent = t.why2Desc;
-            document.getElementById('why3-title').textContent = t.why3Title;
-            document.getElementById('why3-desc').textContent = t.why3Desc;
-            document.getElementById('why4-title').textContent = t.why4Title;
-            document.getElementById('why4-desc').textContent = t.why4Desc;
-
-            // --- CTA ---
-            document.getElementById('cta-title').textContent = t.ctaTitle;
-            document.getElementById('cta-desc').textContent = t.ctaDesc;
-            document.getElementById('cta-btn1').textContent = t.ctaBtn1;
-            document.getElementById('cta-btn2').textContent = t.ctaBtn2;
-
-            // --- Footer ---
-            document.getElementById('footer-about').textContent = t.footerAbout;
-            document.getElementById('footer-timings-title').textContent = t.footerTimings;
-            document.getElementById('footer-location-title').textContent = t.footerLocation;
-
-            // --- Drawer ---
-            document.getElementById('drawer-title').textContent = t.drawerTitle;
-            document.getElementById('estimated-total-label').textContent = t.estimatedTotal + ':';
-            document.getElementById('form-name-label').textContent = t.formNameLabel;
-            document.getElementById('form-phone-label').textContent = t.formPhoneLabel;
-            document.getElementById('form-pickup-label').textContent = t.formPickupLabel;
-            document.getElementById('form-notes-label').textContent = t.formNotesLabel;
-            document.getElementById('form-hint').textContent = t.formHint;
-
-            // --- Language toggle ---
-            document.querySelectorAll('.lang-toggle button').forEach(b => {
-                b.classList.toggle('active', b.dataset.lang === state.lang);
-            });
-
-            // --- Direction: RTL for Urdu, LTR for English ---
-            if (state.lang === 'ur') {
-                document.body.classList.add('dir-rtl');
-                // Align text right for Urdu
-                const rtlElements = document.querySelectorAll(
-                    '.about-hero-text .hero-title, .story-text p, .team-desc, .timeline-item .desc, .why-item .desc, .cta-section p'
-                );
-                rtlElements.forEach(el => el.style.textAlign = 'right');
-                const cardElements = document.querySelectorAll('.team-card .info, .why-item, .timeline-item, .cta-section');
-                cardElements.forEach(el => el.style.direction = 'rtl');
-            } else {
-                document.body.classList.remove('dir-rtl');
-                const ltrElements = document.querySelectorAll(
-                    '.about-hero-text .hero-title, .story-text p, .team-desc, .timeline-item .desc, .why-item .desc, .cta-section p'
-                );
-                ltrElements.forEach(el => el.style.textAlign = 'left');
-                const cardElements = document.querySelectorAll('.team-card .info, .why-item, .timeline-item, .cta-section');
-                cardElements.forEach(el => el.style.direction = 'ltr');
-            }
-
-            updateCartUI();
-            renderDrawerItems();
+        function closeDrawer() {
+            state.listOpen = false;
+            drawerOverlay.classList.remove('open');
+            state.formStep = false;
+            showFormStep(false);
         }
 
         // ------------------------------------
         // EVENT LISTENERS
         // ------------------------------------
         function init() {
-            // --- START FRESH: clear any previously saved cart ---
-            localStorage.removeItem('javed_traders_shopping_list');
-            state.shoppingList = {};
-            // --- end fresh start ---
+            loadList();
 
-            // --- Language toggle – NO TOAST ---
-            document.querySelectorAll('.lang-toggle button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const lang = btn.dataset.lang;
-                    if (lang && lang !== state.lang) {
-                        state.lang = lang;
-                        document.querySelectorAll('.lang-toggle button').forEach(b => {
-                            b.classList.toggle('active', b.dataset.lang === lang);
-                        });
-                        renderAll();
-                        if (state.detailOpen && state.detailProductId) {
-                            openDetail(state.detailProductId);
-                        }
-                        // NO popup on language change
-                    }
-                });
-            });
-
-            // --- Mobile menu ---
-            document.getElementById('menu-toggle').addEventListener('click', () => {
-                document.getElementById('mobile-overlay').classList.add('open');
-            });
-            document.getElementById('close-mobile').addEventListener('click', () => {
-                document.getElementById('mobile-overlay').classList.remove('open');
-            });
-            document.getElementById('mobile-overlay').addEventListener('click', (e) => {
-                if (e.target === document.getElementById('mobile-overlay')) {
-                    document.getElementById('mobile-overlay').classList.remove('open');
+            // ---- Back to Top ----
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
                 }
             });
 
-            // --- Drawer ---
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ---- Category filter rail ----
+            categoryRail.addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+                const cat = btn.dataset.cat;
+                state.selectedCategory = cat;
+                $$('#category-rail button').forEach(b => b.classList.toggle('active', b === btn));
+                renderProducts();
+                const t = getT();
+                const filteredCount = productGrid.querySelectorAll('.product-card').length;
+                document.getElementById('results-count').textContent =
+                    t.resultsCount.replace('{count}', filteredCount);
+            });
+
+            // ---- Brand filter ----
+            brandSelect.addEventListener('change', (e) => {
+                state.selectedBrand = e.target.value;
+                renderProducts();
+                const t = getT();
+                const filteredCount = productGrid.querySelectorAll('.product-card').length;
+                document.getElementById('results-count').textContent =
+                    t.resultsCount.replace('{count}', filteredCount);
+            });
+
+            // ---- In stock filter ----
+            inStockCheck.addEventListener('change', (e) => {
+                state.inStockOnly = e.target.checked;
+                renderProducts();
+                const t = getT();
+                const filteredCount = productGrid.querySelectorAll('.product-card').length;
+                document.getElementById('results-count').textContent =
+                    t.resultsCount.replace('{count}', filteredCount);
+            });
+
+            // ---- Sort ----
+            sortSelect.addEventListener('change', (e) => {
+                state.priceSort = e.target.value;
+                renderProducts();
+            });
+
+            // ---- Product grid events ----
+            productGrid.addEventListener('click', (e) => {
+                const target = e.target.closest('button, .title, .img-wrap');
+                if (!target) return;
+
+                if (target.classList.contains('add-btn')) {
+                    const id = target.dataset.id;
+                    if (id) {
+                        const product = getProduct(id);
+                        if (product && product.inStock) {
+                            state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
+                            saveList();
+                            renderAll();
+                            showToast(state.lang === 'en' ? 'Item added to list!' :
+                                'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+                        }
+                    }
+                    return;
+                }
+
+                if (target.classList.contains('qty-inc') || target.classList.contains('qty-dec')) {
+                    const id = target.dataset.id;
+                    if (!id) return;
+                    const delta = target.classList.contains('qty-inc') ? 1 : -1;
+                    const current = state.shoppingList[id] || 0;
+                    const newQty = current + delta;
+                    if (newQty <= 0) {
+                        delete state.shoppingList[id];
+                        showToast(state.lang === 'en' ? 'Item removed from list' :
+                            'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                    } else {
+                        state.shoppingList[id] = newQty;
+                    }
+                    saveList();
+                    renderAll();
+                    return;
+                }
+
+                if (target.classList.contains('img-wrap') || target.classList.contains('title')) {
+                    const card = target.closest('.product-card');
+                    if (card) {
+                        const id = card.dataset.id;
+                        if (id) openDetail(id);
+                    }
+                    return;
+                }
+            });
+
+            // ---- Drawer ----
+            drawerOverlay.addEventListener('click', (e) => {
+                if (e.target === drawerOverlay) closeDrawer();
+            });
+
+            document.getElementById('close-drawer').addEventListener('click', closeDrawer);
             document.getElementById('cart-btn').addEventListener('click', openDrawer);
             document.getElementById('mobile-cart-btn').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -3264,12 +3390,8 @@
                 openDrawer();
             });
             document.getElementById('floating-cart-btn').addEventListener('click', openDrawer);
-            document.getElementById('close-drawer').addEventListener('click', closeDrawer);
-            drawerOverlay.addEventListener('click', (e) => {
-                if (e.target === drawerOverlay) closeDrawer();
-            });
 
-            // --- Drawer quantity controls ---
+            // ---- Drawer item qty controls ----
             drawerBody.addEventListener('click', (e) => {
                 const target = e.target.closest('button');
                 if (!target) return;
@@ -3281,12 +3403,14 @@
                     const newQty = current + delta;
                     if (newQty <= 0) {
                         delete state.shoppingList[id];
-                        showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                        showToast(state.lang === 'en' ? 'Item removed from list' :
+                            'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
                     } else {
                         state.shoppingList[id] = newQty;
                     }
                     saveList();
                     renderDrawerItems();
+                    renderDrawer();
                     updateCartUI();
                     if (state.detailOpen && state.detailProductId) {
                         openDetail(state.detailProductId);
@@ -3294,20 +3418,21 @@
                 }
             });
 
-            // --- Clear list ---
+            // ---- Clear list ----
             document.getElementById('clear-list').addEventListener('click', () => {
                 if (confirm(state.lang === 'en' ? 'Clear all items?' : 'پوری لسٹ صاف کریں؟')) {
                     state.shoppingList = {};
                     saveList();
                     renderDrawerItems();
+                    renderDrawer();
                     updateCartUI();
-                    closeDrawer();
                     if (state.detailOpen) closeDetail();
-                    showToast(state.lang === 'en' ? 'List cleared completely' : 'خریداری کی لسٹ صاف کر دی گئی ہے');
+                    showToast(state.lang === 'en' ? 'List cleared completely' :
+                        'خریداری کی لسٹ صاف کر دی گئی ہے');
                 }
             });
 
-            // --- Proceed to form ---
+            // ---- Proceed to form ----
             document.getElementById('proceed-btn').addEventListener('click', () => {
                 if (getListItems().length === 0) return;
                 state.formStep = true;
@@ -3323,7 +3448,7 @@
                 showFormStep(false);
             });
 
-            // --- Form inputs ---
+            // ---- Form inputs ----
             document.getElementById('customer-name').addEventListener('input', (e) => {
                 state.customerName = e.target.value;
             });
@@ -3337,7 +3462,7 @@
                 state.customerNotes = e.target.value;
             });
 
-            // --- WhatsApp order (number +92 336 9595531) ---
+            // ---- WhatsApp order ----
             document.getElementById('whatsapp-btn').addEventListener('click', (e) => {
                 const name = document.getElementById('customer-name').value.trim();
                 const phone = document.getElementById('customer-phone').value.trim();
@@ -3367,21 +3492,19 @@
                 items.forEach((item, idx) => {
                     const line = item.product.price * item.quantity;
                     const prodName = isUr ? item.product.urduName : item.product.name;
-                    msg += `\n${idx+1}. *${prodName}* (${item.product.unit}) \n   _Qty:_ ${item.quantity}  |  _Price:_ Rs ${line}`;
+                    msg +=
+                        `\n${idx + 1}. *${prodName}* (${item.product.unit}) \n   _Qty:_ ${item.quantity}  |  _Price:_ Rs ${line}`;
                 });
-                msg += `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
-                msg += `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
+                msg +=
+                    `\n\n${isUr ? `💵 *کل متوقع بل (Estimated Total):* Rs ${total}` : `💵 *Estimated Total:* Rs ${total}`}`;
+                msg +=
+                    `\n\n${isUr ? `براہ کرم یہ سامان پیک کر کے رکھیں۔ میں دکان پر آ کر وصول کروں گا!\nشکریہ۔` : `Please pack these items. I will pick them up from the store!\nThank you.`}`;
 
                 const url = `https://wa.me/923369595531?text=${encodeURIComponent(msg)}`;
                 window.open(url, '_blank');
-
-                // ---- CLEAR CART AFTER CONFIRMATION ----
-                setTimeout(() => {
-                    clearCartAndReload();
-                }, 400);
             });
 
-            // --- Detail modal ---
+            // ---- Detail modal ----
             document.getElementById('close-detail').addEventListener('click', closeDetail);
             detailOverlay.addEventListener('click', (e) => {
                 if (e.target === detailOverlay) closeDetail();
@@ -3398,10 +3521,10 @@
                     if (product && product.inStock) {
                         state.shoppingList[id] = (state.shoppingList[id] || 0) + 1;
                         saveList();
-                        updateCartUI();
-                        renderDrawerItems();
+                        renderAll();
                         openDetail(id);
-                        showToast(state.lang === 'en' ? 'Item added to list!' : 'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
+                        showToast(state.lang === 'en' ? 'Item added to list!' :
+                            'پروڈکٹ لسٹ میں شامل کر دی گئی ہے!');
                     }
                     return;
                 }
@@ -3412,39 +3535,68 @@
                     const newQty = current + delta;
                     if (newQty <= 0) {
                         delete state.shoppingList[id];
-                        showToast(state.lang === 'en' ? 'Item removed from list' : 'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
+                        showToast(state.lang === 'en' ? 'Item removed from list' :
+                            'پروڈکٹ لسٹ سے ہٹا دی گئی ہے');
                     } else {
                         state.shoppingList[id] = newQty;
                     }
                     saveList();
-                    updateCartUI();
-                    renderDrawerItems();
+                    renderAll();
                     openDetail(id);
                 }
             });
 
-            // --- Smooth scroll for anchor links ---
-            document.querySelectorAll('a[href^="#"]').forEach(a => {
-                a.addEventListener('click', (e) => {
-                    const target = document.querySelector(a.getAttribute('href'));
-                    if (target) {
-                        e.preventDefault();
-                        const offset = 80;
-                        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-                        window.scrollTo({ top, behavior: 'smooth' });
-                        document.getElementById('mobile-overlay').classList.remove('open');
+            // ---- Language toggle (NO POPUP) ----
+            document.querySelectorAll('.lang-toggle button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    if (lang && lang !== state.lang) {
+                        state.lang = lang;
+                        document.querySelectorAll('.lang-toggle button').forEach(b => {
+                            b.classList.toggle('active', b.dataset.lang === lang);
+                        });
+                        renderAll();
+                        if (state.detailOpen && state.detailProductId) {
+                            openDetail(state.detailProductId);
+                        }
+                        if (state.listOpen) {
+                            renderDrawer();
+                        }
+                        // No toast / popup on language change
                     }
                 });
             });
 
-            // --- Init language ---
+            // ---- Mobile menu ----
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                document.getElementById('mobile-overlay').classList.add('open');
+            });
+            document.getElementById('close-mobile').addEventListener('click', () => {
+                document.getElementById('mobile-overlay').classList.remove('open');
+            });
+            document.getElementById('mobile-overlay').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('mobile-overlay')) {
+                    document.getElementById('mobile-overlay').classList.remove('open');
+                }
+            });
+            document.querySelectorAll('#mobile-nav a').forEach(a => {
+                a.addEventListener('click', () => {
+                    document.getElementById('mobile-overlay').classList.remove('open');
+                });
+            });
+
+            // ---- Home link ----
+            document.getElementById('home-link').addEventListener('click', () => {
+                window.location.href = 'home.html';
+            });
+
+            // ---- Init ----
             document.querySelectorAll('.lang-toggle button').forEach(b => {
                 b.classList.toggle('active', b.dataset.lang === state.lang);
             });
 
             renderAll();
-
-            console.log('About Us page with header forced to LTR, cart cleared on load, and order confirmation clearing cart.');
+            console.log('Catalogue page loaded.');
         }
 
         document.addEventListener('DOMContentLoaded', init);
